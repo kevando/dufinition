@@ -37,7 +37,7 @@ class Photo extends Component {
 
     avatarTapped() {
         console.log('avatarTapped')
-    const options = {
+    var options = {
       title: 'Select Photo',
       cancelButtonTitle: 'Cancel',
       takePhotoButtonTitle: 'Take Photo...',
@@ -59,8 +59,8 @@ class Photo extends Component {
           console.log('User tapped custom button: ', response.customButton);
         }
         else {
-          //const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-          const source = {uri: response.uri.replace('file://', ''), isStatic: true};
+          //var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+          var source = {uri: response.uri.replace('file://', ''), isStatic: true};
 
           this.setState({
             avatarSource: source
@@ -87,7 +87,7 @@ class Photo extends Component {
 
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
