@@ -1,5 +1,10 @@
+/**
+ * Created by echessa on 4/24/15.
+ */
+
+
 'use strict';
- 
+
 var React = require('react-native');
 var BookDetail = require('./BookDetail');
 var {
@@ -11,7 +16,7 @@ var {
     Image,
     ListView
     } = React;
- 
+
 var styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -49,21 +54,21 @@ var styles = StyleSheet.create({
         flex: 1
     }
 });
- 
+
 class SearchResults extends Component {
- 
+
     constructor(props) {
         super(props);
- 
+
         var dataSource = new ListView.DataSource(
             {rowHasChanged: (row1, row2) => row1 !== row2});
         this.state = {
             dataSource: dataSource.cloneWithRows(this.props.books)
         };
     }
- 
+
     render() {
- 
+
         return (
             <ListView
                 dataSource={this.state.dataSource}
@@ -72,10 +77,10 @@ class SearchResults extends Component {
                 />
         );
     }
- 
+
     renderBook(book) {
         var imageURI = (typeof book.volumeInfo.imageLinks !== 'undefined') ? book.volumeInfo.imageLinks.thumbnail : '';
- 
+
         return (
             <TouchableHighlight onPress={() => this.showBookDetail(book)}
                                 underlayColor='#dddddd'>
@@ -94,16 +99,16 @@ class SearchResults extends Component {
             </TouchableHighlight>
         );
     }
- 
+
     showBookDetail(book) {
- 
+
         this.props.navigator.push({
             title: book.volumeInfo.title,
             component: BookDetail,
             passProps: {book}
         });
     }
- 
+
 }
- 
+
 module.exports = SearchResults;

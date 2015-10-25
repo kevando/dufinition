@@ -1,5 +1,9 @@
+/**
+ * Created by echessa on 4/24/15.
+ */
+
 'use strict';
- 
+
 var React = require('react-native');
 var SearchResults = require('./SearchResults');
 var {
@@ -11,7 +15,7 @@ var {
     TouchableHighlight,
     ActivityIndicatorIOS
     } = React;
- 
+
 var styles = StyleSheet.create({
     container: {
         marginTop: 65,
@@ -55,9 +59,9 @@ var styles = StyleSheet.create({
         color: 'red'
     }
 });
- 
+
 class SearchBooks extends Component {
- 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -67,8 +71,8 @@ class SearchBooks extends Component {
             errorMessage: ''
         };
     }
- 
- 
+
+
     render() {
         var spinner = this.state.isLoading ?
             ( <ActivityIndicatorIOS
@@ -96,23 +100,23 @@ class SearchBooks extends Component {
             </View>
         );
     }
- 
+
     bookTitleInput(event) {
         this.setState({ bookTitle: event.nativeEvent.text });
     }
- 
+
     bookAuthorInput(event) {
         this.setState({ bookAuthor: event.nativeEvent.text });
     }
- 
+
     searchBooks() {
         this.fetchData();
     }
- 
+
     fetchData() {
- 
+
         this.setState({ isLoading: true });
- 
+
         var baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
         if (this.state.bookAuthor !== '') {
             baseURL += encodeURIComponent('inauthor:' + this.state.bookAuthor);
@@ -120,14 +124,14 @@ class SearchBooks extends Component {
         if (this.state.bookTitle !== '') {
             baseURL += (this.state.bookAuthor === '') ? encodeURIComponent('intitle:' + this.state.bookTitle) : encodeURIComponent('+intitle:' + this.state.bookTitle);
         }
- 
+
         console.log('URL: >>> ' + baseURL);
         fetch(baseURL)
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({ isLoading: false});
                 if (responseData.items) {
- 
+
                     this.props.navigator.push({
                         title: 'Search Results',
                         component: SearchResults,
@@ -144,7 +148,7 @@ class SearchBooks extends Component {
                 }))
             .done();
     }
- 
+
 }
- 
+
 module.exports = SearchBooks;
