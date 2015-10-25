@@ -73,8 +73,7 @@ class SearchResults extends Component {
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this.renderBook.bind(this)}
-                style={styles.listView}
-                />
+                style={styles.listView} />
         );
     }
 

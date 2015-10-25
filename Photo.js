@@ -10,11 +10,13 @@ var SearchBooks = require('./SearchBooks');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
 var {
+  AppRegistry,
     StyleSheet,
     NavigatorIOS,
     Component,
-    // StyleSheet,
+    AsyncStorage,
   Text,
+  TextInput,
   View,
   PixelRatio,
   TouchableOpacity,
@@ -35,53 +37,41 @@ class Photo extends Component {
         };
     }
 
-    avatarTapped() {
-        console.log('avatarTapped')
-    var options = {
-      title: 'Select Photo',
-      cancelButtonTitle: 'Cancel',
-      takePhotoButtonTitle: 'Take Photo...',
-      chooseFromLibraryButtonTitle: 'Choose from Library...',
-      quality: 0.2,
-      storageOptions: {
-        skipBackup: true
-      }
-    };
 
-    UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
-      console.log('Response = ', response);
+    omponentDidMount() {
+        AsyncStorage.getItem("myKey").then((value) => {
+            this.setState({"myKey": value});
+        }).done();
+    }
+    getInitialState() {
+        return { };
+    }
 
-      if (didCancel) {
-        console.log('User cancelled image picker');
-      }
-      else {
-        if (response.customButton) {
-          console.log('User tapped custom button: ', response.customButton);
-        }
-        else {
-          //var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-          var source = {uri: response.uri.replace('file://', ''), isStatic: true};
-
-          this.setState({
-            avatarSource: source
-          });
-        }
-      }
-    });
-  }
+    
 
     render() {
         return (
-           <View style={styles.container}>
-        <TouchableOpacity onPress={() =>this.avatarTapped()}>
-          <View style={[styles.avatar, styles.avatarContainer]}>
-          { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
-            <Image style={styles.avatar} source={this.state.avatarSource} />
-          }
-          </View>
-        </TouchableOpacity>
-      </View>
+            <View style={styles.container}>
+                <Text style={styles.saved}>
+                    {this.state.myKey}
+                </Text>
+                <View>
+                    <TextInput
+                        style={styles.formInput}
+                        onChangeText={(text) => this.saveData(text)}
+                        value="" />
+                </View>
+                <Text style={styles.instructions}>
+                    Type something into the text box.  It will be saved to
+                    device storage.  Next time you open the application, the saved data
+                    will still exist.
+                </Text>
+            </View>
         );
+    }
+    saveData(value) {
+        AsyncStorage.setItem("myKey", value);
+        this.setState({"myKey": value});
     }
 
 
@@ -89,22 +79,30 @@ class Photo extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  avatarContainer: {
-    borderColor: '#9B9B9B',
-    borderWidth: 1 / PixelRatio.get(),
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  avatar: {
-    borderRadius: 75,
-    width: 150,
-    height: 150
-  }
+        padding: 30,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "stretch",
+        backgroundColor: "#F5FCFF",
+    },
+    formInput: {
+        flex: 1,
+        height: 26,
+        fontSize: 13,
+        borderWidth: 1,
+        borderColor: "#555555",
+    },
+    saved: {
+        fontSize: 20,
+        textAlign: "center",
+        margin: 10,
+    },
+    instructions: {
+        textAlign: "center",
+        color: "#333333",
+        marginBottom: 5,
+        marginTop: 5,
+    },
 });
 
 module.exports = Photo;

@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var SearchBooks = require('./SearchBooks');
+var SearchWord = require('./SearchWord');
 
 var {
     StyleSheet,
@@ -25,8 +25,8 @@ class Search extends Component {
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-            title: 'Search Books',
-            component: SearchBooks
+            title: 'Search Word',
+            component: SearchWord
         }}/>
         );
     }
