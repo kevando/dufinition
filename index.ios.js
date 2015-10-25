@@ -3,6 +3,7 @@
 var React = require('react-native');
 var Featured = require('./Featured');
 var Search = require('./Search');
+var Photo = require('./Photo');
 
 var {
     AppRegistry,
@@ -15,7 +16,7 @@ class BookSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 'featured'
+            avatarSource: null
         };
     }
 
@@ -41,6 +42,16 @@ class BookSearch extends Component {
                         });
                     }}>
                     <Search/>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    selected={this.state.selectedTab === 'photo'}
+                    icon={{uri:'more'}}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'photo'
+                        });
+                    }}>
+                    <Photo/>
                 </TabBarIOS.Item>
             </TabBarIOS>
         );
