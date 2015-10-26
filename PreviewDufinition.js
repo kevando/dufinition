@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var SearchBooks = require('./SearchBooks');
+//var SearchBooks = require('./SearchBooks');
 
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
