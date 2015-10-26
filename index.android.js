@@ -12,7 +12,7 @@ var {
   View,
 } = React;
 
-var AwesomeProject = React.createClass({
+var Dufine = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
@@ -49,4 +49,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('Dufine', () => Dufine);
