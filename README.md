@@ -33,3 +33,11 @@ tried figuring out a way to deploy without fabric, but archiving again and tryin
 
 xcode was out of date
 
+
+---- build instructions
+react-native bundle
+set iOS device
+archive 
+> distribute
+
+

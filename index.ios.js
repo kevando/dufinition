@@ -3,8 +3,9 @@
 var React = require('react-native');
 // var Featured = require('./Featured');
 var Search = require('./Search');
-var Photo = require('./Photo');
-// var Photo = require('./ReactProject');
+// var Photo = require('./Photo');
+var Add = require('./Add');
+var List = require('./List');
 
 var {
     AppRegistry,
@@ -21,7 +22,7 @@ class Dufine extends Component {
         super(props);
         this.state = {
             avatarSource: null,
-            selectedTab: 'search'
+            selectedTab: 'add'
 
         };
     }
@@ -42,15 +43,26 @@ class Dufine extends Component {
                     <Search/>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'photo'}
-                    title="View Saved Dufinition"
+                    selected={this.state.selectedTab === 'add'}
+                    title="Add Data"
                     icon={{uri: base64Icon, scale: 3}}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'photo'
+                            selectedTab: 'add'
                         });
                     }}>
-                    <Photo/>
+                    <Add/>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    selected={this.state.selectedTab === 'list'}
+                    title="View Saved Data"
+                    icon={{uri: base64Icon, scale: 3}}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'list'
+                        });
+                    }}>
+                    <List/>
                 </TabBarIOS.Item>
             </TabBarIOS>
         );
