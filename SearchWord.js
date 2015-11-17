@@ -67,10 +67,10 @@ class SearchWord extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookAuthor: '',
-            bookTitle: '',
             isLoading: false,
-            errorMessage: ''
+            errorMessage: '',
+            searchWord: '',
+
         };
     }
 
@@ -100,11 +100,9 @@ class SearchWord extends Component {
     }
 
     searchWords() {
-        //this.setState({ word: 'true' });
-        this.props.navigator.push({
+        this.props.navigator.push({ // i believe this is only possuble by wrapping in NavigatorIOS
             title: 'Select Photo',
             component: SelectPhoto,
-            // passProps: {word: 'kevoo'}
             passProps: {searchWord: this.state.searchWord} // i think state vars dont get passed through nav push
         });
 
@@ -114,49 +112,8 @@ class SearchWord extends Component {
         this.setState({ searchWord: event.nativeEvent.text });
     }
 
-    bookAuthorInput(event) {
-        this.setState({ bookAuthor: event.nativeEvent.text });
-    }
 
-    searchBooks() {
-        this.fetchData();
-    }
 
-    fetchData() {
-
-        this.setState({ isLoading: true });
-
-        var baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
-        if (this.state.bookAuthor !== '') {
-            baseURL += encodeURIComponent('inauthor:' + this.state.bookAuthor);
-        }
-        if (this.state.bookTitle !== '') {
-            baseURL += (this.state.bookAuthor === '') ? encodeURIComponent('intitle:' + this.state.bookTitle) : encodeURIComponent('+intitle:' + this.state.bookTitle);
-        }
-
-        console.log('URL: >>> ' + baseURL);
-        fetch(baseURL)
-            .then((response) => response.json())
-            .then((responseData) => {
-                this.setState({ isLoading: false});
-                if (responseData.items) {
-
-                    this.props.navigator.push({
-                        title: 'Search Results',
-                        component: SearchResults,
-                        passProps: {books: responseData.items}
-                    });
-                } else {
-                    this.setState({ errorMessage: 'No results found'});
-                }
-            })
-            .catch(error =>
-                this.setState({
-                    isLoading: false,
-                    errorMessage: error
-                }))
-            .done();
-    }
 
 }
 

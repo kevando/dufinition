@@ -9,11 +9,13 @@ var React = require('react-native');
 
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
+var reactNativeStore = require('react-native-store');
+
 var {
     StyleSheet,
     NavigatorIOS,
     Component,
-    // StyleSheet,
+    TouchableHighlight,
   Text,
   View,
   PixelRatio,
@@ -36,40 +38,6 @@ class PreviewDufinition extends Component {
         };
     }
 
-    avatarTapped() {
-        console.log('avatarTapped')
-    var options = {
-      title: 'Select Photo',
-      cancelButtonTitle: 'Cancel',
-      takePhotoButtonTitle: 'Take Photo...',
-      chooseFromLibraryButtonTitle: 'Choose from Library...',
-      quality: 0.2,
-      storageOptions: {
-        skipBackup: true
-      }
-    };
-
-    UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
-      console.log('Response = ', response);
-
-      if (didCancel) {
-        console.log('User cancelled image picker');
-      }
-      else {
-        if (response.customButton) {
-          console.log('User tapped custom button: ', response.customButton);
-        }
-        else {
-          //var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-          var source = {uri: response.uri.replace('file://', ''), isStatic: true};
-
-          this.setState({
-            avatarSource: source
-          });
-        }
-      }
-    });
-  }
 
     render() {
         return (
@@ -82,8 +50,25 @@ class PreviewDufinition extends Component {
           }
           </View>
         </TouchableOpacity>
+        <TouchableHighlight style={styles.button}
+          underlayColor='#f1c40f'
+          onPress={this.saveData.bind(this)}>
+          <Text style={styles.buttonText}>Save this Dufinition</Text>
+        </TouchableHighlight>
       </View>
         );
+    }
+
+    async saveData(){
+      console.log('save dat')
+
+      var dufineModel = await reactNativeStore.model("dufine_v1");
+
+      var add_data = await dufineModel.add({
+        searchWord: this.state.searchWord,
+        photo: this.state.photo,
+      })
+      console.log(add_data);
     }
 
 

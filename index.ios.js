@@ -1,12 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-// var Featured = require('./Featured');
 var Search = require('./Search');
-// var Photo = require('./Photo');
-var Add = require('./Add');
-var List = require('./List');
-var MovieDetail = require('./MovieDetail');
+var DufinitionsSaved = require('./DufinitionsSaved');
 
 var {
     AppRegistry,
@@ -23,7 +19,7 @@ class Dufine extends Component {
         super(props);
         this.state = {
             avatarSource: null,
-            selectedTab: 'add'
+            selectedTab: 'search'
 
         };
     }
@@ -44,26 +40,15 @@ class Dufine extends Component {
                     <Search/>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'add'}
-                    title="Add Data"
-                    icon={{uri: base64Icon, scale: 3}}
-                    onPress={() => {
-                        this.setState({
-                            selectedTab: 'add'
-                        });
-                    }}>
-                    <Add/>
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'list'}
+                    selected={this.state.selectedTab === 'DufinitionsSaved'}
                     title="View Saved Data"
                     icon={{uri: base64Icon, scale: 3}}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'list'
+                            selectedTab: 'DufinitionsSaved'
                         });
                     }}>
-                    <List/>
+                    <DufinitionsSaved/>
                 </TabBarIOS.Item>
             </TabBarIOS>
         );

@@ -70,8 +70,6 @@ class SelectPhoto extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookAuthor: '',
-            bookTitle: '',
             isLoading: false,
             errorMessage: '',
             searchWord: props.searchWord

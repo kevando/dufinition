@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var SearchWord = require('./SearchWord');
+var DufinitionsList = require('./DufinitionsList');
 
 var {
     StyleSheet,
@@ -19,17 +19,17 @@ var styles = StyleSheet.create({
     }
 });
 
-class Search extends Component {
+class DufinitionsSaved extends Component {
     render() {
         return (
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: 'Find a Word',
-                    component: SearchWord
+                    title: 'Saved Dufinitions',
+                    component: DufinitionsList
             }}/>
         );
     }
 }
 
-module.exports = Search;
+module.exports = DufinitionsSaved;
