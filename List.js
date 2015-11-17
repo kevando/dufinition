@@ -9,12 +9,17 @@ var React = require('react-native');
 
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
+// For 
+var reactNativeStore = require('react-native-store');
+
 var {
   AppRegistry,
+  TouchableHighlight,
     StyleSheet,
     NavigatorIOS,
     Component,
     AsyncStorage,
+    ListView,
   Text,
   TextInput,
   View,
@@ -27,54 +32,93 @@ var {
     } = React;
 
 
+// tmp vars for using the rotten tomato data
+var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
+var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
+var PAGE_SIZE = 25;
+var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
+var REQUEST_URL = API_URL + PARAMS;
+
 
 class List extends Component {
 
 constructor(props) {
-        super(props);
+  console.log('constructor');
+        super(props); // not sure what this does
         this.state = {
-            avatarSource: null
+          dataSource: new ListView.DataSource({
+            rowHasChanged: (row1, row2) => row1 !== row2,
+          }),
+          loaded: false,
         };
     }
 
-    componentDidMount() {
-        this._loadInitialState().done();
-    }
-
-  async _loadInitialState() {
-    try {
-      var value = await AsyncStorage.getItem("myKey");
-      if (value !== null){
-        this.setState({"myKey": value});
-        //this._appendMessage('Recovered selection from disk: ' + value);
-      } else {
-        this.setState({"myKey": 'initalized but no value on disk'});
-        this._appendMessage('Initialized with no selection on disk.');
-      }
-    } catch (error) {
-      this._appendMessage('AsyncStorage error: ' + error.message);
-    }
+  componentDidMount() {
+    this.fetchData();
   }
 
+  async fetchData() {
 
-    getInitialState() {
-        return { };
+    var dufineModel = await reactNativeStore.model("dufine");
+    // search
+    console.log('1');
+    var find_data = await dufineModel.find();
+    this.setState({
+      //dataSource: find_data,
+      dataSource: this.state.dataSource.cloneWithRows(find_data),
+      loaded: true,
+    });
+    console.log('3');
+
+
+  }
+
+  render() {
+
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
     }
 
-    
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderMovie.bind(this)}
+        style={styles.listView} />
+    );
+  }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.saved}>
-                    {this.state.myKey}
-                </Text>
-            </View>
-        );
-    }
-    saveData(value) {
-        AsyncStorage.setItem("myKey", value);
-        this.setState({"myKey": value});
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading movies...
+        </Text>
+      </View>
+    );
+  }
+
+  renderMovie(movie) {
+    return (
+      <TouchableHighlight onPress={() => this.showMovieDetail(movie)}
+                                underlayColor='#dddddd'>
+        <View style={styles.container}>
+          
+          <View style={styles.rightContainer}>
+          
+            <Text style={styles.year}>{movie.username}</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    );
+  }
+
+  showMovieDetail(movie) {
+
+        this.props.navigator.push({
+            title: 'titleeee',//book.volumeInfo.title,
+            component: MovieDetail,
+            passProps: {movie}
+        });
     }
 
 
@@ -106,6 +150,32 @@ var styles = StyleSheet.create({
         marginBottom: 5,
         marginTop: 5,
     },
+    container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  rightContainer: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  year: {
+    textAlign: 'center',
+  },
+  thumbnail: {
+    width: 53,
+    height: 81,
+  },
+  listView: {
+    paddingTop: 20,
+    backgroundColor: '#F5FCFF',
+  },
 });
 
 module.exports = List;

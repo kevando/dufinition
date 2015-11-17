@@ -6,6 +6,7 @@ var Search = require('./Search');
 // var Photo = require('./Photo');
 var Add = require('./Add');
 var List = require('./List');
+var MovieDetail = require('./MovieDetail');
 
 var {
     AppRegistry,

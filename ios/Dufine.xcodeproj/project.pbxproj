@@ -17,6 +17,14 @@
 		0A60DA3F1BDDD1BD00FB0EE5 /* UIImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A60DA3E1BDDD1BD00FB0EE5 /* UIImagePickerManager.m */; };
 		0AA4E4F41BDD8EB900BD9200 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA4E4F21BDD8EB900BD9200 /* Fabric.framework */; };
 		0AA4E4F51BDD8EB900BD9200 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA4E4F31BDD8EB900BD9200 /* Crashlytics.framework */; };
+		0AF2010A1BEDBE9C00DCCCC9 /* .npmignore in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201011BEDBE9C00DCCCC9 /* .npmignore */; };
+		0AF2010B1BEDBE9C00DCCCC9 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201031BEDBE9C00DCCCC9 /* index.js */; };
+		0AF2010C1BEDBE9C00DCCCC9 /* model.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201041BEDBE9C00DCCCC9 /* model.js */; };
+		0AF2010D1BEDBE9C00DCCCC9 /* store.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201051BEDBE9C00DCCCC9 /* store.js */; };
+		0AF2010E1BEDBE9C00DCCCC9 /* util.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201061BEDBE9C00DCCCC9 /* util.js */; };
+		0AF2010F1BEDBE9C00DCCCC9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201071BEDBE9C00DCCCC9 /* LICENSE */; };
+		0AF201101BEDBE9C00DCCCC9 /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AF201081BEDBE9C00DCCCC9 /* package.json */; };
+		0AF201111BEDBE9C00DCCCC9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0AF201091BEDBE9C00DCCCC9 /* README.md */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -121,6 +129,14 @@
 		0A60DA3E1BDDD1BD00FB0EE5 /* UIImagePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIImagePickerManager.m; path = "../node_modules/react-native-image-picker/UIImagePickerManager/UIImagePickerManager.m"; sourceTree = "<group>"; };
 		0AA4E4F21BDD8EB900BD9200 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		0AA4E4F31BDD8EB900BD9200 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		0AF201011BEDBE9C00DCCCC9 /* .npmignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .npmignore; sourceTree = "<group>"; };
+		0AF201031BEDBE9C00DCCCC9 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		0AF201041BEDBE9C00DCCCC9 /* model.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = model.js; sourceTree = "<group>"; };
+		0AF201051BEDBE9C00DCCCC9 /* store.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = store.js; sourceTree = "<group>"; };
+		0AF201061BEDBE9C00DCCCC9 /* util.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = util.js; sourceTree = "<group>"; };
+		0AF201071BEDBE9C00DCCCC9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		0AF201081BEDBE9C00DCCCC9 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		0AF201091BEDBE9C00DCCCC9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Dufine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dufine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +238,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0AF201001BEDBE9C00DCCCC9 /* react-native-store */ = {
+			isa = PBXGroup;
+			children = (
+				0AF201011BEDBE9C00DCCCC9 /* .npmignore */,
+				0AF201021BEDBE9C00DCCCC9 /* libs */,
+				0AF201071BEDBE9C00DCCCC9 /* LICENSE */,
+				0AF201081BEDBE9C00DCCCC9 /* package.json */,
+				0AF201091BEDBE9C00DCCCC9 /* README.md */,
+			);
+			name = "react-native-store";
+			path = "../node_modules/react-native-store";
+			sourceTree = "<group>";
+		};
+		0AF201021BEDBE9C00DCCCC9 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				0AF201031BEDBE9C00DCCCC9 /* index.js */,
+				0AF201041BEDBE9C00DCCCC9 /* model.js */,
+				0AF201051BEDBE9C00DCCCC9 /* store.js */,
+				0AF201061BEDBE9C00DCCCC9 /* util.js */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +311,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0AF201001BEDBE9C00DCCCC9 /* react-native-store */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -520,9 +561,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF2010E1BEDBE9C00DCCCC9 /* util.js in Resources */,
+				0AF2010D1BEDBE9C00DCCCC9 /* store.js in Resources */,
+				0AF2010C1BEDBE9C00DCCCC9 /* model.js in Resources */,
+				0AF2010B1BEDBE9C00DCCCC9 /* index.js in Resources */,
+				0AF201101BEDBE9C00DCCCC9 /* package.json in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				0AF2010F1BEDBE9C00DCCCC9 /* LICENSE in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				0AF2010A1BEDBE9C00DCCCC9 /* .npmignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +607,7 @@
 			files = (
 				0A60DA3F1BDDD1BD00FB0EE5 /* UIImagePickerManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				0AF201111BEDBE9C00DCCCC9 /* README.md in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

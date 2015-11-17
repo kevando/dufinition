@@ -30,7 +30,7 @@ var {
 
 
 
-class Add extends Component {
+class MovieDetail extends Component {
 
     
 
@@ -126,4 +126,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = Add;
+module.exports = MovieDetail;
