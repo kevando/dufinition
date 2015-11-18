@@ -33,6 +33,10 @@ tried figuring out a way to deploy without fabric, but archiving again and tryin
 
 xcode was out of date
 
+2015.11.17
+adding CameraRoll. need to link the library
+https://facebook.github.io/react-native/docs/linking-libraries-ios.html#content
+
 
 ---- build instructions
 react-native bundle

@@ -21,6 +21,7 @@ var {
   PixelRatio,
   TouchableOpacity,
   Image,
+  CameraRoll,
   // NativeModules: {
   //   UIImagePickerManager
   // }
@@ -61,7 +62,7 @@ class PreviewDufinition extends Component {
 
     async saveData(){
       console.log('save dat')
-
+      console.log(this.state.photo);
       var dufineModel = await reactNativeStore.model("dufine_v1");
 
       var add_data = await dufineModel.add({
@@ -69,6 +70,16 @@ class PreviewDufinition extends Component {
         photo: this.state.photo,
       })
       console.log(add_data);
+
+        console.log('saving to camera roll');
+        console.log(this.state.photo.uri)
+        CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
+            console.log(data);
+        }, function(err) {
+            console.log(err);
+        });
+        console.log('image saved');
+
     }
 
 

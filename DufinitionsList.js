@@ -102,6 +102,8 @@ constructor(props) {
   }
 
   showDufinitionDetail(dufinition) {
+    console.log('dufinition');
+    console.log(dufinition);
 
         this.props.navigator.push({
             title: 'titleeee',//book.volumeInfo.title,

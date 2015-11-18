@@ -22,6 +22,7 @@ var {
   PixelRatio,
   TouchableHighlight,
   Image,
+  CameraRoll,
   // NativeModules: {
   //   UIImagePickerManager
   // }
@@ -35,18 +36,25 @@ class DufinitionDetail extends Component {
     
 
     constructor(props) {
-
         super(props);
         this.state = {
-            avatarSource: null
+            isLoading: false,
+            errorMessage: '',
+            searchWord: props.dufinition.searchWord,
+            photo: props.dufinition.photo,
         };
     }
 
 
     componentDidMount() {
-        // AsyncStorage.getItem("myKey").then((value) => {
-        //     this.setState({"myKey": value});
-        // }).done();
+        console.log('saving to camera roll');
+        console.log(this.state.photo.uri)
+        CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
+            console.log(data);
+        }, function(err) {
+            console.log(err);
+        });
+        console.log('image saved');
     }
     getInitialState() {
         return { };
@@ -58,13 +66,13 @@ class DufinitionDetail extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.saved}>
-                    asdf
+                    {this.state.photo.uri}
                 </Text>
                 
                 <TouchableHighlight style={styles.button}
                                     underlayColor='#f1c40f'
-                                    onPress={this.saveData.bind(this)}>
-                    <Text style={styles.buttonText}>Add Data yo</Text>
+                                    onPress={this.saveToCameraRoll.bind(this)}>
+                    <Text style={styles.buttonText}>save to camera roll</Text>
                 </TouchableHighlight>
             </View>
         );
@@ -74,19 +82,15 @@ class DufinitionDetail extends Component {
         this.setState({ dataInput: event.nativeEvent.text });
     }
 
-    async saveData() {
-  //       var dufineModel = await reactNativeStore.model("dufine");
-  //       // Add Data
-  // var add_data = await dufineModel.add({
-  //   username: this.state.dataInput,
-  //   age: 12,
-  //   sex: "man"
-  // });
-  // // return object or null
-  // console.log(add_data);
-
-  //       // search
-  // var find_data = await dufineModel.find();
+    saveToCameraRoll() {
+        console.log('saving to camera roll');
+        console.log(this.state.photo.uri)
+        CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
+            console.log(data);
+        }, function(err) {
+            console.log(err);
+        });
+        console.log('image saved');
 
     }
 
