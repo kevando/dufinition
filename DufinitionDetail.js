@@ -47,14 +47,14 @@ class DufinitionDetail extends Component {
 
 
     componentDidMount() {
-        console.log('saving to camera roll');
-        console.log(this.state.photo.uri)
-        CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
-            console.log(data);
-        }, function(err) {
-            console.log(err);
-        });
-        console.log('image saved');
+        // console.log('saving to camera roll');
+        // console.log(this.state.photo.uri)
+        // CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
+        //     console.log(data);
+        // }, function(err) {
+        //     console.log(err);
+        // });
+        // console.log('image saved');
     }
     getInitialState() {
         return { };

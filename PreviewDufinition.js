@@ -35,7 +35,8 @@ class PreviewDufinition extends Component {
         super(props);
         this.state = {
             searchWord: props.searchWord,
-            photo: props.photo
+            photo: props.photo,
+            definition: props.definition
         };
     }
 
@@ -43,14 +44,15 @@ class PreviewDufinition extends Component {
     render() {
         return (
            <View style={styles.container}>
-           <Text style={styles.instructions}>You chose the word {this.state.searchWord}</Text>
-        <TouchableOpacity onPress={() =>this.avatarTapped()}>
           <View style={[styles.avatar, styles.avatarContainer]}>
           { this.state.photo === null ? <Text>no photo passed :(</Text> :
             <Image style={styles.avatar} source={this.state.photo} />
           }
           </View>
-        </TouchableOpacity>
+
+          <Text style={styles.instructions}>{this.state.searchWord}</Text>
+          <Text style={styles.instructions}>Definition{this.state.definition.text}</Text>
+        
         <TouchableHighlight style={styles.button}
           underlayColor='#f1c40f'
           onPress={this.saveData.bind(this)}>
@@ -61,24 +63,19 @@ class PreviewDufinition extends Component {
     }
 
     async saveData(){
-      console.log('save dat')
-      console.log(this.state.photo);
       var dufineModel = await reactNativeStore.model("dufine_v1");
 
       var add_data = await dufineModel.add({
         searchWord: this.state.searchWord,
         photo: this.state.photo,
       })
-      console.log(add_data);
 
-        console.log('saving to camera roll');
-        console.log(this.state.photo.uri)
-        CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
-            console.log(data);
-        }, function(err) {
-            console.log(err);
-        });
-        console.log('image saved');
+      // Holding off until i can figure out how to generate custom images
+      // CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
+      //     console.log(data);
+      // }, function(err) {
+      //     console.log(err);
+      // });
 
     }
 
@@ -99,7 +96,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   avatar: {
-    borderRadius: 75,
+    
     width: 150,
     height: 150
   }

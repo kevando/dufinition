@@ -72,7 +72,8 @@ class SelectPhoto extends Component {
         this.state = {
             isLoading: false,
             errorMessage: '',
-            searchWord: props.searchWord
+            searchWord: props.searchWord,
+            definition: props.definition
         };
     }
 
@@ -112,7 +113,7 @@ class SelectPhoto extends Component {
                 this.props.navigator.push({
                     title: 'Preview Dufinition',
                     component: PreviewDufinition,
-                    passProps: {searchWord: this.state.searchWord,photo: source}
+                    passProps: {searchWord: this.state.searchWord,photo: source,definition:this.state.definition}
                     //passProps: {word: responseData.items}
                 });
             }
@@ -128,7 +129,9 @@ class SelectPhoto extends Component {
             ( <View/>);
         return (
             <View style={styles.container}>
-                <Text style={styles.instructions}>You chose the word {this.state.searchWord}</Text>
+                <Text style={styles.instructions}>{this.state.searchWord}</Text>
+                <Text style={styles.instructions}>Definition: {this.state.definition.text}</Text>
+                
                 <TouchableHighlight style={styles.button}
                                     underlayColor='#f1c40f'
                                     onPress={() =>this.avatarTapped()}>
@@ -140,27 +143,8 @@ class SelectPhoto extends Component {
         );
     }
 
-    searchWords() {
-        this.setState({ isLoading: true });
-        this.props.navigator.push({
-            title: 'Select Photo',
-            component: SelectPhoto,
-            passProps: {word: 'kevoo'}
-            //passProps: {word: responseData.items}
-        });
-
-    }
-
-    bookTitleInput(event) {
-        this.setState({ bookTitle: event.nativeEvent.text });
-    }
-
     bookAuthorInput(event) {
         this.setState({ bookAuthor: event.nativeEvent.text });
-    }
-
-    searchBooks() {
-        this.fetchData();
     }
 
     

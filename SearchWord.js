@@ -15,7 +15,8 @@ var {
     Component,
     TextInput,
     TouchableHighlight,
-    ActivityIndicatorIOS
+    ActivityIndicatorIOS,
+    AlertIOS,
     } = React;
 
 var styles = StyleSheet.create({
@@ -100,11 +101,45 @@ class SearchWord extends Component {
     }
 
     searchWords() {
-        this.props.navigator.push({ // i believe this is only possuble by wrapping in NavigatorIOS
-            title: 'Select Photo',
-            component: SelectPhoto,
-            passProps: {searchWord: this.state.searchWord} // i think state vars dont get passed through nav push
-        });
+        // Set loading state while it queries this api
+
+        var baseURL = 'http://api.wordnik.com/v4/word.json/'+this.state.searchWord.toLowerCase()+'/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+        console.log(baseURL)
+
+        fetch(baseURL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({ isLoading: false});
+                console.log(responseData)
+                if (responseData.length > 0) {
+                    this.props.navigator.push({
+                        title: 'Preview Definition',
+                        component: SelectPhoto,
+                        passProps: {searchWord: this.state.searchWord, definition: responseData[0]}
+                    });
+                } else {
+                    this.setState({ errorMessage: 'No results found'});
+                    AlertIOS.alert(
+                        'Word definition was NOT found',
+                        null,
+                        [
+                          {text: 'Button', onPress: () => console.log('Button Pressed!')},
+                        ]
+                    )
+                }
+            })
+            .catch(error =>
+                this.setState({
+                    isLoading: false,
+                    errorMessage: error
+                }))
+            .done();
+
+        // this.props.navigator.push({ // i believe this is only possuble by wrapping in NavigatorIOS
+        //     title: 'Select Photo',
+        //     component: SelectPhoto,
+        //     passProps: {searchWord: this.state.searchWord} // i think state vars dont get passed through nav push
+        // });
 
     }
 

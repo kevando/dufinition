@@ -1,3 +1,6 @@
+awesome list of resources
+https://github.com/jondot/awesome-react-native
+
 Add this to README
 
 config changes for fabric
