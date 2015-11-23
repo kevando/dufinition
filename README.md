@@ -40,6 +40,10 @@ xcode was out of date
 adding CameraRoll. need to link the library
 https://facebook.github.io/react-native/docs/linking-libraries-ios.html#content
 
+2015.11.23
+adding 
+	react-native-fs (so far, didnt do waht i thought it would)
+	react-native-view-snapshot
 
 ---- build instructions
 react-native bundle

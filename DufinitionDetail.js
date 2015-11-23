@@ -9,6 +9,7 @@ var How = require('./How');
 var styles = require('./Styles');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 var reactNativeStore = require('react-native-store');
+var ViewSnapshotter = require('react-native-view-snapshot');
 
 var {
   AppRegistry,
@@ -41,6 +42,7 @@ class DufinitionDetail extends Component {
             errorMessage: '',
             searchWord: props.dufinition.searchWord,
             photo: props.dufinition.photo,
+            path: props.dufinition.path,
         };
     }
 
@@ -57,18 +59,25 @@ class DufinitionDetail extends Component {
                 <Image style={styles.avatar} source={this.state.photo} />
               }
               </View>
-          
-                <Text style={styles.saved}>
-                    {this.state.photo.uri}
-                </Text>
+
+                
+                <Text style={styles.saved}>{this.state.photo.path}</Text>
                 
                 <TouchableHighlight style={styles.button}
                                     underlayColor='#f1c40f'
                                     onPress={this.confirmDelete.bind(this)}>
                     <Text style={styles.buttonText}>delete this</Text>
                 </TouchableHighlight>
+                <TouchableHighlight style={styles.button}
+                                    underlayColor='#f1c40f'
+                                    onPress={this.saveDufinition.bind(this)}>
+                    <Text style={styles.buttonText}>save this</Text>
+                </TouchableHighlight>
             </View>
         );
+    }
+    saveDufinition(){
+        console.log('saveDufinition');
     }
 
     dataInput(event) {

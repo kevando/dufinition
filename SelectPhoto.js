@@ -7,6 +7,7 @@
 var React = require('react-native');
 var PreviewDufinition = require('./PreviewDufinition');
 var styles = require('./Styles');
+var RNFS = require('react-native-fs');
 
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
@@ -61,9 +62,14 @@ class SelectPhoto extends Component {
               console.log('User tapped custom button: ', response.customButton);
             }
             else {
-                console.log(response)
+                console.log(response);
+                var path = RNFS.MainBundlePath + '/'+this.state.searchWord+'.jpg';
+                RNFS.writeFile(path, 'data:image/jpeg;base64,' + response.data, 'base64')
+                  .then((success) => {
+                    console.log('FILE WRITTEN!');
+                  })
               //var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-              var source = {data: 'data:image/jpeg;base64,' + response.data,uri: response.uri.replace('file://', ''), isStatic: true};
+              var source = {data: 'data:image/jpeg;base64,' + response.data,uri: response.uri.replace('file://', ''), isStatic: true,path:path};
 
 
               //todo should probly abstract this

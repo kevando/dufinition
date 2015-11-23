@@ -4,6 +4,7 @@ var React = require('react-native');
 var How = require('./How');
 var Search = require('./Search');
 var DufinitionsSaved = require('./DufinitionsSaved');
+var SnapExample = require('./SnapExample');
 
 var {
     AppRegistry,
@@ -61,7 +62,20 @@ class Dufine extends Component {
                     }}>
                     <DufinitionsSaved/>
                 </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    selected={this.state.selectedTab === 'SnapExample'}
+                    title="View Saved Data"
+                    icon={{uri: base64Icon, scale: 3}}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'SnapExample'
+                        });
+                    }}>
+                    <SnapExample/>
+                </TabBarIOS.Item>
+                
             </TabBarIOS>
+            
         );
     }
 }

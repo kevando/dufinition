@@ -14,6 +14,13 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* DufineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DufineTests.m */; };
+		0A4F5EC01C02E850005ADB56 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4F5EBF1C02E7FA005ADB56 /* libRNFS.a */; };
+		0A4F5EC91C02ECC2005ADB56 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC21C02ECC2005ADB56 /* LICENSE */; };
+		0A4F5ECA1C02ECC2005ADB56 /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC31C02ECC2005ADB56 /* package.json */; };
+		0A4F5ECB1C02ECC2005ADB56 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC41C02ECC2005ADB56 /* README.md */; };
+		0A4F5ECC1C02ECC2005ADB56 /* ViewSnapshotter.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC61C02ECC2005ADB56 /* ViewSnapshotter.ios.js */; };
+		0A4F5ECD1C02ECC2005ADB56 /* ViewSnapshotter.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC71C02ECC2005ADB56 /* ViewSnapshotter.js */; };
+		0A4F5ECE1C02ECC2005ADB56 /* ViewSnapshotter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC81C02ECC2005ADB56 /* ViewSnapshotter.m */; };
 		0A585A9E1BFBF64D009B55AB /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A585A941BFBF5EF009B55AB /* libRCTCameraRoll.a */; };
 		0A60DA3F1BDDD1BD00FB0EE5 /* UIImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A60DA3E1BDDD1BD00FB0EE5 /* UIImagePickerManager.m */; };
 		0AA4E4F41BDD8EB900BD9200 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA4E4F21BDD8EB900BD9200 /* Fabric.framework */; };
@@ -80,6 +87,13 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Dufine;
 		};
+		0A4F5EBE1C02E7FA005ADB56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A4F5EAF1C02E7FA005ADB56 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
 		0A585A931BFBF5EF009B55AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A585A8E1BFBF5EE009B55AB /* RCTCameraRoll.xcodeproj */;
@@ -134,6 +148,14 @@
 		00E356EE1AD99517003FC87E /* DufineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DufineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* DufineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DufineTests.m; sourceTree = "<group>"; };
+		0A4F5EAF1C02E7FA005ADB56 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
+		0A4F5EC21C02ECC2005ADB56 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		0A4F5EC31C02ECC2005ADB56 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		0A4F5EC41C02ECC2005ADB56 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0A4F5EC51C02ECC2005ADB56 /* ViewSnapshotter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSnapshotter.h; sourceTree = "<group>"; };
+		0A4F5EC61C02ECC2005ADB56 /* ViewSnapshotter.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ViewSnapshotter.ios.js; sourceTree = "<group>"; };
+		0A4F5EC71C02ECC2005ADB56 /* ViewSnapshotter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ViewSnapshotter.js; sourceTree = "<group>"; };
+		0A4F5EC81C02ECC2005ADB56 /* ViewSnapshotter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSnapshotter.m; sourceTree = "<group>"; };
 		0A585A8E1BFBF5EE009B55AB /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		0A60DA3E1BDDD1BD00FB0EE5 /* UIImagePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIImagePickerManager.m; path = "../node_modules/react-native-image-picker/UIImagePickerManager/UIImagePickerManager.m"; sourceTree = "<group>"; };
 		0AA4E4F21BDD8EB900BD9200 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -172,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4F5EC01C02E850005ADB56 /* libRNFS.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -246,6 +269,29 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A4F5EB01C02E7FA005ADB56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A4F5EBF1C02E7FA005ADB56 /* libRNFS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A4F5EC11C02ECC2005ADB56 /* react-native-view-snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				0A4F5EC21C02ECC2005ADB56 /* LICENSE */,
+				0A4F5EC31C02ECC2005ADB56 /* package.json */,
+				0A4F5EC41C02ECC2005ADB56 /* README.md */,
+				0A4F5EC51C02ECC2005ADB56 /* ViewSnapshotter.h */,
+				0A4F5EC61C02ECC2005ADB56 /* ViewSnapshotter.ios.js */,
+				0A4F5EC71C02ECC2005ADB56 /* ViewSnapshotter.js */,
+				0A4F5EC81C02ECC2005ADB56 /* ViewSnapshotter.m */,
+			);
+			name = "react-native-view-snapshot";
+			path = "../node_modules/react-native-view-snapshot";
 			sourceTree = "<group>";
 		};
 		0A585A8F1BFBF5EE009B55AB /* Products */ = {
@@ -329,6 +375,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0A4F5EC11C02ECC2005ADB56 /* react-native-view-snapshot */,
+				0A4F5EAF1C02E7FA005ADB56 /* RNFS.xcodeproj */,
 				0A585A8E1BFBF5EE009B55AB /* RCTCameraRoll.xcodeproj */,
 				0AF201001BEDBE9C00DCCCC9 /* react-native-store */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -490,6 +538,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 0A4F5EB01C02E7FA005ADB56 /* Products */;
+					ProjectRef = 0A4F5EAF1C02E7FA005ADB56 /* RNFS.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -533,6 +585,13 @@
 			fileType = archive.ar;
 			path = libRCTVibration.a;
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A4F5EBF1C02E7FA005ADB56 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 0A4F5EBE1C02E7FA005ADB56 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A585A941BFBF5EF009B55AB /* libRCTCameraRoll.a */ = {
@@ -594,10 +653,14 @@
 				0AF2010E1BEDBE9C00DCCCC9 /* util.js in Resources */,
 				0AF2010D1BEDBE9C00DCCCC9 /* store.js in Resources */,
 				0AF2010C1BEDBE9C00DCCCC9 /* model.js in Resources */,
+				0A4F5ECD1C02ECC2005ADB56 /* ViewSnapshotter.js in Resources */,
 				0AF2010B1BEDBE9C00DCCCC9 /* index.js in Resources */,
 				0AF201101BEDBE9C00DCCCC9 /* package.json in Resources */,
+				0A4F5EC91C02ECC2005ADB56 /* LICENSE in Resources */,
+				0A4F5ECC1C02ECC2005ADB56 /* ViewSnapshotter.ios.js in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				0A4F5ECA1C02ECC2005ADB56 /* package.json in Resources */,
 				0AF2010F1BEDBE9C00DCCCC9 /* LICENSE in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0AF2010A1BEDBE9C00DCCCC9 /* .npmignore in Resources */,
@@ -637,6 +700,8 @@
 			files = (
 				0A60DA3F1BDDD1BD00FB0EE5 /* UIImagePickerManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				0A4F5ECE1C02ECC2005ADB56 /* ViewSnapshotter.m in Sources */,
+				0A4F5ECB1C02ECC2005ADB56 /* README.md in Sources */,
 				0AF201111BEDBE9C00DCCCC9 /* README.md in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
