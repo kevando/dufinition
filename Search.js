@@ -7,6 +7,8 @@
 var React = require('react-native');
 var SearchWord = require('./SearchWord');
 
+
+
 var {
     StyleSheet,
     NavigatorIOS,

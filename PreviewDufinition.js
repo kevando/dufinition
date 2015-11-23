@@ -5,26 +5,19 @@
 'use strict';
 
 var React = require('react-native');
-//var SearchBooks = require('./SearchBooks');
-
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
 var reactNativeStore = require('react-native-store');
+var styles = require('./Styles');
 
 var {
-    StyleSheet,
-    NavigatorIOS,
     Component,
     TouchableHighlight,
   Text,
   View,
-  PixelRatio,
   TouchableOpacity,
   Image,
   CameraRoll,
-  // NativeModules: {
-  //   UIImagePickerManager
-  // }
     } = React;
 
 
@@ -70,6 +63,8 @@ class PreviewDufinition extends Component {
         photo: this.state.photo,
       })
 
+      this.props.navigator.pushToTop();
+
       // Holding off until i can figure out how to generate custom images
       // CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
       //     console.log(data);
@@ -82,24 +77,5 @@ class PreviewDufinition extends Component {
 
 }
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  avatarContainer: {
-    borderColor: '#9B9B9B',
-    borderWidth: 1 / PixelRatio.get(),
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  avatar: {
-    
-    width: 150,
-    height: 150
-  }
-});
 
 module.exports = PreviewDufinition;

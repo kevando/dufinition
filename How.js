@@ -1,7 +1,13 @@
+/**
+ * Created by echessa on 4/24/15.
+ */
+
 'use strict';
 
 var React = require('react-native');
-var DufinitionsList = require('./DufinitionsList');
+var HowContent = require('./HowContent');
+
+
 
 var {
     StyleSheet,
@@ -15,17 +21,17 @@ var styles = StyleSheet.create({
     }
 });
 
-class DufinitionsSaved extends Component {
+class How extends Component {
     render() {
         return (
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: 'Saved Dufinitions',
-                    component: DufinitionsList
+                    title: 'How this works',
+                    component: HowContent
             }}/>
         );
     }
 }
 
-module.exports = DufinitionsSaved;
+module.exports = How;

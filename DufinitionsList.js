@@ -6,16 +6,14 @@
 
 var React = require('react-native');
 var DufinitionDetail = require('./DufinitionDetail')
-//var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 var reactNativeStore = require('react-native-store');
+var styles = require('./Styles');
 
 var {
   AppRegistry,
   TouchableHighlight,
-    StyleSheet,
     NavigatorIOS,
     Component,
-    AsyncStorage,
     ListView,
   Text,
   TextInput,
@@ -23,9 +21,6 @@ var {
   PixelRatio,
   TouchableOpacity,
   Image,
-  // NativeModules: {
-  //   UIImagePickerManager
-  // }
     } = React;
 
 
@@ -33,7 +28,7 @@ var {
 class DufinitionsList extends Component {
 
 constructor(props) {
-  console.log('constructor');
+  // console.log('dufinition list constructor');
         super(props); // not sure what this does
         this.state = {
           dataSource: new ListView.DataSource({
@@ -44,26 +39,35 @@ constructor(props) {
     }
 
   componentDidMount() {
-    this.fetchData();
+    //this.fetchData();
+    this._loadInitialState().done();
+  }
+  async _loadInitialState() {
+
+    try {
+      var dufineModel = await reactNativeStore.model("dufine_v1");
+      var find_data = await dufineModel.find();
+      if (find_data !== null){
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(find_data),
+          loaded: true,
+        });
+        // this.setState({selectedValue: value});
+        // this._appendMessage('Recovered selection from disk: ' + value);
+      } else {
+        this._appendMessage('Initialized with no selection on disk.');
+      }
+    } catch (error) {
+      this._appendMessage('AsyncStorage error: ' + error.message);
+    }
   }
 
-  async fetchData() {
-    console.log('async fetch data')
-    var dufineModel = await reactNativeStore.model("dufine_v1");
-    // search
-    var find_data = await dufineModel.find();
-    console.log(find_data)
-    this.setState({
-      //dataSource: find_data,
-      dataSource: this.state.dataSource.cloneWithRows(find_data),
-      loaded: true,
-    });
-
-
-  }
 
   render() {
-
+    
+    this._loadInitialState().done(); // might be too much
+    // if I console log here, it renders like every clock cycle todo
+    
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
@@ -72,7 +76,7 @@ constructor(props) {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderDufinition.bind(this)}
-        style={styles.listView} />
+        style={styles.container} />
     );
   }
 
@@ -88,23 +92,27 @@ constructor(props) {
 
   renderDufinition(dufinition) {
     return (
-      <TouchableHighlight onPress={() => this.showDufinitionDetail(dufinition)}
-                                underlayColor='#dddddd'>
-        <View style={styles.container}>
-          
-          <View style={styles.rightContainer}>
-          
-            <Text style={styles.year}>{dufinition.searchWord}</Text>
+      <View>
+        <TouchableHighlight 
+          onPress={() => this.renderDufinitionDetail(dufinition)}
+          style={styles.listRow}
+        >          
+          <View>
+            <Image
+              source={{uri: dufinition.photo.uri}}
+              style={styles.thumbnail}/>
+
+            <View style={styles.rightContainer}>
+              <Text style={styles.year}>{dufinition.searchWord}</Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
+        </TouchableHighlight>
+      </View>
     );
   }
 
-  showDufinitionDetail(dufinition) {
-    console.log('dufinition');
-    console.log(dufinition);
-
+  renderDufinitionDetail(dufinition) {
+    // console.log(dufinition);
         this.props.navigator.push({
             title: 'titleeee',//book.volumeInfo.title,
             component: DufinitionDetail,
@@ -115,59 +123,5 @@ constructor(props) {
 
 }
 
-var styles = StyleSheet.create({
-  container: {
-        padding: 30,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "stretch",
-        backgroundColor: "#F5FCFF",
-    },
-    formInput: {
-        flex: 1,
-        height: 26,
-        fontSize: 13,
-        borderWidth: 1,
-        borderColor: "#555555",
-    },
-    saved: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    },
-    instructions: {
-        textAlign: "center",
-        color: "#333333",
-        marginBottom: 5,
-        marginTop: 5,
-    },
-    container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    marginTop: 65
-  },
-  rightContainer: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  year: {
-    textAlign: 'center',
-  },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
-  listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 module.exports = DufinitionsList;

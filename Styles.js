@@ -4,12 +4,13 @@ var React = require('react-native');
 
 var {
   StyleSheet,
+  PixelRatio, //used for avatar circle
 } = React;
 
 module.exports = StyleSheet.create({
 container: {
         marginTop: 65,
-        padding: 10
+        padding: 10,
     },
     searchInput: {
         height: 36,
@@ -47,6 +48,53 @@ container: {
         alignSelf: 'center',
         marginTop: 15,
         color: 'red'
-    }
+    },
+
+    formInput: {
+        flex: 1,
+        height: 26,
+        fontSize: 13,
+        borderWidth: 1,
+        borderColor: "#555555",
+    },
+    saved: {
+        fontSize: 20,
+        textAlign: "center",
+        margin: 10,
+    },
+
+
+
+   listRow: {
+    
+    flexDirection: 'row',
+    backgroundColor: '#ccc',
+  },
+    
+  rightContainer: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  thumbnail: {
+    width: 53,
+    height: 81,
+  },
+
+  avatarContainer: {
+    borderColor: '#9B9B9B',
+    borderWidth: 1 / PixelRatio.get(),
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  avatar: {
+    
+    width: 150,
+    height: 150
+  }
+
+
 
 });
