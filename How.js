@@ -1,13 +1,7 @@
-/**
- * Created by echessa on 4/24/15.
- */
-
 'use strict';
 
 var React = require('react-native');
 var HowContent = require('./HowContent');
-
-
 
 var {
     StyleSheet,
