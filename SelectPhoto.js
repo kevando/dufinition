@@ -107,9 +107,6 @@ class SelectPhoto extends Component {
                                     onPress={() =>this.avatarTapped()}>
                     <Text style={styles.buttonText}>Pick a Photo</Text>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.button} onPress={() =>this.testPhoto()}>
-                    <Text style={styles.buttonText}>Use Test photo</Text>
-                </TouchableHighlight>
                 {spinner}
                 <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
             </View>

@@ -90,32 +90,14 @@ constructor(props) {
   }
 
   renderDufinition(dufinition) {
-    //console.log(dufinition);
+    
     return (
-      // <View style={styles.listRow}>
-      //   <TouchableHighlight 
-      //     onPress={() => this.renderDufinitionDetail(dufinition)}
-          
-      //   >          
-      //     <View>
-      //       <Image
-      //         source={{uri: 'assets-library://asset/asset.PNG?id=24280A57-FF24-4503-9EF8-0935DBE045CE&ext=PNG'}}
-      //         style={styles.thumbnail}/>
-
-      //       <View style={styles.rightContainer}>
-      //         <Text>{dufinition.searchWord}</Text>
-      //       </View>
-      //     </View>
-      //   </TouchableHighlight>
-      // </View>
       <TouchableHighlight 
-          onPress={() => this.renderDufinitionDetail(dufinition)}
-          
+          onPress={() => this.renderDufinitionDetail(dufinition)}      
         > 
       <View style={styles.listRow}>
-      
           <Image
-            source={{uri: 'assets-library://asset/asset.PNG?id=24280A57-FF24-4503-9EF8-0935DBE045CE&ext=PNG'}}
+            source={{uri: dufinition.photo.uri}}
             style={styles.thumbnail}/>
           <View style={styles.rightContainer}>
             <Text style={styles.title}>{dufinition.definition.word}</Text>

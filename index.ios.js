@@ -21,7 +21,7 @@ class Dufine extends Component {
         super(props);
         this.state = {
             avatarSource: null,
-            selectedTab: 'DufinitionsSaved'
+            selectedTab: 'how'
         };
     }
 
@@ -62,18 +62,6 @@ class Dufine extends Component {
                     }}>
                     <DufinitionsSaved/>
                 </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'SnapExample'}
-                    title="View Saved Data"
-                    icon={{uri: base64Icon, scale: 3}}
-                    onPress={() => {
-                        this.setState({
-                            selectedTab: 'SnapExample'
-                        });
-                    }}>
-                    <SnapExample/>
-                </TabBarIOS.Item>
-
             </TabBarIOS>
             
         );

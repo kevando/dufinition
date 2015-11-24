@@ -31,13 +31,9 @@ class HowContent extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.instructions}>1) Search for a Word</Text>
-                <Text style={styles.instructions}>2) Confirm Definition</Text>
-                <Text style={styles.instructions}>3) Upload photo</Text>
-                <Text style={styles.instructions}>4) Generate Dufinition</Text>
-                <Text style={styles.instructions}>5) Share with your homies!</Text>
-<TouchableHighlight style={styles.button} onPress={() =>this.testPhoto()}>
-                    <Text style={styles.buttonText}>Use Test photo</Text>
-                </TouchableHighlight>
+                <Text style={styles.instructions}>2) Upload photo</Text>
+                <Text style={styles.instructions}>3) Generate Dufinition</Text>
+                <Text style={styles.instructions}>4) Share with your homies!</Text>
             </View>
         );
     }

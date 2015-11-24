@@ -6,6 +6,7 @@ var styles = require('./Styles');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 var reactNativeStore = require('react-native-store');
 var ViewSnapshotter = require('react-native-view-snapshot');
+var RNFS = require("react-native-fs");
 
 var {
     AppRegistry,
@@ -30,6 +31,7 @@ class DufinitionDetail extends Component {
         this.state = {
             isLoading: false,
             errorMessage: '',
+            imageSaved: false,
             searchWord: props.dufinition.searchWord,
             photo: props.dufinition.photo,
             photo_uri: 'assets-library://asset/asset.PNG?id=24280A57-FF24-4503-9EF8-0935DBE045CE&ext=PNG',
@@ -41,18 +43,20 @@ class DufinitionDetail extends Component {
         console.log(this.state.dufinition.definition);
         return (
             <View style={styles.container}>
-                <View style={styles.dufTop}>
-                    <View style={styles.avatarContainer}>
-                        <Image source={{uri: this.state.photo_uri}} style={styles.dufPhoto}/>
+                <View ref="dufinition">
+                    <View style={styles.dufTop}>
+                        <View style={styles.avatarContainer}>
+                            <Image source={{uri: this.state.photo.uri}} style={styles.dufPhoto}/>
+                        </View>
+                        <View style={styles.dufinitionText}>
+                            <Text style={styles.georgia}>{this.state.dufinition.definition.word}</Text>
+                            <Text style={styles.georgia}>{this.state.dufinition.definition.partOfSpeech}</Text>
+                        </View>
+                        
                     </View>
-                    <View style={styles.dufinitionText}>
-                        <Text style={styles.georgia}>{this.state.searchWord}</Text>
-                        <Text style={styles.georgia}>{this.state.dufinition.definition.word}</Text>
+                    <View style={styles.dufinitionDefinition}>
+                            <Text style={styles.georgia}>{this.state.dufinition.definition.text}</Text>
                     </View>
-                    
-                </View>
-                <View style={styles.dufinitionDefinition}>
-                        <Text style={styles.georgia}>{this.state.dufinition.definition.text}</Text>
                 </View>
                 
                 <TouchableHighlight style={styles.button}
@@ -70,6 +74,23 @@ class DufinitionDetail extends Component {
     }
     saveDufinition(){
         console.log('saveDufinition');
+        var ref = React.findNodeHandle(this.refs.dufinition);
+        ViewSnapshotter.saveSnapshotToPath(ref, this.imagePath(), (error, successfulWrite) => {
+            if (successfulWrite) {
+                this.setState({imageSaved: true});
+                CameraRoll.saveImageWithTag(this.imagePath(), function(data) {
+                    console.log(data);
+                }, function(err) {
+                    console.log(err);
+                });
+            } else {
+                console.log(error)
+            }
+        }); // ViewSnapshotter
+    }
+
+    imagePath() {
+        return RNFS.CachesDirectoryPath+"/duf.png";
     }
 
     dataInput(event) {
