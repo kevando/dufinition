@@ -45,10 +45,12 @@ adding
 	react-native-fs (so far, didnt do waht i thought it would)
 	react-native-view-snapshot
 
----- build instructions
+---- Fabric build instructions
+update version/build values
+set jsCodeLocation in ApDelegate.m
 react-native bundle
-set iOS device
-archive 
-> distribute
+set iOS device 
+product > archive 
+Fabric > distribute
 
 

@@ -1,13 +1,7 @@
-/**
- * Created by echessa on 4/24/15.
- */
-
 'use strict';
 
 var React = require('react-native');
 var SearchWord = require('./SearchWord');
-
-
 
 var {
     StyleSheet,
@@ -27,7 +21,7 @@ class Search extends Component {
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: 'Find a Word',
+                    title: 'Create New Dufinition',
                     component: SearchWord
             }}/>
         );

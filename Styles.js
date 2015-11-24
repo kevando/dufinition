@@ -8,10 +8,62 @@ var {
 } = React;
 
 module.exports = StyleSheet.create({
-container: {
+
+    /* Global Styling */
+    container: {
         marginTop: 65,
         padding: 10,
     },
+
+    /* ListView */
+    listRow: {
+    	flex: 1,
+    	flexDirection: 'row',
+    	backgroundColor: '#ccc',
+    	justifyContent: 'center',
+    	alignItems: 'center',
+  	},
+  	rightContainer: {
+  		flex:1
+  	},
+    thumbnail: {
+    	width: 53,
+    	height: 81,
+
+  	},
+
+    /* Dufinition Component */
+    dufTop: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
+    },
+    dufinitionText: {
+        flex: 1,
+        flexDirection: 'column',
+    },
+    dufinitionDefinition: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
+
+    },
+
+    dufPhoto: {
+        height: 100,
+        width: 100
+    },
+    georgia: {
+        fontFamily: "Georgia",
+        fontSize: 20,
+        textAlign: "left",
+        margin: 10,
+    },
+
+
+    /* -------------- */
     searchInput: {
         height: 36,
         marginTop: 10,
@@ -57,31 +109,17 @@ container: {
         borderWidth: 1,
         borderColor: "#555555",
     },
-    saved: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    },
 
 
 
-   listRow: {
+
+   
     
-    flexDirection: 'row',
-    backgroundColor: '#ccc',
-  },
-    
-  rightContainer: {
-    flex: 1,
-  },
   title: {
     fontSize: 20,
     textAlign: 'center',
   },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
+  
 
   avatarContainer: {
     borderColor: '#9B9B9B',

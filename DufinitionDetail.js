@@ -1,7 +1,3 @@
-/**
- * Created by echessa on 4/24/15.
- */
-
 'use strict';
 
 var React = require('react-native');
@@ -12,28 +8,22 @@ var reactNativeStore = require('react-native-store');
 var ViewSnapshotter = require('react-native-view-snapshot');
 
 var {
-  AppRegistry,
-    StyleSheet,
+    AppRegistry,
     NavigatorIOS,
     Component,
-    AsyncStorage,
-  Text,
-  TextInput,
-  View,
-  PixelRatio,
-  TouchableHighlight,
-  Image,
-  CameraRoll,
-  AlertIOS,
-
+    Text,
+    TextInput,
+    View,
+    TouchableHighlight,
+    Image,
+    CameraRoll,
+    AlertIOS,
     } = React;
 
 
 
 
 class DufinitionDetail extends Component {
-
-    
 
     constructor(props) {
         super(props);
@@ -42,26 +32,28 @@ class DufinitionDetail extends Component {
             errorMessage: '',
             searchWord: props.dufinition.searchWord,
             photo: props.dufinition.photo,
-            path: props.dufinition.path,
+            photo_uri: 'assets-library://asset/asset.PNG?id=24280A57-FF24-4503-9EF8-0935DBE045CE&ext=PNG',
+            dufinition: props.dufinition,
         };
     }
 
-
-
-
-    
-
     render() {
+        console.log(this.state.dufinition.definition);
         return (
             <View style={styles.container}>
-                <View style={[styles.avatar, styles.avatarContainer]}>
-              { this.state.photo === null ? <Text>no photo passed :(</Text> :
-                <Image style={styles.avatar} source={this.state.photo} />
-              }
-              </View>
-
-                
-                <Text style={styles.saved}>{this.state.photo.path}</Text>
+                <View style={styles.dufTop}>
+                    <View style={styles.avatarContainer}>
+                        <Image source={{uri: this.state.photo_uri}} style={styles.dufPhoto}/>
+                    </View>
+                    <View style={styles.dufinitionText}>
+                        <Text style={styles.georgia}>{this.state.searchWord}</Text>
+                        <Text style={styles.georgia}>{this.state.dufinition.definition.word}</Text>
+                    </View>
+                    
+                </View>
+                <View style={styles.dufinitionDefinition}>
+                        <Text style={styles.georgia}>{this.state.dufinition.definition.text}</Text>
+                </View>
                 
                 <TouchableHighlight style={styles.button}
                                     underlayColor='#f1c40f'
@@ -85,14 +77,13 @@ class DufinitionDetail extends Component {
     }
 
     saveToCameraRoll() {
-        console.log('saving to camera roll');
-        console.log(this.state.photo.uri)
+        // console.log('saving to camera roll');
+        // console.log(this.state.photo.uri);
         CameraRoll.saveImageWithTag(this.state.photo.uri, function(data) {
-            console.log(data);
+            // console.log(data);
         }, function(err) {
-            console.log(err);
+            // console.log(err);
         });
-        console.log('image saved');
 
     }
     confirmDelete() {
@@ -103,19 +94,17 @@ class DufinitionDetail extends Component {
               {text: 'Yes', onPress: () =>  this.deleteDufinition()},
               {text: 'No', onPress: () => console.log('User cancelled deltion')},
             ]
-          )
+        )
     }
 
     async deleteDufinition(dufinition){
         var dufineModel = await reactNativeStore.model("dufine_v1");
-        
-        
         var remove_data = await dufineModel.remove({
             searchWord: this.state.searchWord
         });
-        console.log(remove_data);
+        // console.log(remove_data);
         this.props.navigator.pop();
-        console.log('return');
+        // console.log('return');
     }
 
 

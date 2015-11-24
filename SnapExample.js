@@ -22,6 +22,7 @@ var RNFS = require("react-native-fs");
 class SnapExample extends Component{
 
   constructor(props) {
+    console.log('asdf')
     super(props);
     this.state = {
       catSaved: false

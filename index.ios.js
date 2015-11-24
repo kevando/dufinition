@@ -73,7 +73,7 @@ class Dufine extends Component {
                     }}>
                     <SnapExample/>
                 </TabBarIOS.Item>
-                
+
             </TabBarIOS>
             
         );

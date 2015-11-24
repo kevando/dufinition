@@ -1,7 +1,3 @@
-/**
- * Created by echessa on 4/24/15.
- */
-
 'use strict';
 
 var React = require('react-native');
@@ -35,20 +31,30 @@ class SelectPhoto extends Component {
             definition: props.definition
         };
     }
+    testPhoto(){
+        this.props.navigator.push({
+                    title: 'Preview Dufinition',
+                    component: PreviewDufinition,
+                    passProps: {searchWord: this.state.searchWord,photo: {},definition:this.state.definition}
+
+                });
+
+    }
 
 
     avatarTapped() {
 
         var options = {
-          title: 'Select Photo',
-          cancelButtonTitle: 'Cancel',
-          takePhotoButtonTitle: 'Take Photo...',
-          chooseFromLibraryButtonTitle: 'Choose from Library...',
-          quality: 0.2,
-          storageOptions: {
-            skipBackup: true,
-            path: 'images' // will save image at /Documents/images rather than the root
-          }
+            title: 'Select Photo',
+            cancelButtonTitle: 'Cancel',
+            takePhotoButtonTitle: 'Take Photo...',
+            chooseFromLibraryButtonTitle: 'Choose from Library...',
+            quality: 0.2,
+            allowsEditing: true,
+            storageOptions: {
+                skipBackup: true,
+                path: 'images' // will save image at /Documents/images rather than the root
+            }
         };
 
         UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
@@ -62,6 +68,7 @@ class SelectPhoto extends Component {
               console.log('User tapped custom button: ', response.customButton);
             }
             else {
+                this.setState({loading:true})
                 console.log(response);
                 var path = RNFS.MainBundlePath + '/'+this.state.searchWord+'.jpg';
                 RNFS.writeFile(path, 'data:image/jpeg;base64,' + response.data, 'base64')
@@ -100,14 +107,13 @@ class SelectPhoto extends Component {
                                     onPress={() =>this.avatarTapped()}>
                     <Text style={styles.buttonText}>Pick a Photo</Text>
                 </TouchableHighlight>
+                <TouchableHighlight style={styles.button} onPress={() =>this.testPhoto()}>
+                    <Text style={styles.buttonText}>Use Test photo</Text>
+                </TouchableHighlight>
                 {spinner}
                 <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
             </View>
         );
-    }
-
-    bookAuthorInput(event) {
-        this.setState({ bookAuthor: event.nativeEvent.text });
     }
 
     

@@ -1,13 +1,10 @@
-/**
- * Created by echessa on 4/24/15.
- */
-
 'use strict';
 
 var React = require('react-native');
 var SearchResults = require('./SearchResults');
 var SelectPhoto = require('./SelectPhoto');
 var styles = require('./Styles');
+//var Search = require('./Search');
 
 var {
     View,
@@ -24,6 +21,11 @@ class HowContent extends Component {
     constructor(props) {
         super(props);
     }
+    testPhoto(){
+
+        console.log(this)
+
+    }
 
     render() {
         return (
@@ -33,6 +35,9 @@ class HowContent extends Component {
                 <Text style={styles.instructions}>3) Upload photo</Text>
                 <Text style={styles.instructions}>4) Generate Dufinition</Text>
                 <Text style={styles.instructions}>5) Share with your homies!</Text>
+<TouchableHighlight style={styles.button} onPress={() =>this.testPhoto()}>
+                    <Text style={styles.buttonText}>Use Test photo</Text>
+                </TouchableHighlight>
             </View>
         );
     }

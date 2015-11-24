@@ -10,17 +10,16 @@ var reactNativeStore = require('react-native-store');
 var styles = require('./Styles');
 
 var {
-  AppRegistry,
-  TouchableHighlight,
-    NavigatorIOS,
+    AppRegistry,
+    TouchableHighlight,
+    //NavigatorIOS,
     Component,
     ListView,
-  Text,
-  TextInput,
-  View,
-  PixelRatio,
-  TouchableOpacity,
-  Image,
+    Text,
+    TextInput,
+    View,
+    TouchableOpacity,
+    Image,
     } = React;
 
 
@@ -91,23 +90,39 @@ constructor(props) {
   }
 
   renderDufinition(dufinition) {
+    //console.log(dufinition);
     return (
-      <View>
-        <TouchableHighlight 
-          onPress={() => this.renderDufinitionDetail(dufinition)}
-          style={styles.listRow}
-        >          
-          <View>
-            <Image
-              source={{uri: dufinition.photo.uri}}
-              style={styles.thumbnail}/>
+      // <View style={styles.listRow}>
+      //   <TouchableHighlight 
+      //     onPress={() => this.renderDufinitionDetail(dufinition)}
+          
+      //   >          
+      //     <View>
+      //       <Image
+      //         source={{uri: 'assets-library://asset/asset.PNG?id=24280A57-FF24-4503-9EF8-0935DBE045CE&ext=PNG'}}
+      //         style={styles.thumbnail}/>
 
-            <View style={styles.rightContainer}>
-              <Text style={styles.year}>{dufinition.searchWord}</Text>
-            </View>
+      //       <View style={styles.rightContainer}>
+      //         <Text>{dufinition.searchWord}</Text>
+      //       </View>
+      //     </View>
+      //   </TouchableHighlight>
+      // </View>
+      <TouchableHighlight 
+          onPress={() => this.renderDufinitionDetail(dufinition)}
+          
+        > 
+      <View style={styles.listRow}>
+      
+          <Image
+            source={{uri: 'assets-library://asset/asset.PNG?id=24280A57-FF24-4503-9EF8-0935DBE045CE&ext=PNG'}}
+            style={styles.thumbnail}/>
+          <View style={styles.rightContainer}>
+            <Text style={styles.title}>{dufinition.definition.word}</Text>
           </View>
+          
+        </View>
         </TouchableHighlight>
-      </View>
     );
   }
 
