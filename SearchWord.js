@@ -64,7 +64,7 @@ class SearchWord extends Component {
                 this.setState({ isLoading: false, errorMessage: ''});
                 if (responseData.length > 0) {
                     this.props.navigator.push({
-                        title: 'Create New Dufinition',
+                        title: 'Select Photo',
                         component: SelectPhoto,
                         passProps: {searchWord: this.state.searchWord, definition: responseData[0]}
                     });

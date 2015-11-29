@@ -44,7 +44,7 @@ constructor(props) {
   async _loadInitialState() {
 
     try {
-      var dufineModel = await reactNativeStore.model("dufine_v1");
+      var dufineModel = await reactNativeStore.model("dufine_v2");
       var find_data = await dufineModel.find();
       if (find_data !== null){
         this.setState({

@@ -18,6 +18,7 @@ var {
     TouchableOpacity,
     Image,
     CameraRoll,
+    AlertIOS,
     } = React;
 
 
@@ -37,14 +38,21 @@ class PreviewDufinition extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={[styles.avatar, styles.avatarContainer]}>
-                    { this.state.photo === null ? 
-                        <Text>no photo passed : (</Text> :
-                        <Image style={styles.avatar} source={this.state.photo} />
-                    }
+                <View>
+                    <View style={styles.dufTop}>
+                        <View style={styles.avatarContainer}>
+                            <Image source={{uri: this.state.photo.uri}} style={styles.dufPhoto}/>
+                        </View>
+                        <View style={styles.dufinitionText}>
+                            <Text style={styles.georgia}>{this.state.definition.word}</Text>
+                            <Text style={styles.georgia}>{this.state.definition.partOfSpeech}</Text>
+                        </View>
+                        
+                    </View>
+                    <View style={styles.dufinitionDefinition}>
+                            <Text style={styles.georgia}>{this.state.definition.text}</Text>
+                    </View>
                 </View>
-                <Text style={styles.instructions}>{this.state.searchWord}</Text>
-                <Text style={styles.instructions}>Definition{this.state.definition.text}</Text>
             
                 <TouchableHighlight style={styles.button} onPress={this.saveData.bind(this)}>
                     <Text style={styles.buttonText}>Save this Dufinition</Text>
@@ -55,14 +63,19 @@ class PreviewDufinition extends Component {
 
     async saveData(){
         // console.log('1');
-        var dufineModel = await reactNativeStore.model("dufine_v1");
+        var dufineModel = await reactNativeStore.model("dufine_v2");
         var add_data = await dufineModel.add({
             searchWord: this.state.searchWord,
             photo: this.state.photo,
             definition: this.state.definition
         });
         
-        this.props.navigator.popToTop();
+        AlertIOS.alert(
+            'Dufine Saved!',
+            'Nice job.'
+          )
+        // Figure out how to direct user to a new component
+        //this.props.navigator.popToTop();
         
 
     }

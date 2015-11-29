@@ -26,6 +26,9 @@ class HowContent extends Component {
         console.log(this)
 
     }
+    gotoComponent(){
+
+    }
 
     render() {
         return (
@@ -34,6 +37,7 @@ class HowContent extends Component {
                 <Text style={styles.instructions}>2) Upload photo</Text>
                 <Text style={styles.instructions}>3) Generate Dufinition</Text>
                 <Text style={styles.instructions}>4) Share with your homies!</Text>
+                <Text style={styles.instructions}>5) The waymon edition</Text>
             </View>
         );
     }

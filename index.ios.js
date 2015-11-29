@@ -42,7 +42,7 @@ class Dufine extends Component {
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     selected={this.state.selectedTab === 'search'}
-                    title="Add Dufinition"
+                    title="New Dufined"
                     icon={{uri: base64Icon, scale: 3}}
                     onPress={() => {
                         this.setState({
@@ -53,7 +53,7 @@ class Dufine extends Component {
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     selected={this.state.selectedTab === 'DufinitionsSaved'}
-                    title="View Saved Data"
+                    title="My Dufines"
                     icon={{uri: base64Icon, scale: 3}}
                     onPress={() => {
                         this.setState({

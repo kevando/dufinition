@@ -115,11 +115,11 @@ class DufinitionDetail extends Component {
               {text: 'Yes', onPress: () =>  this.deleteDufinition()},
               {text: 'No', onPress: () => console.log('User cancelled deltion')},
             ]
-        )
+        );
     }
 
     async deleteDufinition(dufinition){
-        var dufineModel = await reactNativeStore.model("dufine_v1");
+        var dufineModel = await reactNativeStore.model("dufine_v2");
         var remove_data = await dufineModel.remove({
             searchWord: this.state.searchWord
         });

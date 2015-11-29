@@ -21,7 +21,7 @@ class DufinitionsSaved extends Component {
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: 'Saved Dufinitions',
+                    title: 'My Dufines',
                     component: DufinitionsList
             }}/>
         );

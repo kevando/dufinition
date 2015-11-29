@@ -53,4 +53,22 @@ set iOS device
 product > archive 
 Fabric > distribute
 
+---- Fabric Distribution
+trying to te hoffman the app
+added his email, he clicked it to get his udid
+i added his udid to the apple devides on the apple website
+i resent him the same build, but i dont think the email sent
+i made a small change to the app, changed the build # and resent him
+had trouble. and i needed to go into xcode and delete, then redownload the provisioning profile
 
+
+
+
+<View style={[styles.avatar, styles.avatarContainer]}>
+                    { this.state.photo === null ? 
+                        <Text>no photo passed : (</Text> :
+                        <Image style={styles.avatar} source={this.state.photo} />
+                    }
+                </View>
+
+                code to handle a missing photo

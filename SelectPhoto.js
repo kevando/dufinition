@@ -81,7 +81,7 @@ class SelectPhoto extends Component {
 
               //todo should probly abstract this
                 this.props.navigator.push({
-                    title: 'Preview Dufinition',
+                    title: 'Preview Dufined',
                     component: PreviewDufinition,
                     passProps: {searchWord: this.state.searchWord,photo: source,definition:this.state.definition}
 
@@ -99,14 +99,26 @@ class SelectPhoto extends Component {
             ( <View/>);
         return (
             <View style={styles.container}>
-                <Text style={styles.instructions}>{this.state.searchWord}</Text>
-                <Text style={styles.instructions}>Definition: {this.state.definition.text}</Text>
-                
-                <TouchableHighlight style={styles.button}
+                <View>
+                    <View style={styles.dufTop}>
+                            <View style={styles.avatarContainer}>
+                                <TouchableHighlight style={styles.button}
                                     underlayColor='#f1c40f'
                                     onPress={() =>this.avatarTapped()}>
-                    <Text style={styles.buttonText}>Pick a Photo</Text>
-                </TouchableHighlight>
+                                    <Text style={styles.buttonText}>Pick a Photo</Text>
+                                </TouchableHighlight>
+                            </View>
+                            <View style={styles.dufinitionText}>
+                                <Text style={styles.georgia}>{this.state.definition.word}</Text>
+                                <Text style={styles.georgia}>{this.state.definition.partOfSpeech}</Text>
+                            </View>
+                            
+                        </View>
+                        <View style={styles.dufinitionDefinition}>
+                                <Text style={styles.georgia}>{this.state.definition.text}</Text>
+                        </View>
+                    </View>
+                
                 {spinner}
                 <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
             </View>
