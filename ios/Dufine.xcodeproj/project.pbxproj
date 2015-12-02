@@ -790,7 +790,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Dufine;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "275577e7-4f44-4e24-bf24-41464a0f5f04";
 			};
 			name = Debug;
 		};
@@ -814,7 +814,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Dufine;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "275577e7-4f44-4e24-bf24-41464a0f5f04";
 			};
 			name = Release;
 		};
