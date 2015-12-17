@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var SearchWord = require('./SearchWord');
+var HowContent = require('./HowContent');
 
 var {
     StyleSheet,
@@ -15,17 +15,17 @@ var styles = StyleSheet.create({
     }
 });
 
-class Search extends Component {
+class How extends Component {
     render() {
         return (
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: 'Choose Woord',
-                    component: SearchWord
+                    title: 'How this works',
+                    component: HowContent
             }}/>
         );
     }
 }
 
-module.exports = Search;
+module.exports = How;

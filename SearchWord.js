@@ -37,7 +37,6 @@ class SearchWord extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.fieldLabel}>Search for a word to dufine:</Text>
                     <TextInput 
                         style={styles.searchInput} 
                         onChange={this.searchWordInput.bind(this)} />
@@ -46,7 +45,7 @@ class SearchWord extends Component {
                     style={styles.button}
                     onPress={this.searchWords.bind(this)}
                 >
-                    <Text style={styles.buttonText}>Search</Text>
+                    <Text style={styles.buttonText}>Next</Text>
                 </TouchableHighlight>
                 {spinner}
                 <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
