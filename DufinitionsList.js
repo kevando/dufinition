@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var DufinitionDetail = require('./DufinitionDetail')
+var DufinedDetail = require('./DufinedDetail')
 var reactNativeStore = require('react-native-store');
 var styles = require('./Styles');
 
@@ -112,7 +112,7 @@ constructor(props) {
     // console.log(dufinition);
         this.props.navigator.push({
             title: 'titleeee',//book.volumeInfo.title,
-            component: DufinitionDetail,
+            component: DufinedDetail,
             passProps: {dufinition}
         });
     }

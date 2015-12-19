@@ -32,7 +32,7 @@ class DufinedView extends React.Component {
     render() {
         return (
             <View>
-                <Text>second page yo</Text>
+                <Text>i am a dufined</Text>
 
                 <TouchableWithoutFeedback onPress={this._handleChangePage.bind(this)}>
                     <View style={styles.button}>
