@@ -103,7 +103,7 @@ class Dufine extends Component {
                 style={styles.nav}
                 initialRoute={{
                     component: DufinedList,
-                    title: 'Dufined',
+                    title: 'Saved Dufines',
                     passProps: { toggleNavBar: this.toggleNavBar.bind(this), },
                     rightButtonTitle: 'add',
                     onRightButtonPress: this.onRightButtonPress.bind(this),

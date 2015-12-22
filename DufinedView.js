@@ -14,6 +14,7 @@ var {
     TouchableWithoutFeedback,
     TouchableHighlight,
     AlertIOS,
+    Image,
     } = React;
 
 
@@ -22,7 +23,8 @@ class DufinedView extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            definition: this.props.definition
+            definition: this.props.definition,
+            photo: this.props.photo
         }
     }
     _handleChangePage() {
@@ -62,16 +64,28 @@ class DufinedView extends React.Component {
     }
 
     render() {
+        // console.log(this.state.photo)
         return (
             <View style={styles.container}>
-                <View ref="definition">
-                    <View style={styles.dufTop}>
-                        <View style={styles.avatarContainer}>
+                <View ref="definition" style={styles.definitionContainer}>
+                    <View style={styles.definition} >
+                        <View style={styles.dufTop}>                            
+                            <View style={styles.definitionWordContainer}>
+                                <Text style={[styles.georgia,styles.definitionWord]}>{this.state.definition.word}</Text>
+                                <Text style={[styles.georgia,styles.definitionType]}>{this.state.definition.partOfSpeech}</Text>
+                            </View>
+
+                            <View style={styles.photoContainer}>                                
+                                <Image source={{uri: this.state.photo.uri}} style={styles.definitionPhoto}/>
+                            </View>
+                            
                         </View>
-                        <View style={styles.dufinitionText}>
-                            <Text style={styles.georgia}>{this.state.definition.word}</Text>
+                        <View style={styles.definitionBottom}>
+                            <View style={styles.dufinitionDefinition}>
+                                <Text style={styles.georgia}>{this.state.definition.text}</Text>
+                            </View>
                         </View>
-                        
+
                     </View>
                     
                 </View>
@@ -80,11 +94,6 @@ class DufinedView extends React.Component {
                                     underlayColor='red'
                                     onPress={this.confirmDelete.bind(this)}>
                     <Text style={styles.buttonText}>delete this</Text>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.button}
-                                    underlayColor='#f1c40f'
-                                    onPress={this.exportDefinition.bind(this)}>
-                    <Text style={styles.buttonText}>save this</Text>
                 </TouchableHighlight>
             </View>
         );

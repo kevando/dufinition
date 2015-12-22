@@ -45,17 +45,42 @@ module.exports = StyleSheet.create({
 
     },
 
-    /* Dufinition Component */
+    /* Definition Component */
+    definitionContainer: {
+        backgroundColor: '#ccc',
+        padding: 5,
+    },
+    definition: {
+        backgroundColor: '#fff',
+        margin: 5,
+    },
+
     dufTop: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
     },
-    dufinitionText: {
+    definitionWord: {
+        fontSize: 50,
+    },
+    definitionType: {
+        fontSize: 30,
+        fontStyle: 'italic'
+    },
+    definitionWordContainer: {
         flex: 1,
         flexDirection: 'column',
     },
+    definitionText: {
+        flex: 1,
+        flexDirection: 'column',
+    },
+
+    definitionBottom:{
+        backgroundColor: '#fff'
+    },
+
     dufinitionDefinition: {
         flex: 1,
         flexDirection: 'column',
@@ -64,13 +89,18 @@ module.exports = StyleSheet.create({
 
     },
 
-    dufPhoto: {
+    photoContainer: {
+        backgroundColor: '#eee',
+        margin: 10,
+    },
+
+    definitionPhoto: {
         height: 100,
         width: 100
     },
     georgia: {
         fontFamily: "Georgia",
-        fontSize: 20,
+        fontSize: 30,
         textAlign: "left",
         margin: 10,
     },

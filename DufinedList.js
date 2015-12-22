@@ -36,7 +36,7 @@ class DufinedList extends React.Component {
 
     }
     async refreshData(){
-        console.log('fresh data');
+        //console.log('fresh data');
         this.setState({loaded: false});
         await this._loadData();
         this.setState({loaded: true});
@@ -47,7 +47,7 @@ class DufinedList extends React.Component {
     try {
       var dufineModel = await reactNativeStore.model("dufine_v2");
       var find_data = await dufineModel.find();
-      console.log(find_data);
+      //console.log(find_data);
       if (find_data !== null){
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(find_data),
@@ -73,7 +73,7 @@ class DufinedList extends React.Component {
 
 
     render() {
-        console.log('render dufined list');
+        //console.log('render dufined list');
         //await this.refreshData()
         // console.log('render dufined list after refreshdata');
         if (!this.state.loaded) {
@@ -127,15 +127,18 @@ class DufinedList extends React.Component {
   }
   
 
-  renderDefinition(definition) {
+  renderDefinition(dataObject) {
     
     return (
         <TouchableHighlight 
-            onPress={() => this.renderDefinitionDetail(definition)}      
+            onPress={() => this.renderDefinitionDetail(dataObject)}      
         > 
       <View style={styles.listRow}>
+        <Image
+            source={{uri: dataObject.photo.uri}}
+            style={styles.thumbnail}/>
           <View style={styles.rightContainer}>
-            <Text style={styles.title}>{definition.definition.word}</Text>
+              <Text style={styles.title}>{dataObject.definition.word}</Text>
           </View>
           
         </View>
@@ -152,7 +155,7 @@ class DufinedList extends React.Component {
         this.props.navigator.push({
             title: dataObject.definition.word,
             component: DufinedView,
-            passProps: {definition: dataObject.definition},
+            passProps: {definition: dataObject.definition,photo: dataObject.photo},
             // leftButtonTitle: 'close',
             // onLeftButtonPress: this.onLeftButtonPress.bind(this),
         });
