@@ -33,6 +33,8 @@ module.exports = StyleSheet.create({
         backgroundColor: '#ccc',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 25,
+        paddingBottom: 25,
     },
     rightContainer: {
         flex:1

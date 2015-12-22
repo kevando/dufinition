@@ -19,6 +19,7 @@ var {
     View,
     TouchableOpacity,
     Image,
+    TouchableWithoutFeedback,
     } = React;
 
 
@@ -27,34 +28,31 @@ class DufinedList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          dataSource: new ListView.DataSource({
-            rowHasChanged: (row1, row2) => row1 !== row2,
-          }),
-          loaded: false,
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            }),
+            loaded: false,
         };
 
     }
-    componentDidMount() {
-        this._loadInitialState() 
-
+    async refreshData(){
+        console.log('fresh data');
+        this.setState({loaded: false});
+        await this._loadData();
+        this.setState({loaded: true});
     }
 
-    onRightButtonPress() {
-        console.log('duuuude');
-    }
-
-    async _loadInitialState() {
+    async _loadData() {
 
     try {
       var dufineModel = await reactNativeStore.model("dufine_v2");
       var find_data = await dufineModel.find();
+      console.log(find_data);
       if (find_data !== null){
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(find_data),
-          loaded: true,
+          //loaded: true,
         });
-        // this.setState({selectedValue: value});
-        // this._appendMessage('Recovered selection from disk: ' + value);
       } else {
         this._appendMessage('Initialized with no selection on disk.');
       }
@@ -63,36 +61,81 @@ class DufinedList extends React.Component {
     }
   }
 
-    render() {
-        return (
-            
-            <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderDefinition.bind(this)}
-        style={styles.container} />
+    componentDidMount() {
+        //this._loadInitialState() 
 
+    }
+
+    onRightButtonPress() {
+        console.log('duuuude');
+    }
+
+
+
+    render() {
+        console.log('render dufined list');
+        //await this.refreshData()
+        // console.log('render dufined list after refreshdata');
+        if (!this.state.loaded) {
+            return this.renderLoadingView();
+        }
+
+        //var movie = this.state.movies[0];
+        //return this.renderMovie(movie);
+
+        // return (    
+        //     <View>
+        //         <Text>i am a dufined</Text>
+        //     </View>
+
+
+        return (
+            <View style={styles.container}>
+            <ListView
+                dataSource={this.state.dataSource}
+                renderRow={this.renderDefinition.bind(this)}
+                style={styles.container} />
+                <View>
+                <TouchableWithoutFeedback onPress={this.refreshData.bind(this)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>refresh Data</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+            </View>
         );
+
     }
 
     renderLoadingView() {
     return (
+        <View>
       <View style={styles.container}>
         <Text>
           Loading dufinitions...
         </Text>
       </View>
+      <View>
+                <TouchableWithoutFeedback onPress={this.refreshData.bind(this)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>refresh Data</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+            </View>
     );
   }
+  
 
   renderDefinition(definition) {
     
     return (
-      <TouchableHighlight 
-          onPress={() => this.renderDefinitionDetail(definition)}      
+        <TouchableHighlight 
+            onPress={() => this.renderDefinitionDetail(definition)}      
         > 
       <View style={styles.listRow}>
           <View style={styles.rightContainer}>
-            <Text style={styles.title}>{definition.searchWord}</Text>
+            <Text style={styles.title}>{definition.definition.word}</Text>
           </View>
           
         </View>
@@ -100,17 +143,18 @@ class DufinedList extends React.Component {
     );
   }
   
+    onLeftButtonPress() {
+        goBack.bind(dufinedView);
+    }
 
-  renderDefinitionDetail(definition) {
+
+  renderDefinitionDetail(dataObject) {
         this.props.navigator.push({
-            title: definition.searchWord,
-            component: DufinedDetail,
-            passProps: {definition},
-            leftButtonTitle: 'Close',
-            onLeftButtonPress: this.props.navigator.push({
-                title: 'List of De',
-                component: DufinedView
-            })
+            title: dataObject.definition.word,
+            component: DufinedView,
+            passProps: {definition: dataObject.definition},
+            // leftButtonTitle: 'close',
+            // onLeftButtonPress: this.onLeftButtonPress.bind(this),
         });
     }
 

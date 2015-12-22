@@ -39,35 +39,35 @@ class DufinedDetail extends Component {
         };
     }
 
-    render() {
-        //console.log(this.state.dufinition.definition);
-        return (
-            <View style={styles.container}>
-                <View ref="definition">
-                    <View style={styles.dufTop}>
-                        <View style={styles.avatarContainer}>
-                        </View>
-                        <View style={styles.dufinitionText}>
-                            <Text style={styles.georgia}>blah</Text>
-                        </View>
+    // render() {
+    //     //console.log(this.state.dufinition.definition);
+    //     return (
+    //         <View style={styles.container}>
+    //             <View ref="definition">
+    //                 <View style={styles.dufTop}>
+    //                     <View style={styles.avatarContainer}>
+    //                     </View>
+    //                     <View style={styles.dufinitionText}>
+    //                         <Text style={styles.georgia}>blah</Text>
+    //                     </View>
                         
-                    </View>
+    //                 </View>
                     
-                </View>
+    //             </View>
                 
-                <TouchableHighlight style={styles.button}
-                                    underlayColor='#f1c40f'
-                                    onPress={this.confirmDelete.bind(this)}>
-                    <Text style={styles.buttonText}>delete this</Text>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.button}
-                                    underlayColor='#f1c40f'
-                                    onPress={this.saveDufinition.bind(this)}>
-                    <Text style={styles.buttonText}>save this</Text>
-                </TouchableHighlight>
-            </View>
-        );
-    }
+    //             <TouchableHighlight style={styles.button}
+    //                                 underlayColor='#f1c40f'
+    //                                 onPress={this.confirmDelete.bind(this)}>
+    //                 <Text style={styles.buttonText}>delete this</Text>
+    //             </TouchableHighlight>
+    //             <TouchableHighlight style={styles.button}
+    //                                 underlayColor='#f1c40f'
+    //                                 onPress={this.saveDufinition.bind(this)}>
+    //                 <Text style={styles.buttonText}>save this</Text>
+    //             </TouchableHighlight>
+    //         </View>
+    //     );
+    // }
     saveDufinition(){
         console.log('saveDufinition');
         var ref = React.findNodeHandle(this.refs.dufinition);

@@ -23,13 +23,6 @@ var {
 class Dufine extends Component {
 
 
-
-    // getInitialState() { // so i think this is not used
-    //     return {
-    //         navigationBarHidden: false
-    //     };
-    // }
-
     toggleNavBar() {
         this.setState({navigationBarHidden: !this.state.navigationBarHidden});
     }
@@ -37,61 +30,68 @@ class Dufine extends Component {
     onPressCancel(text) {
         console.log('cancel')
     }
-    onPressSubmit(text) {
-        console.log('submitted '+text);
+
+    onPressSubmit(word) {
+        console.log('submitted '+word);
         // Validate there is something typed in
-
-        this.refs.nav.push({
-            title: 'Preview',
-            component: DufinedPreview,
-            passProps: { word: text },
-            
-        });
-
+        // and it has a definition
         
+        // This  function should not include the redirect code, but it does for now
+        this.getWordDefinition(word);
 
-        //this.saveData();
+
+        // this.refs.nav.push({
+        //     title: 'Preview',
+        //     component: DufinedPreview,
+        //     passProps: { definition: definition },
+        // });
+    }
+    getWordDefinition(word) {
+        // Set loading state while it queries this api
+        var baseURL = 'http://api.wordnik.com/v4/word.json/'+word.toLowerCase()+'/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+        this.setState({isLoading: true});
+        fetch(baseURL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({ isLoading: false, errorMessage: ''});
+                console.log(responseData);
+                if (responseData.length > 0) {
+                    console.log(responseData[0]);
+                    this.refs.nav.push({
+                        title: 'Preview',
+                        component: DufinedPreview,
+                        passProps: { definition: responseData[0] },
+                    });
+                } else {
+                    //this.setState({ errorMessage: 'No results found'});
+                    AlertIOS.alert(
+                        word + ' is not a word', '',
+                        [{text: 'Okay', onPress: () => console.log('User cancelled deltion')},]
+                    );
+                }
+            })
+            .catch(error =>
+                this.setState({
+                    isLoading: false,
+                    errorMessage: error
+                }))
+            .done();
+
     }
 
     onRightButtonPress() { 
-        
         AlertIOS.prompt(  
-            'Enter a word', '',  
+            'Pick a word', '',  
             [
-                {text: 'Submit', onPress: (text) => this.onPressSubmit(text)}, 
-                {text: 'Cancel', onPress: (text) => this.onPressCancel()}
+                {text: 'Cancel', onPress: () => this.onPressCancel()},
+                {text: 'Next', onPress: (word) => this.onPressSubmit(word)}, 
             ]
         )
     }
 
-    async saveData(){
-        console.log('saving data');
-        var dufineModel = await reactNativeStore.model("dufine_v2");
-        var add_data = await dufineModel.add({
-            searchWord: 'asdfa',
-            //photo: this.state.photo,
-            //definition: this.state.definition
-        });
-        
-        AlertIOS.alert(
-            'Dufine Saved!',
-            'Nice job.'
-          )
-        // Figure out how to direct user to a new component
-        //this.props.navigator.popToTop();
-        
-
-    }
+   
     onLeftButtonPress() { 
-        // this.props.toggleNavBar();
-        this.props.navigator.push({
-            title: 'List of Definitions',
-            component: DufinedList,
-            passProps: {
-                // toggleNavBar: this.props.toggleNavBar.bind(this),
-            },
-            leftButtonTitle: ' ',
-        });
+        console.log('settings page');
     }
 
 
@@ -101,16 +101,14 @@ class Dufine extends Component {
                 ref="nav"
                 itemWrapperStyle={styles.navWrap}
                 style={styles.nav}
-                
-
                 initialRoute={{
-
                     component: DufinedList,
                     title: 'Dufined',
                     passProps: { toggleNavBar: this.toggleNavBar.bind(this), },
                     rightButtonTitle: 'add',
                     onRightButtonPress: this.onRightButtonPress.bind(this),
                     leftButtonTitle: 'settings',
+                    onLeftButtonPress: this.onLeftButtonPress.bind(this),
                     
       
                 }} />
