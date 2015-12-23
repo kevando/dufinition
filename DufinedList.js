@@ -26,12 +26,14 @@ var {
 class DufinedList extends React.Component {
 
     constructor(props){
+        console.log('list contructor')
         super(props);
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
             loaded: false,
+            kevin: 'kevo'
         };
 
     }
@@ -45,24 +47,25 @@ class DufinedList extends React.Component {
     async _loadData() {
 
     try {
-      var dufineModel = await reactNativeStore.model("dufine_v2");
+      var dufineModel = await reactNativeStore.model("dufine_v3.1");
       var find_data = await dufineModel.find();
       //console.log(find_data);
       if (find_data !== null){
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(find_data),
-          //loaded: true,
+          loaded: true,
         });
       } else {
-        this._appendMessage('Initialized with no selection on disk.');
+       // this._appendMessage('Initialized with no selection on disk.');
       }
     } catch (error) {
-      this._appendMessage('AsyncStorage error: ' + error.message);
+      //this._appendMessage('AsyncStorage error: ' + error.message);
     }
   }
 
     componentDidMount() {
-        //this._loadInitialState() 
+        this._loadData() ;
+        console.log('did component mount')
 
     }
 
@@ -73,36 +76,28 @@ class DufinedList extends React.Component {
 
 
     render() {
-        //console.log('render dufined list');
-        //await this.refreshData()
-        // console.log('render dufined list after refreshdata');
-        if (!this.state.loaded) {
-            return this.renderLoadingView();
-        }
+        //if(!this.state.loaded)
+            //this._loadData() ;
 
-        //var movie = this.state.movies[0];
-        //return this.renderMovie(movie);
-
-        // return (    
-        //     <View>
-        //         <Text>i am a dufined</Text>
-        //     </View>
-
+        console.log('render dufined list');
+        
 
         return (
-            <View style={styles.container}>
-            <ListView
-                dataSource={this.state.dataSource}
-                renderRow={this.renderDefinition.bind(this)}
-                style={styles.container} />
-                <View>
+            <View>
+            <View>
                 <TouchableWithoutFeedback onPress={this.refreshData.bind(this)}>
                     <View style={styles.button}>
-                        <Text style={styles.buttonText}>refresh Data</Text>
+                        <Text style={styles.buttonText}>pull new Data</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
-            </View>
+            
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderDefinition.bind(this)}
+                    automaticallyAdjustContentInsets={false}
+                    style={styles.listViewContainer} />
+          </View>  
         );
 
     }
@@ -118,7 +113,7 @@ class DufinedList extends React.Component {
       <View>
                 <TouchableWithoutFeedback onPress={this.refreshData.bind(this)}>
                     <View style={styles.button}>
-                        <Text style={styles.buttonText}>refresh Data</Text>
+                        <Text style={styles.buttonText}>pull new Data</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -128,7 +123,7 @@ class DufinedList extends React.Component {
   
 
   renderDefinition(dataObject) {
-    
+    console.log(dataObject)
     return (
         <TouchableHighlight 
             onPress={() => this.renderDefinitionDetail(dataObject)}      
@@ -138,7 +133,7 @@ class DufinedList extends React.Component {
             source={{uri: dataObject.photo.uri}}
             style={styles.thumbnail}/>
           <View style={styles.rightContainer}>
-              <Text style={styles.title}>{dataObject.definition.word}</Text>
+              <Text style={[styles.georgia,styles.listRowText]}>{dataObject.definition.word}</Text>
           </View>
           
         </View>

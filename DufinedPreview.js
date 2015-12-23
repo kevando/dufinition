@@ -31,33 +31,13 @@ class DufinedPreview extends React.Component {
         };
     }
 
-    async onRightButtonPress(){
-        console.log('right button');
-        // Save Item to async storage
-        await this.saveData();
-        this.props.navigator.popToTop();    
-    }
-
-    async saveData(){
-        console.log('saving data');
-        var dufineModel = await reactNativeStore.model("dufine_v2");
-        var add_data = await dufineModel.add({
-            //searchWord: this.state.word,
-            word: this.state.word,
-            definition: this.state.definition,
-            photo: this.state.photo,
-            //definition: this.state.definition
-        });
-        
-
-    }
 
     _handlePhotoSelect() {
         var options = {
             title: 'Select Photo',
             cancelButtonTitle: 'Cancel',
-            takePhotoButtonTitle: 'Take Photo...',
-            chooseFromLibraryButtonTitle: 'Choose from Library...',
+            takePhotoButtonTitle: 'Take NEW Photo...',
+            chooseFromLibraryButtonTitle: 'Choose EXISTING from Library...',
             quality: 0.2,
             allowsEditing: true,
             storageOptions: {
@@ -95,13 +75,13 @@ class DufinedPreview extends React.Component {
 
               //todo should probly abstract this
                 this.props.navigator.push({
-            title: 'Dufined View',
-            component: DufinedView,
-            passProps: {
-                definition: this.state.definition, photo: source
-            },
-            onRightButtonPress: this.onRightButtonPress.bind(this),
-            rightButtonTitle: 'Save',
+                    title: this.state.definition.word,
+                    component: DufinedView,
+                    passProps: {
+                        definition: this.state.definition, 
+                        photo: source, 
+                        preview: true,
+                    },
         });
             }
           }
@@ -119,6 +99,12 @@ class DufinedPreview extends React.Component {
     }
 
     render() {
+
+        var callToAction = (<TouchableHighlight style={styles.button}
+                                    underlayColor='red'
+                                    onPress={this._handlePhotoSelect.bind(this)}>
+                    <Text style={styles.buttonText}>Add Photo</Text>
+                </TouchableHighlight>);
         return (
             <View style={styles.container}>
                 <View ref="definition" style={styles.definitionContainer}>
@@ -129,9 +115,7 @@ class DufinedPreview extends React.Component {
                                 <Text style={[styles.georgia,styles.definitionType]}>{this.state.definition.partOfSpeech}</Text>
                             </View>
 
-                            <View style={styles.photoContainer}>
-                                <Image source={require('./images/missing.jpg')} />
-                            </View>
+                            
                             
                         </View>
                         <View style={styles.definitionBottom}>
@@ -143,12 +127,8 @@ class DufinedPreview extends React.Component {
                     </View>
                     
                 </View>
+                {callToAction}
                 
-                <TouchableHighlight style={styles.button}
-                                    underlayColor='red'
-                                    onPress={this._handlePhotoSelect.bind(this)}>
-                    <Text style={styles.buttonText}>Add Photo</Text>
-                </TouchableHighlight>
             </View>
 
         );

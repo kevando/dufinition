@@ -7,6 +7,7 @@ var styles = require('./Styles');
 var WelcomeView = require('./Welcome');
 var DufinedList = require('./DufinedList');
 var DufinedPreview = require('./DufinedPreview');
+var Settings = require('./Settings');
 
 var {
     AppRegistry,
@@ -66,7 +67,7 @@ class Dufine extends Component {
                     //this.setState({ errorMessage: 'No results found'});
                     AlertIOS.alert(
                         word + ' is not a word', '',
-                        [{text: 'Okay', onPress: () => console.log('User cancelled deltion')},]
+                        [{text: 'Okay', onPress: () => this.onRightButtonPress()},]
                     );
                 }
             })
@@ -80,6 +81,7 @@ class Dufine extends Component {
     }
 
     onRightButtonPress() { 
+        //this.state.kevin = 'kevooo'
         AlertIOS.prompt(  
             'Pick a word', '',  
             [
@@ -91,7 +93,11 @@ class Dufine extends Component {
 
    
     onLeftButtonPress() { 
-        console.log('settings page');
+        this.refs.nav.push({
+            title: 'Settings',
+            component: Settings,
+            passProps: {  },
+        });
     }
 
 

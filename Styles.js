@@ -24,24 +24,43 @@ module.exports = StyleSheet.create({
     buttonText: {
         color: '#fff',
     },
+    buttonRed: {
+        backgroundColor: 'red',
+    },
 
 
     /* ListView */
+    listViewContainer: {
+        backgroundColor: 'green',
+        marginTop:0,
+        paddingTop:0,
+
+    },
     listRow: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: '#ccc',
+        backgroundColor: '#fff',
+        borderBottomColor: '#666',
+        borderBottomWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 25,
-        paddingBottom: 25,
+        paddingTop: 0,
+        paddingBottom: 0,
+
+    },
+    listRowText: {
+        fontSize:20,
     },
     rightContainer: {
         flex:1
     },
     thumbnail: {
-        width: 53,
-        height: 81,
+        width: 50,
+        height: 50,
+        borderColor: '#666',
+        borderWidth: 1,
+        margin:10,
+        marginRight: 25,
 
     },
 
