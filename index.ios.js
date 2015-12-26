@@ -4,6 +4,7 @@ var React = require('react-native');
 var reactNativeStore = require('react-native-store');
 var styles = require('./Styles');
 
+
 var WelcomeView = require('./Welcome');
 var DufinedList = require('./DufinedList');
 var DufinedPreview = require('./DufinedPreview');
@@ -21,7 +22,29 @@ var {
    } = React;
 
 
-class Dufine extends Component {
+class Dufine extends React.Component {
+
+    constructor(props){
+        
+        console.log('i should roll out first bitches')
+        super(props);
+        this.state = {
+            kevin: 'kevo',
+
+        };
+        
+        console.log('i im not second bitches are gonna get shot')
+        console.log(this.state.hasData)
+        
+
+    }
+
+    componentDidMount(){
+        console.log('component did mout');
+        this._getData();
+        
+        
+    }
 
 
     toggleNavBar() {
@@ -100,24 +123,64 @@ class Dufine extends Component {
         });
     }
 
+    async _getData(){
+        console.log('imma get some data bitches');
+        try {
+            var dufineModel = await reactNativeStore.model("dufine_v3.1");
+            var find_data = await dufineModel.find();
+            console.log(find_data.length)
+            if (find_data.length > 0){
+                console.log('found dat data')
+                this.setState({
+                    hasData: true
+                });
+            } else {
+                console.log('no data found.. suck it')
+                this.setState({
+                    hasData: false
+                });
+            }
+        } catch(error){
+
+        }
+    }
 
     render() {
+        console.log('render')
+        var activeRoute;
+        console.log(this.state.hasData)
+        if(this.state.hasData){
+        //if(false){
+            console.log('imma gun run')
+            activeRoute = {
+                component: DufinedList,
+                title: 'Saved Dufiness',
+                passProps: { toggleNavBar: this.toggleNavBar.bind(this), },
+                rightButtonTitle: 'add',
+                onRightButtonPress: this.onRightButtonPress.bind(this),
+                leftButtonTitle: 'settings',
+                onLeftButtonPress: this.onLeftButtonPress.bind(this),
+            }
+        } else {
+            console.log('imma gun run YOOOO nigga')
+            activeRoute = {
+                component: WelcomeView,
+                title: 'Tutoriaal',
+                // passProps: { toggleNavBar: this.toggleNavBar.bind(this), },
+                // rightButtonTitle: 'add',
+                // onRightButtonPress: this.onRightButtonPress.bind(this),
+                // leftButtonTitle: 'settings',
+                // onLeftButtonPress: this.onLeftButtonPress.bind(this),
+            }
+        }
+
+
         return (
             <NavigatorIOS
                 ref="nav"
                 itemWrapperStyle={styles.navWrap}
                 style={styles.nav}
-                initialRoute={{
-                    component: DufinedList,
-                    title: 'Saved Dufines',
-                    passProps: { toggleNavBar: this.toggleNavBar.bind(this), },
-                    rightButtonTitle: 'add',
-                    onRightButtonPress: this.onRightButtonPress.bind(this),
-                    leftButtonTitle: 'settings',
-                    onLeftButtonPress: this.onLeftButtonPress.bind(this),
-                    
-      
-                }} />
+                initialRoute={activeRoute} />
             
             
         );

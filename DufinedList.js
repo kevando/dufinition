@@ -124,6 +124,7 @@ class DufinedList extends React.Component {
 
   renderDefinition(dataObject) {
     console.log(dataObject)
+    
     return (
         <TouchableHighlight 
             onPress={() => this.renderDefinitionDetail(dataObject)}      

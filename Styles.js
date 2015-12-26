@@ -125,4 +125,10 @@ module.exports = StyleSheet.create({
     },
 
 
+    base64: {
+        flex: 1,
+        height: 50,
+        resizeMode: 'contain',
+    },
+
 });
