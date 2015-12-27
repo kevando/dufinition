@@ -6,6 +6,9 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
+    "minutes-seconds-milliseconds": "^1.0.3",
+    "moment": "^2.10.6",
+    "parse": "^1.6.13",
     "react-native": "^0.13.1",
     "react-native-fs": "^1.0.0",
     "react-native-image-picker": "^0.8.0",
