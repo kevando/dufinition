@@ -37,37 +37,24 @@ module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			localData: null,
-			initialRoute: null,
 		}
-
 	},
-
 	// greate place to fetch data
 	componentWillMount: function() {
-		//console.log('main.js componentWillMount()');
-		//Parse.initialize("03ujVPOvZe4NCahT6GMVlCcidKWKvyV7l1668gZx", "pin07FPJ2AbxnZGpCMjJNCGAhELXm4vKBe5z9Jrq");
 		this.loadData(this.setDataState);
-
 	},
 	setDataState: function(find_data) {
 		console.log('set data state');
 		this.setState({
-  			//dataSource: this.state.dataSource.cloneWithRows(find_data),
   			loaded: true,
 			localData: find_data,
-			//listViewDataSource: ds.cloneWithRows(find_data),
 		});
 	},
 	renderScene: function(route, navigator){ // called any time navigator gets pushed/popped
-		// whatever is returned gets placed to the stack
-
 		var Component = ROUTES[route.name]; 
-
 		return <Component route={route} navigator={navigator} />;
 	},
 	render: function() {
-		//console.log('main.js render()');
-
 		if(!this.state.localData) {
 			return (
 				<View style={styles.initialContainer}>
@@ -93,8 +80,6 @@ module.exports = React.createClass({
 				configureScene={() => {return Navigator.SceneConfigs.FloatFromRight; }} />
 			);
 		}
-
-		
 	}
 });
 

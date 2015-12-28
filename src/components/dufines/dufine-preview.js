@@ -66,56 +66,19 @@ module.exports = React.createClass({
 	},
 	
 	onAddPhotoPressed: function() {
-		var options = {
-            title: 'Select Photo',
-            cancelButtonTitle: 'Cancel',
-            takePhotoButtonTitle: 'Take NEW Photo...',
-            chooseFromLibraryButtonTitle: 'Choose EXISTING from Library...',
-            quality: 0.2,
-            allowsEditing: true,
-            storageOptions: {
-                skipBackup: true,
-                path: 'images' // will save image at /Documents/images rather than the root
-            }
-        };
-
-        UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
-          console.log('Response = ', response);
-
-          if (didCancel) {
-            console.log('User cancelled image picker');
-          }
-          else {
-            if (response.customButton) {
-              console.log('User tapped custom button: ', response.customButton);
-            }
-            else {
-                this.setState({loading:true})
-                console.log(response);
-                //var newPath = './images/'+this.state.searchWord+'.jpg';
-                console.log('paths');
-                //const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-                // RNFS.writeFile(newPath, 'data:image/jpeg;base64,' + response.data, 'base64')
-                //   .then((success) => {
-                //     console.log('Image successfully copied to: ');
-                //     console.log(newPath)
-                //   })
-              //var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-              var source = {data: 'data:image/jpeg;base64,' + response.data,uri: response.uri.replace('file://', ''), isStatic: true};
-              this.state.photo = source;
-              console.log('source');
-              console.log(source);
-
-              this.saveData(this.state.definition,source);
-              //todo should probly abstract this
-              this.props.navigator.push({
-		            name: 'dufineview',
-		            props: {definition: this.state.definition,photo: source,preview:true},
-        		});
-                
-            }
-          }
-        });
+		this.openImagePicker(this.imageSelectedCallback);
 	},
+	imageSelectedCallback: function(source){
+		this.saveData(
+			this.state.definition,
+			source,
+			this.dataSavedCallback
+		);
+	},
+	dataSavedCallback: function(definition,photo){
+		// Reset top route to dufinelist and push navigator to the newly created view
+		this.props.navigator.push({name:'dufineview',props: {definition: definition,photo: photo},});
+	}
+
 
 });

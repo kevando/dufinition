@@ -35,9 +35,6 @@ module.exports = React.createClass({
     
 
 	render: function(){
-        console.log('dufine-list.js render, and the listViewDataSource = ');
-        console.log(this.state.listViewDataSource);
-        console.log(this.state.localData);
 		if(!this.state.listViewDataSource){
 			return (
 				<View style={styles.initialContainer}>
@@ -46,14 +43,10 @@ module.exports = React.createClass({
 			);
 		}
 		
-
 		return(
             <View>
             <View style={styles.initialContainer}>
                     <Button text={"Create New Dufine"} onPress={this.onNewDufinePress} />
-                </View>
-                <View style={styles.initialContainer}>
-                    <Button text={"Refresh Data"} onPress={this.onRefreshDataPress} />
                 </View>
             <View>
 			<ListView
@@ -114,17 +107,17 @@ module.exports = React.createClass({
 	},
 	onNewDufinePress: function() {
 		
-        this.props.navigator.push({
-            name: 'dufinepreview',
-            props: {definition: {word:'kev',partOfSpeech:'noun',text:'asdfa'},photo: null},
-        });
-        // AlertIOS.prompt(  
-        //     'Pick a word', '',  
-        //     [
-        //         {text: 'Cancel', onPress: () => console.log('cancel clickd')},
-        //         {text: 'Next', onPress: (word) => this.onPressSubmit(word)}, 
-        //     ]
-        // )
+        // testing this.props.navigator.push({
+        //     name: 'dufinepreview',
+        //     props: {definition: {word:'kev',partOfSpeech:'noun',text:'asdfa'},photo: null},
+        // });
+        AlertIOS.prompt(  
+            'Pick a word', '',  
+            [
+                {text: 'Cancel', onPress: () => console.log('cancel clickd')},
+                {text: 'Next', onPress: (word) => this.onPressSubmit(word)}, 
+            ]
+        )
 	},
 
     onPressSubmit: function(word) {
