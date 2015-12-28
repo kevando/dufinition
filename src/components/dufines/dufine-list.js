@@ -121,16 +121,21 @@ module.exports = React.createClass({
 	},
 
     onPressSubmit: function(word) {
+        console.log('submit word');
         this.getWordDefinition(word);
     },
-    getWordDefinition: function(word) {
+    getWordDefinitionn: function(word) {
+        console.log('get def')
         // Set loading state while it queries this api
         var baseURL = 'http://api.wordnik.com/v4/word.json/'+word.toLowerCase()+'/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
+        var baseURL = 'https://wordsapiv1.p.mashape.com/words/bump?accessToken=numbt2eAyNmshdqXedJMZskcd9zZp1mOyUHjsn6CzWoY3Dk7ky';
+        var baseURL = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/house?key=eb1e2448-99f2-489d-9687-2e30229bcfe7'
         this.setState({isLoading: true});
         fetch(baseURL)
-            .then((response) => response.json())
+            .then((response) => response.xml())
             .then((responseData) => {
                 this.setState({ isLoading: false, errorMessage: ''});
+                console.log('response');
                 console.log(responseData);
                 if (responseData.length > 0) {
                     console.log(responseData[0]);
@@ -145,7 +150,7 @@ module.exports = React.createClass({
                     //this.setState({ errorMessage: 'No results found'});
                     AlertIOS.alert(
                         word + ' is not a word', '',
-                        [{text: 'Okay', onPress: () => this.onRightButtonPress()},]
+                        [{text: 'Okay', onPress: () => console.log('ok')},]
                     );
                 }
             })
