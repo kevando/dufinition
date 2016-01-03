@@ -61,10 +61,10 @@ module.exports = StyleSheet.create({
         alignItems: 'stretch',
     },
     definitionWord: {
-        fontSize: 50,
-    },
-    definitionType: {
         fontSize: 30,
+    },
+    definitionPronunciation: {
+        fontSize: 20,
         fontStyle: 'italic'
     },
     definitionWordContainer: {

@@ -83,3 +83,13 @@ i also changed the provision profile inthe build settings
 
 Deleted the provisioning profile in member center
 redownloaded in xcode
+
+
+## Changelog
+
+### 3.2
+New definition api and new way to store data
+
+### 3.1 
+New UI/UX that implements Navigator instead of NavigatorIOS
+

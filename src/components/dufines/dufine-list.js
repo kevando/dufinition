@@ -78,7 +78,7 @@ module.exports = React.createClass({
 	onRenderRowPress: function(dataObject) {
         this.props.navigator.push({
             name: 'dufineview',
-            props: {definition: dataObject.definition,photo: dataObject.photo,callback:this.refreshData},
+            vars: {definition: dataObject.definition,photo: dataObject.photo,callback:this.refreshData},
         });
     },
     onRefreshDataPress: function() {
@@ -97,11 +97,6 @@ module.exports = React.createClass({
     },
 	
 	onNewDufinePress: function() {
-		
-        // testing this.props.navigator.push({
-        //     name: 'dufinepreview',
-        //     props: {definition: {word:'kev',partOfSpeech:'noun',text:'asdfa'},photo: null},
-        // });
         AlertIOS.prompt(  
             'Pick a word', '',  
             [
@@ -110,10 +105,24 @@ module.exports = React.createClass({
             ]
         )
 	},
-
     onPressSubmit: function(word) {
         console.log('submit word');
-        this.getWordDefinition(word,this.refreshData);
+        this.getWordDefinition(word,this.handleDefinitionResponse);
+    },
+    handleDefinitionResponse: function(responseData){
+        console.log('handleDefinitionResponse')
+        console.log(responseData)
+        if(responseData == null){
+            AlertIOS.alert(
+                'That is not a word', '',
+                [{text: 'I knew that', onPress: () => console.log('ok')},]
+            );
+        } else {
+            this.props.navigator.push({
+                name: 'dufineview',
+                vars: {definition: responseData,photo: null,callback:this.refreshData},
+            });
+        }
     },
     
 });

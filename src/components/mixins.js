@@ -10,7 +10,7 @@ module.exports = {
   
 
  	loadData: async function(callback) {
-		console.log('async loadData = ');
+		//console.log('async loadData = ');
 		var dufineModel = await reactNativeStore.model(dataVersion);
 		var find_data = await dufineModel.find();
 		callback(find_data); // refresh component state	
@@ -22,8 +22,8 @@ module.exports = {
             definition: definition,
             photo: source,
         });
-        console.log('callback')
-        console.log(callback)
+        //console.log('callback')
+        //console.log(callback)
         callback(definition,source);
 	},
 	deleteData: async function(word,callback){
@@ -102,28 +102,27 @@ module.exports = {
             callback(source);
         });
     }, // openCamera
+    
     getWordDefinition: function(word,callback){
-        var baseURL = 'http://api.wordnik.com/v4/word.json/'+word.toLowerCase()+'/definitions?limit=10&includeRelated=false&useCanonical=false&includeTags=true&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
-        fetch(baseURL)
+
+        var baseURL = 'https://wordsapiv1.p.mashape.com/words/'+word
+        fetch(baseURL, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-Mashape-Key': 'i5OFV6PQGkmsh1HhWu7b9c76bNodp1Df8DmjsnKzsbV0G6Ke9r'
+            },
+        })
         .then((response) => response.json())
         .then((responseData) => {
-            console.log(responseData);
-            if (responseData.length > 0) {
-                //console.log(responseData[0]);
-                this.props.navigator.push({
-                    name: 'dufinepreview',
-                    props: {definition: responseData[0],photo: null,callback:callback},
-                });
-                } else {
-                    AlertIOS.alert(
-                        word + ' is not a word', '',
-                        [{text: 'I knew that', onPress: () => console.log('ok')},]
-                    );
-                }
-            })
-        .done();
+            //console.log('responseData');
+            //console.log(responseData);
+            //this.setState({definition:responseData}); // I would like to put this in another
+            callback(responseData);
+        });
+
     },
-    // Changes XML to JSON
     
 };
 
