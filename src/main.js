@@ -6,7 +6,7 @@ var Parse = require('parse/react-native');
 var Signin = require('./components/authentication/signin');
 var Signup = require('./components/authentication/signup');
 var Welcome = require('./components/walkthrough/welcome');
-var Tweets = require('./components/tweets/tweets');
+//var Tweets = require('./components/tweets/tweets');
 var DufineList = require('./components/dufines/dufine-list');
 var DufineView = require('./components/dufines/dufine-view');
 var DufinePreview = require('./components/dufines/dufine-preview');
@@ -23,7 +23,7 @@ var {
 var ROUTES = {
 	signin: Signin,
 	signup: Signup,
-	tweets: Tweets,
+	//tweets: Tweets,
 
 	dufinelist: DufineList,
 	dufineview: DufineView,

@@ -30,5 +30,7 @@ var styles = StyleSheet.create({
 		padding: 5,
 		borderColor: 'black',
 		marginTop: 10,
+		marginLeft: 20,
+		marginRight: 20,
 	}
 })

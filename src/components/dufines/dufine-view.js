@@ -19,7 +19,7 @@ var DufineMixins = require('../mixins');
 module.exports = React.createClass({
     mixins: [DufineMixins],
 	getInitialState: function(){
-		console.log(this.props);
+		//console.log(this.props);
 		// this is currently if coming from main.js if(this.props.route.localData)
     	return {
       		definition: this.props.route.props.definition,

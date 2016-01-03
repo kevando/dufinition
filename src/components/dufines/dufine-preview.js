@@ -21,12 +21,13 @@ var DufineMixins = require('../mixins');
 module.exports = React.createClass({
 	mixins: [DufineMixins],
 	getInitialState: function(){
-		console.log(this.props);
+		
 		// this is currently if coming from main.js if(this.props.route.localData)
     	return {
       		definition: this.props.route.props.definition,
             photo: this.props.route.props.photo,
-            word: this.props.route.props.definition.word
+            word: this.props.route.props.definition.word,
+            callback: this.props.route.props.callback
     	};
 
 	},
@@ -77,6 +78,7 @@ module.exports = React.createClass({
 	},
 	dataSavedCallback: function(definition,photo){
 		// Reset top route to dufinelist and push navigator to the newly created view
+		this.state.callback();
 		this.props.navigator.push({name:'dufineview',props: {definition: definition,photo: photo},});
 	}
 

@@ -21,7 +21,7 @@ var DufineMixins = require('../mixins');
 module.exports = React.createClass({
 	mixins: [DufineMixins],
 	getInitialState: function(){
-		//console.log(this.props);
+		
 		// this is currently if coming from main.js if(this.props.route.localData)
     	return {
       		listViewDataSource: null,
@@ -96,15 +96,6 @@ module.exports = React.createClass({
         });
     },
 	
-	onPress: function(){
-		console.log('logs user in');
-		console.log(this.state.username);
-		console.log(this.state.password);
-		Parse.User.logIn(this.state.username,this.state.password,{
-			success: (user) => {this.props.navigator.immediatelyResetRouteStack([{name:'tweets'}]);console.log(user)},
-			error: (data,error) => {console.log(data,error);this.setState({errorMessage:error}) },
-		});
-	},
 	onNewDufinePress: function() {
 		
         // testing this.props.navigator.push({
@@ -122,44 +113,7 @@ module.exports = React.createClass({
 
     onPressSubmit: function(word) {
         console.log('submit word');
-        this.getWordDefinition(word);
+        this.getWordDefinition(word,this.refreshData);
     },
-    getWordDefinitionn: function(word) {
-        console.log('get def')
-        // Set loading state while it queries this api
-        var baseURL = 'http://api.wordnik.com/v4/word.json/'+word.toLowerCase()+'/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
-        var baseURL = 'https://wordsapiv1.p.mashape.com/words/bump?accessToken=numbt2eAyNmshdqXedJMZskcd9zZp1mOyUHjsn6CzWoY3Dk7ky';
-        var baseURL = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/house?key=eb1e2448-99f2-489d-9687-2e30229bcfe7'
-        this.setState({isLoading: true});
-        fetch(baseURL)
-            .then((response) => response.xml())
-            .then((responseData) => {
-                this.setState({ isLoading: false, errorMessage: ''});
-                console.log('response');
-                console.log(responseData);
-                if (responseData.length > 0) {
-                    console.log(responseData[0]);
-                    this.props.navigator.push({
-                        name: 'dufinepreview',
-                        //NAV IOS
-                        //title: dataObject.definition.word,
-                        //component: DufinedView,
-                        props: {definition: responseData[0],photo: null},
-                    });
-                } else {
-                    //this.setState({ errorMessage: 'No results found'});
-                    AlertIOS.alert(
-                        word + ' is not a word', '',
-                        [{text: 'Okay', onPress: () => console.log('ok')},]
-                    );
-                }
-            })
-            .catch(error =>
-                this.setState({
-                    isLoading: false,
-                    errorMessage: error
-                }))
-            .done();
-
-    }
+    
 });

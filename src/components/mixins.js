@@ -68,7 +68,41 @@ module.exports = {
             callback(source);
         });
     }, // openImagePicker
-    getWordDefinition: function(word){
+    openCamera: function(callback){
+        var options = {
+            title: 'Select Photo',
+            cancelButtonTitle: 'Cancel',
+            takePhotoButtonTitle: 'Take NEW Photo...',
+            chooseFromLibraryButtonTitle: 'Choose EXISTING from Library...',
+            quality: 0.2,
+            allowsEditing: true,
+            storageOptions: {
+                skipBackup: true,
+                path: 'images' // will save image at /Documents/images rather than the root
+            }
+        };
+
+        UIImagePickerManager.launchCamera(options, (didCancel, response) => {
+            console.log('Response = ', response);
+
+            if (didCancel) {
+                console.log('User cancelled image picker');
+                return;
+            }
+            if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+                return;
+            }
+            // Otherwise the image should have saved to some tmp/cache dir
+            var source = {
+                data: 'data:image/jpeg;base64,' + response.data,
+                uri: response.uri.replace('file://', ''), 
+                isStatic: true
+            };
+            callback(source);
+        });
+    }, // openCamera
+    getWordDefinition: function(word,callback){
         var baseURL = 'http://api.wordnik.com/v4/word.json/'+word.toLowerCase()+'/definitions?limit=10&includeRelated=false&useCanonical=false&includeTags=true&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
         fetch(baseURL)
         .then((response) => response.json())
@@ -78,7 +112,7 @@ module.exports = {
                 //console.log(responseData[0]);
                 this.props.navigator.push({
                     name: 'dufinepreview',
-                    props: {definition: responseData[0],photo: null},
+                    props: {definition: responseData[0],photo: null,callback:callback},
                 });
                 } else {
                     AlertIOS.alert(

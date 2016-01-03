@@ -99,11 +99,16 @@ module.exports = StyleSheet.create({
     },
     georgia: {
         fontFamily: "Georgia",
-        fontSize: 30,
+        fontSize: 20,
         textAlign: "left",
         margin: 10,
     },
 
+    welcomeText:{
+        fontSize:30,
+        textAlign: 'center',
+        margin:10,
+    }
 
 
 
