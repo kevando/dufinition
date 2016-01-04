@@ -141,11 +141,28 @@ module.exports = StyleSheet.create({
 
 
     welcomeContainer: {
-        flex:1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: '#011627',
+        padding: 10,
 
+        flex: 1, // fill entire
+        flexDirection: 'column', // render children horitontally
+        flexWrap: 'wrap', // not sure
+        justifyContent: 'center', // middle
+        alignItems: 'stretch', // or stretch brings it full
+    },
+    welcomeContentContainer: {
+        // backgroundColor: 'yellow',
+        padding: 5,
+    },
+    welcomeTextContainer: {
+        // backgroundColor: 'green',
+        padding: 5,
+        flex: 1,
+    },
+    welcomeButtonContainer: {
+        // backgroundColor: 'blue',
+        padding: 5,
+        flex: 1,
     },
     introWord: {
         textDecorationLine: 'underline',
@@ -157,6 +174,8 @@ module.exports = StyleSheet.create({
         marginBottom:20,
         paddingLeft: 20,
         paddingRight: 20,
+        // backgroundColor: '#ddd'
+        color: '#fff',
     }
 
 

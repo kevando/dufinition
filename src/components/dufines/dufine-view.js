@@ -55,7 +55,7 @@ module.exports = React.createClass({
                         </View>
                         <View style={styles.definitionBottom}>
                             <View style={styles.dufinitionDefinition}>
-                                <Text style={styles.georgia}>{this.state.definition.text}</Text>
+                            	{this.renderDefinition()}
                             </View>
                         </View>
 
@@ -87,7 +87,7 @@ module.exports = React.createClass({
 		);
 	},
 	renderPronunciation: function(){
-		var pronunciation = '/ '//+this.state.definition.pronunciation.all+' /';
+		var pronunciation = '/ '+this.state.definition.pronunciation.all+' /';
 
 		return (
 			<Text style={[styles.georgia,styles.definitionPronunciation]}>{pronunciation}</Text>
@@ -97,6 +97,22 @@ module.exports = React.createClass({
 		if(this.state.photo)
 			return (<Image source={{uri: this.state.photo.uri}} style={styles.definitionPhoto}/>)
 	},
+	renderDefinition: function(){
+		var definition = '';
+
+		this.state.definition.results.forEach(function(def,index) { 
+
+			definition += (index+1)+') ';
+			definition += def.partOfSpeech+': '
+			definition += def.definition+' ';
+		});
+
+		return (
+			<Text style={[styles.georgia,styles.dufinitionDefinition]}>{definition}</Text>
+		);
+
+	},
+
 
 	onAddPhotoPressed: function() {
 		this.openImagePicker(this.imageSelectedCallback);
@@ -124,7 +140,7 @@ module.exports = React.createClass({
     renderBackButton: function() {
     		return(
     			<TouchableHighlight 
-					style={styles.backButton}
+					
 					onPress={()=>this.props.navigator.popToTop()}>
 					<Text style={styles.backButton}>Back</Text>
 				</TouchableHighlight>
