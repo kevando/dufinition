@@ -27,12 +27,12 @@ module.exports = React.createClass({
 	   // Get definition for initial word and add definition to the state
 		this.getWordDefinition(this.state.firstWord); // this sets state
 	},
-	
+
 
 	render: function() {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.welcomeText}>If you looked up {this.state.firstWord} in the dictionary, who would you find?</Text>
+			<View style={styles.welcomContainer}>
+				<Text style={styles.welcomeText}>If you looked up <Text style={styles.introWord}>{this.state.firstWord}</Text> in the dictionary, who would you find?</Text>
 				<Button text={'Select Photo'} onPress={this.onSelectPhotoPress} />
 
 			</View>

@@ -8,8 +8,42 @@ var {
 } = React;
 
 module.exports = StyleSheet.create({
+
+    container: {
+        flex:1,
+        flexDirection: 'column',
+        backgroundColor: 'red',
+        alignItems: 'stretch',
+    },
+
+    headerButton: {
+        width:30,
+        backgroundColor:'#fff',
+        color:'#FF1053'
+    },
+    absoluteBottomButton:{
+        flex:1,
+        flexDirection: 'row',
+        backgroundColor: 'blue',
+        borderBottomColor: '#666',
+        borderBottomWidth: 1,
+        height:100,
+
+
+    },
+    backButton: {
+        color:'blue',
+        fontSize:17,
+        paddingBottom:0,
+        paddingLeft:5,
+
+
+    },
+
     /* ListView */
     listViewContainer: {
+        flex: 1,
+        flexDirection: 'column',
         backgroundColor: 'green',
         marginTop:0,
         paddingTop:0,
@@ -46,6 +80,7 @@ module.exports = StyleSheet.create({
     
     /* Definition Component */
     definitionContainer: {
+        flex:6,
         backgroundColor: '#ccc',
         padding: 5,
     },
@@ -104,10 +139,24 @@ module.exports = StyleSheet.create({
         margin: 10,
     },
 
+
+    welcomeContainer: {
+        flex:1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    introWord: {
+        textDecorationLine: 'underline',
+    },
+
     welcomeText:{
-        fontSize:30,
+        fontSize:20,
         textAlign: 'center',
-        margin:10,
+        marginBottom:20,
+        paddingLeft: 20,
+        paddingRight: 20,
     }
 
 

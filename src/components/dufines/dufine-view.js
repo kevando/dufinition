@@ -1,5 +1,5 @@
 var React = require('react-native');
-
+var Icon = require('react-native-vector-icons/FontAwesome');
 
 var {
 	View,
@@ -12,6 +12,7 @@ var {
 } = React;
 
 var Button = require('../common/button');
+var Header = require('../common/header');
 var styles = require('../../styles/styles');
 var DufineMixins = require('../mixins');
 
@@ -25,7 +26,8 @@ module.exports = React.createClass({
     	return {
       		definition: this.props.route.vars.definition,
             photo: this.props.route.vars.photo,
-            word: this.props.route.vars.definition.word
+            word: this.props.route.vars.definition.word,
+            callback: this.props.route.vars.callback,
     	};
 
 	},
@@ -36,6 +38,10 @@ module.exports = React.createClass({
 	render: function(){
 		return (
             <View style={styles.container}>
+            	<Header 
+            		title="Dictionary" 
+            		rightButton={()=>(<Text></Text>)}
+                    leftButton={this.renderBackButton} />
                 <View ref="definition" style={styles.definitionContainer}>
                     <View style={styles.definition} >
                         <View style={styles.dufTop}>                            
@@ -56,10 +62,10 @@ module.exports = React.createClass({
                     </View>
                     
                 </View>
-                {this.renderBackButton()}
-                {this.renderExportButton()}
-                {this.renderDeleteButton()}
-                {this.renderAddPhotoButton()}
+                <View style={styles.absoluteBottomButton}>
+                	{this.renderDeleteButton()}
+                	{this.renderAddPhotoButton()}
+                </View>
             </View>
         );
 		
@@ -81,7 +87,7 @@ module.exports = React.createClass({
 		);
 	},
 	renderPronunciation: function(){
-		var pronunciation = '/ '+this.state.definition.pronunciation.all+' /';
+		var pronunciation = '/ '//+this.state.definition.pronunciation.all+' /';
 
 		return (
 			<Text style={[styles.georgia,styles.definitionPronunciation]}>{pronunciation}</Text>
@@ -100,14 +106,14 @@ module.exports = React.createClass({
 	},
 	dataSavedCallback: function(definition,photo){
 		// Reset top route to dufinelist and push navigator to the newly created view
-		//this.state.callback(); i think this does nothinhg
+		this.state.callback(); 
 		//this.props.navigator.push({name:'dufineview',props: {definition: definition,photo: photo},});
 
-		this.setState({photo: photo})
+		this.setState({photo: photo});
 	},
 	
     onDeletePress: function(){
-        this.deleteData(this.state.definition.word,this.props.route.vars.callback);
+        this.deleteData(this.state.definition.word,this.state.callback);
         
         this.props.navigator.popToTop();
     },
@@ -116,8 +122,13 @@ module.exports = React.createClass({
     		return(<Button text={'Export'} onPress={()=>console.log('export')} />);
     },
     renderBackButton: function() {
-    	if(this.state.photo)
-    		return(<Button text={'Go Back'} onPress={()=>this.props.navigator.popToTop()} />);
+    		return(
+    			<TouchableHighlight 
+					style={styles.backButton}
+					onPress={()=>this.props.navigator.popToTop()}>
+					<Text style={styles.backButton}>Back</Text>
+				</TouchableHighlight>
+    		);
     },
     renderDeleteButton: function() {
     	if(this.state.photo)

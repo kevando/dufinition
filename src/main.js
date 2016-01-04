@@ -52,7 +52,7 @@ module.exports = React.createClass({
 	},
 	renderScene: function(route, navigator){ // called any time navigator gets pushed/popped
 		var Component = ROUTES[route.name]; 
-		return <Component route={route} navigator={navigator} />;
+		return <Component route={route} navigator={navigator} title='kev' />;
 	},
 	render: function() {
 		if(!this.state.localData) {
@@ -86,7 +86,7 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
 	container: {
         flex: 1, // fill entire screen
-        marginTop:70
+        
     },
     initialContainer: {
         flex: 1, // fill entire screen

@@ -14,7 +14,7 @@ module.exports = React.createClass({
 				style={styles.button}
 				underlayColor={'gray'} 
 				onPress={this.props.onPress}>
-				<Text>{this.props.text}</Text>
+				<Text style={styles.buttonText}>{this.props.text}</Text>
 			</TouchableHighlight>
 
 		)
@@ -25,12 +25,19 @@ var styles = StyleSheet.create({
 	button: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderWidth: 1,
-		borderRadius: 5,
+		borderWidth: 0,
 		padding: 5,
 		borderColor: 'black',
-		marginTop: 10,
-		marginLeft: 20,
-		marginRight: 20,
+		marginTop: 0,
+		marginLeft: 0,
+		marginRight: 0,
+		flex:1,
+		flexDirection:'row',
+		backgroundColor:'#FF1053',
+
+	},
+	buttonText: {
+		color: '#fff',
+		fontSize: 30,
 	}
 })

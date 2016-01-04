@@ -1,5 +1,5 @@
 var React = require('react-native');
-
+var Icon = require('react-native-vector-icons/FontAwesome');
 
 var {
 	View,
@@ -13,6 +13,7 @@ var {
 } = React;
 
 var Button = require('../common/button');
+var Header = require('../common/header');
 var styles = require('../../styles/styles');
 var DufineMixins = require('../mixins');
 
@@ -45,32 +46,42 @@ module.exports = React.createClass({
 		
 		return(
             <View>
-            <View style={styles.initialContainer}>
-                    <Button text={"Create New Dufine"} onPress={this.onNewDufinePress} />
+                <Header 
+                    title="Dictionary" 
+                    leftButton={()=>(<Text></Text>)}
+                    rightButton={this.renderNewDufineButton} />
+                <View>
+                    <ListView
+                        dataSource={this.state.listViewDataSource}
+                        renderRow={this.renderDufineRow}
+                        automaticallyAdjustContentInsets={false}
+                        style={styles.listViewContainer} />
                 </View>
-            <View>
-			<ListView
-                    dataSource={this.state.listViewDataSource}
-                    renderRow={this.renderDufineRow}
-                    automaticallyAdjustContentInsets={false}
-                    style={styles.listViewContainer} />
-                    </View>
-                
-                </View>
-);
+            </View>
+        );
 	},
+    renderNewDufineButton: function() {
+        return(
+            <TouchableHighlight 
+                onPress={this.onNewDufinePress} > 
+                <Icon 
+                    name="plus-square" 
+                    size={30} 
+                    style={styles.headerButton} />
+            </TouchableHighlight>
+        );
+    },
 	renderDufineRow: function(rowData, sectionID, rowID, highlightRow){
 		return (
         	<TouchableHighlight 
             	onPress={() => this.onRenderRowPress(rowData)} > 
       			<View style={styles.listRow}>
-                <Image
-            source={{uri: rowData.photo.uri}}
-            style={styles.thumbnail}/>
-          			<View style={styles.rightContainer}>
+                    <Image
+                        source={{uri: rowData.photo.uri}}
+                        style={styles.thumbnail} />
+              		<View style={styles.rightContainer}>
               			<Text style={[styles.georgia,styles.listRowText]}>{rowData.definition.word}</Text>
           			</View>
-          
         		</View>
         	</TouchableHighlight>
     	);
@@ -106,7 +117,7 @@ module.exports = React.createClass({
         )
 	},
     onPressSubmit: function(word) {
-        console.log('submit word');
+        // console.log('submit word');
         this.getWordDefinition(word,this.handleDefinitionResponse);
     },
     handleDefinitionResponse: function(responseData){
