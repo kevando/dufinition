@@ -4,7 +4,7 @@ var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 var AlertIOS = require('AlertIOS');
 
 
-var dataVersion = "dufine_v3.1";
+var dataVersion = "dufine_v4";
 
 module.exports = {
   

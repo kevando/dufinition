@@ -18,7 +18,7 @@ module.exports = StyleSheet.create({
 
     headerButton: {
         width:30,
-        backgroundColor:'#fff',
+
         color:'#FF1053'
     },
     absoluteBottomButton:{
@@ -32,9 +32,9 @@ module.exports = StyleSheet.create({
 
     },
     backButton: {
-        color:'blue',
+        color:'#fff',
         fontSize:17,
-        paddingBottom:0,
+        paddingBottom:5,
         paddingLeft:5,
 
 

@@ -28,17 +28,6 @@ module.exports = React.createClass({
 
 		)
 	},
-	rfender: function(){
-		return (
-			<TouchableHighlight 
-				style={styles.button}
-				underlayColor={'gray'} 
-				onPress={this.props.onPress}>
-				<Text>{this.props.text}</Text>
-			</TouchableHighlight>
-
-		)
-	}
 });
 
 var styles = StyleSheet.create({
@@ -46,7 +35,7 @@ var styles = StyleSheet.create({
         height: 50,
 
         flexDirection: 'row',
-        backgroundColor: '#F9F9F9',
+        backgroundColor: '#011627',
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
         justifyContent: 'center',
@@ -57,6 +46,7 @@ var styles = StyleSheet.create({
         fontWeight: '300',
         fontSize: 18,
         marginBottom:4,
+        color:'#fff',
     },
     leftContainer: {
     	borderColor: '#000',

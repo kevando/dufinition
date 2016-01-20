@@ -53967,7 +53967,7 @@ localData:find_data});},
 
 renderScene:function(route,navigator){
 var Component=ROUTES[route.name];
-return React.createElement(Component,{route:route,navigator:navigator});},
+return React.createElement(Component,{route:route,navigator:navigator,title:'kev'});},
 
 render:function(){
 if(!this.state.localData){
@@ -54000,8 +54000,8 @@ configureScene:function(){return Navigator.SceneConfigs.FloatFromRight;}}));}}})
 
 var styles=StyleSheet.create({
 container:{
-flex:1,
-marginTop:70},
+flex:1},
+
 
 initialContainer:{
 flex:1,
@@ -63955,7 +63955,7 @@ React.createElement(TouchableHighlight,{
 style:styles.button,
 underlayColor:'gray',
 onPress:this.props.onPress},
-React.createElement(Text,null,this.props.text)));}});
+React.createElement(Text,{style:styles.buttonText},this.props.text)));}});
 
 
 
@@ -63966,13 +63966,20 @@ var styles=StyleSheet.create({
 button:{
 justifyContent:'center',
 alignItems:'center',
-borderWidth:1,
-borderRadius:5,
+borderWidth:0,
 padding:5,
 borderColor:'black',
-marginTop:10,
-marginLeft:20,
-marginRight:20}});
+marginTop:0,
+marginLeft:0,
+marginRight:0,
+flex:1,
+flexDirection:'row',
+backgroundColor:'#FF1053'},
+
+
+buttonText:{
+color:'#fff',
+fontSize:30}});
 });
 __d('Dufine/src/components/authentication/signup.js',["react-native/Libraries/react-native/react-native.js","parse/react-native.js","Dufine/src/components/common/button.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');
 var Parse=require('parse/react-native.js');var 
@@ -64072,6 +64079,9 @@ __d('Dufine/src/components/walkthrough/welcome.js',["react-native/Libraries/reac
 var Parse=require('parse/react-native.js');var 
 
 
+
+
+
 Text=
 
 
@@ -64085,13 +64095,38 @@ var styles=require('Dufine/src/styles/styles.js');
 module.exports = React.createClass({displayName:'exports',
 mixins:[DufineMixins],
 getInitialState:function(){
-return {};},
+return {
+firstWord:'idiot',
+definition:null};},
+
+
+componentWillMount:function(){
+
+this.getWordDefinition(this.state.firstWord,this.setDefinitionInState);},
+
+setDefinitionInState:function(responseData){
+this.setState({definition:responseData});},
+
 
 render:function(){
 return (
-React.createElement(View,{style:styles.container},
-React.createElement(Text,{style:styles.welcomeText},'If you looked up idiot in the dictionary, who would you find?'),
-React.createElement(Button,{text:'Select Photo',onPress:this.onSelectPhotoPress})));},
+React.createElement(View,{style:styles.welcomeContainer},
+React.createElement(View,{style:styles.welcomeContentContainer},
+React.createElement(View,{style:styles.welcomeTextContainer},
+React.createElement(Text,{style:styles.welcomeText},'If you looked up ',React.createElement(Text,{style:styles.introWord},this.state.firstWord),' in the dictionary, who would you find?')),
+
+React.createElement(View,{style:styles.welcomeButtonContainer},
+React.createElement(Button,{text:'Select Photo',onPress:this.onSelectPhotoPress})))));},
+
+
+
+
+
+renderr:function(){
+return (
+React.createElement(View,{style:styles.welcomeContainer},
+React.createElement(Text,{style:styles.welcomeText},'If you looked up ',React.createElement(Text,{style:styles.introWord},this.state.firstWord),' in the dictionary, who would you find?')));},
+
 
 
 
@@ -64099,13 +64134,15 @@ React.createElement(Button,{text:'Select Photo',onPress:this.onSelectPhotoPress}
 
 
 onSelectPhotoPress:function(){
-this.openCamera(this.imageSelectedCallback);},
 
+this.openImagePicker(this.imageSelectedCallback);},
 
 imageSelectedCallback:function(source){
+console.log('this.state.definition');
+console.log(this.state.definition);
 
 this.saveData(
-{word:'idiot',text:'one who is dumb',partOfSpeech:'noun'},
+this.state.definition,
 source,
 this.dataSavedCallback);},
 
@@ -64115,7 +64152,7 @@ dataSavedCallback:function(definition,photo){
 this.props.navigator.immediatelyResetRouteStack(
 [
 {name:'dufinelist'},
-{name:'dufineview',props:{definition:definition,photo:photo}}]);}});
+{name:'dufineview',vars:{definition:definition,photo:photo}}]);}});
 });
 __d('Dufine/src/components/mixins.js',["react-native-store/libs/index.js","NativeModules","AlertIOS"],function(global, require, module, exports) {  var reactNativeStore=require('react-native-store/libs/index.js');
 var UIImagePickerManager=require('NativeModules').UIImagePickerManager;
@@ -64123,7 +64160,7 @@ var UIImagePickerManager=require('NativeModules').UIImagePickerManager;
 var AlertIOS=require('AlertIOS');
 
 
-var dataVersion="dufine_v3.1";
+var dataVersion="dufine_v4";
 
 module.exports = {
 
@@ -64131,8 +64168,8 @@ module.exports = {
 loadData:function callee$0$0(callback){var 
 
 dufineModel,
-find_data;return regeneratorRuntime.async(function callee$0$0$(context$1$0){while(1) switch(context$1$0.prev = context$1$0.next){case 0:console.log('async loadData = ');context$1$0.next = 3;return regeneratorRuntime.awrap(reactNativeStore.model(dataVersion));case 3:dufineModel = context$1$0.sent;context$1$0.next = 6;return regeneratorRuntime.awrap(dufineModel.find());case 6:find_data = context$1$0.sent;
-callback(find_data);case 8:case 'end':return context$1$0.stop();}},null,this);},
+find_data;return regeneratorRuntime.async(function callee$0$0$(context$1$0){while(1) switch(context$1$0.prev = context$1$0.next){case 0:context$1$0.next = 2;return regeneratorRuntime.awrap(reactNativeStore.model(dataVersion));case 2:dufineModel = context$1$0.sent;context$1$0.next = 5;return regeneratorRuntime.awrap(dufineModel.find());case 5:find_data = context$1$0.sent;
+callback(find_data);case 7:case 'end':return context$1$0.stop();}},null,this);},
 
 saveData:function callee$0$0(definition,source,callback){var 
 dufineModel,
@@ -64141,9 +64178,9 @@ word:definition.word,
 definition:definition,
 photo:source}));case 5:add_data = context$1$0.sent;
 
-console.log('callback');
-console.log(callback);
-callback(definition,source);case 9:case 'end':return context$1$0.stop();}},null,this);},
+
+
+callback(definition,source);case 7:case 'end':return context$1$0.stop();}},null,this);},
 
 deleteData:function callee$0$0(word,callback){var 
 dufineModel,
@@ -64221,26 +64258,24 @@ isStatic:true};
 callback(source);});},
 
 
-getWordDefinition:function(word,callback){var _this=this;
-var baseURL='http://api.wordnik.com/v4/word.json/' + word.toLowerCase() + '/definitions?limit=10&includeRelated=false&useCanonical=false&includeTags=true&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
-fetch(baseURL).
+
+getWordDefinition:function(word,callback){
+
+var baseURL='https://wordsapiv1.p.mashape.com/words/' + word;
+fetch(baseURL,{
+method:'GET',
+headers:{
+'Accept':'application/json',
+'Content-Type':'application/json',
+'X-Mashape-Key':'i5OFV6PQGkmsh1HhWu7b9c76bNodp1Df8DmjsnKzsbV0G6Ke9r'}}).
+
+
 then(function(response){return response.json();}).
 then(function(responseData){
-console.log(responseData);
-if(responseData.length > 0){
-
-_this.props.navigator.push({
-name:'dufinepreview',
-props:{definition:responseData[0],photo:null,callback:callback}});}else 
-
-{
-AlertIOS.alert(
-word + ' is not a word','',
-[{text:'I knew that',onPress:function(){return console.log('ok');}}]);}}).
 
 
 
-done();}};
+callback(responseData);});}};
 });
 __d('react-native-store/libs/index.js',["react-native-store/libs/store.js"],function(global, require, module, exports) {  'use strict';
 
@@ -64486,7 +64521,41 @@ React.StyleSheet;
 
 module.exports = StyleSheet.create({
 
+container:{
+flex:1,
+flexDirection:'column',
+backgroundColor:'red',
+alignItems:'stretch'},
+
+
+headerButton:{
+width:30,
+
+color:'#FF1053'},
+
+absoluteBottomButton:{
+flex:1,
+flexDirection:'row',
+backgroundColor:'blue',
+borderBottomColor:'#666',
+borderBottomWidth:1,
+height:100},
+
+
+
+backButton:{
+color:'#fff',
+fontSize:17,
+paddingBottom:5,
+paddingLeft:5},
+
+
+
+
+
 listViewContainer:{
+flex:1,
+flexDirection:'column',
 backgroundColor:'green',
 marginTop:0,
 paddingTop:0},
@@ -64523,6 +64592,7 @@ marginRight:25},
 
 
 definitionContainer:{
+flex:6,
 backgroundColor:'#ccc',
 padding:5},
 
@@ -64538,10 +64608,10 @@ justifyContent:'flex-start',
 alignItems:'stretch'},
 
 definitionWord:{
-fontSize:50},
+fontSize:30},
 
-definitionType:{
-fontSize:30,
+definitionPronunciation:{
+fontSize:20,
 fontStyle:'italic'},
 
 definitionWordContainer:{
@@ -64581,13 +64651,46 @@ textAlign:"left",
 margin:10},
 
 
-welcomeText:{
-fontSize:30,
-textAlign:'center',
-margin:10}});
-});
-__d('Dufine/src/components/dufines/dufine-list.js',["react-native/Libraries/react-native/react-native.js","Dufine/src/components/common/button.js","Dufine/src/styles/styles.js","Dufine/src/components/mixins.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');var 
 
+welcomeContainer:{
+backgroundColor:'#011627',
+padding:10,
+
+flex:1,
+flexDirection:'column',
+flexWrap:'wrap',
+justifyContent:'center',
+alignItems:'stretch'},
+
+welcomeContentContainer:{
+
+padding:5},
+
+welcomeTextContainer:{
+
+padding:5,
+flex:1},
+
+welcomeButtonContainer:{
+
+padding:5,
+flex:1},
+
+introWord:{
+textDecorationLine:'underline'},
+
+
+welcomeText:{
+fontSize:20,
+textAlign:'center',
+marginBottom:20,
+paddingLeft:20,
+paddingRight:20,
+
+color:'#fff'}});
+});
+__d('Dufine/src/components/dufines/dufine-list.js',["react-native/Libraries/react-native/react-native.js","FontAwesome","Dufine/src/components/common/button.js","Dufine/src/components/common/header.js","Dufine/src/styles/styles.js","Dufine/src/components/mixins.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');
+var Icon=require('FontAwesome');var 
 
 
 View=
@@ -64601,6 +64704,7 @@ View=
 React.View;var Text=React.Text;var StyleSheet=React.StyleSheet;var ListView=React.ListView;var TouchableHighlight=React.TouchableHighlight;var TextInput=React.TextInput;var AlertIOS=React.AlertIOS;var Image=React.Image;
 
 var Button=require('Dufine/src/components/common/button.js');
+var Header=require('Dufine/src/components/common/header.js');
 var styles=require('Dufine/src/styles/styles.js');
 var DufineMixins=require('Dufine/src/components/mixins.js');
 
@@ -64633,9 +64737,10 @@ React.createElement(Text,null,'i am loading dufine list...')));}
 
 return (
 React.createElement(View,null,
-React.createElement(View,{style:styles.initialContainer},
-React.createElement(Button,{text:"Create New Dufine",onPress:this.onNewDufinePress})),
-
+React.createElement(Header,{
+title:'Dictionary',
+leftButton:function(){return React.createElement(Text,null);},
+rightButton:this.renderNewDufineButton}),
 React.createElement(View,null,
 React.createElement(ListView,{
 dataSource:this.state.listViewDataSource,
@@ -64644,6 +64749,16 @@ automaticallyAdjustContentInsets:false,
 style:styles.listViewContainer}))));},
 
 
+
+
+renderNewDufineButton:function(){
+return (
+React.createElement(TouchableHighlight,{
+onPress:this.onNewDufinePress},
+React.createElement(Icon,{
+name:'plus-square',
+size:30,
+style:styles.headerButton})));},
 
 
 
@@ -64662,11 +64777,10 @@ React.createElement(Text,{style:[styles.georgia,styles.listRowText]},rowData.def
 
 
 
-
 onRenderRowPress:function(dataObject){
 this.props.navigator.push({
 name:'dufineview',
-props:{definition:dataObject.definition,photo:dataObject.photo,callback:this.refreshData}});},
+vars:{definition:dataObject.definition,photo:dataObject.photo,callback:this.refreshData}});},
 
 
 onRefreshDataPress:function(){
@@ -64685,11 +64799,6 @@ listViewDataSource:ds.cloneWithRows(find_data)});},
 
 
 onNewDufinePress:function(){var _this2=this;
-
-
-
-
-
 AlertIOS.prompt(
 'Pick a word','',
 [
@@ -64698,13 +64807,2624 @@ AlertIOS.prompt(
 
 
 
-
 onPressSubmit:function(word){
-console.log('submit word');
-this.getWordDefinition(word,this.refreshData);}});
-});
-__d('Dufine/src/components/dufines/dufine-view.js',["react-native/Libraries/react-native/react-native.js","Dufine/src/components/common/button.js","Dufine/src/styles/styles.js","Dufine/src/components/mixins.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');var 
 
+this.getWordDefinition(word,this.handleDefinitionResponse);},
+
+handleDefinitionResponse:function(responseData){
+console.log('handleDefinitionResponse');
+console.log(responseData);
+if(responseData == null){
+AlertIOS.alert(
+'That is not a word','',
+[{text:'I knew that',onPress:function(){return console.log('ok');}}]);}else 
+
+{
+this.props.navigator.push({
+name:'dufineview',
+vars:{definition:responseData,photo:null,callback:this.refreshData}});}}});
+});
+__d('FontAwesome',["createIconSet"],function(global, require, module, exports) {  'use strict';
+
+
+
+
+
+
+
+var createIconSet=require('createIconSet');
+var glyphMap={
+"glass":61440,
+"music":61441,
+"search":61442,
+"envelope-o":61443,
+"heart":61444,
+"star":61445,
+"star-o":61446,
+"user":61447,
+"film":61448,
+"th-large":61449,
+"th":61450,
+"th-list":61451,
+"check":61452,
+"remove":61453,
+"close":61453,
+"times":61453,
+"search-plus":61454,
+"search-minus":61456,
+"power-off":61457,
+"signal":61458,
+"gear":61459,
+"cog":61459,
+"trash-o":61460,
+"home":61461,
+"file-o":61462,
+"clock-o":61463,
+"road":61464,
+"download":61465,
+"arrow-circle-o-down":61466,
+"arrow-circle-o-up":61467,
+"inbox":61468,
+"play-circle-o":61469,
+"rotate-right":61470,
+"repeat":61470,
+"refresh":61473,
+"list-alt":61474,
+"lock":61475,
+"flag":61476,
+"headphones":61477,
+"volume-off":61478,
+"volume-down":61479,
+"volume-up":61480,
+"qrcode":61481,
+"barcode":61482,
+"tag":61483,
+"tags":61484,
+"book":61485,
+"bookmark":61486,
+"print":61487,
+"camera":61488,
+"font":61489,
+"bold":61490,
+"italic":61491,
+"text-height":61492,
+"text-width":61493,
+"align-left":61494,
+"align-center":61495,
+"align-right":61496,
+"align-justify":61497,
+"list":61498,
+"dedent":61499,
+"outdent":61499,
+"indent":61500,
+"video-camera":61501,
+"photo":61502,
+"image":61502,
+"picture-o":61502,
+"pencil":61504,
+"map-marker":61505,
+"adjust":61506,
+"tint":61507,
+"edit":61508,
+"pencil-square-o":61508,
+"share-square-o":61509,
+"check-square-o":61510,
+"arrows":61511,
+"step-backward":61512,
+"fast-backward":61513,
+"backward":61514,
+"play":61515,
+"pause":61516,
+"stop":61517,
+"forward":61518,
+"fast-forward":61520,
+"step-forward":61521,
+"eject":61522,
+"chevron-left":61523,
+"chevron-right":61524,
+"plus-circle":61525,
+"minus-circle":61526,
+"times-circle":61527,
+"check-circle":61528,
+"question-circle":61529,
+"info-circle":61530,
+"crosshairs":61531,
+"times-circle-o":61532,
+"check-circle-o":61533,
+"ban":61534,
+"arrow-left":61536,
+"arrow-right":61537,
+"arrow-up":61538,
+"arrow-down":61539,
+"mail-forward":61540,
+"share":61540,
+"expand":61541,
+"compress":61542,
+"plus":61543,
+"minus":61544,
+"asterisk":61545,
+"exclamation-circle":61546,
+"gift":61547,
+"leaf":61548,
+"fire":61549,
+"eye":61550,
+"eye-slash":61552,
+"warning":61553,
+"exclamation-triangle":61553,
+"plane":61554,
+"calendar":61555,
+"random":61556,
+"comment":61557,
+"magnet":61558,
+"chevron-up":61559,
+"chevron-down":61560,
+"retweet":61561,
+"shopping-cart":61562,
+"folder":61563,
+"folder-open":61564,
+"arrows-v":61565,
+"arrows-h":61566,
+"bar-chart-o":61568,
+"bar-chart":61568,
+"twitter-square":61569,
+"facebook-square":61570,
+"camera-retro":61571,
+"key":61572,
+"gears":61573,
+"cogs":61573,
+"comments":61574,
+"thumbs-o-up":61575,
+"thumbs-o-down":61576,
+"star-half":61577,
+"heart-o":61578,
+"sign-out":61579,
+"linkedin-square":61580,
+"thumb-tack":61581,
+"external-link":61582,
+"sign-in":61584,
+"trophy":61585,
+"github-square":61586,
+"upload":61587,
+"lemon-o":61588,
+"phone":61589,
+"square-o":61590,
+"bookmark-o":61591,
+"phone-square":61592,
+"twitter":61593,
+"facebook-f":61594,
+"facebook":61594,
+"github":61595,
+"unlock":61596,
+"credit-card":61597,
+"feed":61598,
+"rss":61598,
+"hdd-o":61600,
+"bullhorn":61601,
+"bell":61683,
+"certificate":61603,
+"hand-o-right":61604,
+"hand-o-left":61605,
+"hand-o-up":61606,
+"hand-o-down":61607,
+"arrow-circle-left":61608,
+"arrow-circle-right":61609,
+"arrow-circle-up":61610,
+"arrow-circle-down":61611,
+"globe":61612,
+"wrench":61613,
+"tasks":61614,
+"filter":61616,
+"briefcase":61617,
+"arrows-alt":61618,
+"group":61632,
+"users":61632,
+"chain":61633,
+"link":61633,
+"cloud":61634,
+"flask":61635,
+"cut":61636,
+"scissors":61636,
+"copy":61637,
+"files-o":61637,
+"paperclip":61638,
+"save":61639,
+"floppy-o":61639,
+"square":61640,
+"navicon":61641,
+"reorder":61641,
+"bars":61641,
+"list-ul":61642,
+"list-ol":61643,
+"strikethrough":61644,
+"underline":61645,
+"table":61646,
+"magic":61648,
+"truck":61649,
+"pinterest":61650,
+"pinterest-square":61651,
+"google-plus-square":61652,
+"google-plus":61653,
+"money":61654,
+"caret-down":61655,
+"caret-up":61656,
+"caret-left":61657,
+"caret-right":61658,
+"columns":61659,
+"unsorted":61660,
+"sort":61660,
+"sort-down":61661,
+"sort-desc":61661,
+"sort-up":61662,
+"sort-asc":61662,
+"envelope":61664,
+"linkedin":61665,
+"rotate-left":61666,
+"undo":61666,
+"legal":61667,
+"gavel":61667,
+"dashboard":61668,
+"tachometer":61668,
+"comment-o":61669,
+"comments-o":61670,
+"flash":61671,
+"bolt":61671,
+"sitemap":61672,
+"umbrella":61673,
+"paste":61674,
+"clipboard":61674,
+"lightbulb-o":61675,
+"exchange":61676,
+"cloud-download":61677,
+"cloud-upload":61678,
+"user-md":61680,
+"stethoscope":61681,
+"suitcase":61682,
+"bell-o":61602,
+"coffee":61684,
+"cutlery":61685,
+"file-text-o":61686,
+"building-o":61687,
+"hospital-o":61688,
+"ambulance":61689,
+"medkit":61690,
+"fighter-jet":61691,
+"beer":61692,
+"h-square":61693,
+"plus-square":61694,
+"angle-double-left":61696,
+"angle-double-right":61697,
+"angle-double-up":61698,
+"angle-double-down":61699,
+"angle-left":61700,
+"angle-right":61701,
+"angle-up":61702,
+"angle-down":61703,
+"desktop":61704,
+"laptop":61705,
+"tablet":61706,
+"mobile-phone":61707,
+"mobile":61707,
+"circle-o":61708,
+"quote-left":61709,
+"quote-right":61710,
+"spinner":61712,
+"circle":61713,
+"mail-reply":61714,
+"reply":61714,
+"github-alt":61715,
+"folder-o":61716,
+"folder-open-o":61717,
+"smile-o":61720,
+"frown-o":61721,
+"meh-o":61722,
+"gamepad":61723,
+"keyboard-o":61724,
+"flag-o":61725,
+"flag-checkered":61726,
+"terminal":61728,
+"code":61729,
+"mail-reply-all":61730,
+"reply-all":61730,
+"star-half-empty":61731,
+"star-half-full":61731,
+"star-half-o":61731,
+"location-arrow":61732,
+"crop":61733,
+"code-fork":61734,
+"unlink":61735,
+"chain-broken":61735,
+"question":61736,
+"info":61737,
+"exclamation":61738,
+"superscript":61739,
+"subscript":61740,
+"eraser":61741,
+"puzzle-piece":61742,
+"microphone":61744,
+"microphone-slash":61745,
+"shield":61746,
+"calendar-o":61747,
+"fire-extinguisher":61748,
+"rocket":61749,
+"maxcdn":61750,
+"chevron-circle-left":61751,
+"chevron-circle-right":61752,
+"chevron-circle-up":61753,
+"chevron-circle-down":61754,
+"html5":61755,
+"css3":61756,
+"anchor":61757,
+"unlock-alt":61758,
+"bullseye":61760,
+"ellipsis-h":61761,
+"ellipsis-v":61762,
+"rss-square":61763,
+"play-circle":61764,
+"ticket":61765,
+"minus-square":61766,
+"minus-square-o":61767,
+"level-up":61768,
+"level-down":61769,
+"check-square":61770,
+"pencil-square":61771,
+"external-link-square":61772,
+"share-square":61773,
+"compass":61774,
+"toggle-down":61776,
+"caret-square-o-down":61776,
+"toggle-up":61777,
+"caret-square-o-up":61777,
+"toggle-right":61778,
+"caret-square-o-right":61778,
+"euro":61779,
+"eur":61779,
+"gbp":61780,
+"dollar":61781,
+"usd":61781,
+"rupee":61782,
+"inr":61782,
+"cny":61783,
+"rmb":61783,
+"yen":61783,
+"jpy":61783,
+"ruble":61784,
+"rouble":61784,
+"rub":61784,
+"won":61785,
+"krw":61785,
+"bitcoin":61786,
+"btc":61786,
+"file":61787,
+"file-text":61788,
+"sort-alpha-asc":61789,
+"sort-alpha-desc":61790,
+"sort-amount-asc":61792,
+"sort-amount-desc":61793,
+"sort-numeric-asc":61794,
+"sort-numeric-desc":61795,
+"thumbs-up":61796,
+"thumbs-down":61797,
+"youtube-square":61798,
+"youtube":61799,
+"xing":61800,
+"xing-square":61801,
+"youtube-play":61802,
+"dropbox":61803,
+"stack-overflow":61804,
+"instagram":61805,
+"flickr":61806,
+"adn":61808,
+"bitbucket":61809,
+"bitbucket-square":61810,
+"tumblr":61811,
+"tumblr-square":61812,
+"long-arrow-down":61813,
+"long-arrow-up":61814,
+"long-arrow-left":61815,
+"long-arrow-right":61816,
+"apple":61817,
+"windows":61818,
+"android":61819,
+"linux":61820,
+"dribbble":61821,
+"skype":61822,
+"foursquare":61824,
+"trello":61825,
+"female":61826,
+"male":61827,
+"gittip":61828,
+"gratipay":61828,
+"sun-o":61829,
+"moon-o":61830,
+"archive":61831,
+"bug":61832,
+"vk":61833,
+"weibo":61834,
+"renren":61835,
+"pagelines":61836,
+"stack-exchange":61837,
+"arrow-circle-o-right":61838,
+"arrow-circle-o-left":61840,
+"toggle-left":61841,
+"caret-square-o-left":61841,
+"dot-circle-o":61842,
+"wheelchair":61843,
+"vimeo-square":61844,
+"turkish-lira":61845,
+"try":61845,
+"plus-square-o":61846,
+"space-shuttle":61847,
+"slack":61848,
+"envelope-square":61849,
+"wordpress":61850,
+"openid":61851,
+"institution":61852,
+"bank":61852,
+"university":61852,
+"mortar-board":61853,
+"graduation-cap":61853,
+"yahoo":61854,
+"google":61856,
+"reddit":61857,
+"reddit-square":61858,
+"stumbleupon-circle":61859,
+"stumbleupon":61860,
+"delicious":61861,
+"digg":61862,
+"pied-piper":61863,
+"pied-piper-alt":61864,
+"drupal":61865,
+"joomla":61866,
+"language":61867,
+"fax":61868,
+"building":61869,
+"child":61870,
+"paw":61872,
+"spoon":61873,
+"cube":61874,
+"cubes":61875,
+"behance":61876,
+"behance-square":61877,
+"steam":61878,
+"steam-square":61879,
+"recycle":61880,
+"automobile":61881,
+"car":61881,
+"cab":61882,
+"taxi":61882,
+"tree":61883,
+"spotify":61884,
+"deviantart":61885,
+"soundcloud":61886,
+"database":61888,
+"file-pdf-o":61889,
+"file-word-o":61890,
+"file-excel-o":61891,
+"file-powerpoint-o":61892,
+"file-photo-o":61893,
+"file-picture-o":61893,
+"file-image-o":61893,
+"file-zip-o":61894,
+"file-archive-o":61894,
+"file-sound-o":61895,
+"file-audio-o":61895,
+"file-movie-o":61896,
+"file-video-o":61896,
+"file-code-o":61897,
+"vine":61898,
+"codepen":61899,
+"jsfiddle":61900,
+"life-bouy":61901,
+"life-buoy":61901,
+"life-saver":61901,
+"support":61901,
+"life-ring":61901,
+"circle-o-notch":61902,
+"ra":61904,
+"rebel":61904,
+"ge":61905,
+"empire":61905,
+"git-square":61906,
+"git":61907,
+"y-combinator-square":61908,
+"yc-square":61908,
+"hacker-news":61908,
+"tencent-weibo":61909,
+"qq":61910,
+"wechat":61911,
+"weixin":61911,
+"send":61912,
+"paper-plane":61912,
+"send-o":61913,
+"paper-plane-o":61913,
+"history":61914,
+"circle-thin":61915,
+"header":61916,
+"paragraph":61917,
+"sliders":61918,
+"share-alt":61920,
+"share-alt-square":61921,
+"bomb":61922,
+"soccer-ball-o":61923,
+"futbol-o":61923,
+"tty":61924,
+"binoculars":61925,
+"plug":61926,
+"slideshare":61927,
+"twitch":61928,
+"yelp":61929,
+"newspaper-o":61930,
+"wifi":61931,
+"calculator":61932,
+"paypal":61933,
+"google-wallet":61934,
+"cc-visa":61936,
+"cc-mastercard":61937,
+"cc-discover":61938,
+"cc-amex":61939,
+"cc-paypal":61940,
+"cc-stripe":61941,
+"bell-slash":61942,
+"bell-slash-o":61943,
+"trash":61944,
+"copyright":61945,
+"at":61946,
+"eyedropper":61947,
+"paint-brush":61948,
+"birthday-cake":61949,
+"area-chart":61950,
+"pie-chart":61952,
+"line-chart":61953,
+"lastfm":61954,
+"lastfm-square":61955,
+"toggle-off":61956,
+"toggle-on":61957,
+"bicycle":61958,
+"bus":61959,
+"ioxhost":61960,
+"angellist":61961,
+"cc":61962,
+"shekel":61963,
+"sheqel":61963,
+"ils":61963,
+"meanpath":61964,
+"buysellads":61965,
+"connectdevelop":61966,
+"dashcube":61968,
+"forumbee":61969,
+"leanpub":61970,
+"sellsy":61971,
+"shirtsinbulk":61972,
+"simplybuilt":61973,
+"skyatlas":61974,
+"cart-plus":61975,
+"cart-arrow-down":61976,
+"diamond":61977,
+"ship":61978,
+"user-secret":61979,
+"motorcycle":61980,
+"street-view":61981,
+"heartbeat":61982,
+"venus":61985,
+"mars":61986,
+"mercury":61987,
+"intersex":61988,
+"transgender":61988,
+"transgender-alt":61989,
+"venus-double":61990,
+"mars-double":61991,
+"venus-mars":61992,
+"mars-stroke":61993,
+"mars-stroke-v":61994,
+"mars-stroke-h":61995,
+"neuter":61996,
+"genderless":61997,
+"facebook-official":62000,
+"pinterest-p":62001,
+"whatsapp":62002,
+"server":62003,
+"user-plus":62004,
+"user-times":62005,
+"hotel":62006,
+"bed":62006,
+"viacoin":62007,
+"train":62008,
+"subway":62009,
+"medium":62010,
+"yc":62011,
+"y-combinator":62011,
+"optin-monster":62012,
+"opencart":62013,
+"expeditedssl":62014,
+"battery-4":62016,
+"battery-full":62016,
+"battery-3":62017,
+"battery-three-quarters":62017,
+"battery-2":62018,
+"battery-half":62018,
+"battery-1":62019,
+"battery-quarter":62019,
+"battery-0":62020,
+"battery-empty":62020,
+"mouse-pointer":62021,
+"i-cursor":62022,
+"object-group":62023,
+"object-ungroup":62024,
+"sticky-note":62025,
+"sticky-note-o":62026,
+"cc-jcb":62027,
+"cc-diners-club":62028,
+"clone":62029,
+"balance-scale":62030,
+"hourglass-o":62032,
+"hourglass-1":62033,
+"hourglass-start":62033,
+"hourglass-2":62034,
+"hourglass-half":62034,
+"hourglass-3":62035,
+"hourglass-end":62035,
+"hourglass":62036,
+"hand-grab-o":62037,
+"hand-rock-o":62037,
+"hand-stop-o":62038,
+"hand-paper-o":62038,
+"hand-scissors-o":62039,
+"hand-lizard-o":62040,
+"hand-spock-o":62041,
+"hand-pointer-o":62042,
+"hand-peace-o":62043,
+"trademark":62044,
+"registered":62045,
+"creative-commons":62046,
+"gg":62048,
+"gg-circle":62049,
+"tripadvisor":62050,
+"odnoklassniki":62051,
+"odnoklassniki-square":62052,
+"get-pocket":62053,
+"wikipedia-w":62054,
+"safari":62055,
+"chrome":62056,
+"firefox":62057,
+"opera":62058,
+"internet-explorer":62059,
+"tv":62060,
+"television":62060,
+"contao":62061,
+"500px":62062,
+"amazon":62064,
+"calendar-plus-o":62065,
+"calendar-minus-o":62066,
+"calendar-times-o":62067,
+"calendar-check-o":62068,
+"industry":62069,
+"map-pin":62070,
+"map-signs":62071,
+"map-o":62072,
+"map":62073,
+"commenting":62074,
+"commenting-o":62075,
+"houzz":62076,
+"vimeo":62077,
+"black-tie":62078,
+"fonticons":62080,
+"reddit-alien":62081,
+"edge":62082,
+"credit-card-alt":62083,
+"codiepie":62084,
+"modx":62085,
+"fort-awesome":62086,
+"usb":62087,
+"product-hunt":62088,
+"mixcloud":62089,
+"scribd":62090,
+"pause-circle":62091,
+"pause-circle-o":62092,
+"stop-circle":62093,
+"stop-circle-o":62094,
+"shopping-bag":62096,
+"shopping-basket":62097,
+"hashtag":62098,
+"bluetooth":62099,
+"bluetooth-b":62100,
+"percent":62101};
+
+
+var FontAwesome=createIconSet(glyphMap,'FontAwesome','FontAwesome.ttf');
+
+module.exports = FontAwesome;
+module.exports.glyphMap = glyphMap;
+});
+__d('createIconSet',["lodash/object/pick.js","lodash/object/omit.js","lodash/lang/isString.js","lodash/lang/isEqual.js","react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  'use strict';var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};function _objectWithoutProperties(obj,keys){var target={};for(var i in obj) {if(keys.indexOf(i) >= 0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i] = obj[i];}return target;}
+
+
+
+
+
+var pick=require('lodash/object/pick.js');
+var omit=require('lodash/object/omit.js');
+var isString=require('lodash/lang/isString.js');
+var isEqual=require('lodash/lang/isEqual.js');
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+View=
+
+
+
+
+
+
+
+
+
+React.View;var Text=React.Text;var StyleSheet=React.StyleSheet;var TouchableHighlight=React.TouchableHighlight;var TabBarIOS=React.TabBarIOS;var requireNativeComponent=React.requireNativeComponent;var NativeModules=React.NativeModules;var Platform=React.Platform;var PixelRatio=React.PixelRatio;var processColor=React.processColor;
+
+var NativeIconAPI=NativeModules.RNVectorIconsManager || NativeModules.RNVectorIconsModule;
+
+var DEFAULT_ICON_SIZE=12;
+var TAB_BAR_ICON_SIZE=30;
+var DEFAULT_ICON_COLOR='black';
+var IOS7_BLUE='#007AFF';
+var DEFAULT_BUTTON_ICON_SIZE=20;
+var DEFAULT_BUTTON_ICON_COLOR='white';
+var DEFAULT_BUTTON_RADIUS=5;
+var DEFAULT_BUTTON_BACKGROUND=IOS7_BLUE;
+
+function createIconSet(glyphMap,fontFamily,fontFile){
+var fontReference=fontFamily;
+
+if(Platform.OS === 'android' && fontFile){
+fontReference = fontFile.replace(/\.(otf|ttf)$/,'');}
+
+
+var Icon=React.createClass({displayName:'Icon',
+propTypes:{
+name:React.PropTypes.oneOf(Object.keys(glyphMap)).isRequired,
+size:React.PropTypes.number,
+color:React.PropTypes.string},
+
+_root:null,
+
+setNativeProps:function(nativeProps){
+if(this._root == null){
+throw new Error("Ref must have been set before calling setNativeProps");}
+
+this._root.setNativeProps(nativeProps);},
+
+
+render:function(){var _this=this;var _props=
+this.props;var name=_props.name;var size=_props.size;var color=_props.color;var style=_props.style;var props=_objectWithoutProperties(_props,['name','size','color','style']);
+
+var glyph=glyphMap[name] || '?';
+if(typeof glyph === 'number'){
+glyph = String.fromCharCode(glyph);}
+
+
+size = size || DEFAULT_ICON_SIZE;
+
+var styleDefaults={
+fontSize:size,
+color:color};
+
+
+props.style = [styleDefaults,style];
+props.ref = function(component){return _this._root = component;};
+
+styleDefaults.fontFamily = fontReference;
+
+return React.createElement(Text,props,glyph,this.props.children);}});
+
+
+
+var styles=StyleSheet.create({
+container:{
+flexDirection:'row',
+justifyContent:'flex-start',
+alignItems:'center',
+padding:8},
+
+touchable:{
+overflow:'hidden'},
+
+icon:{
+marginRight:10},
+
+text:{
+fontWeight:'600',
+backgroundColor:'transparent'}});
+
+
+
+var IconButton=React.createClass({displayName:'IconButton',
+getDefaultProps:function(){
+return {
+size:DEFAULT_BUTTON_ICON_SIZE,
+color:DEFAULT_BUTTON_ICON_COLOR,
+backgroundColor:DEFAULT_BUTTON_BACKGROUND,
+borderRadius:DEFAULT_BUTTON_RADIUS};},
+
+
+
+render:function(){var _props2=
+
+
+
+
+
+this.props;var style=_props2.style;var iconStyle=_props2.iconStyle;var children=_props2.children;var props=_objectWithoutProperties(_props2,['style','iconStyle','children']);
+
+var iconProps=pick(props,Object.keys(Text.propTypes),'style','name','size','color');
+var touchableProps=pick(props,Object.keys(TouchableHighlight.propTypes));
+props = omit(
+props,
+Object.keys(iconProps),
+Object.keys(touchableProps),
+'iconStyle',
+'borderRadius',
+'backgroundColor');
+
+iconProps.style = this.props.iconStyle?[styles.icon,this.props.iconStyle]:styles.icon;
+
+var colorStyle=pick(this.props,'color');
+var blockStyle=pick(this.props,'backgroundColor','borderRadius');
+
+if(isString(children)){
+children = React.createElement(Text,{style:[styles.text,colorStyle]},children);}
+
+
+return (
+React.createElement(TouchableHighlight,_extends({style:[styles.touchable,blockStyle]},touchableProps),
+React.createElement(View,_extends({
+style:[styles.container,blockStyle,style]},
+props),
+
+React.createElement(Icon,iconProps),
+children)));}});
+
+
+
+
+
+
+var imageSourceCache={};
+
+var getImageSource=function(name,size,color){
+if(!NativeIconAPI){
+if(Platform.OS === 'android'){
+throw new Error('RNVectorIconsModule not available, did you properly integrate the module?');}
+
+throw new Error('RNVectorIconsManager not available, did you add the library to your project and link with libRNVectorIcons.a?');}
+
+
+var glyph=glyphMap[name] || '?';
+if(typeof glyph === 'number'){
+glyph = String.fromCharCode(glyph);}
+
+size = size || DEFAULT_ICON_SIZE;
+color = color || DEFAULT_ICON_COLOR;
+
+if(processColor){
+color = processColor(color);}
+
+
+var cacheKey=glyph + ':' + size + ':' + color;
+var scale=PixelRatio.get();
+
+return new Promise(function(resolve,reject){
+var cached=imageSourceCache[cacheKey];
+if(typeof cached !== 'undefined'){
+if(!cached || cached instanceof Error){reject(cached);}
+return resolve({uri:cached,scale:scale});}
+
+NativeIconAPI.getImageForFont(fontReference,glyph,size,color,function(err,image){
+if(typeof err === 'string'){
+err = new Error(err);}
+
+imageSourceCache[cacheKey] = image || err || false;
+if(!err && image){
+return resolve({uri:image,scale:scale});}
+
+reject(err);});});};
+
+
+
+
+
+var TabBarItem=React.createClass({displayName:'TabBarItem',
+propTypes:{
+iconName:React.PropTypes.oneOf(Object.keys(glyphMap)).isRequired,
+selectedIconName:React.PropTypes.oneOf(Object.keys(glyphMap)),
+iconSize:React.PropTypes.number},
+
+
+updateIconSources:function(){var _this2=this;
+var size=this.props.iconSize || TAB_BAR_ICON_SIZE;
+if(this.props.iconName){
+getImageSource(this.props.iconName,size).then(function(icon){return _this2.setState({icon:icon});});}
+
+if(this.props.selectedIconName){
+getImageSource(this.props.selectedIconName,size).then(function(selectedIcon){return _this2.setState({selectedIcon:selectedIcon});});}},
+
+
+
+componentWillMount:function(){
+this.updateIconSources();},
+
+
+componentWillReceiveProps:function(nextProps){
+var keys=Object.keys(TabBarItem.propTypes);
+if(!isEqual(pick(nextProps,keys),pick(this.props,keys))){
+this.updateIconSources();}},
+
+
+
+render:function(){
+return React.createElement(TabBarIOS.Item,_extends({},this.props,this.state));}});
+
+
+
+Icon.Button = IconButton;
+Icon.TabBarItem = TabBarItem;
+Icon.getImageSource = getImageSource;
+
+return Icon;}
+;
+
+module.exports = createIconSet;
+});
+__d('lodash/object/pick.js',["lodash/internal/baseFlatten.js","lodash/internal/bindCallback.js","lodash/internal/pickByArray.js","lodash/internal/pickByCallback.js","lodash/function/restParam.js"],function(global, require, module, exports) {  var baseFlatten=require('lodash/internal/baseFlatten.js'),
+bindCallback=require('lodash/internal/bindCallback.js'),
+pickByArray=require('lodash/internal/pickByArray.js'),
+pickByCallback=require('lodash/internal/pickByCallback.js'),
+restParam=require('lodash/function/restParam.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var pick=restParam(function(object,props){
+if(object == null){
+return {};}
+
+return typeof props[0] == 'function'?
+pickByCallback(object,bindCallback(props[0],props[1],3)):
+pickByArray(object,baseFlatten(props));});
+
+
+module.exports = pick;
+});
+__d('lodash/internal/baseFlatten.js',["lodash/internal/arrayPush.js","lodash/lang/isArguments.js","lodash/lang/isArray.js","lodash/internal/isArrayLike.js","lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var arrayPush=require('lodash/internal/arrayPush.js'),
+isArguments=require('lodash/lang/isArguments.js'),
+isArray=require('lodash/lang/isArray.js'),
+isArrayLike=require('lodash/internal/isArrayLike.js'),
+isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+
+
+
+
+
+
+
+
+
+
+function baseFlatten(array,isDeep,isStrict,result){
+result || (result = []);
+
+var index=-1,
+length=array.length;
+
+while(++index < length) {
+var value=array[index];
+if(isObjectLike(value) && isArrayLike(value) && (
+isStrict || isArray(value) || isArguments(value))){
+if(isDeep){
+
+baseFlatten(value,isDeep,isStrict,result);}else 
+{
+arrayPush(result,value);}}else 
+
+if(!isStrict){
+result[result.length] = value;}}
+
+
+return result;}
+
+
+module.exports = baseFlatten;
+});
+__d('lodash/internal/arrayPush.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+arrayPush(array,values){
+var index=-1,
+length=values.length,
+offset=array.length;
+
+while(++index < length) {
+array[offset + index] = values[index];}
+
+return array;}
+
+
+module.exports = arrayPush;
+});
+__d('lodash/lang/isArguments.js',["lodash/internal/isArrayLike.js","lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var isArrayLike=require('lodash/internal/isArrayLike.js'),
+isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+var propertyIsEnumerable=objectProto.propertyIsEnumerable;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isArguments(value){
+return isObjectLike(value) && isArrayLike(value) && 
+hasOwnProperty.call(value,'callee') && !propertyIsEnumerable.call(value,'callee');}
+
+
+module.exports = isArguments;
+});
+__d('lodash/internal/isArrayLike.js',["lodash/internal/getLength.js","lodash/internal/isLength.js"],function(global, require, module, exports) {  var getLength=require('lodash/internal/getLength.js'),
+isLength=require('lodash/internal/isLength.js');
+
+
+
+
+
+
+
+
+function isArrayLike(value){
+return value != null && isLength(getLength(value));}
+
+
+module.exports = isArrayLike;
+});
+__d('lodash/internal/getLength.js',["lodash/internal/baseProperty.js"],function(global, require, module, exports) {  var baseProperty=require('lodash/internal/baseProperty.js');
+
+
+
+
+
+
+
+
+
+
+
+var getLength=baseProperty('length');
+
+module.exports = getLength;
+});
+__d('lodash/internal/baseProperty.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+baseProperty(key){
+return function(object){
+return object == null?undefined:object[key];};}
+
+
+
+module.exports = baseProperty;
+});
+__d('lodash/internal/isLength.js',[],function(global, require, module, exports) {  var 
+
+
+
+MAX_SAFE_INTEGER=9007199254740991;
+
+
+
+
+
+
+
+
+
+
+function isLength(value){
+return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;}
+
+
+module.exports = isLength;
+});
+__d('lodash/internal/isObjectLike.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+isObjectLike(value){
+return !!value && typeof value == 'object';}
+
+
+module.exports = isObjectLike;
+});
+__d('lodash/lang/isArray.js',["lodash/internal/getNative.js","lodash/internal/isLength.js","lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var getNative=require('lodash/internal/getNative.js'),
+isLength=require('lodash/internal/isLength.js'),
+isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+var arrayTag='[object Array]';
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objToString=objectProto.toString;
+
+
+var nativeIsArray=getNative(Array,'isArray');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var isArray=nativeIsArray || function(value){
+return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;};
+
+
+module.exports = isArray;
+});
+__d('lodash/internal/getNative.js',["lodash/lang/isNative.js"],function(global, require, module, exports) {  var isNative=require('lodash/lang/isNative.js');
+
+
+
+
+
+
+
+
+
+function getNative(object,key){
+var value=object == null?undefined:object[key];
+return isNative(value)?value:undefined;}
+
+
+module.exports = getNative;
+});
+__d('lodash/lang/isNative.js',["lodash/lang/isFunction.js","lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var isFunction=require('lodash/lang/isFunction.js'),
+isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+var reIsHostCtor=/^\[object .+?Constructor\]$/;
+
+
+var objectProto=Object.prototype;
+
+
+var fnToString=Function.prototype.toString;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+var reIsNative=RegExp('^' + 
+fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g,'\\$&').
+replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,'$1.*?') + '$');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isNative(value){
+if(value == null){
+return false;}
+
+if(isFunction(value)){
+return reIsNative.test(fnToString.call(value));}
+
+return isObjectLike(value) && reIsHostCtor.test(value);}
+
+
+module.exports = isNative;
+});
+__d('lodash/lang/isFunction.js',["lodash/lang/isObject.js"],function(global, require, module, exports) {  var isObject=require('lodash/lang/isObject.js');
+
+
+var funcTag='[object Function]';
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isFunction(value){
+
+
+
+return isObject(value) && objToString.call(value) == funcTag;}
+
+
+module.exports = isFunction;
+});
+__d('lodash/lang/isObject.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isObject(value){
+
+
+var type=typeof value;
+return !!value && (type == 'object' || type == 'function');}
+
+
+module.exports = isObject;
+});
+__d('lodash/internal/bindCallback.js',["lodash/utility/identity.js"],function(global, require, module, exports) {  var identity=require('lodash/utility/identity.js');
+
+
+
+
+
+
+
+
+
+
+
+function bindCallback(func,thisArg,argCount){
+if(typeof func != 'function'){
+return identity;}
+
+if(thisArg === undefined){
+return func;}
+
+switch(argCount){
+case 1:return function(value){
+return func.call(thisArg,value);};
+
+case 3:return function(value,index,collection){
+return func.call(thisArg,value,index,collection);};
+
+case 4:return function(accumulator,value,index,collection){
+return func.call(thisArg,accumulator,value,index,collection);};
+
+case 5:return function(value,other,key,object,source){
+return func.call(thisArg,value,other,key,object,source);};}
+
+
+return function(){
+return func.apply(thisArg,arguments);};}
+
+
+
+module.exports = bindCallback;
+});
+__d('lodash/utility/identity.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+identity(value){
+return value;}
+
+
+module.exports = identity;
+});
+__d('lodash/internal/pickByArray.js',["lodash/internal/toObject.js"],function(global, require, module, exports) {  var toObject=require('lodash/internal/toObject.js');
+
+
+
+
+
+
+
+
+
+
+function pickByArray(object,props){
+object = toObject(object);
+
+var index=-1,
+length=props.length,
+result={};
+
+while(++index < length) {
+var key=props[index];
+if(key in object){
+result[key] = object[key];}}
+
+
+return result;}
+
+
+module.exports = pickByArray;
+});
+__d('lodash/internal/toObject.js',["lodash/lang/isObject.js"],function(global, require, module, exports) {  var isObject=require('lodash/lang/isObject.js');
+
+
+
+
+
+
+
+
+function toObject(value){
+return isObject(value)?value:Object(value);}
+
+
+module.exports = toObject;
+});
+__d('lodash/internal/pickByCallback.js',["lodash/internal/baseForIn.js"],function(global, require, module, exports) {  var baseForIn=require('lodash/internal/baseForIn.js');
+
+
+
+
+
+
+
+
+
+
+function pickByCallback(object,predicate){
+var result={};
+baseForIn(object,function(value,key,object){
+if(predicate(value,key,object)){
+result[key] = value;}});
+
+
+return result;}
+
+
+module.exports = pickByCallback;
+});
+__d('lodash/internal/baseForIn.js',["lodash/internal/baseFor.js","lodash/object/keysIn.js"],function(global, require, module, exports) {  var baseFor=require('lodash/internal/baseFor.js'),
+keysIn=require('lodash/object/keysIn.js');
+
+
+
+
+
+
+
+
+
+
+function baseForIn(object,iteratee){
+return baseFor(object,iteratee,keysIn);}
+
+
+module.exports = baseForIn;
+});
+__d('lodash/internal/baseFor.js',["lodash/internal/createBaseFor.js"],function(global, require, module, exports) {  var createBaseFor=require('lodash/internal/createBaseFor.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+var baseFor=createBaseFor();
+
+module.exports = baseFor;
+});
+__d('lodash/internal/createBaseFor.js',["lodash/internal/toObject.js"],function(global, require, module, exports) {  var toObject=require('lodash/internal/toObject.js');
+
+
+
+
+
+
+
+
+function createBaseFor(fromRight){
+return function(object,iteratee,keysFunc){
+var iterable=toObject(object),
+props=keysFunc(object),
+length=props.length,
+index=fromRight?length:-1;
+
+while(fromRight?index--:++index < length) {
+var key=props[index];
+if(iteratee(iterable[key],key,iterable) === false){
+break;}}
+
+
+return object;};}
+
+
+
+module.exports = createBaseFor;
+});
+__d('lodash/object/keysIn.js',["lodash/lang/isArguments.js","lodash/lang/isArray.js","lodash/internal/isIndex.js","lodash/internal/isLength.js","lodash/lang/isObject.js"],function(global, require, module, exports) {  var isArguments=require('lodash/lang/isArguments.js'),
+isArray=require('lodash/lang/isArray.js'),
+isIndex=require('lodash/internal/isIndex.js'),
+isLength=require('lodash/internal/isLength.js'),
+isObject=require('lodash/lang/isObject.js');
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function keysIn(object){
+if(object == null){
+return [];}
+
+if(!isObject(object)){
+object = Object(object);}
+
+var length=object.length;
+length = length && isLength(length) && (
+isArray(object) || isArguments(object)) && length || 0;
+
+var Ctor=object.constructor,
+index=-1,
+isProto=typeof Ctor == 'function' && Ctor.prototype === object,
+result=Array(length),
+skipIndexes=length > 0;
+
+while(++index < length) {
+result[index] = index + '';}
+
+for(var key in object) {
+if(!(skipIndexes && isIndex(key,length)) && 
+!(key == 'constructor' && (isProto || !hasOwnProperty.call(object,key)))){
+result.push(key);}}
+
+
+return result;}
+
+
+module.exports = keysIn;
+});
+__d('lodash/internal/isIndex.js',[],function(global, require, module, exports) {  var 
+reIsUint=/^\d+$/;
+
+
+
+
+
+var MAX_SAFE_INTEGER=9007199254740991;
+
+
+
+
+
+
+
+
+
+function isIndex(value,length){
+value = typeof value == 'number' || reIsUint.test(value)?+value:-1;
+length = length == null?MAX_SAFE_INTEGER:length;
+return value > -1 && value % 1 == 0 && value < length;}
+
+
+module.exports = isIndex;
+});
+__d('lodash/function/restParam.js',[],function(global, require, module, exports) {  var 
+FUNC_ERROR_TEXT='Expected a function';
+
+
+var nativeMax=Math.max;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function restParam(func,start){
+if(typeof func != 'function'){
+throw new TypeError(FUNC_ERROR_TEXT);}
+
+start = nativeMax(start === undefined?func.length - 1:+start || 0,0);
+return function(){
+var args=arguments,
+index=-1,
+length=nativeMax(args.length - start,0),
+rest=Array(length);
+
+while(++index < length) {
+rest[index] = args[start + index];}
+
+switch(start){
+case 0:return func.call(this,rest);
+case 1:return func.call(this,args[0],rest);
+case 2:return func.call(this,args[0],args[1],rest);}
+
+var otherArgs=Array(start + 1);
+index = -1;
+while(++index < start) {
+otherArgs[index] = args[index];}
+
+otherArgs[start] = rest;
+return func.apply(this,otherArgs);};}
+
+
+
+module.exports = restParam;
+});
+__d('lodash/object/omit.js',["lodash/internal/arrayMap.js","lodash/internal/baseDifference.js","lodash/internal/baseFlatten.js","lodash/internal/bindCallback.js","lodash/object/keysIn.js","lodash/internal/pickByArray.js","lodash/internal/pickByCallback.js","lodash/function/restParam.js"],function(global, require, module, exports) {  var arrayMap=require('lodash/internal/arrayMap.js'),
+baseDifference=require('lodash/internal/baseDifference.js'),
+baseFlatten=require('lodash/internal/baseFlatten.js'),
+bindCallback=require('lodash/internal/bindCallback.js'),
+keysIn=require('lodash/object/keysIn.js'),
+pickByArray=require('lodash/internal/pickByArray.js'),
+pickByCallback=require('lodash/internal/pickByCallback.js'),
+restParam=require('lodash/function/restParam.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var omit=restParam(function(object,props){
+if(object == null){
+return {};}
+
+if(typeof props[0] != 'function'){
+var props=arrayMap(baseFlatten(props),String);
+return pickByArray(object,baseDifference(keysIn(object),props));}
+
+var predicate=bindCallback(props[0],props[1],3);
+return pickByCallback(object,function(value,key,object){
+return !predicate(value,key,object);});});
+
+
+
+module.exports = omit;
+});
+__d('lodash/internal/arrayMap.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+arrayMap(array,iteratee){
+var index=-1,
+length=array.length,
+result=Array(length);
+
+while(++index < length) {
+result[index] = iteratee(array[index],index,array);}
+
+return result;}
+
+
+module.exports = arrayMap;
+});
+__d('lodash/internal/baseDifference.js',["lodash/internal/baseIndexOf.js","lodash/internal/cacheIndexOf.js","lodash/internal/createCache.js"],function(global, require, module, exports) {  var baseIndexOf=require('lodash/internal/baseIndexOf.js'),
+cacheIndexOf=require('lodash/internal/cacheIndexOf.js'),
+createCache=require('lodash/internal/createCache.js');
+
+
+var LARGE_ARRAY_SIZE=200;
+
+
+
+
+
+
+
+
+
+
+function baseDifference(array,values){
+var length=array?array.length:0,
+result=[];
+
+if(!length){
+return result;}
+
+var index=-1,
+indexOf=baseIndexOf,
+isCommon=true,
+cache=isCommon && values.length >= LARGE_ARRAY_SIZE?createCache(values):null,
+valuesLength=values.length;
+
+if(cache){
+indexOf = cacheIndexOf;
+isCommon = false;
+values = cache;}
+
+outer: 
+while(++index < length) {
+var value=array[index];
+
+if(isCommon && value === value){
+var valuesIndex=valuesLength;
+while(valuesIndex--) {
+if(values[valuesIndex] === value){
+continue outer;}}
+
+
+result.push(value);}else 
+
+if(indexOf(values,value,0) < 0){
+result.push(value);}}
+
+
+return result;}
+
+
+module.exports = baseDifference;
+});
+__d('lodash/internal/baseIndexOf.js',["lodash/internal/indexOfNaN.js"],function(global, require, module, exports) {  var indexOfNaN=require('lodash/internal/indexOfNaN.js');
+
+
+
+
+
+
+
+
+
+
+function baseIndexOf(array,value,fromIndex){
+if(value !== value){
+return indexOfNaN(array,fromIndex);}
+
+var index=fromIndex - 1,
+length=array.length;
+
+while(++index < length) {
+if(array[index] === value){
+return index;}}
+
+
+return -1;}
+
+
+module.exports = baseIndexOf;
+});
+__d('lodash/internal/indexOfNaN.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+indexOfNaN(array,fromIndex,fromRight){
+var length=array.length,
+index=fromIndex + (fromRight?0:-1);
+
+while(fromRight?index--:++index < length) {
+var other=array[index];
+if(other !== other){
+return index;}}
+
+
+return -1;}
+
+
+module.exports = indexOfNaN;
+});
+__d('lodash/internal/cacheIndexOf.js',["lodash/lang/isObject.js"],function(global, require, module, exports) {  var isObject=require('lodash/lang/isObject.js');
+
+
+
+
+
+
+
+
+
+
+function cacheIndexOf(cache,value){
+var data=cache.data,
+result=typeof value == 'string' || isObject(value)?data.set.has(value):data.hash[value];
+
+return result?0:-1;}
+
+
+module.exports = cacheIndexOf;
+});
+__d('lodash/internal/createCache.js',["lodash/internal/SetCache.js","lodash/internal/getNative.js"],function(global, require, module, exports) {  var SetCache=require('lodash/internal/SetCache.js'),
+getNative=require('lodash/internal/getNative.js');
+
+
+var Set=getNative(global,'Set');
+
+
+var nativeCreate=getNative(Object,'create');
+
+
+
+
+
+
+
+
+function createCache(values){
+return nativeCreate && Set?new SetCache(values):null;}
+
+
+module.exports = createCache;
+});
+__d('lodash/internal/SetCache.js',["lodash/internal/cachePush.js","lodash/internal/getNative.js"],function(global, require, module, exports) {  var cachePush=require('lodash/internal/cachePush.js'),
+getNative=require('lodash/internal/getNative.js');
+
+
+var Set=getNative(global,'Set');
+
+
+var nativeCreate=getNative(Object,'create');
+
+
+
+
+
+
+
+
+function SetCache(values){
+var length=values?values.length:0;
+
+this.data = {'hash':nativeCreate(null),'set':new Set()};
+while(length--) {
+this.push(values[length]);}}
+
+
+
+
+SetCache.prototype.push = cachePush;
+
+module.exports = SetCache;
+});
+__d('lodash/internal/cachePush.js',["lodash/lang/isObject.js"],function(global, require, module, exports) {  var isObject=require('lodash/lang/isObject.js');
+
+
+
+
+
+
+
+
+
+function cachePush(value){
+var data=this.data;
+if(typeof value == 'string' || isObject(value)){
+data.set.add(value);}else 
+{
+data.hash[value] = true;}}
+
+
+
+module.exports = cachePush;
+});
+__d('lodash/lang/isString.js',["lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+var stringTag='[object String]';
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isString(value){
+return typeof value == 'string' || isObjectLike(value) && objToString.call(value) == stringTag;}
+
+
+module.exports = isString;
+});
+__d('lodash/lang/isEqual.js',["lodash/internal/baseIsEqual.js","lodash/internal/bindCallback.js"],function(global, require, module, exports) {  var baseIsEqual=require('lodash/internal/baseIsEqual.js'),
+bindCallback=require('lodash/internal/bindCallback.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isEqual(value,other,customizer,thisArg){
+customizer = typeof customizer == 'function'?bindCallback(customizer,thisArg,3):undefined;
+var result=customizer?customizer(value,other):undefined;
+return result === undefined?baseIsEqual(value,other,customizer):!!result;}
+
+
+module.exports = isEqual;
+});
+__d('lodash/internal/baseIsEqual.js',["lodash/internal/baseIsEqualDeep.js","lodash/lang/isObject.js","lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var baseIsEqualDeep=require('lodash/internal/baseIsEqualDeep.js'),
+isObject=require('lodash/lang/isObject.js'),
+isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function baseIsEqual(value,other,customizer,isLoose,stackA,stackB){
+if(value === other){
+return true;}
+
+if(value == null || other == null || !isObject(value) && !isObjectLike(other)){
+return value !== value && other !== other;}
+
+return baseIsEqualDeep(value,other,baseIsEqual,customizer,isLoose,stackA,stackB);}
+
+
+module.exports = baseIsEqual;
+});
+__d('lodash/internal/baseIsEqualDeep.js',["lodash/internal/equalArrays.js","lodash/internal/equalByTag.js","lodash/internal/equalObjects.js","lodash/lang/isArray.js","lodash/lang/isTypedArray.js"],function(global, require, module, exports) {  var equalArrays=require('lodash/internal/equalArrays.js'),
+equalByTag=require('lodash/internal/equalByTag.js'),
+equalObjects=require('lodash/internal/equalObjects.js'),
+isArray=require('lodash/lang/isArray.js'),
+isTypedArray=require('lodash/lang/isTypedArray.js');
+
+
+var argsTag='[object Arguments]',
+arrayTag='[object Array]',
+objectTag='[object Object]';
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+var objToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function baseIsEqualDeep(object,other,equalFunc,customizer,isLoose,stackA,stackB){
+var objIsArr=isArray(object),
+othIsArr=isArray(other),
+objTag=arrayTag,
+othTag=arrayTag;
+
+if(!objIsArr){
+objTag = objToString.call(object);
+if(objTag == argsTag){
+objTag = objectTag;}else 
+if(objTag != objectTag){
+objIsArr = isTypedArray(object);}}
+
+
+if(!othIsArr){
+othTag = objToString.call(other);
+if(othTag == argsTag){
+othTag = objectTag;}else 
+if(othTag != objectTag){
+othIsArr = isTypedArray(other);}}
+
+
+var objIsObj=objTag == objectTag,
+othIsObj=othTag == objectTag,
+isSameTag=objTag == othTag;
+
+if(isSameTag && !(objIsArr || objIsObj)){
+return equalByTag(object,other,objTag);}
+
+if(!isLoose){
+var objIsWrapped=objIsObj && hasOwnProperty.call(object,'__wrapped__'),
+othIsWrapped=othIsObj && hasOwnProperty.call(other,'__wrapped__');
+
+if(objIsWrapped || othIsWrapped){
+return equalFunc(objIsWrapped?object.value():object,othIsWrapped?other.value():other,customizer,isLoose,stackA,stackB);}}
+
+
+if(!isSameTag){
+return false;}
+
+
+
+stackA || (stackA = []);
+stackB || (stackB = []);
+
+var length=stackA.length;
+while(length--) {
+if(stackA[length] == object){
+return stackB[length] == other;}}
+
+
+
+stackA.push(object);
+stackB.push(other);
+
+var result=(objIsArr?equalArrays:equalObjects)(object,other,equalFunc,customizer,isLoose,stackA,stackB);
+
+stackA.pop();
+stackB.pop();
+
+return result;}
+
+
+module.exports = baseIsEqualDeep;
+});
+__d('lodash/internal/equalArrays.js',["lodash/internal/arraySome.js"],function(global, require, module, exports) {  var arraySome=require('lodash/internal/arraySome.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function equalArrays(array,other,equalFunc,customizer,isLoose,stackA,stackB){
+var index=-1,
+arrLength=array.length,
+othLength=other.length;
+
+if(arrLength != othLength && !(isLoose && othLength > arrLength)){
+return false;}
+
+
+while(++index < arrLength) {
+var arrValue=array[index],
+othValue=other[index],
+result=customizer?customizer(isLoose?othValue:arrValue,isLoose?arrValue:othValue,index):undefined;
+
+if(result !== undefined){
+if(result){
+continue;}
+
+return false;}
+
+
+if(isLoose){
+if(!arraySome(other,function(othValue){
+return arrValue === othValue || equalFunc(arrValue,othValue,customizer,isLoose,stackA,stackB);}))
+{
+return false;}}else 
+
+if(!(arrValue === othValue || equalFunc(arrValue,othValue,customizer,isLoose,stackA,stackB))){
+return false;}}
+
+
+return true;}
+
+
+module.exports = equalArrays;
+});
+__d('lodash/internal/arraySome.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+arraySome(array,predicate){
+var index=-1,
+length=array.length;
+
+while(++index < length) {
+if(predicate(array[index],index,array)){
+return true;}}
+
+
+return false;}
+
+
+module.exports = arraySome;
+});
+__d('lodash/internal/equalByTag.js',[],function(global, require, module, exports) {  var 
+boolTag='[object Boolean]',
+dateTag='[object Date]',
+errorTag='[object Error]',
+numberTag='[object Number]',
+regexpTag='[object RegExp]',
+stringTag='[object String]';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function equalByTag(object,other,tag){
+switch(tag){
+case boolTag:
+case dateTag:
+
+
+return +object == +other;
+
+case errorTag:
+return object.name == other.name && object.message == other.message;
+
+case numberTag:
+
+return object != +object?
+other != +other:
+object == +other;
+
+case regexpTag:
+case stringTag:
+
+
+return object == other + '';}
+
+return false;}
+
+
+module.exports = equalByTag;
+});
+__d('lodash/internal/equalObjects.js',["lodash/object/keys.js"],function(global, require, module, exports) {  var keys=require('lodash/object/keys.js');
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function equalObjects(object,other,equalFunc,customizer,isLoose,stackA,stackB){
+var objProps=keys(object),
+objLength=objProps.length,
+othProps=keys(other),
+othLength=othProps.length;
+
+if(objLength != othLength && !isLoose){
+return false;}
+
+var index=objLength;
+while(index--) {
+var key=objProps[index];
+if(!(isLoose?key in other:hasOwnProperty.call(other,key))){
+return false;}}
+
+
+var skipCtor=isLoose;
+while(++index < objLength) {
+key = objProps[index];
+var objValue=object[key],
+othValue=other[key],
+result=customizer?customizer(isLoose?othValue:objValue,isLoose?objValue:othValue,key):undefined;
+
+
+if(!(result === undefined?equalFunc(objValue,othValue,customizer,isLoose,stackA,stackB):result)){
+return false;}
+
+skipCtor || (skipCtor = key == 'constructor');}
+
+if(!skipCtor){
+var objCtor=object.constructor,
+othCtor=other.constructor;
+
+
+if(objCtor != othCtor && (
+'constructor' in object && 'constructor' in other) && 
+!(typeof objCtor == 'function' && objCtor instanceof objCtor && 
+typeof othCtor == 'function' && othCtor instanceof othCtor)){
+return false;}}
+
+
+return true;}
+
+
+module.exports = equalObjects;
+});
+__d('lodash/object/keys.js',["lodash/internal/getNative.js","lodash/internal/isArrayLike.js","lodash/lang/isObject.js","lodash/internal/shimKeys.js"],function(global, require, module, exports) {  var getNative=require('lodash/internal/getNative.js'),
+isArrayLike=require('lodash/internal/isArrayLike.js'),
+isObject=require('lodash/lang/isObject.js'),
+shimKeys=require('lodash/internal/shimKeys.js');
+
+
+var nativeKeys=getNative(Object,'keys');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var keys=!nativeKeys?shimKeys:function(object){
+var Ctor=object == null?undefined:object.constructor;
+if(typeof Ctor == 'function' && Ctor.prototype === object || 
+typeof object != 'function' && isArrayLike(object)){
+return shimKeys(object);}
+
+return isObject(object)?nativeKeys(object):[];};
+
+
+module.exports = keys;
+});
+__d('lodash/internal/shimKeys.js',["lodash/lang/isArguments.js","lodash/lang/isArray.js","lodash/internal/isIndex.js","lodash/internal/isLength.js","lodash/object/keysIn.js"],function(global, require, module, exports) {  var isArguments=require('lodash/lang/isArguments.js'),
+isArray=require('lodash/lang/isArray.js'),
+isIndex=require('lodash/internal/isIndex.js'),
+isLength=require('lodash/internal/isLength.js'),
+keysIn=require('lodash/object/keysIn.js');
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+function shimKeys(object){
+var props=keysIn(object),
+propsLength=props.length,
+length=propsLength && object.length;
+
+var allowIndexes=!!length && isLength(length) && (
+isArray(object) || isArguments(object));
+
+var index=-1,
+result=[];
+
+while(++index < propsLength) {
+var key=props[index];
+if(allowIndexes && isIndex(key,length) || hasOwnProperty.call(object,key)){
+result.push(key);}}
+
+
+return result;}
+
+
+module.exports = shimKeys;
+});
+__d('lodash/lang/isTypedArray.js',["lodash/internal/isLength.js","lodash/internal/isObjectLike.js"],function(global, require, module, exports) {  var isLength=require('lodash/internal/isLength.js'),
+isObjectLike=require('lodash/internal/isObjectLike.js');
+
+
+var argsTag='[object Arguments]',
+arrayTag='[object Array]',
+boolTag='[object Boolean]',
+dateTag='[object Date]',
+errorTag='[object Error]',
+funcTag='[object Function]',
+mapTag='[object Map]',
+numberTag='[object Number]',
+objectTag='[object Object]',
+regexpTag='[object RegExp]',
+setTag='[object Set]',
+stringTag='[object String]',
+weakMapTag='[object WeakMap]';
+
+var arrayBufferTag='[object ArrayBuffer]',
+float32Tag='[object Float32Array]',
+float64Tag='[object Float64Array]',
+int8Tag='[object Int8Array]',
+int16Tag='[object Int16Array]',
+int32Tag='[object Int32Array]',
+uint8Tag='[object Uint8Array]',
+uint8ClampedTag='[object Uint8ClampedArray]',
+uint16Tag='[object Uint16Array]',
+uint32Tag='[object Uint32Array]';
+
+
+var typedArrayTags={};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = 
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = 
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = 
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = 
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = 
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = 
+typedArrayTags[dateTag] = typedArrayTags[errorTag] = 
+typedArrayTags[funcTag] = typedArrayTags[mapTag] = 
+typedArrayTags[numberTag] = typedArrayTags[objectTag] = 
+typedArrayTags[regexpTag] = typedArrayTags[setTag] = 
+typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isTypedArray(value){
+return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];}
+
+
+module.exports = isTypedArray;
+});
+__d('Dufine/src/components/common/header.js',["react-native/Libraries/react-native/react-native.js","Dufine/src/styles/styles.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');
+var styles=require('Dufine/src/styles/styles.js');var 
+
+Text=
+
+
+
+React.Text;var StyleSheet=React.StyleSheet;var TouchableHighlight=React.TouchableHighlight;var View=React.View;
+
+
+module.exports = React.createClass({displayName:'exports',
+render:function(){
+return (
+React.createElement(View,{style:styles.navContainer},
+React.createElement(View,{style:styles.leftContainer},
+this.props.leftButton()),
+
+React.createElement(View,{style:styles.centerContainer},
+React.createElement(Text,{style:styles.navTitle},
+this.props.title)),
+
+
+
+React.createElement(View,{style:styles.rightContainer},
+this.props.rightButton())));}});
+
+
+
+
+
+
+
+var styles=StyleSheet.create({
+navContainer:{
+height:50,
+
+flexDirection:'row',
+backgroundColor:'#011627',
+borderBottomColor:'#ccc',
+borderBottomWidth:1,
+justifyContent:'center',
+alignItems:'flex-end'},
+
+navTitle:{
+textAlign:'center',
+fontWeight:'300',
+fontSize:18,
+marginBottom:4,
+color:'#fff'},
+
+leftContainer:{
+borderColor:'#000',
+borderWidth:0,
+flex:1},
+
+rightContainer:{
+borderColor:'#000',
+borderWidth:0,
+flex:1,
+alignItems:'flex-end',
+paddingRight:8}});
+});
+__d('Dufine/src/components/dufines/dufine-view.js',["react-native/Libraries/react-native/react-native.js","FontAwesome","Dufine/src/components/common/button.js","Dufine/src/components/common/header.js","Dufine/src/styles/styles.js","Dufine/src/components/mixins.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');
+var Icon=require('FontAwesome');var 
 
 
 View=
@@ -64717,6 +67437,7 @@ View=
 React.View;var Text=React.Text;var StyleSheet=React.StyleSheet;var ListView=React.ListView;var TouchableHighlight=React.TouchableHighlight;var TextInput=React.TextInput;var Image=React.Image;
 
 var Button=require('Dufine/src/components/common/button.js');
+var Header=require('Dufine/src/components/common/header.js');
 var styles=require('Dufine/src/styles/styles.js');
 var DufineMixins=require('Dufine/src/components/mixins.js');
 
@@ -64724,78 +67445,139 @@ var DufineMixins=require('Dufine/src/components/mixins.js');
 module.exports = React.createClass({displayName:'exports',
 mixins:[DufineMixins],
 getInitialState:function(){
-
+console.log('this.props.route.vars.definition');
+console.log(this.props.route.vars.definition);
 
 return {
-definition:this.props.route.props.definition,
-photo:this.props.route.props.photo,
-word:this.props.route.props.definition.word};},
+definition:this.props.route.vars.definition,
+photo:this.props.route.vars.photo,
+word:this.props.route.vars.definition.word,
+callback:this.props.route.vars.callback};},
 
 
 
-componentWillMount:function(){
-console.log('dufine-list.js componentWillMount()');},
+componentWillMount:function(){},
 
 
-render:function(){var _this=this;
+
+render:function(){
 return (
 React.createElement(View,{style:styles.container},
+React.createElement(Header,{
+title:'Dictionary',
+rightButton:function(){return React.createElement(Text,null);},
+leftButton:this.renderBackButton}),
 React.createElement(View,{ref:'definition',style:styles.definitionContainer},
 React.createElement(View,{style:styles.definition},
 React.createElement(View,{style:styles.dufTop},
 React.createElement(View,{style:styles.definitionWordContainer},
-React.createElement(Text,{style:[styles.georgia,styles.definitionWord]},this.state.definition.word),
-React.createElement(Text,{style:[styles.georgia,styles.definitionType]},this.state.definition.partOfSpeech)),
-
+this.renderWord(),
+this.renderPronunciation()),
 
 React.createElement(View,{style:styles.photoContainer},
-React.createElement(Image,{source:{uri:this.state.photo.uri},style:styles.definitionPhoto}))),
-
+this.renderPhoto())),
 
 
 React.createElement(View,{style:styles.definitionBottom},
 React.createElement(View,{style:styles.dufinitionDefinition},
-React.createElement(Text,{style:styles.georgia},this.state.definition.text))))),
+this.renderDefinition())))),
 
 
 
 
 
 
-React.createElement(Button,{text:'Go Back',onPress:function(){return _this.props.navigator.popToTop();}}),
-React.createElement(Button,{text:'Export',onPress:function(){return console.log('export');}}),
-React.createElement(Button,{text:'Delete',onPress:this.onDeletePress})));},
+React.createElement(View,{style:styles.absoluteBottomButton},
+this.renderDeleteButton(),
+this.renderAddPhotoButton())));},
 
 
 
 
 
 
+renderWord:function(){
+var word='';
+if(typeof this.state.definition.syllables !== 'undefined'){
+this.state.definition.syllables.list.forEach(function(syllable){
+word = word + '•' + syllable;});
+
+word = word.substring(1);}else 
+{
+word = this.state.definition.word;}
 
 
-onPress:function(){var _this2=this;
-console.log('logs user in');
-console.log(this.state.username);
-console.log(this.state.password);
-Parse.User.logIn(this.state.username,this.state.password,{
-success:function(user){_this2.props.navigator.immediatelyResetRouteStack([{name:'tweets'}]);console.log(user);},
-error:function(data,error){console.log(data,error);_this2.setState({errorMessage:error});}});},
+return (
+React.createElement(Text,{style:[styles.georgia,styles.definitionWord]},word));},
 
 
-onSignupPress:function(){
+renderPronunciation:function(){
+var pronunciation='/ ' + this.state.definition.pronunciation.all + ' /';
+
+return (
+React.createElement(Text,{style:[styles.georgia,styles.definitionPronunciation]},pronunciation));},
 
 
-this.props.navigator.push({name:'signup'});},
+renderPhoto:function(){
+if(this.state.photo)
+return React.createElement(Image,{source:{uri:this.state.photo.uri},style:styles.definitionPhoto});},
 
-onNewDufinePress:function(){
+renderDefinition:function(){
+var definition='';
+
+this.state.definition.results.forEach(function(def,index){
+
+definition += index + 1 + ') ';
+definition += def.partOfSpeech + ': ';
+definition += def.definition + ' ';});
 
 
-this.props.navigator.push({name:'dufinenew'});},
+return (
+React.createElement(Text,{style:[styles.georgia,styles.dufinitionDefinition]},definition));},
+
+
+
+
+
+onAddPhotoPressed:function(){
+this.openImagePicker(this.imageSelectedCallback);},
+
+imageSelectedCallback:function(source){
+this.saveData(this.state.definition,source,this.dataSavedCallback);},
+
+dataSavedCallback:function(definition,photo){
+
+this.state.callback();
+
+
+this.setState({photo:photo});},
+
 
 onDeletePress:function(){
-this.deleteData(this.state.definition.word,this.props.route.props.callback);
+this.deleteData(this.state.definition.word,this.state.callback);
 
-this.props.navigator.popToTop();}});
+this.props.navigator.popToTop();},
+
+renderExportButton:function(){
+if(this.state.photo)
+return React.createElement(Button,{text:'Export',onPress:function(){return console.log('export');}});},
+
+renderBackButton:function(){var _this=this;
+return (
+React.createElement(TouchableHighlight,{
+
+onPress:function(){return _this.props.navigator.popToTop();}},
+React.createElement(Text,{style:styles.backButton},'Back')));},
+
+
+
+renderDeleteButton:function(){
+if(this.state.photo)
+return React.createElement(Button,{text:'Delete',onPress:this.onDeletePress});},
+
+renderAddPhotoButton:function(){
+if(!this.state.photo)
+return React.createElement(Button,{text:'Add Photo',onPress:this.onAddPhotoPressed});}});
 });
 __d('Dufine/src/components/dufines/dufine-preview.js',["react-native/Libraries/react-native/react-native.js","NativeModules","react-native-store/libs/index.js","Dufine/src/components/common/button.js","Dufine/src/styles/styles.js","Dufine/src/components/mixins.js"],function(global, require, module, exports) {  var React=require('react-native/Libraries/react-native/react-native.js');
 var UIImagePickerManager=require('NativeModules').UIImagePickerManager;

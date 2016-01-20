@@ -88,8 +88,15 @@ redownloaded in xcode
 ## Changelog
 
 ### 3.2
-New definition api and new way to store data
+New definition api (wordsapi) and stores data in a new way
+upgraded to data version 4 with no migration plan.
 
 ### 3.1 
 New UI/UX that implements Navigator instead of NavigatorIOS
 
+
+
+## Notes on learning react-native
+  "state" is an object to track and respond to user's input
+  each component gets its own instance of state
+  when state changes, the component re-renders
