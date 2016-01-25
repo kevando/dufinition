@@ -12,10 +12,10 @@ var DufinePreview = require('./components/dufines/dufine-preview');
 var DufineMixins = require('./components/mixins');
 
 // Development Project ID
-//Mixpanel.sharedInstanceWithToken('9b9622cd380a69a91ac1b9b9e1cd6423');
+Mixpanel.sharedInstanceWithToken('9b9622cd380a69a91ac1b9b9e1cd6423');
 
 // Production Project ID
-Mixpanel.sharedInstanceWithToken('410a1a1103ccdd8b9e5c6dfc97d968cb');
+//Mixpanel.sharedInstanceWithToken('410a1a1103ccdd8b9e5c6dfc97d968cb');
 
 var {
 	Navigator,
