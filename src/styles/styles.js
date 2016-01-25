@@ -32,7 +32,7 @@ module.exports = StyleSheet.create({
 
     },
     backButton: {
-        color:'#fff',
+        color:'#000',
         fontSize:17,
         paddingBottom:5,
         paddingLeft:5,
@@ -176,11 +176,18 @@ module.exports = StyleSheet.create({
         paddingRight: 20,
         // backgroundColor: '#ddd'
         color: '#fff',
-    }
+    },
 
 
 
-
+    headerButtonRight: {
+        justifyContent: 'flex-start',
+        // backgroundColor:'blue',
+        paddingLeft:10,
+        paddingRight:10,
+        paddingTop:10,
+        paddingBottom:2
+    },
 
 
 

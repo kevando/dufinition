@@ -33,11 +33,12 @@ var styles = StyleSheet.create({
 		marginRight: 0,
 		flex:1,
 		flexDirection:'row',
-		backgroundColor:'#FF1053',
+		backgroundColor:'#40e0d0',
 
 	},
 	buttonText: {
 		color: '#fff',
 		fontSize: 30,
-	}
+	},
+	
 })

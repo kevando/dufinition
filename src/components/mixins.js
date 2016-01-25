@@ -1,10 +1,13 @@
 var reactNativeStore = require('react-native-store');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
+var ViewSnapshotter = require("react-native-view-snapshot");
+var RNFS = require("react-native-fs");
+var Mixpanel = require('react-native-mixpanel');
 
 var AlertIOS = require('AlertIOS');
+var CameraRoll = require('CameraRoll');
 
-
-var dataVersion = "dufine_v4";
+var dataVersion = "dufine_v5";
 
 module.exports = {
   
@@ -25,13 +28,16 @@ module.exports = {
         //console.log('callback')
         //console.log(callback)
         callback(definition,source);
+        Mixpanel.trackWithProperties("Definition Created",{word:definition.word});
 	},
 	deleteData: async function(word,callback){
-        var dufineModel = await reactNativeStore.model("dufine_v3.1");
+        var dufineModel = await reactNativeStore.model(dataVersion);
         var remove_data = await dufineModel.remove({
             word: word
         });
         callback();
+        console.log('definition deleted');
+        Mixpanel.trackWithProperties("Definition Deleted",{word:word});
     },
 
     openImagePicker: function(callback){
@@ -116,13 +122,36 @@ module.exports = {
         })
         .then((response) => response.json())
         .then((responseData) => {
-            //console.log('responseData');
-            //console.log(responseData);
+            console.log('responseData');
+            console.log(responseData);
             //this.setState({definition:responseData}); // I would like to put this in another
             callback(responseData);
         });
 
     },
+
+    saveToCameraRoll: function(ref){
+        var tmpImagePath = RNFS.CachesDirectoryPath+"/definition.png";
+        // var ref = React.findNodeHandle(this.refs.definition);
+        ViewSnapshotter.saveSnapshotToPath(ref, tmpImagePath, (error, successfulWrite) => {
+            if (successfulWrite) {
+                //this.setState({catSaved: true});
+                // and save it to camera roll
+                CameraRoll.saveImageWithTag(tmpImagePath, function(data) {
+                    // console.log(data);
+                    AlertIOS.alert(
+                        'Image saved to Camera Roll', '',
+                        [{text: 'Cool', onPress: () => console.log('ok')},]
+                    );
+                }, function(err) {
+                    // console.log(err);
+                });
+            } else {
+                console.log(error)
+            }
+        });
+        Mixpanel.trackWithProperties("Definition Exported",{word:this.state.word});
+    }
     
 };
 

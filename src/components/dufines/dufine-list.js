@@ -63,6 +63,7 @@ module.exports = React.createClass({
     renderNewDufineButton: function() {
         return(
             <TouchableHighlight 
+                style={styles.headerButtonRight}
                 onPress={this.onNewDufinePress} > 
                 <Icon 
                     name="plus-square" 

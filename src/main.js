@@ -2,16 +2,20 @@
 var React = require('react-native');
 
 var Parse = require('parse/react-native');
+var Mixpanel = require('react-native-mixpanel');
+var DeviceInfo = require('react-native-device-info');
 
-var Signin = require('./components/authentication/signin');
-var Signup = require('./components/authentication/signup');
 var Welcome = require('./components/walkthrough/welcome');
-//var Tweets = require('./components/tweets/tweets');
 var DufineList = require('./components/dufines/dufine-list');
 var DufineView = require('./components/dufines/dufine-view');
 var DufinePreview = require('./components/dufines/dufine-preview');
-
 var DufineMixins = require('./components/mixins');
+
+// Development Project ID
+//Mixpanel.sharedInstanceWithToken('9b9622cd380a69a91ac1b9b9e1cd6423');
+
+// Production Project ID
+Mixpanel.sharedInstanceWithToken('410a1a1103ccdd8b9e5c6dfc97d968cb');
 
 var {
 	Navigator,
@@ -21,15 +25,10 @@ var {
 } = React;
 
 var ROUTES = {
-	signin: Signin,
-	signup: Signup,
-	//tweets: Tweets,
-
 	dufinelist: DufineList,
 	dufineview: DufineView,
 	dufinepreview: DufinePreview,
 	welcome: Welcome
-
 };
 
 module.exports = React.createClass({
@@ -42,6 +41,10 @@ module.exports = React.createClass({
 	// greate place to fetch data
 	componentWillMount: function() {
 		this.loadData(this.setDataState);
+		// not sure if this is the best way to do it, but whatever
+		Mixpanel.identify(DeviceInfo.getUniqueID());
+		Mixpanel.set("$name", DeviceInfo.getDeviceName());
+		Mixpanel.track("App Loaded");
 	},
 	setDataState: function(find_data) {
 		console.log('set data state');
@@ -55,6 +58,7 @@ module.exports = React.createClass({
 		return <Component route={route} navigator={navigator} title='kev' />;
 	},
 	render: function() {
+		
 		if(!this.state.localData) {
 			return (
 				<View style={styles.initialContainer}>

@@ -35,7 +35,7 @@ var styles = StyleSheet.create({
         height: 50,
 
         flexDirection: 'row',
-        backgroundColor: '#011627',
+        backgroundColor: '#eee',
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
         justifyContent: 'center',
@@ -46,7 +46,7 @@ var styles = StyleSheet.create({
         fontWeight: '300',
         fontSize: 18,
         marginBottom:4,
-        color:'#fff',
+        color:'#000',
     },
     leftContainer: {
     	borderColor: '#000',
@@ -58,6 +58,7 @@ var styles = StyleSheet.create({
         borderWidth: 0,
         flex: 1,
         alignItems: 'flex-end',
-        paddingRight:8
+        
+
     }
 })

@@ -10,8 +10,10 @@
     "moment": "^2.10.6",
     "parse": "^1.6.13",
     "react-native": "^0.13.1",
+    "react-native-device-info": "^0.8.1",
     "react-native-fs": "^1.0.0",
     "react-native-image-picker": "^0.8.0",
+    "react-native-mixpanel": "0.0.5",
     "react-native-store": "0.0.9",
     "react-native-vector-icons": "^1.0.4",
     "react-native-view-snapshot": "0.0.1"

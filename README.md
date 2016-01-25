@@ -87,6 +87,13 @@ redownloaded in xcode
 
 ## Changelog
 
+### 4.2
+adding mixpanel tracking, and device info pacakge
+
+### 4.1
+added padding to button, moved delete button, added export button
+new testers: stew and blake (a dude from reddit)
+
 ### 3.2
 New definition api (wordsapi) and stores data in a new way
 upgraded to data version 4 with no migration plan.

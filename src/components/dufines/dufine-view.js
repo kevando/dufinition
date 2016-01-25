@@ -16,6 +16,7 @@ var Header = require('../common/header');
 var styles = require('../../styles/styles');
 var DufineMixins = require('../mixins');
 
+var Mixpanel = require('react-native-mixpanel');
 
 module.exports = React.createClass({
     mixins: [DufineMixins],
@@ -32,6 +33,7 @@ module.exports = React.createClass({
 
 	},
 	componentWillMount: function() {
+        Mixpanel.trackWithProperties("Definition Viewed",{word:this.state.word});
 		//console.log('dufine-list.js componentWillMount()');
 		
 	},
@@ -41,9 +43,10 @@ module.exports = React.createClass({
             	<Header 
             		title="Dictionary" 
             		rightButton={()=>(<Text></Text>)}
-                    leftButton={this.renderBackButton} />
-                <View ref="definition" style={styles.definitionContainer}>
-                    <View style={styles.definition} >
+                    leftButton={this.renderBackButton} 
+                    rightButton={this.renderDeleteDufineButton} />
+                <View style={styles.definitionContainer}>
+                    <View ref="definition" style={styles.definition} >
                         <View style={styles.dufTop}>                            
                             <View style={styles.definitionWordContainer}>
                             	{this.renderWord()}
@@ -63,7 +66,7 @@ module.exports = React.createClass({
                     
                 </View>
                 <View style={styles.absoluteBottomButton}>
-                	{this.renderDeleteButton()}
+                	{this.renderExportButton()}
                 	{this.renderAddPhotoButton()}
                 </View>
             </View>
@@ -86,6 +89,18 @@ module.exports = React.createClass({
 			<Text style={[styles.georgia,styles.definitionWord]}>{word}</Text>
 		);
 	},
+	renderDeleteDufineButton: function() {
+        return(
+            <TouchableHighlight 
+                style={styles.headerButtonRight}
+                onPress={this.onDeletePress} > 
+                <Icon 
+                    name="trash" 
+                    size={30} 
+                    style={styles.headerButton} />
+            </TouchableHighlight>
+        );
+    },
 	renderPronunciation: function(){
 		var pronunciation = '/ '+this.state.definition.pronunciation.all+' /';
 
@@ -129,15 +144,14 @@ module.exports = React.createClass({
 	},
 	
     onDeletePress: function(){
+    	console.log('delete pressed');
         this.deleteData(this.state.definition.word,this.state.callback);
         
         this.props.navigator.popToTop();
     },
-    renderExportButton: function() {
-    	if(this.state.photo)
-    		return(<Button text={'Export'} onPress={()=>console.log('export')} />);
-    },
+
     renderBackButton: function() {
+    	if(this.state.photo){
     		return(
     			<TouchableHighlight 
 					
@@ -145,10 +159,24 @@ module.exports = React.createClass({
 					<Text style={styles.backButton}>Back</Text>
 				</TouchableHighlight>
     		);
+    	}
     },
     renderDeleteButton: function() {
+    	// this is the giant button 
     	if(this.state.photo)
     		return(<Button text={'Delete'} onPress={this.onDeletePress} />);
+    },
+    renderExportButton: function() {
+    	// this is the giant button 
+    	
+    	if(this.state.photo)
+    		return(<Button text={'Export'} onPress={this.onExportPress} />);
+    },
+    onExportPress: function(){
+    	var ref = React.findNodeHandle(this.refs.definition);
+    	console.log('ref')
+    	console.log(ref);
+    	this.saveToCameraRoll(ref);
     },
     renderAddPhotoButton: function() {
     	if(!this.state.photo)
