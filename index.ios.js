@@ -1,7 +1,10 @@
-var React = require('react-native');
+'use strict';
 
-var {AppRegistry} = React;
+import React, { AppRegistry } from 'react-native';
+//var React = require('react-native');
+//var {AppRegistry} = React;
 
-var Main = require('./src/main');
+import App from './src/containers/app';
+//var Main = require('./src/main');
 
-AppRegistry.registerComponent('Dufine', () => Main);
+AppRegistry.registerComponent('Dufine', () => App);
