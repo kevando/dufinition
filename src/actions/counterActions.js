@@ -11,3 +11,9 @@ export function decrement() {
     type: types.DECREMENT
   };
 }
+
+export function view() {
+  return {
+    type: types.VIEW
+  };
+}

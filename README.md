@@ -19,8 +19,8 @@
 update version/build values
 set jsCodeLocation in ApDelegate.m
 $ react-native bundle
-set iOS device 
-product > archive 
+set iOS device
+product > archive
 Fabric > distribute
 
 ## Adding new tester to fabric
@@ -52,7 +52,7 @@ in fabric, click distribute
 Send to tester
 open link in mobile safari and install crashanlytics
 
-	
+
 uncommented a js line in the AppDelegate.m and ran
 react-native bundle --minify
 
@@ -67,8 +67,8 @@ xcode was out of date
 update version/build values
 set jsCodeLocation in ApDelegate.m
 react-native bundle
-set iOS device 
-product > archive 
+set iOS device
+product > archive
 Fabric > distribute
 
 ---- Fabric Distribution
@@ -98,7 +98,7 @@ new testers: stew and blake (a dude from reddit)
 New definition api (wordsapi) and stores data in a new way
 upgraded to data version 4 with no migration plan.
 
-### 3.1 
+### 3.1
 New UI/UX that implements Navigator instead of NavigatorIOS
 
 
@@ -107,3 +107,24 @@ New UI/UX that implements Navigator instead of NavigatorIOS
   "state" is an object to track and respond to user's input
   each component gets its own instance of state
   when state changes, the component re-renders
+
+
+
+# Notes on learning redux
+#### Redux overview
+
+Manages the app state, which is different from the component state. Never manipulate the app state in a reducer. Only create new states. A component can be a cunction or a class component. if we do not manipulate the app state.
+
+store is the state I think
+
+#### Terminology
+
+ - **Containers:** Components that talk to redux
+ - **Controlled Input** state driven input
+ - **Middleware:** Takes in an action and either does nothing, it can stop it or change the action. I think it returns a promise
+
+
+ Leaving off..
+just got listview to show. I think it depends on the component state, not the app state.
+http://marconijr.com/post/react-native-and-redux/
+I should ask the discord group
