@@ -6,43 +6,46 @@ import { bindActionCreators } from 'redux';
 
 import Counter from '../components/counter'; //
 import Header from '../components/header'; // i dont know this is the best way to do this
-import DufineList from '../components/dufineList';
+import List from '../components/list'; // i dont know this is the best way to do this
+// import DufineList from '../components/dufineList';
 
 import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux';
 
+
+var ROUTES = {
+	List: List,
+  header: Header,
+	// dufineview: DufineView,
+	// dufinepreview: DufinePreview,
+	// welcome: Welcome
+};
+
 class DufineApp extends Component {
   constructor(props) {
     super(props);
+
+    this.renderScene = this.renderScene.bind(this);
   }
 
-  renderScene(route, navigator){
-    console.log('RENDER SCENE', route);
-    const Component = route.component;
-    return (
-      <Component navigator={navigator} route={route} {...this.props} />
-    )
-  }
+  renderScene(route, navigator){ // called any time navigator gets pushed/popped
+    const { state, actions } = this.props; // i gues this calls down to all the components rendered by nav
+    // console.log(actions)
+		var Component = ROUTES[route.name];
+		return <Component route={route} navigator={navigator} {...actions} />;
+	}
 
   render() {
     // i guess this app got sent props consisting of state and actions
     // from where tho?
     const { state, actions } = this.props;
     return (
-  
 
       <Navigator
-          renderScene={(route, nav) => this.renderScene(route, nav)}
-          initialRoute={{ name: 'Signin', component: Header}}
+        initialRoute={{name: state.initialComponent}}
+        renderScene={this.renderScene}
 
-      />
-
-
-
-
-
-
-
+        configureScene={() => {return Navigator.SceneConfigs.FloatFromRight; }} />
 
     );
     // I guess ...actions pulls in all the actions

@@ -17,3 +17,11 @@ export function view() {
     type: types.VIEW
   };
 }
+
+export function push(component){
+  // console.log('pushed called')
+  return {
+    type: types.PUSH,
+    payload: component
+  }
+}
