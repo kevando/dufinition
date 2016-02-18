@@ -1,7 +1,6 @@
-import React, { AppRegistry, StyleSheet } from 'react-native';
+import React, { StyleSheet } from 'react-native';
 
-// import Router from '../index';
-import Router from 'react-native-simple-router';
+import Router from '../index';
 
 import HomePage from './pages/HomePage';
 import BackButton from './components/BackButton';
@@ -32,16 +31,3 @@ export default class TwitterApp extends React.Component {
     );
   }
 }
-
-
-
-AppRegistry.registerComponent('Dufine', () => TwitterApp);
-
-//AppRegistry.registerComponent('Dufine', () => App);
-
-
-
-// Previous app code
-//var React = require('react-native');
-//var {AppRegistry} = React;
-//var Main = require('./src/main');
