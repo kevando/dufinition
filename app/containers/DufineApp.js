@@ -5,9 +5,10 @@ import Router from 'react-native-simple-router';
 import React, { Component, View, Styles, Text, StyleSheet } from 'react-native'; // need View in order to stack the Header with DufineApp
 import { bindActionCreators } from 'redux';
 
-//import Header from '../components/header'; // i dont know this is the best way to do this
-//import List from './list'; // i dont know this is the best way to do this
-// import DufineList from '../components/dufineList';
+import * as storage from 'redux-storage'; //
+import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
+const engine = createEngine('async-data-v1');
+
 
 // calls from the twitter approach
 import ListPage from '../containers/ListPage'; //

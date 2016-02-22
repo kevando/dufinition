@@ -148,7 +148,13 @@ export default function dufine(state = initialState, action = {}) {
         }
 
       //
-      //
+      // Trying to see if this async load shit worked
+      case types.LOAD:
+            return { ...state, loaded: true };
+
+        case types.SAVE:
+            console.log('Something has changed and written to disk!');
+
       default:
         return state;
   };
