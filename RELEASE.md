@@ -7,13 +7,15 @@ Submit this to the app store via testflight
 
 
 ### 6.2
-async storage
+
 refactor worsapi to an action
+download image to roll
 
 ### 6.1
 upload photo
 wordsapi
-save image
+
+async storage
 
 ## Changelog
 

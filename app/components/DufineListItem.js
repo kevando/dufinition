@@ -14,8 +14,7 @@ class Dufine extends React.Component {
 
   render() {
     const {
-      text,
-      word,
+      definition
     } = this.props;
 
     return (
@@ -23,7 +22,7 @@ class Dufine extends React.Component {
         <View style={styles.tweetContainer}>
           <View style={styles.rightContainer}>
             <View style={styles.userContainer}>
-              <Text style={styles.name}>{word}</Text>
+              <Text style={styles.name}>{definition.word}</Text>
             </View>
           </View>
         </View>

@@ -11,68 +11,71 @@ const initialState = {
   },
   dufines: [ // Default layout from wordsapi
     {
-      "word": "dumb",
-      "results": [
-        {
-          "definition": "unable to speak because of hereditary deafness",
-          "partOfSpeech": "adjective",
-        },
-        {
-          "definition": "slow to learn or understand; lacking intellectual acuity",
-          "partOfSpeech": "adjective",
-          "synonyms": [
-            "dense",
-            "dim",
-            "dull",
-            "obtuse",
-            "slow"
-          ],
-          "similarTo": [
-            "stupid"
-          ],
-          "derivation": [
-            "dumbness"
-          ],
-          "examples": [
-            "dumb officials make some really dumb decisions"
+      photo: null,
+      definition: {
+        "word": "dumb",
+        "results": [
+          {
+            "definition": "unable to speak because of hereditary deafness",
+            "partOfSpeech": "adjective",
+          },
+          {
+            "definition": "slow to learn or understand; lacking intellectual acuity",
+            "partOfSpeech": "adjective",
+            "synonyms": [
+              "dense",
+              "dim",
+              "dull",
+              "obtuse",
+              "slow"
+            ],
+            "similarTo": [
+              "stupid"
+            ],
+            "derivation": [
+              "dumbness"
+            ],
+            "examples": [
+              "dumb officials make some really dumb decisions"
+            ]
+          },
+          {
+            "definition": "temporarily incapable of speaking",
+            "partOfSpeech": "adjective",
+            "synonyms": [
+              "speechless"
+            ],
+            "similarTo": [
+              "inarticulate",
+              "unarticulate"
+            ],
+            "examples": [
+              "struck dumb"
+            ]
+          },
+          {
+            "definition": "lacking the power of human speech",
+            "partOfSpeech": "adjective",
+            "similarTo": [
+              "unarticulate",
+              "inarticulate"
+            ],
+            "examples": [
+              "dumb animals"
+            ]
+          }
+        ],
+        "syllables": {
+          "count": 1,
+          "list": [
+            "dumb"
           ]
         },
-        {
-          "definition": "temporarily incapable of speaking",
-          "partOfSpeech": "adjective",
-          "synonyms": [
-            "speechless"
-          ],
-          "similarTo": [
-            "inarticulate",
-            "unarticulate"
-          ],
-          "examples": [
-            "struck dumb"
-          ]
+        "pronunciation": {
+          "all": "dəm"
         },
-        {
-          "definition": "lacking the power of human speech",
-          "partOfSpeech": "adjective",
-          "similarTo": [
-            "unarticulate",
-            "inarticulate"
-          ],
-          "examples": [
-            "dumb animals"
-          ]
-        }
-      ],
-      "syllables": {
-        "count": 1,
-        "list": [
-          "dumb"
-        ]
-      },
-      "pronunciation": {
-        "all": "dəm"
-      },
-      "frequency": 4.68
+        "frequency": 4.68
+      }
     }
   ],
 
@@ -116,15 +119,18 @@ export default function dufine(state = initialState, action = {}) {
           }
         }
 
-      case types.ADD_WORD:
-
+      //
+      // When a user clicks save
+      //
+      case types.SAVE_DUFINE:
+      console.log('SAVE_DUFINE',state.ui)
         return {
           ...state,
           dufines: [
             ...state.dufines,
             {
-              word: action.payload,
-              text: 'new text fresh'
+              // photo: state.photo,
+              definition: state.ui.definition
             }
           ]
         };

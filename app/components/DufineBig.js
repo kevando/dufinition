@@ -12,8 +12,9 @@ class DufineBig extends Component {
     this.renderDefinitions = this.renderDefinitions.bind(this);
   }
   renderDefinitions(){
+    const { definition } = this.props.data;
 
-    Definitions = this.props.data.results.map((result,index) => {
+    Definitions = definition.results.map((result,index) => {
       // adding key to stop the react-native child array error. probly dont want to use word cause it could be dup
       return (
         <Text style={styles.rtText}>{++index} {result.definition}</Text>
@@ -25,7 +26,7 @@ class DufineBig extends Component {
 
   render() {
     // props.data comes from the route call in listpage which comes from the listItem that came from the map function
-    const definition = this.props.data;
+    const { definition } = this.props.data;
 
     return (
       <ScrollView>

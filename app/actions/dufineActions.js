@@ -38,9 +38,16 @@ export function clearWord() {
 
 // when user wants to upload a photo
 export function savePhoto(source) {
-  
+
   return {
     type: types.SAVE_PHOTO,
     payload: source
+  }
+}
+// when user clicks save, this will dump ui into a new dufine
+export function saveDufine() {
+  return {
+    type: types.SAVE_DUFINE,
+    // payload: source
   }
 }

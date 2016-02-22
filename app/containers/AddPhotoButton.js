@@ -37,9 +37,12 @@ class AddPhotoButton extends Component {
   }
   onButtonPress() {
     // Pull up photo
-    this.openImagePicker(); // this kicks off an action
+    // THIS IS REAL this.openImagePicker(); // this kicks off an action
 
-
+    // This is the test
+    console.log('saveDufine',this.props.actions)
+    const { saveDufine } = this.props.actions;
+    saveDufine();
 
   }
   // this, along with the touchable highlight should be its own container i think
@@ -53,6 +56,19 @@ class AddPhotoButton extends Component {
   }
 
   render() {
+    return (
+      <View>
+        <View>
+          <TouchableHighlight onPress={this.onButtonPress} >
+            <Text style={styles.button}>Save this definition</Text>
+          </TouchableHighlight>
+        </View>
+        </View>
+    );
+  }
+
+
+  render_real() {
     return (
       <View>
       <View>
