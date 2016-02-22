@@ -5,39 +5,16 @@ import { bindActionCreators } from 'redux';
 import * as dufineActions from '../actions/dufineActions'
 import {connect } from 'react-redux';
 
+// this container should get renamed
+// and it should pull very heavily from components that it will share with the dufineBig which should change names as well
+import WordInput from './WordInput';
+import AddPhotoButton from './AddPhotoButton';
+import DufineWord from '../components/DufineWord';
+
+
 class SearchPage extends Component {
   constructor(props) {
-    super(props); //
-    this.state = { term: '' }
-
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onButtonPress = this.onButtonPress.bind(this);
-
-    this.styles = StyleSheet.create({
-      input: {
-        backgroundColor: '#3f88bf',
-        width: 220,
-        height: 32,
-        marginTop: 6,
-        paddingLeft: 10,
-        color: 'white',
-        borderRadius: 4,
-      },
-    });
-  }
-
-  onInputChange(event) {
-    this.setState({
-      term:event.nativeEvent.text
-    })
-  }
-  onButtonPress() {
-    // action i guess
-    this.props.actions.addWord(this.state.term);
-
-    this.setState({
-      term:'' // clear input form
-    })
+    super(props);
 
   }
 
@@ -47,26 +24,36 @@ class SearchPage extends Component {
 
     // let addWord be the action
 
-    const { addWord, increment } = this.props.actions;
+    const { ui } = this.props.state;
 
-    // console.log(addWord)
+    //console.log('ui',ui)
     // console.log(increment)
 
     // todo create this as a button compotnent
     return (
       <View>
-      <View>
-      <TextInput style={this.styles.input} value={this.state.term} onChange={this.onInputChange} />
-      </View>
-      <View>
-      <TouchableHighlight onPress={this.onButtonPress} >
-        <Text>submit</Text>
-      </TouchableHighlight>
-      </View>
+        <View>
+
+        {( ui.definition == null
+          ? <WordInput />
+          : <DufineWord definition={ ui.definition } />
+        )}
+
+        </View>
+
+
+        <View>
+        {( ui.definition != null
+          ? <AddPhotoButton />
+          : void 0
+        )}
+        </View>
       </View>
     );
   }
+
 }
+
 
 
 // proptypes?

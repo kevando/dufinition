@@ -85,22 +85,6 @@ Deleted the provisioning profile in member center
 redownloaded in xcode
 
 
-## Changelog
-
-### 4.2
-adding mixpanel tracking, and device info pacakge
-
-### 4.1
-added padding to button, moved delete button, added export button
-new testers: stew and blake (a dude from reddit)
-
-### 3.2
-New definition api (wordsapi) and stores data in a new way
-upgraded to data version 4 with no migration plan.
-
-### 3.1
-New UI/UX that implements Navigator instead of NavigatorIOS
-
 
 
 ## Notes on learning react-native
@@ -128,3 +112,9 @@ store is the state I think
 just got listview to show. I think it depends on the component state, not the app state.
 http://marconijr.com/post/react-native-and-redux/
 I should ask the discord group
+
+
+
+### updating the app icon
+create images in  the 4 different sizes (29,57,80,120)
+copy images to Supporting Files in the project navigator

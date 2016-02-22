@@ -12,10 +12,26 @@ export function decrement() {
   };
 }
 
-export function addWord(word){
-  console.log('addWord called')
+export function getDefinition(word){
+
   return {
-    type: types.ADD_WORD,
-    payload: word
+    type: types.GET_DEFINITION,
+    payload: request
+  }
+}
+
+// ui
+export function setDefinition(responseData){
+
+  return {
+    type: types.SET_DEFINITION,
+    payload: responseData
+  }
+}
+
+// MODIFY UI
+export function clearWord() {
+  return {
+    type: types.CLEAR_WORD,
   }
 }

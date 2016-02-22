@@ -4,6 +4,11 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   count: 0,
+  ui: { // i dont like the idea that i would need to init this cause clearing seems like a hassle
+    word: null,
+    definition: null,
+    photo: null
+  },
   dufines: [ // Default layout from wordsapi
     {
       "word": "dumb",
@@ -94,6 +99,24 @@ export default function dufine(state = initialState, action = {}) {
           ...state,
           count: state.count - 1
         };
+      // should probly also be a UI_SET_WORD
+      case types.SET_DEFINITION:
+      // console.log('SET DEF')
+      // console.log(action.payload)
+        return {
+          ...state,
+          ui : {
+            definition: action.payload // this i guess could be an invalid definition
+          }
+        }
+      case types.CLEAR_WORD:
+        return {
+          ...state,
+          ui: {
+            word: null
+          }
+        }
+
       case types.ADD_WORD:
 
         return {

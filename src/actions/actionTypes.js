@@ -1,7 +1,7 @@
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-
-// Real actions
-export const VIEW = 'VIEW';
-
-export const PUSH = "PUSH";
+// export const INCREMENT = 'INCREMENT';
+// export const DECREMENT = 'DECREMENT';
+//
+// // Real actions
+// export const VIEW = 'VIEW';
+//
+// export const PUSH = "PUSH";
