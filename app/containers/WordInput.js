@@ -62,7 +62,7 @@ class WordInput extends Component {
     const API_KEY = 'i5OFV6PQGkmsh1HhWu7b9c76bNodp1Df8DmjsnKzsbV0G6Ke9r';
     const word = this.state.term;
     const REQUEST_URL = `https://wordsapiv1.p.mashape.com/words/${word}`;
-    console.log('url',REQUEST_URL);
+    // console.log('url',REQUEST_URL);
 
     try {
       let response = await fetch(REQUEST_URL,{
@@ -71,7 +71,7 @@ class WordInput extends Component {
       // console.log('response',response)
       setDefinition(response);
     } catch(error) {
-      console.log('error',error);
+      // console.log('error',error);
       this.setState({responseText: 'Some error, likely word was not found'})
       throw error;
     }

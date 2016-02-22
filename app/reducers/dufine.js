@@ -101,12 +101,11 @@ export default function dufine(state = initialState, action = {}) {
         };
       // should probly also be a UI_SET_WORD
       case types.SET_DEFINITION:
-      // console.log('SET DEF')
-      // console.log(action.payload)
         return {
           ...state,
-          ui : {
-            definition: action.payload // this i guess could be an invalid definition
+          ui: {
+            ...state.ui,
+            definition: action.payload
           }
         }
       case types.CLEAR_WORD:
@@ -130,6 +129,20 @@ export default function dufine(state = initialState, action = {}) {
           ]
         };
 
+      //
+      // When a user uploads a Photo
+      //
+      case types.SAVE_PHOTO:
+        return {
+          ...state,
+          ui: {
+            ...state.ui,
+            photo: action.payload
+          }
+        }
+
+      //
+      //
       default:
         return state;
   };

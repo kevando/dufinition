@@ -35,3 +35,12 @@ export function clearWord() {
     type: types.CLEAR_WORD,
   }
 }
+
+// when user wants to upload a photo
+export function savePhoto(source) {
+  
+  return {
+    type: types.SAVE_PHOTO,
+    payload: source
+  }
+}

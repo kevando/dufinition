@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import * as dufineActions from '../actions/dufineActions'
 import {connect } from 'react-redux';
 
+var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
+
 // this container should get renamed
 // and it should pull very heavily from components that it will share with the dufineBig which should change names as well
 
@@ -31,19 +33,18 @@ class AddPhotoButton extends Component {
     super(props); //
     this.onBackButtonPress = this.onBackButtonPress.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
+    this.openImagePicker = this.openImagePicker.bind(this);
   }
   onButtonPress() {
-    // grab action that will pull definition from wordsapi
-    const { getDefinition } = this.props.actions;
-    getDefinition(this.state.term);
-    this.setState({term:''});
+    // Pull up photo
+    this.openImagePicker(); // this kicks off an action
 
-    // I am not sure if this is the best place for this
+
 
   }
   // this, along with the touchable highlight should be its own container i think
   onBackButtonPress() {
-    console.log(this.props.actions)
+    // console.log(this.props.actions)
     // grab action that will pull definition from wordsapi
     const { clearWord } = this.props.actions;
     clearWord();
@@ -68,6 +69,36 @@ class AddPhotoButton extends Component {
     );
   }
 
+  // I'd guess this goes somewhere else, but I'm ok having it here for now
+  openImagePicker(){
+    console.log('openimagepicker props',this.props)
+    const { savePhoto } = this.props.actions;
+    const options = {
+      title: 'Select Photo',
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take NEW Photo...',
+      chooseFromLibraryButtonTitle: 'Choose EXISTING from Library...',
+      quality: 0.2, // ?
+      allowsEditing: true,
+      storageOptions: {
+        skipBackup: true,
+        path: 'images' // will save image at /Documents/images rather than the root
+      }
+    };
+
+    UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
+      if (didCancel) // User cancelled
+        return;
+
+      // Otherwise the image should have saved to some tmp/cache dir
+      var source = {
+        data: 'data:image/jpeg;base64,' + response.data,
+        uri: response.uri.replace('file://', ''),
+        isStatic: true
+      };
+        savePhoto(source); // ACTION
+    });
+  } // openImagePicker
 }
 
 

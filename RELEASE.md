@@ -22,6 +22,7 @@ Refactored entire app using redux, so there are many mussing features
 Added new app icon (v1)
 
 
+
 ### 5 (Never existed)
 
 ### 4.2

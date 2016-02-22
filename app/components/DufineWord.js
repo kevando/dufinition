@@ -13,7 +13,7 @@ class DufineWord extends Component {
 
 
   render() {
-    console.log('dufineWord props',this.props)
+    // console.log('dufineWord props',this.props)
     const {
       // text,
       definition,

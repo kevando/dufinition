@@ -8,3 +8,4 @@ export const SET_DEFINITION = 'SET_DEFINITION';
 
 // UI actions
 export const CLEAR_WORD = 'CLEAR_WORD';
+export const SAVE_PHOTO = 'SAVE_PHOTO';

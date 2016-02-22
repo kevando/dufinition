@@ -10,6 +10,7 @@ import {connect } from 'react-redux';
 import WordInput from './WordInput';
 import AddPhotoButton from './AddPhotoButton';
 import DufineWord from '../components/DufineWord';
+import DufinePhoto from '../components/DufinePhoto';
 
 
 class SearchPage extends Component {
@@ -26,7 +27,7 @@ class SearchPage extends Component {
 
     const { ui } = this.props.state;
 
-    //console.log('ui',ui)
+    console.log('SearchPage ui',ui)
     // console.log(increment)
 
     // todo create this as a button compotnent
@@ -45,6 +46,12 @@ class SearchPage extends Component {
         <View>
         {( ui.definition != null
           ? <AddPhotoButton />
+          : void 0
+        )}
+        </View>
+        <View>
+        {( ui.photo != null
+          ? <DufinePhoto photo={ui.photo} />
           : void 0
         )}
         </View>
