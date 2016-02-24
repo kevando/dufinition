@@ -1,4 +1,7 @@
-import React, { Component, StyleSheet, Text, ScrollView, View, PropTypes } from 'react-native';
+import React, { Component, StyleSheet, Text, View, PropTypes } from 'react-native';
+
+import DufinePhoto from '../components/DufinePhoto';
+import DufineWord from '../components/DufineWord';
 
 const propTypes = {
   data: PropTypes.object,
@@ -6,11 +9,10 @@ const propTypes = {
 
 class DufineBig extends Component {
   constructor(props) {
-    super(props); //
-    // this.state = { term: '' }
-
+    super(props);
     this.renderDefinitions = this.renderDefinitions.bind(this);
   }
+
   renderDefinitions(){
     const { definition } = this.props.data;
 
@@ -26,25 +28,22 @@ class DufineBig extends Component {
 
   render() {
     // props.data comes from the route call in listpage which comes from the listItem that came from the map function
-    const { definition } = this.props.data;
+    const { definition, photo } = this.props.data;
 
     return (
-      <ScrollView>
-
-
-      <View style={styles.tweetContainer}>
-                <View style={styles.userContainer}>
-
-                  <View style={styles.rightContainer}>
-                    <Text style={styles.name}>{definition.word}</Text>
-                    <Text style={styles.username}>{definition.results[0].partOfSpeech}</Text>
-                  </View>
-                </View>
-                <View style={styles.retweetContainer}>
-                  {this.renderDefinitions()}
-                </View>
-              </View>
-      </ScrollView>
+      <View>
+        <View style={styles.tweetContainer}>
+          <View style={styles.userContainer}>
+            <View style={styles.rightContainer}>
+              <DufineWord definition={ definition } />
+            </View>
+            <DufinePhoto photo={photo} />
+          </View>
+          <View style={styles.retweetContainer}>
+            {this.renderDefinitions()}
+          </View>
+        </View>
+      </View>
     );
   }
 }

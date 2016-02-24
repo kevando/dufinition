@@ -2,6 +2,7 @@ import React, { Component, StyleSheet, ScrollView, PropTypes } from 'react-nativ
 
 import DufineListItem from '../components/DufineListItem'; //
 import DufinePage from '../components/DufineBig'; //
+import TrashCan from './TrashCan'
 
 // From the tweet app, this was a component, changing this to a container now so it has access to redux
 // at least i think thats how it works. here is the redux connection code
@@ -28,21 +29,30 @@ class ListPage extends Component {
   // I wonder if this should be an action
   goToDufine(dufineData) {
     // i dont know if its the best approach to send in the data object for every single function call
+    // console.log('goToDufine',dufineData)
+    this.props.actions.setActiveDufine(dufineData);
+
+    const { state } = this.props; // redux state
 
     this.props.toRoute({
       name: 'Dufine',
       component: DufinePage,
       data: dufineData,
+      // backAction: this.props.toBack(),
+      rightCorner: TrashCan,
     });
   }
+
 
   render() {
     //console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
     const { state } = this.props; // redux state
+    console.log('listpage state',state);
 
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
     //This is getting pulled from the redux state
     const Dufines = state.dufines.map((dufineData) => {
+      // test var dufineData = state.dufines[0];
       // adding key to stop the react-native child array error. probly dont want to use word cause it could be dup
       return <DufineListItem {...dufineData} onPress={this.goToRoute} goToDufine={this.goToDufine} key={dufineData.word }/>;
     });

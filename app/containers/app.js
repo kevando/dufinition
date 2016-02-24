@@ -3,13 +3,31 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'; // I guess this is middleware
 
-
 import * as reducers from '../reducers';
 import DufineApp from './DufineApp';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const reducer = combineReducers(reducers);
+//storage
+import * as storage from 'redux-storage'; //
+const reducer = storage.reducer(combineReducers(reducers)); // this is new from stoage package
+import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
+const engine = createEngine('async-data-v1');
+
+const middleware = storage.createMiddleware(engine);
+
+// getting ride of this for now
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(middleware,thunk)(createStore);
+// commenting out now for storage
+//const reducer = combineReducers(reducers);
+
 const store = createStoreWithMiddleware(reducer);
+
+// I guess this just loads the state?!
+const load = storage.createLoader(engine);
+load(store);
+
+// Notice that our load function will return a promise that can also be used
+// to respond to the restore event.
 
 export default class App extends Component {
   render() {

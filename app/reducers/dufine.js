@@ -7,13 +7,14 @@ const initialState = {
   ui: { // i dont like the idea that i would need to init this cause clearing seems like a hassle
     word: null,
     definition: null,
-    photo: null
+    photo: null,
+    activeDufine: null
   },
   dufines: [ // Default layout from wordsapi
     {
       photo: null,
       definition: {
-        "word": "dumb",
+        "word": "dumb ogggg",
         "results": [
           {
             "definition": "unable to speak because of hereditary deafness",
@@ -88,6 +89,7 @@ const initialState = {
 // this reduce handles EVERHTHING at themoment. but i proably want to split that up
 
 export default function dufine(state = initialState, action = {}) {
+  // console.log('initialstate',state);
   // console.log('state',state);
   // console.log('action',action);
   switch (action.type) {
@@ -129,11 +131,43 @@ export default function dufine(state = initialState, action = {}) {
           dufines: [
             ...state.dufines,
             {
-              // photo: state.photo,
+              word: state.ui.definition.word,
+              photo: state.ui.photo,
               definition: state.ui.definition
             }
           ]
         };
+        case types.SET_ACTIVE_DUFINE:
+        console.log('SETACTIFSD',action.payload)
+          return {
+            ...state,
+            ui: {
+              activeDufine: action.payload
+            }
+          }
+
+        case types.DELETE_DUFINE:
+          var elementPosition = state.dufines.map(function(dufine) {return dufine.definition.word; }).indexOf(state.ui.activeDufine.definition.word);
+          console.log('delete dufine reducer',state.ui.activeDufine);
+          console.log('index',elementPosition);
+          var newDufineArray = state.dufines.splice(elementPosition,1);
+          console.log('newdufinearray',newDufineArray)
+
+          // dufines: [
+          //   ...state.dufines,
+          //   {
+          //     // photo: state.photo,
+          //     definition: state.dufines.splice(elementPosition)
+          //   }
+
+
+          return {
+            ...state,
+            dufines: [
+              ...state.dufines.slice(0, elementPosition),
+              ...state.dufines.slice(elementPosition + 1)
+            ],
+            }
 
       //
       // When a user uploads a Photo
@@ -149,6 +183,8 @@ export default function dufine(state = initialState, action = {}) {
 
       //
       // Trying to see if this async load shit worked
+      // this works, but i dont think these actions are used ever..
+      // i should look into this more
       case types.LOAD:
             return { ...state, loaded: true };
 

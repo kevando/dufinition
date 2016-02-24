@@ -37,12 +37,7 @@ class AddPhotoButton extends Component {
   }
   onButtonPress() {
     // Pull up photo
-    // THIS IS REAL this.openImagePicker(); // this kicks off an action
-
-    // This is the test
-    console.log('saveDufine',this.props.actions)
-    const { saveDufine } = this.props.actions;
-    saveDufine();
+    this.openImagePicker(); // this kicks off an action
 
   }
   // this, along with the touchable highlight should be its own container i think
@@ -55,20 +50,9 @@ class AddPhotoButton extends Component {
 
   }
 
+
+
   render() {
-    return (
-      <View>
-        <View>
-          <TouchableHighlight onPress={this.onButtonPress} >
-            <Text style={styles.button}>Save this definition</Text>
-          </TouchableHighlight>
-        </View>
-        </View>
-    );
-  }
-
-
-  render_real() {
     return (
       <View>
       <View>
@@ -88,7 +72,7 @@ class AddPhotoButton extends Component {
   // I'd guess this goes somewhere else, but I'm ok having it here for now
   openImagePicker(){
     console.log('openimagepicker props',this.props)
-    const { savePhoto } = this.props.actions;
+    const { savePhoto, saveDufine, clearWord } = this.props.actions;
     const options = {
       title: 'Select Photo',
       cancelButtonTitle: 'Cancel',
@@ -113,6 +97,9 @@ class AddPhotoButton extends Component {
         isStatic: true
       };
         savePhoto(source); // ACTION
+        // I feel like this code should go elsewhere, but whatever
+        saveDufine();
+        clearWord();
     });
   } // openImagePicker
 }

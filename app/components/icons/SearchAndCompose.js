@@ -1,7 +1,6 @@
 import React, { StyleSheet, View, PropTypes, Text } from 'react-native';
 
 import SearchIcon from './Search'; // just image
-import ComposeIcon from './Compose'; // image
 import SearchPage from '../../containers/SearchPage'; // static page
 import SearchBar from './SearchBar'; // im not sure why this is in icons
 
@@ -41,7 +40,7 @@ class SearchAndCompose extends React.Component {
     this.props.toRoute({
       name: 'Search',
       component: SearchPage,
-      rightCorner: ComposeIcon,
+      // rightCorner: ComposeIcon,
       //titleComponent: SearchBar, not changing this as of now. i guess this defaults to the name
     });
   }

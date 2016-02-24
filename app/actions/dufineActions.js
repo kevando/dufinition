@@ -48,6 +48,17 @@ export function savePhoto(source) {
 export function saveDufine() {
   return {
     type: types.SAVE_DUFINE,
-    // payload: source
+  }
+}
+
+export function deleteDufine() {
+  return {
+    type: types.DELETE_DUFINE,
+  }
+}
+export function setActiveDufine(dufine) {
+  return {
+    type: types.SET_ACTIVE_DUFINE,
+    payload: dufine
   }
 }

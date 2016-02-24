@@ -53,6 +53,10 @@ class WordInput extends Component {
   async onButtonPress() {
     // grab action that will pull definition from wordsapi
     const { getDefinition, setDefinition } = this.props.actions;
+    if(this.state.term ==''){
+      this.setState({responseText:'Please enter a word'});
+      return;
+    }
 
     //
     //
