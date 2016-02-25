@@ -2,7 +2,17 @@ import React, { StyleSheet, View, PropTypes, Text } from 'react-native';
 
 import SearchIcon from './Search'; // just image
 import SearchPage from '../../containers/SearchPage'; // static page
-import SearchBar from './SearchBar'; // im not sure why this is in icons
+
+var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
+
+const styles = StyleSheet.create({ // not sure why this is in the constructor but whatever
+      icon: {
+        width: 25,
+        height: 25,
+        marginTop: 0,
+        marginLeft: 8,
+      },
+    });
 
 const propTypes = {
   toRoute: PropTypes.func.isRequired,
@@ -40,21 +50,15 @@ class SearchAndCompose extends React.Component {
     this.props.toRoute({
       name: 'Search',
       component: SearchPage,
-      // rightCorner: ComposeIcon,
+      // rightCorner: {}, // this should be empty
       //titleComponent: SearchBar, not changing this as of now. i guess this defaults to the name
     });
-  }
-  render_f() {
-    return (
-      <View style={this.styles.iconContainer}>
-      <Text>Add</Text>
-      </View>
-    );
   }
 
   render() {
     //<ComposeIcon />
     // this was inside the view container, but i am not sure why
+    console.log('SearchAndCompose',this.props);
     return (
       <View style={this.styles.iconContainer}>
         <SearchIcon goToSearch={this.goToSearch} />

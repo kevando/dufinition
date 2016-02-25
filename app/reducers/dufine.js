@@ -138,7 +138,7 @@ export default function dufine(state = initialState, action = {}) {
           ]
         };
         case types.SET_ACTIVE_DUFINE:
-        console.log('SETACTIFSD',action.payload)
+        //console.log('SETACTIFSD',action.payload)
           return {
             ...state,
             ui: {

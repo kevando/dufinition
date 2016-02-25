@@ -22,7 +22,8 @@ const createStoreWithMiddleware = applyMiddleware(middleware,thunk)(createStore)
 
 const store = createStoreWithMiddleware(reducer);
 
-// I guess this just loads the state?!
+// I guess this just loads the state. This just seems to work
+// I think I will replace this with realm.io
 const load = storage.createLoader(engine);
 load(store);
 

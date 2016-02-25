@@ -2,7 +2,7 @@
 
 // Trying this router to see how it works
 import Router from 'react-native-simple-router';
-import React, { Component, View, Styles, Text, StyleSheet } from 'react-native'; // need View in order to stack the Header with DufineApp
+import React, { Component, Navigator, View, Styles, Text, StyleSheet } from 'react-native'; // need View in order to stack the Header with DufineApp
 import { bindActionCreators } from 'redux';
 
 
@@ -24,7 +24,7 @@ const firstRoute = {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#5cafec',
+    backgroundColor: '#4071b8',
   },
 });
 
@@ -33,46 +33,22 @@ class DufineApp extends Component {
     super(props);
   }
 
-
   render() {
-    // i guess this app got sent props consisting of state and actions
-    // from where tho?
-		// const { state, actions } = this.props;
-
     return (
-
       <Router
         firstRoute={firstRoute}
         headerStyle={styles.header}
         backButtonComponent={BackButton}
         rightCorner={SearchAndCompose}
       />
-
     );
-    // I guess {...actions} pulls in all the actions
-  }
-  render_non_navigator() {
-    // i guess this app got sent props consisting of state and actions
-    // from where tho?
-    const { state, actions } = this.props;
-    return (
-      <View>
-        <Header title={state.activeComponent} />
-        <DufineList
-          dufineList={state.dufineList}
-          {...actions} />
-
-      </View>
-
-    );
-
   }
 
 }
 
 // I do not understand any of this..
 export default connect(state => ({
-  state: state.counter // what is this? do i need to add other state data here?
+  // state: state.counter // what is this? do i need to add other state data here?
 }),
 (dispatch) => ({
   actions: bindActionCreators(dufineActions, dispatch)

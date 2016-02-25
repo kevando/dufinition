@@ -14,6 +14,7 @@ const propTypes = {
   toRoute: PropTypes.func.isRequired,
 };
 
+
 class ListPage extends Component {
   constructor(props) {
     super(props);
@@ -38,17 +39,17 @@ class ListPage extends Component {
       name: 'Dufine',
       component: DufinePage,
       data: dufineData,
-      // backAction: this.props.toBack(),
+      customAction: this.props.toBack,
       rightCorner: TrashCan,
     });
   }
 
 
   render() {
-    //console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
+    // console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
     const { state } = this.props; // redux state
-    console.log('listpage state',state);
 
+    state.dufines.sort();
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
     //This is getting pulled from the redux state
     const Dufines = state.dufines.map((dufineData) => {

@@ -1,22 +1,16 @@
 import React, { StyleSheet, Image, Text } from 'react-native';
-
+var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
 export default class BackButton extends React.Component {
   render() {
-    return(<Text style={styles.backButton} >Back</Text>)
-  }
-  render_imgnotworking() {
-    return (
-      <Image source={require('../images/back_button.png')} style={styles.backButton} />
-    );
+    return(<Icon style={styles.icon} name="angle-left" size={25} color="#fff" />)
   }
 }
 
 const styles = StyleSheet.create({
-  backButton: {
-    // width: 10,
-    height: 17,
-    marginLeft: 10,
-    marginTop: 3,
-    marginRight: 10,
+  icon: {
+    width: 25,
+    height: 25,
+    marginTop: 0,
+    marginLeft: 8,
     },
 });
