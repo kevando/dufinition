@@ -12,7 +12,8 @@ const initialState = {
   },
   dufines: [ // Default layout from wordsapi
     {
-      photo: null,
+      word: "dumb",
+      photo: {data:'http://i.imgur.com/iu4446t.jpg'},
       definition: {
         "word": "dumb ogggg",
         "results": [
@@ -120,6 +121,15 @@ export default function dufine(state = initialState, action = {}) {
             word: null
           }
         }
+      case types.CLEAR_ACTIVE_DUFINE:
+        return {
+          ...state,
+          ui: {
+            word: null,
+            photo: null,
+            definition: null
+          }
+        }
 
       //
       // When a user clicks save
@@ -131,7 +141,7 @@ export default function dufine(state = initialState, action = {}) {
           dufines: [
             ...state.dufines,
             {
-              word: state.ui.definition.word,
+              word: state.ui.definition.word, // this should probly be the payload
               photo: state.ui.photo,
               definition: state.ui.definition
             }
@@ -150,8 +160,11 @@ export default function dufine(state = initialState, action = {}) {
           var elementPosition = state.dufines.map(function(dufine) {return dufine.definition.word; }).indexOf(state.ui.activeDufine.definition.word);
           console.log('delete dufine reducer',state.ui.activeDufine);
           console.log('index',elementPosition);
-          var newDufineArray = state.dufines.splice(elementPosition,1);
-          console.log('newdufinearray',newDufineArray)
+
+          var firstHalf = state.dufines.slice(0, elementPosition);
+          var secondHalf = state.dufines.slice(elementPosition + 1)
+          console.log('first',firstHalf);
+          console.log('second',secondHalf);
 
           // dufines: [
           //   ...state.dufines,
@@ -164,8 +177,8 @@ export default function dufine(state = initialState, action = {}) {
           return {
             ...state,
             dufines: [
-              ...state.dufines.slice(0, elementPosition),
-              ...state.dufines.slice(elementPosition + 1)
+              ...firstHalf,
+              ...secondHalf
             ],
             }
 

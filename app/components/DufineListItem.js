@@ -13,9 +13,8 @@ class Dufine extends React.Component {
   }
 
   render() {
-    const {
-      definition
-    } = this.props;
+    // console.log('listItem',this.props)
+    const { definition, word} = this.props;
 
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.goToDufine}>

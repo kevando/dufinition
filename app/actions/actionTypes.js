@@ -10,5 +10,6 @@ export const SET_DEFINITION = 'SET_DEFINITION';
 
 // UI actions
 export const CLEAR_WORD = 'CLEAR_WORD';
+export const CLEAR_ACTIVE_DUFINE = 'CLEAR_ACTIVE_DUFINE';
 export const SAVE_PHOTO = 'SAVE_PHOTO';
 export const SET_ACTIVE_DUFINE = 'SET_ACTIVE_DUFINE';

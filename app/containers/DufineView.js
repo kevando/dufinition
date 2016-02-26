@@ -13,9 +13,28 @@ import DufineWord from '../components/DufineWord';
 import DufinePhoto from '../components/DufinePhoto';
 
 
-class SearchPage extends Component {
+const styles = StyleSheet.create({
+  topContainer: { //
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+  wordContainer: { //
+    flex: 1,
+    padding: 10,
+    marginLeft:10,
+  },
+})
+
+class DufineView extends Component {
   constructor(props) {
     super(props);
+
+    const { actions, data } = this.props;
+    console.log('data',data)
+    if(data != null)
+      actions.setActiveDufine(data)
 
   }
 
@@ -25,6 +44,7 @@ class SearchPage extends Component {
 
     // let addWord be the action
 
+
     const { ui } = this.props.state;
 
     console.log('SearchPage ui',ui)
@@ -33,28 +53,29 @@ class SearchPage extends Component {
     // todo create this as a button compotnent
     return (
       <View>
-        <View>
+      <View style={styles.topContainer}>
 
-        {( ui.definition == null
+        <View style={styles.wordContainer}>
+        {( ui.activeDufine == null
           ? <WordInput />
-          : <DufineWord definition={ ui.definition } />
+          : <DufineWord definition={ ui.activeDufine.definition } />
         )}
-
         </View>
 
-
         <View>
-        {( ui.definition != null
-          ? <AddPhotoButton />
+        {( ui.activeDufine != null
+          ? <DufinePhoto photo={ui.activeDufine.photo} />
           : void 0
         )}
         </View>
         <View>
-        {( ui.photo != null
+        {( ui.photo == false
           ? <DufinePhoto photo={ui.photo} />
           : void 0
         )}
         </View>
+      </View>
+
       </View>
     );
   }
@@ -71,4 +92,4 @@ export default connect(state =>({
 (dispatch) => ({
   actions: bindActionCreators(dufineActions, dispatch)
 })
-)(SearchPage);
+)(DufineView);

@@ -35,6 +35,11 @@ export function clearWord() {
     type: types.CLEAR_WORD,
   }
 }
+export function clearActiveDufine() {
+  return {
+    type: types.CLEAR_ACTIVE_DUFINE,
+  }
+}
 
 // when user wants to upload a photo
 export function savePhoto(source) {

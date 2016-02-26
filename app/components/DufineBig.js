@@ -56,17 +56,17 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flex: 1
   },
-  topContainer: { //
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  wordContainer: { //
-    flex: 1,
-    padding: 10,
-    marginLeft:10,
-  },
+  // topContainer: { //
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   flex: 1,
+  //   backgroundColor: '#fff'
+  // },
+  // wordContainer: { //
+  //   flex: 1,
+  //   padding: 10,
+  //   marginLeft:10,
+  // },
   definitionText: {
     fontWeight: '300',
     fontSize: 14,

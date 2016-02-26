@@ -1,7 +1,7 @@
 import React, { Component, StyleSheet, ScrollView, PropTypes } from 'react-native';
 
 import DufineListItem from '../components/DufineListItem'; //
-import DufinePage from '../components/DufineBig'; //
+import DufineView from './DufineView'; //
 import TrashCan from './TrashCan'
 
 // From the tweet app, this was a component, changing this to a container now so it has access to redux
@@ -25,6 +25,7 @@ class ListPage extends Component {
       },
     });
     this.goToDufine = this.goToDufine.bind(this);
+    this.clearActiveDufine = this.clearActiveDufine.bind(this);
   }
 
   // I wonder if this should be an action
@@ -37,19 +38,32 @@ class ListPage extends Component {
 
     this.props.toRoute({
       name: 'Dufine',
-      component: DufinePage,
+      component: DufineView,
       data: dufineData,
-      customAction: this.props.toBack,
+      // customAction: this.props.toBack,
       rightCorner: TrashCan,
     });
   }
 
+  clearActiveDufine(){
+    // Before going to search we need to clear the active state
+    // and this is my solution
+    const { state, actions } = this.props; // redux state
+    var activeDufine = state.ui.activeDufine
+    // console.log('STATE from clearduf',state.ui.activeDufine)
+    console.log(activeDufine)
+    if(activeDufine != null){
+      console.log('CELAR SADF');
+      actions.clearActiveDufine();
+    }
+  }
 
   render() {
-    // console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
+    //console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
     const { state } = this.props; // redux state
+    // console.log('STATE from render',state)
 
-    state.dufines.sort();
+    this.clearActiveDufine(); // i dont really like thius but whatever
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
     //This is getting pulled from the redux state
     const Dufines = state.dufines.map((dufineData) => {

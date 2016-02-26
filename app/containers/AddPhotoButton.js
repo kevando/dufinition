@@ -38,6 +38,7 @@ class AddPhotoButton extends Component {
   onButtonPress() {
     // Pull up photo
     this.openImagePicker(); // this kicks off an action
+    console.log('addButton props',this.props)
 
   }
   // this, along with the touchable highlight should be its own container i think
@@ -96,9 +97,9 @@ class AddPhotoButton extends Component {
         uri: response.uri.replace('file://', ''),
         isStatic: true
       };
-        savePhoto(source); // ACTION
+        savePhoto(source); // ACTION that puts photo in the ui
         // I feel like this code should go elsewhere, but whatever
-        saveDufine();
+        saveDufine(); // takes word,definition, photo from the ui and stores it in the state
         clearWord();
     });
   } // openImagePicker

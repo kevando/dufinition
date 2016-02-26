@@ -1,7 +1,7 @@
 import React, { StyleSheet, View, PropTypes, Text } from 'react-native';
 
 import SearchIcon from './Search'; // just image
-import SearchPage from '../../containers/SearchPage'; // static page
+import DufineView from '../../containers/DufineView'; // static page
 
 var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
 
@@ -47,9 +47,10 @@ class SearchAndCompose extends React.Component {
   }
 
   goToSearch() {
+
     this.props.toRoute({
       name: 'Search',
-      component: SearchPage,
+      component: DufineView,
       // rightCorner: {}, // this should be empty
       //titleComponent: SearchBar, not changing this as of now. i guess this defaults to the name
     });
@@ -58,7 +59,7 @@ class SearchAndCompose extends React.Component {
   render() {
     //<ComposeIcon />
     // this was inside the view container, but i am not sure why
-    console.log('SearchAndCompose',this.props);
+    // console.log('SearchAndCompose',this.props);
     return (
       <View style={this.styles.iconContainer}>
         <SearchIcon goToSearch={this.goToSearch} />

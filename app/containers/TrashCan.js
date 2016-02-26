@@ -43,7 +43,7 @@ class TrashCan extends Component {
   }
 
   render() {
-    console.log('TrashCan',this.props)
+    // console.log('TrashCan',this.props)
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.onDeletePress}>
         <Icon style={styles.icon} name="trash-o" size={25} color="#fff" />
