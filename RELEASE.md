@@ -1,41 +1,46 @@
 ## Roadmap
 
-### 9.0
+### 2.0
+look into other code push options
+
+### 1.7
 Consider using http://pouchdb.com/
-
-### 8.0
 Submit this to the app store via testflight
-
-### 7.0
 Apply austens style/ui
 Sort list by letter
-
-### 6.5
 refactor worsapi to an action using thunk middleware
 
-### 6.4
+### 1.6.5
 searching for a word you already have brings up the word
 download image to roll
 include better fabric tracking, exluding simulator
 add austen's imagery/design
 deal with definition loop as fragment warning
-
-### 6.3
-add icons
-refactor dufine view so it share components
-figure out waht ... and refactor the delete action
 add auto-back feature after add/delete. possibly refactor route as navigator and add to the actions
 http://stackoverflow.com/questions/33056858/proper-way-to-navigate-with-react-native-redux-and-navigator
 
 
-
-
+### 1.6.4
+push to github
+change the readme to this release schedule so austen can see
+  make this good. and list Current release. look at others for examples
+send this version to austen along w github link
 
 
 
 
 
 ## Changelog
+
+
+
+### 1.6.3
+add icons
+refactor dufine view so it share components
+add 'clear state data' option to the settings page.
+
+### 6.3 changing naming structure
+
 
 ### 6.2
 

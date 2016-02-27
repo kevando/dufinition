@@ -5,11 +5,10 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   // count: 0,
   ui: { // i dont like the idea that i would need to init this cause clearing seems like a hassle
-    word: null, // same todo
-    definition: null, // same
-    photo: null, // will go a way
     dufine: {
-
+      word: null, // same todo
+      definition: null, // same
+      photo: null, // will go a way
     }
   },
   dufines: [ // Default layout from wordsapi
@@ -17,7 +16,7 @@ const initialState = {
       word: "dumb",
       photo: {data:'http://i.imgur.com/iu4446t.jpg'},
       definition: {
-        "word": "dumb ogggg",
+        "word": "dumb OG",
         "results": [
           {
             "definition": "unable to speak because of hereditary deafness",

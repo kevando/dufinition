@@ -54172,7 +54172,9 @@ var createStoreWithMiddleware=(0,_redux.applyMiddleware)(middleware,_reduxThunk2
 var store=createStoreWithMiddleware(reducer);
 
 
+
 var load=storage.createLoader(engine);
+
 load(store);var 
 
 
@@ -74350,7 +74352,7 @@ __d('Dufine/app/reducers/index.js',["Dufine/app/reducers/dufine.js"],function(gl
 
 dufine = _dufine2.default;
 });
-__d('Dufine/app/reducers/dufine.js',["Dufine/app/actions/actionTypes.js"],function(global, require, module, exports) {  Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};exports.default = 
+__d('Dufine/app/reducers/dufine.js',["Dufine/app/actions/actionTypes.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};exports.default = 
 
 
 
@@ -74440,36 +74442,39 @@ __d('Dufine/app/reducers/dufine.js',["Dufine/app/actions/actionTypes.js"],functi
 
 
 
-dufine;function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i < arr.length;i++) arr2[i] = arr[i];return arr2;}else {return Array.from(arr);}}var _actionsActionTypes=require('Dufine/app/actions/actionTypes.js');var types=_interopRequireWildcard(_actionsActionTypes);var initialState={count:0,ui:{word:null,definition:null,photo:null,activeDufine:null},dufines:[{photo:null,definition:{"word":"dumb ogggg","results":[{"definition":"unable to speak because of hereditary deafness","partOfSpeech":"adjective"},{"definition":"slow to learn or understand; lacking intellectual acuity","partOfSpeech":"adjective","synonyms":["dense","dim","dull","obtuse","slow"],"similarTo":["stupid"],"derivation":["dumbness"],"examples":["dumb officials make some really dumb decisions"]},{"definition":"temporarily incapable of speaking","partOfSpeech":"adjective","synonyms":["speechless"],"similarTo":["inarticulate","unarticulate"],"examples":["struck dumb"]},{"definition":"lacking the power of human speech","partOfSpeech":"adjective","similarTo":["unarticulate","inarticulate"],"examples":["dumb animals"]}],"syllables":{"count":1,"list":["dumb"]},"pronunciation":{"all":"dəm"},"frequency":4.68}}]};function dufine(){var state=arguments.length <= 0 || arguments[0] === undefined?initialState:arguments[0];var action=arguments.length <= 1 || arguments[1] === undefined?{}:arguments[1];
+
+
+
+dufine;function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i < arr.length;i++) arr2[i] = arr[i];return arr2;}else {return Array.from(arr);}}var _actionsActionTypes=require('Dufine/app/actions/actionTypes.js');var types=_interopRequireWildcard(_actionsActionTypes);var initialState={ui:{word:null,definition:null,photo:null,dufine:{}},dufines:[{word:"dumb",photo:{data:'http://i.imgur.com/iu4446t.jpg'},definition:{"word":"dumb ogggg","results":[{"definition":"unable to speak because of hereditary deafness","partOfSpeech":"adjective"},{"definition":"slow to learn or understand; lacking intellectual acuity","partOfSpeech":"adjective","synonyms":["dense","dim","dull","obtuse","slow"],"similarTo":["stupid"],"derivation":["dumbness"],"examples":["dumb officials make some really dumb decisions"]},{"definition":"temporarily incapable of speaking","partOfSpeech":"adjective","synonyms":["speechless"],"similarTo":["inarticulate","unarticulate"],"examples":["struck dumb"]},{"definition":"lacking the power of human speech","partOfSpeech":"adjective","similarTo":["unarticulate","inarticulate"],"examples":["dumb animals"]}],"syllables":{"count":1,"list":["dumb"]},"pronunciation":{"all":"dəm"},"frequency":4.68}}]};function dufine(){var state=arguments.length <= 0 || arguments[0] === undefined?initialState:arguments[0];var action=arguments.length <= 1 || arguments[1] === undefined?{}:arguments[1];
 
 
 
 switch(action.type){
-case types.INCREMENT:
-
-return _extends({},
-state,{
-count:state.count + 1});
-
-case types.DECREMENT:
-return _extends({},
-state,{
-count:state.count - 1});
-
 
 case types.SET_DEFINITION:
 return _extends({},
 state,{
-ui:_extends({},
-state.ui,{
-definition:action.payload})});
+ui:{
+dufine:{
+word:"fresh",
+definition:action.payload}}});
 
 
-case types.CLEAR_WORD:
+
+
+
+case types.CLEAR_ACTIVE_DUFINE:
 return _extends({},
 state,{
 ui:{
-word:null}});
+dufine:null}});
+
+
+case types.SET_ACTIVE_DUFINE:
+return _extends({},
+state,{
+ui:{
+dufine:action.payload}});
 
 
 
@@ -74477,24 +74482,15 @@ word:null}});
 
 
 case types.SAVE_DUFINE:
-console.log('SAVE_DUFINE',state.ui);
 return _extends({},
 state,{
 dufines:[].concat(_toConsumableArray(
 state.dufines),[
 {
-word:state.ui.definition.word,
-photo:state.ui.photo,
-definition:state.ui.definition}])});
+word:state.ui.dufine.definition.word,
+photo:state.ui.dufine.photo,
+definition:state.ui.dufine.definition}])});
 
-
-
-case types.SET_ACTIVE_DUFINE:
-console.log('SETACTIFSD',action.payload);
-return _extends({},
-state,{
-ui:{
-activeDufine:action.payload}});
 
 
 
@@ -74502,8 +74498,11 @@ case types.DELETE_DUFINE:
 var elementPosition=state.dufines.map(function(dufine){return dufine.definition.word;}).indexOf(state.ui.activeDufine.definition.word);
 console.log('delete dufine reducer',state.ui.activeDufine);
 console.log('index',elementPosition);
-var newDufineArray=state.dufines.splice(elementPosition,1);
-console.log('newdufinearray',newDufineArray);
+
+var firstHalf=state.dufines.slice(0,elementPosition);
+var secondHalf=state.dufines.slice(elementPosition + 1);
+console.log('first',firstHalf);
+console.log('second',secondHalf);
 
 
 
@@ -74516,8 +74515,8 @@ console.log('newdufinearray',newDufineArray);
 return _extends({},
 state,{
 dufines:[].concat(_toConsumableArray(
-state.dufines.slice(0,elementPosition)),_toConsumableArray(
-state.dufines.slice(elementPosition + 1)))});
+firstHalf),_toConsumableArray(
+secondHalf))});
 
 
 
@@ -74527,9 +74526,15 @@ state.dufines.slice(elementPosition + 1)))});
 case types.SAVE_PHOTO:
 return _extends({},
 state,{
-ui:_extends({},
-state.ui,{
-photo:action.payload})});
+ui:{
+dufine:{
+word:state.ui.dufine.word,
+photo:action.payload,
+definition:state.ui.dufine.definition}}});
+
+
+
+
 
 
 
@@ -74559,10 +74564,12 @@ var SET_DEFINITION='SET_DEFINITION';exports.SET_DEFINITION = SET_DEFINITION;
 
 
 var CLEAR_WORD='CLEAR_WORD';exports.CLEAR_WORD = CLEAR_WORD;
+var SET_WORD='SET_WORD';exports.SET_WORD = SET_WORD;
+var CLEAR_ACTIVE_DUFINE='CLEAR_ACTIVE_DUFINE';exports.CLEAR_ACTIVE_DUFINE = CLEAR_ACTIVE_DUFINE;
 var SAVE_PHOTO='SAVE_PHOTO';exports.SAVE_PHOTO = SAVE_PHOTO;
 var SET_ACTIVE_DUFINE='SET_ACTIVE_DUFINE';exports.SET_ACTIVE_DUFINE = SET_ACTIVE_DUFINE;
 });
-__d('Dufine/app/containers/DufineApp.js',["react-native-simple-router/index.js","react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/components/BackButton.js","Dufine/app/components/icons/SearchAndCompose.js","Dufine/app/components/icons/GetSettings.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js","Dufine/app/containers/ListPage.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNativeSimpleRouter=require(
+__d('Dufine/app/containers/DufineApp.js',["react-native-simple-router/index.js","react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/components/BackButton.js","Dufine/app/components/icons/GetSettings.js","react-redux/lib/index.js","Dufine/app/containers/ListPage.js","Dufine/app/components/icons/SearchAndCompose.js","Dufine/app/actions/dufineActions.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNativeSimpleRouter=require(
 
 
 'react-native-simple-router/index.js');var _reactNativeSimpleRouter2=_interopRequireDefault(_reactNativeSimpleRouter);var _reactNative=require(
@@ -74588,7 +74595,7 @@ leftCorner:_componentsIconsGetSettings2.default};
 
 var styles=_reactNative.StyleSheet.create({
 header:{
-backgroundColor:'#5cafec'}});var 
+backgroundColor:'#4071b8'}});var 
 
 
 
@@ -74597,34 +74604,13 @@ function DufineApp(props){_classCallCheck(this,DufineApp);
 _get(Object.getPrototypeOf(DufineApp.prototype),'constructor',this).call(this,props);}_createClass(DufineApp,[{key:'render',value:
 
 
-
 function render(){
-
-
-
-
 return (
-
 _reactNative2.default.createElement(_reactNativeSimpleRouter2.default,{
 firstRoute:firstRoute,
 headerStyle:styles.header,
 backButtonComponent:_componentsBackButton2.default,
-rightCorner:_componentsIconsSearchAndCompose2.default}));}},{key:'render_non_navigator',value:
-
-
-
-
-
-function render_non_navigator(){var _props=
-
-
-this.props;var state=_props.state;var actions=_props.actions;
-return (
-_reactNative2.default.createElement(_reactNative.View,null,
-_reactNative2.default.createElement(Header,{title:state.activeComponent}),
-_reactNative2.default.createElement(DufineList,_extends({
-dufineList:state.dufineList},
-actions))));}}]);return DufineApp;})(_reactNative.Component);exports.default = 
+rightCorner:_componentsIconsSearchAndCompose2.default}));}}]);return DufineApp;})(_reactNative.Component);exports.default = 
 
 
 
@@ -74632,11 +74618,8 @@ actions))));}}]);return DufineApp;})(_reactNative.Component);exports.default =
 
 
 
+(0,_reactRedux.connect)(function(state){return {};},
 
-
-
-(0,_reactRedux.connect)(function(state){return {
-state:state.counter};},
 
 function(dispatch){return {
 actions:(0,_redux.bindActionCreators)(dufineActions,dispatch)};})(
@@ -75715,10 +75698,10 @@ alignItems:'center'}});
 
 module.exports = NavButton;
 });
-__d('Dufine/app/containers/ListPage.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/DufineListItem.js","Dufine/app/components/DufineBig.js","Dufine/app/containers/TrashCan.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsDufineListItem=require(
+__d('Dufine/app/containers/ListPage.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/DufineListItem.js","Dufine/app/containers/DufineView.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js","Dufine/app/containers/TrashCan.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsDufineListItem=require(
 
-'Dufine/app/components/DufineListItem.js');var _componentsDufineListItem2=_interopRequireDefault(_componentsDufineListItem);var _componentsDufineBig=require(
-'Dufine/app/components/DufineBig.js');var _componentsDufineBig2=_interopRequireDefault(_componentsDufineBig);var _TrashCan=require(
+'Dufine/app/components/DufineListItem.js');var _componentsDufineListItem2=_interopRequireDefault(_componentsDufineListItem);var _DufineView=require(
+'Dufine/app/containers/DufineView.js');var _DufineView2=_interopRequireDefault(_DufineView);var _TrashCan=require(
 'Dufine/app/containers/TrashCan.js');var _TrashCan2=_interopRequireDefault(_TrashCan);var _redux=require(
 
 
@@ -75731,6 +75714,7 @@ var propTypes={
 toRoute:_reactNative.PropTypes.func.isRequired};var 
 
 
+
 ListPage=(function(_Component){_inherits(ListPage,_Component);
 function ListPage(props){_classCallCheck(this,ListPage);
 _get(Object.getPrototypeOf(ListPage.prototype),'constructor',this).call(this,props);
@@ -75740,7 +75724,8 @@ flex:1,
 backgroundColor:'#f5f8fa'}});
 
 
-this.goToDufine = this.goToDufine.bind(this);}_createClass(ListPage,[{key:'goToDufine',value:
+this.goToDufine = this.goToDufine.bind(this);
+this.clearActiveDufine = this.clearActiveDufine.bind(this);}_createClass(ListPage,[{key:'goToDufine',value:
 
 
 
@@ -75753,17 +75738,30 @@ state=this.props.state;
 
 this.props.toRoute({
 name:'Dufine',
-component:_componentsDufineBig2.default,
+component:_DufineView2.default,
 data:dufineData,
 
-rightCorner:_TrashCan2.default});}},{key:'render',value:
+rightCorner:_TrashCan2.default});}},{key:'clearActiveDufine',value:
 
+
+
+function clearActiveDufine(){var _props=
+
+
+this.props;var state=_props.state;var actions=_props.actions;
+var activeDufine=state.ui.dufine;
+
+
+if(activeDufine != null){
+console.log('CELAR SADF');
+actions.clearActiveDufine();}}},{key:'render',value:
 
 
 
 function render(){var _this=this;var 
 
 state=this.props.state;
+
 
 
 
@@ -75808,10 +75806,9 @@ function goToDufine(){
 this.props.goToDufine(this.props);}},{key:"render",value:
 
 
-function render(){var 
+function render(){var _props=
 
-definition=
-this.props.definition;
+this.props;var definition=_props.definition;var word=_props.word;
 
 return (
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:"transparent",onPress:this.goToDufine},
@@ -75825,11 +75822,11 @@ _reactNative2.default.createElement(_reactNative.Text,{style:styles.name},defini
 
 
 
-function render_tweet(){var _props=
+function render_tweet(){var _props2=
 
 
 
-this.props;var text=_props.text;var user=_props.user;
+this.props;var text=_props2.text;var user=_props2.user;
 
 return (
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:"transparent",onPress:this.goToDufine},
@@ -75860,7 +75857,7 @@ flexDirection:'row',
 alignItems:'center',
 backgroundColor:'white',
 borderBottomWidth:1,
-borderColor:'#DAE6F0',
+borderColor:'#ccc',
 paddingTop:4,
 paddingBottom:10},
 
@@ -75898,438 +75895,79 @@ Dufine.propTypes = propTypes;exports.default =
 
 Dufine;module.exports = exports.default;
 });
-__d('Dufine/app/components/DufineBig.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/DufinePhoto.js","Dufine/app/components/DufineWord.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsDufinePhoto=require(
+__d('Dufine/app/containers/DufineView.js',["react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js","Dufine/app/components/DufineWord.js","Dufine/app/containers/WordInput.js","Dufine/app/containers/AddPhotoButton.js","Dufine/app/components/DufineDefinitions.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _redux=require(
 
-'Dufine/app/components/DufinePhoto.js');var _componentsDufinePhoto2=_interopRequireDefault(_componentsDufinePhoto);var _componentsDufineWord=require(
-'Dufine/app/components/DufineWord.js');var _componentsDufineWord2=_interopRequireDefault(_componentsDufineWord);
-
-var propTypes={
-data:_reactNative.PropTypes.object};var 
-
-
-DufineBig=(function(_Component){_inherits(DufineBig,_Component);
-function DufineBig(props){_classCallCheck(this,DufineBig);
-_get(Object.getPrototypeOf(DufineBig.prototype),'constructor',this).call(this,props);
-this.renderDefinitions = this.renderDefinitions.bind(this);}_createClass(DufineBig,[{key:'renderDefinitions',value:
-
-
-function renderDefinitions(){var 
-definition=this.props.data.definition;
-
-Definitions = definition.results.map(function(result,index){
-
-return (
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.rtText},++index,' ',result.definition));});
-
-
-
-return Definitions;}},{key:'render',value:
-
-
-function render(){var _props$data=
-
-this.props.data;var definition=_props$data.definition;var photo=_props$data.photo;
-
-return (
-_reactNative2.default.createElement(_reactNative.View,null,
-_reactNative2.default.createElement(_reactNative.View,{style:styles.tweetContainer},
-_reactNative2.default.createElement(_reactNative.View,{style:styles.userContainer},
-_reactNative2.default.createElement(_reactNative.View,{style:styles.rightContainer},
-_reactNative2.default.createElement(_componentsDufineWord2.default,{definition:definition})),
-
-_reactNative2.default.createElement(_componentsDufinePhoto2.default,{photo:photo})),
-
-_reactNative2.default.createElement(_reactNative.View,{style:styles.retweetContainer},
-this.renderDefinitions()))));}}]);return DufineBig;})(_reactNative.Component);
-
-
-
-
-
-
-
-var styles=_reactNative.StyleSheet.create({
-tweetContainer:{
-margin:10,
-paddingTop:8,
-flexDirection:'row',
-borderTopWidth:1,
-borderColor:'#DAE6F0'},
-
-retweetContainer:{
-margin:10,
-paddingTop:8,
-flexDirection:'row',
-borderTopWidth:5,
-borderColor:'#DAE6F0',
-flexWrap:'wrap',
-flex:1},
-
-
-rtBold:{
-fontSize:14,
-marginRight:3,
-fontWeight:'600'},
-
-rtText:{
-fontSize:14,
-fontWeight:'400',
-color:'#748999',
-flexWrap:'wrap',
-alignSelf:'stretch'},
-
-
-tweetContainer:{
-backgroundColor:'white',
-borderBottomWidth:1,
-borderColor:'#DAE6F0',
-paddingTop:4},
-
-avatar:{
-backgroundColor:'gray',
-width:50,
-height:50,
-marginLeft:10,
-borderRadius:4},
-
-userContainer:{
-flexDirection:'row',
-alignItems:'center',
-flex:1},
-
-textContainer:{
-flex:1,
-padding:10,
-flexDirection:'column'},
-
-username:{
-fontSize:13,
-color:'#8999a5',
-marginTop:2},
-
-name:{
-fontWeight:'600',
-fontSize:15},
-
-text:{
-marginTop:5,
-fontSize:17,
-fontWeight:'300'},
-
-rightContainer:{
-flex:1,
-padding:10}});
-
-
-
-DufineBig.propTypes = propTypes;exports.default = 
-
-DufineBig;module.exports = exports.default;
-});
-__d('Dufine/app/components/DufinePhoto.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require(
-
-
-'react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
-
-
-
-DufinePhoto=(function(_Component){_inherits(DufinePhoto,_Component);
-function DufinePhoto(props){_classCallCheck(this,DufinePhoto);
-_get(Object.getPrototypeOf(DufinePhoto.prototype),'constructor',this).call(this,props);}_createClass(DufinePhoto,[{key:'render',value:
-
-
-
-
-function render(){var 
-
-
-
-photo=
-this.props.photo;
-console.log(photo);
-
-return (
-_reactNative2.default.createElement(_reactNative.View,{style:styles.tweetContainer},
-_reactNative2.default.createElement(_reactNative.Image,{source:{uri:photo.data,scale:3},style:styles.avatar})));}},{key:'render_tweet',value:
-
-
-
-function render_tweet(){var _props=
-
-
-
-this.props;var text=_props.text;var user=_props.user;
-
-return (
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.goToDufine},
-_reactNative2.default.createElement(_reactNative.View,{style:styles.tweetContainer},
-_reactNative2.default.createElement(_reactNative.Image,{source:{uri:user.avatar},style:styles.avatar}),
-_reactNative2.default.createElement(_reactNative.View,{style:styles.rightContainer},
-_reactNative2.default.createElement(_reactNative.View,{style:styles.userContainer},
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.name},user.name),
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.username},'@',user.username)),
-
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.text},text)))));}}]);return DufinePhoto;})(_reactNative.Component);
-
-
-
-
-
-
-var styles=_reactNative.StyleSheet.create({
-tweetContainer:{
-margin:10,
-paddingTop:8,
-flexDirection:'row',
-borderTopWidth:1,
-borderColor:'#DAE6F0'},
-
-retweetContainer:{
-margin:10,
-paddingTop:8,
-flexDirection:'row',
-borderTopWidth:5,
-borderColor:'#DAE6F0',
-flexWrap:'wrap',
-flex:1},
-
-
-rtBold:{
-fontSize:14,
-marginRight:3,
-fontWeight:'600'},
-
-rtText:{
-fontSize:14,
-fontWeight:'400',
-color:'#748999',
-flexWrap:'wrap',
-alignSelf:'stretch'},
-
-
-tweetContainer:{
-backgroundColor:'white',
-borderBottomWidth:1,
-borderColor:'#DAE6F0',
-paddingTop:4},
-
-avatar:{
-backgroundColor:'gray',
-width:50,
-height:50,
-marginLeft:10,
-borderRadius:4},
-
-userContainer:{
-flexDirection:'row',
-alignItems:'center',
-flex:1},
-
-textContainer:{
-flex:1,
-padding:10,
-flexDirection:'column'},
-
-username:{
-fontSize:13,
-color:'#8999a5',
-marginTop:2},
-
-name:{
-fontWeight:'600',
-fontSize:15},
-
-text:{
-marginTop:5,
-fontSize:17,
-fontWeight:'300'},
-
-rightContainer:{
-flex:1,
-padding:10}});exports.default = 
-
-
-
-DufinePhoto;module.exports = exports.default;
-});
-__d('Dufine/app/components/DufineWord.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require(
-
-
-'react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
-
-
-
-DufineWord=(function(_Component){_inherits(DufineWord,_Component);
-function DufineWord(props){_classCallCheck(this,DufineWord);
-_get(Object.getPrototypeOf(DufineWord.prototype),'constructor',this).call(this,props);}_createClass(DufineWord,[{key:'render',value:
-
-
-
-
-function render(){var 
-
-
-
-definition=
-this.props.definition;
-
-return (
-_reactNative2.default.createElement(_reactNative.View,null,
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.name},definition.word),
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.username},definition.results[0].partOfSpeech)));}},{key:'render_tweet',value:
-
-
-
-function render_tweet(){var _props=
-
-
-
-this.props;var text=_props.text;var user=_props.user;
-
-return (
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.goToDufine},
-_reactNative2.default.createElement(_reactNative.View,{style:styles.tweetContainer},
-_reactNative2.default.createElement(_reactNative.Image,{source:{uri:user.avatar},style:styles.avatar}),
-_reactNative2.default.createElement(_reactNative.View,{style:styles.rightContainer},
-_reactNative2.default.createElement(_reactNative.View,{style:styles.userContainer},
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.name},user.name),
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.username},'@',user.username)),
-
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.text},text)))));}}]);return DufineWord;})(_reactNative.Component);
-
-
-
-
-
-
-
-var propTypes={
-word:_reactNative.PropTypes.string};
-
-
-
-DufineWord.propTypes = propTypes;
-
-var styles=_reactNative.StyleSheet.create({
-tweetContainer:{
-margin:10,
-paddingTop:8,
-flexDirection:'row',
-borderTopWidth:1,
-borderColor:'#DAE6F0'},
-
-retweetContainer:{
-margin:10,
-paddingTop:8,
-flexDirection:'row',
-borderTopWidth:5,
-borderColor:'#DAE6F0',
-flexWrap:'wrap',
-flex:1},
-
-
-rtBold:{
-fontSize:14,
-marginRight:3,
-fontWeight:'600'},
-
-rtText:{
-fontSize:14,
-fontWeight:'400',
-color:'#748999',
-flexWrap:'wrap',
-alignSelf:'stretch'},
-
-
-tweetContainer:{
-backgroundColor:'white',
-borderBottomWidth:1,
-borderColor:'#DAE6F0',
-paddingTop:4},
-
-avatar:{
-backgroundColor:'gray',
-width:50,
-height:50,
-marginLeft:10,
-borderRadius:4},
-
-userContainer:{
-flexDirection:'row',
-alignItems:'center',
-flex:1},
-
-textContainer:{
-flex:1,
-padding:10,
-flexDirection:'column'},
-
-username:{
-fontSize:13,
-color:'#8999a5',
-marginTop:2},
-
-name:{
-fontWeight:'600',
-fontSize:15},
-
-text:{
-marginTop:5,
-fontSize:17,
-fontWeight:'300'},
-
-rightContainer:{
-flex:1,
-padding:10}});exports.default = 
-
-
-
-DufineWord;module.exports = exports.default;
-});
-__d('Dufine/app/containers/TrashCan.js',["react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _redux=require(
 
 'redux/lib/index.js');var _actionsDufineActions=require(
-'Dufine/app/actions/dufineActions.js');var DufineActions=_interopRequireWildcard(_actionsDufineActions);var _reactRedux=require(
-'react-redux/lib/index.js');var 
-
-TrashCan=(function(_Component){_inherits(TrashCan,_Component);
-function TrashCan(props){_classCallCheck(this,TrashCan);
-_get(Object.getPrototypeOf(TrashCan.prototype),'constructor',this).call(this,props);
-this.onDeletePress = this.onDeletePress.bind(this);
-this.deleteDufineConfirm = this.deleteDufineConfirm.bind(this);
-
-this.styles = _reactNative.StyleSheet.create({
-icon:{
-width:21,
-height:21,
-marginTop:4,
-marginRight:15}});}_createClass(TrashCan,[{key:'deleteDufineConfirm',value:
+'Dufine/app/actions/dufineActions.js');var dufineActions=_interopRequireWildcard(_actionsDufineActions);var _reactRedux=require(
+'react-redux/lib/index.js');var _WordInput=require(
 
 
 
-
-function deleteDufineConfirm(){var 
-deleteDufine=this.props.actions.deleteDufine;
-deleteDufine();}},{key:'onDeletePress',value:
-
-
-
-
-function onDeletePress(){
-
-
-_reactNative.AlertIOS.alert(
-'You sure bro?','this delete is for keeps',
-[{text:'Yes',onPress:this.deleteDufineConfirm},
-{text:'No',onPress:function(){return console.log('dont deleteeeee');}}]);}},{key:'render',value:
+'Dufine/app/containers/WordInput.js');var _WordInput2=_interopRequireDefault(_WordInput);var _AddPhotoButton=require(
+'Dufine/app/containers/AddPhotoButton.js');var _AddPhotoButton2=_interopRequireDefault(_AddPhotoButton);var _componentsDufineWord=require(
+'Dufine/app/components/DufineWord.js');var _componentsDufineWord2=_interopRequireDefault(_componentsDufineWord);var _componentsDufineDefinitions=require(
+'Dufine/app/components/DufineDefinitions.js');var _componentsDufineDefinitions2=_interopRequireDefault(_componentsDufineDefinitions);
 
 
 
+var styles=_reactNative.StyleSheet.create({
+topContainer:{
+flexDirection:'row',
+alignItems:'center',
+flex:1,
+backgroundColor:'#fff'},
 
-function render(){
+wordContainer:{
+flex:1,
+padding:10,
+marginLeft:10}});var 
+
+
+
+DufineView=(function(_Component){_inherits(DufineView,_Component);
+function DufineView(props){_classCallCheck(this,DufineView);
+_get(Object.getPrototypeOf(DufineView.prototype),'constructor',this).call(this,props);var _props=
+
+this.props;var actions=_props.actions;var data=_props.data;
+
+if(data != null)
+actions.setActiveDufine(data);else 
+
+actions.setActiveDufine(null);
+
+this.onWordSubmit = this.onWordSubmit.bind(this);}_createClass(DufineView,[{key:'onWordSubmit',value:
+
+
+function onWordSubmit(word){}},{key:'render',value:
+
+
+
+
+function render(){var 
+
+
+state=this.props.state;
+
 return (
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.onDeletePress},
-_reactNative2.default.createElement(_reactNative.Text,null,'Delete')));}}]);return TrashCan;})(_reactNative.Component);exports.default = 
+_reactNative2.default.createElement(_reactNative.View,null,
+_reactNative2.default.createElement(_reactNative.View,{style:styles.topContainer},
+
+_reactNative2.default.createElement(_reactNative.View,{style:styles.wordContainer},
+state.ui.dufine == null?
+_reactNative2.default.createElement(_WordInput2.default,null):
+_reactNative2.default.createElement(_componentsDufineWord2.default,{definition:state.ui.dufine.definition})),
+
+
+
+_reactNative2.default.createElement(_reactNative.View,null,
+_reactNative2.default.createElement(_AddPhotoButton2.default,{dufine:state.ui.dufine}))),
+
+
+_reactNative2.default.createElement(_componentsDufineDefinitions2.default,{dufine:state.ui.dufine})));}}]);return DufineView;})(_reactNative.Component);exports.default = 
+
+
+
 
 
 
@@ -76338,14 +75976,14 @@ _reactNative2.default.createElement(_reactNative.Text,null,'Delete')));}}]);retu
 
 
 (0,_reactRedux.connect)(function(state){return {
-state:state.counter};},
+state:state.dufine};},
 
 function(dispatch){return {
-actions:(0,_redux.bindActionCreators)(DufineActions,dispatch)};})(
+actions:(0,_redux.bindActionCreators)(dufineActions,dispatch)};})(
 
-TrashCan);module.exports = exports.default;
+DufineView);module.exports = exports.default;
 });
-__d('Dufine/app/actions/dufineActions.js',["Dufine/app/actions/actionTypes.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});exports.increment = increment;exports.decrement = decrement;exports.getDefinition = getDefinition;exports.setDefinition = setDefinition;exports.clearWord = clearWord;exports.savePhoto = savePhoto;exports.saveDufine = saveDufine;exports.deleteDufine = deleteDufine;exports.setActiveDufine = setActiveDufine;function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}var _actionTypes=require('Dufine/app/actions/actionTypes.js');var types=_interopRequireWildcard(_actionTypes);
+__d('Dufine/app/actions/dufineActions.js',["Dufine/app/actions/actionTypes.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});exports.increment = increment;exports.decrement = decrement;exports.getDefinition = getDefinition;exports.setDefinition = setDefinition;exports.clearWord = clearWord;exports.setWord = setWord;exports.clearActiveDufine = clearActiveDufine;exports.savePhoto = savePhoto;exports.saveDufine = saveDufine;exports.deleteDufine = deleteDufine;exports.setActiveDufine = setActiveDufine;function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}var _actionTypes=require('Dufine/app/actions/actionTypes.js');var types=_interopRequireWildcard(_actionTypes);
 
 function increment(){
 return {
@@ -76382,6 +76020,17 @@ return {
 type:types.CLEAR_WORD};}
 
 
+function setWord(word){
+return {
+type:types.SET_WORD,
+payload:word};}
+
+
+function clearActiveDufine(){
+return {
+type:types.CLEAR_ACTIVE_DUFINE};}
+
+
 
 
 function savePhoto(source){
@@ -76407,217 +76056,6 @@ function setActiveDufine(dufine){
 return {
 type:types.SET_ACTIVE_DUFINE,
 payload:dufine};}
-});
-__d('Dufine/app/components/BackButton.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
-
-BackButton=(function(_React$Component){_inherits(BackButton,_React$Component);function BackButton(){_classCallCheck(this,BackButton);_get(Object.getPrototypeOf(BackButton.prototype),'constructor',this).apply(this,arguments);}_createClass(BackButton,[{key:'render',value:
-function render(){
-return _reactNative2.default.createElement(_reactNative.Text,{style:styles.backButton},'Back');}},{key:'render_imgnotworking',value:
-
-function render_imgnotworking(){
-return (
-_reactNative2.default.createElement(_reactNative.Image,{source:require('../images/back_button.png'),style:styles.backButton}));}}]);return BackButton;})(_reactNative2.default.Component);exports.default = BackButton;
-
-
-
-
-var styles=_reactNative.StyleSheet.create({
-backButton:{
-
-height:17,
-marginLeft:10,
-marginTop:3,
-marginRight:10}});module.exports = exports.default;
-});
-__d('Dufine/app/components/icons/SearchAndCompose.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/icons/Search.js","Dufine/app/containers/SearchPage.js","Dufine/app/components/icons/SearchBar.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _Search=require(
-
-'Dufine/app/components/icons/Search.js');var _Search2=_interopRequireDefault(_Search);var _containersSearchPage=require(
-'Dufine/app/containers/SearchPage.js');var _containersSearchPage2=_interopRequireDefault(_containersSearchPage);var _SearchBar=require(
-'Dufine/app/components/icons/SearchBar.js');var _SearchBar2=_interopRequireDefault(_SearchBar);
-
-var propTypes={
-toRoute:_reactNative.PropTypes.func.isRequired};var 
-
-
-SearchAndCompose=(function(_React$Component){_inherits(SearchAndCompose,_React$Component);
-function SearchAndCompose(props){_classCallCheck(this,SearchAndCompose);
-_get(Object.getPrototypeOf(SearchAndCompose.prototype),'constructor',this).call(this,props);
-
-this.styles = _reactNative.StyleSheet.create({
-iconContainer:{
-flexDirection:'row'},
-
-icon:{
-width:21,
-height:21,
-marginTop:4,
-marginRight:15},
-
-input:{
-backgroundColor:'#3f88bf',
-width:220,
-height:32,
-marginTop:6,
-paddingLeft:10,
-color:'white',
-borderRadius:4}});
-
-
-
-this.goToSearch = this.goToSearch.bind(this);}_createClass(SearchAndCompose,[{key:'goToSearch',value:
-
-
-function goToSearch(){
-this.props.toRoute({
-name:'Search',
-component:_containersSearchPage2.default});}},{key:'render_f',value:
-
-
-
-
-function render_f(){
-return (
-_reactNative2.default.createElement(_reactNative.View,{style:this.styles.iconContainer},
-_reactNative2.default.createElement(_reactNative.Text,null,'Add')));}},{key:'render',value:
-
-
-
-
-function render(){
-
-
-return (
-_reactNative2.default.createElement(_reactNative.View,{style:this.styles.iconContainer},
-_reactNative2.default.createElement(_Search2.default,{goToSearch:this.goToSearch})));}}]);return SearchAndCompose;})(_reactNative2.default.Component);
-
-
-
-
-
-
-SearchAndCompose.propTypes = propTypes;exports.default = 
-
-SearchAndCompose;module.exports = exports.default;
-});
-__d('Dufine/app/components/icons/Search.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,"__esModule",{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if("value" in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if("value" in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{"default":obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _inherits(subClass,superClass){if(typeof superClass !== "function" && superClass !== null){throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
-
-var propTypes={
-goToSearch:_reactNative.PropTypes.func.isRequired};var 
-
-
-SearchIcon=(function(_React$Component){_inherits(SearchIcon,_React$Component);
-function SearchIcon(props){_classCallCheck(this,SearchIcon);
-_get(Object.getPrototypeOf(SearchIcon.prototype),"constructor",this).call(this,props);
-this.styles = _reactNative.StyleSheet.create({
-icon:{
-width:21,
-height:21,
-marginTop:4,
-marginRight:15}});
-
-
-
-this.goToSearch = this.goToSearch.bind(this);}_createClass(SearchIcon,[{key:"goToSearch",value:
-
-
-function goToSearch(){
-this.props.goToSearch();}},{key:"render",value:
-
-
-function render(){
-return (
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:"transparent",onPress:this.goToSearch},
-_reactNative2.default.createElement(_reactNative.Text,null,"Add +")));}},{key:"renderog",value:
-
-
-
-function renderog(){
-return (
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:"transparent",onPress:this.goToSearch},
-_reactNative2.default.createElement(_reactNative.Image,{source:require('../../images/search_icon.png'),style:this.styles.icon})));}}]);return SearchIcon;})(_reactNative2.default.Component);
-
-
-
-
-
-SearchIcon.propTypes = propTypes;exports.default = 
-
-SearchIcon;module.exports = exports.default;
-});
-__d('Dufine/app/containers/SearchPage.js',["react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js","Dufine/app/containers/WordInput.js","Dufine/app/containers/AddPhotoButton.js","Dufine/app/components/DufineWord.js","Dufine/app/components/DufinePhoto.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _redux=require(
-
-
-'redux/lib/index.js');var _actionsDufineActions=require(
-'Dufine/app/actions/dufineActions.js');var dufineActions=_interopRequireWildcard(_actionsDufineActions);var _reactRedux=require(
-'react-redux/lib/index.js');var _WordInput=require(
-
-
-
-'Dufine/app/containers/WordInput.js');var _WordInput2=_interopRequireDefault(_WordInput);var _AddPhotoButton=require(
-'Dufine/app/containers/AddPhotoButton.js');var _AddPhotoButton2=_interopRequireDefault(_AddPhotoButton);var _componentsDufineWord=require(
-'Dufine/app/components/DufineWord.js');var _componentsDufineWord2=_interopRequireDefault(_componentsDufineWord);var _componentsDufinePhoto=require(
-'Dufine/app/components/DufinePhoto.js');var _componentsDufinePhoto2=_interopRequireDefault(_componentsDufinePhoto);var 
-
-
-SearchPage=(function(_Component){_inherits(SearchPage,_Component);
-function SearchPage(props){_classCallCheck(this,SearchPage);
-_get(Object.getPrototypeOf(SearchPage.prototype),'constructor',this).call(this,props);}_createClass(SearchPage,[{key:'render',value:
-
-
-
-
-
-function render(){var 
-
-
-
-ui=this.props.state.ui;
-
-console.log('SearchPage ui',ui);
-
-
-
-return (
-_reactNative2.default.createElement(_reactNative.View,null,
-_reactNative2.default.createElement(_reactNative.View,null,
-
-ui.definition == null?
-_reactNative2.default.createElement(_WordInput2.default,null):
-_reactNative2.default.createElement(_componentsDufineWord2.default,{definition:ui.definition})),
-
-
-
-
-
-_reactNative2.default.createElement(_reactNative.View,null,
-ui.definition != null?
-_reactNative2.default.createElement(_AddPhotoButton2.default,null):
-void 0),
-
-
-_reactNative2.default.createElement(_reactNative.View,null,
-ui.photo != null?
-_reactNative2.default.createElement(_componentsDufinePhoto2.default,{photo:ui.photo}):
-void 0)));}}]);return SearchPage;})(_reactNative.Component);exports.default = 
-
-
-
-
-
-
-
-
-
-
-
-
-(0,_reactRedux.connect)(function(state){return {
-state:state.dufine};},
-
-function(dispatch){return {
-actions:(0,_redux.bindActionCreators)(dufineActions,dispatch)};})(
-
-SearchPage);module.exports = exports.default;
 });
 __d('Dufine/app/containers/WordInput.js',["react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _redux=require(
 
@@ -76694,10 +76132,11 @@ response;return regeneratorRuntime.async(function onButtonPress$(context$2$0){wh
 headers:{'Accept':'application/json','Content-Type':'application/json','X-Mashape-Key':API_KEY}}).
 then(function(response){return response.json();}));case 12:response = context$2$0.sent;
 
-setDefinition(response);context$2$0.next = 20;break;case 16:context$2$0.prev = 16;context$2$0.t0 = context$2$0['catch'](9);
+setDefinition(response);
+this.props.onWordSubmit(word);context$2$0.next = 21;break;case 17:context$2$0.prev = 17;context$2$0.t0 = context$2$0['catch'](9);
 
 
-this.setState({responseText:'Some error, likely word was not found'});throw context$2$0.t0;case 20:case 'end':return context$2$0.stop();}},null,this,[[9,16]]);}},{key:'render',value:
+this.setState({responseText:'Some error, likely word was not found'});throw context$2$0.t0;case 21:case 'end':return context$2$0.stop();}},null,this,[[9,17]]);}},{key:'render',value:
 
 
 
@@ -76748,12 +76187,24 @@ var UIImagePickerManager=require('NativeModules').UIImagePickerManager;
 var styles=_reactNative.StyleSheet.create({
 button:{
 backgroundColor:'#9f88bf',
-width:220,
-height:32,
+width:120,
+height:120,
 marginTop:6,
 padding:10,
 color:'white',
-borderRadius:4}});var 
+borderRadius:4},
+
+photoContainer:{
+marginRight:20,
+paddingTop:2,
+flexDirection:'row',
+backgroundColor:"#fff"},
+
+photo:{
+backgroundColor:'gray',
+width:90,
+height:90,
+margin:1}});var 
 
 
 
@@ -76762,52 +76213,48 @@ borderRadius:4}});var
 
 
 
-AddPhotoButton=(function(_Component){_inherits(AddPhotoButton,_Component);
+DufinePhoto=(function(_Component){_inherits(DufinePhoto,_Component);
 
-function AddPhotoButton(props){_classCallCheck(this,AddPhotoButton);
-_get(Object.getPrototypeOf(AddPhotoButton.prototype),'constructor',this).call(this,props);
-this.onBackButtonPress = this.onBackButtonPress.bind(this);
+function DufinePhoto(props){_classCallCheck(this,DufinePhoto);
+_get(Object.getPrototypeOf(DufinePhoto.prototype),'constructor',this).call(this,props);
+
 this.onButtonPress = this.onButtonPress.bind(this);
-this.openImagePicker = this.openImagePicker.bind(this);}_createClass(AddPhotoButton,[{key:'onButtonPress',value:
+this.openImagePicker = this.openImagePicker.bind(this);}_createClass(DufinePhoto,[{key:'onButtonPress',value:
 
 function onButtonPress(){
 
-this.openImagePicker();}},{key:'onBackButtonPress',value:
+this.openImagePicker();}},{key:'render',value:
 
 
 
-function onBackButtonPress(){var 
+function render(){var 
+dufine=this.props.dufine;
+if(dufine != null){
 
+if(typeof dufine.photo !== 'undefined'){
 
-clearWord=this.props.actions.clearWord;
-clearWord();}},{key:'render',value:
-
-
-
-
-
-
-function render(){
 return (
-_reactNative2.default.createElement(_reactNative.View,null,
-_reactNative2.default.createElement(_reactNative.View,null,
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.onBackButtonPress},
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.button},'Change Word'))),
+_reactNative2.default.createElement(_reactNative.View,{style:styles.photoContainer},
+_reactNative2.default.createElement(_reactNative.Image,{source:{uri:dufine.photo.data,scale:1},style:styles.photo})));}else 
 
 
-_reactNative2.default.createElement(_reactNative.View,null,
+{
+return (
+_reactNative2.default.createElement(_reactNative.View,{style:styles.photoContainer},
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.onButtonPress},
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.button},'Add Photo')))));}},{key:'openImagePicker',value:
+_reactNative2.default.createElement(_reactNative.Text,{style:styles.button},'Add Photo'))));}}else 
 
 
 
 
+{
+return _reactNative2.default.createElement(_reactNative.View,null);}}},{key:'openImagePicker',value:
 
 
 
-function openImagePicker(){
-console.log('openimagepicker props',this.props);var _props$actions=
-this.props.actions;var savePhoto=_props$actions.savePhoto;var saveDufine=_props$actions.saveDufine;var clearWord=_props$actions.clearWord;
+
+function openImagePicker(){var _props$actions=
+this.props.actions;var savePhoto=_props$actions.savePhoto;var saveDufine=_props$actions.saveDufine;
 var options={
 title:'Select Photo',
 cancelButtonTitle:'Cancel',
@@ -76833,8 +76280,8 @@ isStatic:true};
 
 savePhoto(source);
 
-saveDufine();
-clearWord();});}}]);return AddPhotoButton;})(_reactNative.Component);exports.default = 
+saveDufine();});}}]);return DufinePhoto;})(_reactNative.Component);exports.default = 
+
 
 
 
@@ -76848,15 +76295,3840 @@ state:state.dufine};},
 function(dispatch){return {
 actions:(0,_redux.bindActionCreators)(dufineActions,dispatch)};})(
 
-AddPhotoButton);module.exports = exports.default;
+DufinePhoto);module.exports = exports.default;
 });
-__d('Dufine/app/components/icons/SearchBar.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
+__d('Dufine/app/components/DufineWord.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require(
 
-SearchBar=(function(_React$Component){_inherits(SearchBar,_React$Component);
-function SearchBar(props){_classCallCheck(this,SearchBar);
-_get(Object.getPrototypeOf(SearchBar.prototype),'constructor',this).call(this,props);
+
+'react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
+
+
+
+DufineWord=(function(_Component){_inherits(DufineWord,_Component);
+function DufineWord(props){_classCallCheck(this,DufineWord);
+_get(Object.getPrototypeOf(DufineWord.prototype),'constructor',this).call(this,props);}_createClass(DufineWord,[{key:'render',value:
+
+
+
+
+function render(){var 
+definition=this.props.definition;
+
+return (
+_reactNative2.default.createElement(_reactNative.View,null,
+_reactNative2.default.createElement(_reactNative.Text,{style:styles.word},definition.word),
+_reactNative2.default.createElement(_reactNative.Text,{style:styles.pronunciation},'| ',definition.pronunciation,' |'),
+_reactNative2.default.createElement(_reactNative.Text,{style:styles.partOfSpeech},definition.results[0].partOfSpeech)));}}]);return DufineWord;})(_reactNative.Component);
+
+
+
+
+
+
+var propTypes={
+word:_reactNative.PropTypes.string};
+
+
+
+DufineWord.propTypes = propTypes;
+
+var styles=_reactNative.StyleSheet.create({
+
+rtBold:{
+fontSize:14,
+marginRight:3,
+fontWeight:'600'},
+
+rtText:{
+fontSize:14,
+fontWeight:'400',
+color:'#748999',
+flexWrap:'wrap',
+alignSelf:'stretch'},
+
+
+
+pronunciation:{
+fontSize:16,
+color:'#8999a5',
+marginTop:10,
+marginBottom:10},
+
+word:{
+fontWeight:'600',
+fontSize:25,
+fontFamily:'Georgia'},
+
+partOfSpeech:{
+fontWeight:'600',
+fontSize:20,
+fontFamily:'Georgia'}});exports.default = 
+
+
+
+DufineWord;module.exports = exports.default;
+});
+__d('Dufine/app/components/DufineDefinitions.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require(
+
+
+'react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
+
+
+
+DufineDefinitions=(function(_Component){_inherits(DufineDefinitions,_Component);
+function DufineDefinitions(props){_classCallCheck(this,DufineDefinitions);
+_get(Object.getPrototypeOf(DufineDefinitions.prototype),'constructor',this).call(this,props);}_createClass(DufineDefinitions,[{key:'renderDefinitions',value:
+
+
+
+function renderDefinitions(){var 
+definition=this.props.dufine.definition;
+
+Definitions = definition.results.map(function(result,index){
+
+return (
+_reactNative2.default.createElement(_reactNative.Text,{style:styles.definitionText},_reactNative2.default.createElement(_reactNative.Text,{style:styles.definitionCount},++index),' ',result.definition));});
+
+
+
+return Definitions;}},{key:'render',value:
+
+
+function render(){var 
+dufine=this.props.dufine;
+if(dufine != null){
+
+return (
+_reactNative2.default.createElement(_reactNative.View,null,
+this.renderDefinitions()));}else 
+
+
+{
+return _reactNative2.default.createElement(_reactNative.View,null);}}}]);return DufineDefinitions;})(_reactNative.Component);
+
+
+
+
+
+var propTypes={
+word:_reactNative.PropTypes.string};
+
+
+
+DufineDefinitions.propTypes = propTypes;
+
+var styles=_reactNative.StyleSheet.create({
+
+definitionText:{
+fontWeight:'300',
+fontSize:14,
+fontFamily:'Georgia'},
+
+definitionCount:{
+fontWeight:'600',
+fontSize:16,
+fontFamily:'Georgia'}});exports.default = 
+
+
+
+DufineDefinitions;module.exports = exports.default;
+});
+__d('Dufine/app/containers/TrashCan.js',["react-native/Libraries/react-native/react-native.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _redux=require(
+
+'redux/lib/index.js');var _actionsDufineActions=require(
+'Dufine/app/actions/dufineActions.js');var DufineActions=_interopRequireWildcard(_actionsDufineActions);var _reactRedux=require(
+'react-redux/lib/index.js');var Icon=require('FontAwesome');
+
+
+var styles=_reactNative.StyleSheet.create({
+icon:{
+width:25,
+height:25,
+marginTop:0,
+marginRight:8}});var 
+
+
+
+
+TrashCan=(function(_Component){_inherits(TrashCan,_Component);
+function TrashCan(props){_classCallCheck(this,TrashCan);
+_get(Object.getPrototypeOf(TrashCan.prototype),'constructor',this).call(this,props);
+this.onDeletePress = this.onDeletePress.bind(this);
+this.deleteDufineConfirm = this.deleteDufineConfirm.bind(this);}_createClass(TrashCan,[{key:'deleteDufineConfirm',value:
+
+
+
+
+function deleteDufineConfirm(){var 
+deleteDufine=this.props.actions.deleteDufine;
+deleteDufine();}},{key:'onDeletePress',value:
+
+
+
+
+function onDeletePress(){
+
+
+_reactNative.AlertIOS.alert(
+'You sure bro?','this delete is for keeps',
+[{text:'Yes',onPress:this.deleteDufineConfirm},
+{text:'No',onPress:function(){return console.log('dont deleteeeee');}}]);}},{key:'render',value:
+
+
+
+
+function render(){
+
+return (
+_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.onDeletePress},
+_reactNative2.default.createElement(Icon,{style:styles.icon,name:'trash-o',size:25,color:'#fff'})));}}]);return TrashCan;})(_reactNative.Component);exports.default = 
+
+
+
+
+
+
+
+(0,_reactRedux.connect)(function(state){return {
+state:state.counter};},
+
+function(dispatch){return {
+actions:(0,_redux.bindActionCreators)(DufineActions,dispatch)};})(
+
+TrashCan);module.exports = exports.default;
+});
+__d('FontAwesome',["createIconSet"],function(global, require, module, exports) {  'use strict';
+
+
+
+
+
+
+
+var createIconSet=require('createIconSet');
+var glyphMap={
+"glass":61440,
+"music":61441,
+"search":61442,
+"envelope-o":61443,
+"heart":61444,
+"star":61445,
+"star-o":61446,
+"user":61447,
+"film":61448,
+"th-large":61449,
+"th":61450,
+"th-list":61451,
+"check":61452,
+"remove":61453,
+"close":61453,
+"times":61453,
+"search-plus":61454,
+"search-minus":61456,
+"power-off":61457,
+"signal":61458,
+"gear":61459,
+"cog":61459,
+"trash-o":61460,
+"home":61461,
+"file-o":61462,
+"clock-o":61463,
+"road":61464,
+"download":61465,
+"arrow-circle-o-down":61466,
+"arrow-circle-o-up":61467,
+"inbox":61468,
+"play-circle-o":61469,
+"rotate-right":61470,
+"repeat":61470,
+"refresh":61473,
+"list-alt":61474,
+"lock":61475,
+"flag":61476,
+"headphones":61477,
+"volume-off":61478,
+"volume-down":61479,
+"volume-up":61480,
+"qrcode":61481,
+"barcode":61482,
+"tag":61483,
+"tags":61484,
+"book":61485,
+"bookmark":61486,
+"print":61487,
+"camera":61488,
+"font":61489,
+"bold":61490,
+"italic":61491,
+"text-height":61492,
+"text-width":61493,
+"align-left":61494,
+"align-center":61495,
+"align-right":61496,
+"align-justify":61497,
+"list":61498,
+"dedent":61499,
+"outdent":61499,
+"indent":61500,
+"video-camera":61501,
+"photo":61502,
+"image":61502,
+"picture-o":61502,
+"pencil":61504,
+"map-marker":61505,
+"adjust":61506,
+"tint":61507,
+"edit":61508,
+"pencil-square-o":61508,
+"share-square-o":61509,
+"check-square-o":61510,
+"arrows":61511,
+"step-backward":61512,
+"fast-backward":61513,
+"backward":61514,
+"play":61515,
+"pause":61516,
+"stop":61517,
+"forward":61518,
+"fast-forward":61520,
+"step-forward":61521,
+"eject":61522,
+"chevron-left":61523,
+"chevron-right":61524,
+"plus-circle":61525,
+"minus-circle":61526,
+"times-circle":61527,
+"check-circle":61528,
+"question-circle":61529,
+"info-circle":61530,
+"crosshairs":61531,
+"times-circle-o":61532,
+"check-circle-o":61533,
+"ban":61534,
+"arrow-left":61536,
+"arrow-right":61537,
+"arrow-up":61538,
+"arrow-down":61539,
+"mail-forward":61540,
+"share":61540,
+"expand":61541,
+"compress":61542,
+"plus":61543,
+"minus":61544,
+"asterisk":61545,
+"exclamation-circle":61546,
+"gift":61547,
+"leaf":61548,
+"fire":61549,
+"eye":61550,
+"eye-slash":61552,
+"warning":61553,
+"exclamation-triangle":61553,
+"plane":61554,
+"calendar":61555,
+"random":61556,
+"comment":61557,
+"magnet":61558,
+"chevron-up":61559,
+"chevron-down":61560,
+"retweet":61561,
+"shopping-cart":61562,
+"folder":61563,
+"folder-open":61564,
+"arrows-v":61565,
+"arrows-h":61566,
+"bar-chart-o":61568,
+"bar-chart":61568,
+"twitter-square":61569,
+"facebook-square":61570,
+"camera-retro":61571,
+"key":61572,
+"gears":61573,
+"cogs":61573,
+"comments":61574,
+"thumbs-o-up":61575,
+"thumbs-o-down":61576,
+"star-half":61577,
+"heart-o":61578,
+"sign-out":61579,
+"linkedin-square":61580,
+"thumb-tack":61581,
+"external-link":61582,
+"sign-in":61584,
+"trophy":61585,
+"github-square":61586,
+"upload":61587,
+"lemon-o":61588,
+"phone":61589,
+"square-o":61590,
+"bookmark-o":61591,
+"phone-square":61592,
+"twitter":61593,
+"facebook-f":61594,
+"facebook":61594,
+"github":61595,
+"unlock":61596,
+"credit-card":61597,
+"feed":61598,
+"rss":61598,
+"hdd-o":61600,
+"bullhorn":61601,
+"bell":61683,
+"certificate":61603,
+"hand-o-right":61604,
+"hand-o-left":61605,
+"hand-o-up":61606,
+"hand-o-down":61607,
+"arrow-circle-left":61608,
+"arrow-circle-right":61609,
+"arrow-circle-up":61610,
+"arrow-circle-down":61611,
+"globe":61612,
+"wrench":61613,
+"tasks":61614,
+"filter":61616,
+"briefcase":61617,
+"arrows-alt":61618,
+"group":61632,
+"users":61632,
+"chain":61633,
+"link":61633,
+"cloud":61634,
+"flask":61635,
+"cut":61636,
+"scissors":61636,
+"copy":61637,
+"files-o":61637,
+"paperclip":61638,
+"save":61639,
+"floppy-o":61639,
+"square":61640,
+"navicon":61641,
+"reorder":61641,
+"bars":61641,
+"list-ul":61642,
+"list-ol":61643,
+"strikethrough":61644,
+"underline":61645,
+"table":61646,
+"magic":61648,
+"truck":61649,
+"pinterest":61650,
+"pinterest-square":61651,
+"google-plus-square":61652,
+"google-plus":61653,
+"money":61654,
+"caret-down":61655,
+"caret-up":61656,
+"caret-left":61657,
+"caret-right":61658,
+"columns":61659,
+"unsorted":61660,
+"sort":61660,
+"sort-down":61661,
+"sort-desc":61661,
+"sort-up":61662,
+"sort-asc":61662,
+"envelope":61664,
+"linkedin":61665,
+"rotate-left":61666,
+"undo":61666,
+"legal":61667,
+"gavel":61667,
+"dashboard":61668,
+"tachometer":61668,
+"comment-o":61669,
+"comments-o":61670,
+"flash":61671,
+"bolt":61671,
+"sitemap":61672,
+"umbrella":61673,
+"paste":61674,
+"clipboard":61674,
+"lightbulb-o":61675,
+"exchange":61676,
+"cloud-download":61677,
+"cloud-upload":61678,
+"user-md":61680,
+"stethoscope":61681,
+"suitcase":61682,
+"bell-o":61602,
+"coffee":61684,
+"cutlery":61685,
+"file-text-o":61686,
+"building-o":61687,
+"hospital-o":61688,
+"ambulance":61689,
+"medkit":61690,
+"fighter-jet":61691,
+"beer":61692,
+"h-square":61693,
+"plus-square":61694,
+"angle-double-left":61696,
+"angle-double-right":61697,
+"angle-double-up":61698,
+"angle-double-down":61699,
+"angle-left":61700,
+"angle-right":61701,
+"angle-up":61702,
+"angle-down":61703,
+"desktop":61704,
+"laptop":61705,
+"tablet":61706,
+"mobile-phone":61707,
+"mobile":61707,
+"circle-o":61708,
+"quote-left":61709,
+"quote-right":61710,
+"spinner":61712,
+"circle":61713,
+"mail-reply":61714,
+"reply":61714,
+"github-alt":61715,
+"folder-o":61716,
+"folder-open-o":61717,
+"smile-o":61720,
+"frown-o":61721,
+"meh-o":61722,
+"gamepad":61723,
+"keyboard-o":61724,
+"flag-o":61725,
+"flag-checkered":61726,
+"terminal":61728,
+"code":61729,
+"mail-reply-all":61730,
+"reply-all":61730,
+"star-half-empty":61731,
+"star-half-full":61731,
+"star-half-o":61731,
+"location-arrow":61732,
+"crop":61733,
+"code-fork":61734,
+"unlink":61735,
+"chain-broken":61735,
+"question":61736,
+"info":61737,
+"exclamation":61738,
+"superscript":61739,
+"subscript":61740,
+"eraser":61741,
+"puzzle-piece":61742,
+"microphone":61744,
+"microphone-slash":61745,
+"shield":61746,
+"calendar-o":61747,
+"fire-extinguisher":61748,
+"rocket":61749,
+"maxcdn":61750,
+"chevron-circle-left":61751,
+"chevron-circle-right":61752,
+"chevron-circle-up":61753,
+"chevron-circle-down":61754,
+"html5":61755,
+"css3":61756,
+"anchor":61757,
+"unlock-alt":61758,
+"bullseye":61760,
+"ellipsis-h":61761,
+"ellipsis-v":61762,
+"rss-square":61763,
+"play-circle":61764,
+"ticket":61765,
+"minus-square":61766,
+"minus-square-o":61767,
+"level-up":61768,
+"level-down":61769,
+"check-square":61770,
+"pencil-square":61771,
+"external-link-square":61772,
+"share-square":61773,
+"compass":61774,
+"toggle-down":61776,
+"caret-square-o-down":61776,
+"toggle-up":61777,
+"caret-square-o-up":61777,
+"toggle-right":61778,
+"caret-square-o-right":61778,
+"euro":61779,
+"eur":61779,
+"gbp":61780,
+"dollar":61781,
+"usd":61781,
+"rupee":61782,
+"inr":61782,
+"cny":61783,
+"rmb":61783,
+"yen":61783,
+"jpy":61783,
+"ruble":61784,
+"rouble":61784,
+"rub":61784,
+"won":61785,
+"krw":61785,
+"bitcoin":61786,
+"btc":61786,
+"file":61787,
+"file-text":61788,
+"sort-alpha-asc":61789,
+"sort-alpha-desc":61790,
+"sort-amount-asc":61792,
+"sort-amount-desc":61793,
+"sort-numeric-asc":61794,
+"sort-numeric-desc":61795,
+"thumbs-up":61796,
+"thumbs-down":61797,
+"youtube-square":61798,
+"youtube":61799,
+"xing":61800,
+"xing-square":61801,
+"youtube-play":61802,
+"dropbox":61803,
+"stack-overflow":61804,
+"instagram":61805,
+"flickr":61806,
+"adn":61808,
+"bitbucket":61809,
+"bitbucket-square":61810,
+"tumblr":61811,
+"tumblr-square":61812,
+"long-arrow-down":61813,
+"long-arrow-up":61814,
+"long-arrow-left":61815,
+"long-arrow-right":61816,
+"apple":61817,
+"windows":61818,
+"android":61819,
+"linux":61820,
+"dribbble":61821,
+"skype":61822,
+"foursquare":61824,
+"trello":61825,
+"female":61826,
+"male":61827,
+"gittip":61828,
+"gratipay":61828,
+"sun-o":61829,
+"moon-o":61830,
+"archive":61831,
+"bug":61832,
+"vk":61833,
+"weibo":61834,
+"renren":61835,
+"pagelines":61836,
+"stack-exchange":61837,
+"arrow-circle-o-right":61838,
+"arrow-circle-o-left":61840,
+"toggle-left":61841,
+"caret-square-o-left":61841,
+"dot-circle-o":61842,
+"wheelchair":61843,
+"vimeo-square":61844,
+"turkish-lira":61845,
+"try":61845,
+"plus-square-o":61846,
+"space-shuttle":61847,
+"slack":61848,
+"envelope-square":61849,
+"wordpress":61850,
+"openid":61851,
+"institution":61852,
+"bank":61852,
+"university":61852,
+"mortar-board":61853,
+"graduation-cap":61853,
+"yahoo":61854,
+"google":61856,
+"reddit":61857,
+"reddit-square":61858,
+"stumbleupon-circle":61859,
+"stumbleupon":61860,
+"delicious":61861,
+"digg":61862,
+"pied-piper":61863,
+"pied-piper-alt":61864,
+"drupal":61865,
+"joomla":61866,
+"language":61867,
+"fax":61868,
+"building":61869,
+"child":61870,
+"paw":61872,
+"spoon":61873,
+"cube":61874,
+"cubes":61875,
+"behance":61876,
+"behance-square":61877,
+"steam":61878,
+"steam-square":61879,
+"recycle":61880,
+"automobile":61881,
+"car":61881,
+"cab":61882,
+"taxi":61882,
+"tree":61883,
+"spotify":61884,
+"deviantart":61885,
+"soundcloud":61886,
+"database":61888,
+"file-pdf-o":61889,
+"file-word-o":61890,
+"file-excel-o":61891,
+"file-powerpoint-o":61892,
+"file-photo-o":61893,
+"file-picture-o":61893,
+"file-image-o":61893,
+"file-zip-o":61894,
+"file-archive-o":61894,
+"file-sound-o":61895,
+"file-audio-o":61895,
+"file-movie-o":61896,
+"file-video-o":61896,
+"file-code-o":61897,
+"vine":61898,
+"codepen":61899,
+"jsfiddle":61900,
+"life-bouy":61901,
+"life-buoy":61901,
+"life-saver":61901,
+"support":61901,
+"life-ring":61901,
+"circle-o-notch":61902,
+"ra":61904,
+"rebel":61904,
+"ge":61905,
+"empire":61905,
+"git-square":61906,
+"git":61907,
+"y-combinator-square":61908,
+"yc-square":61908,
+"hacker-news":61908,
+"tencent-weibo":61909,
+"qq":61910,
+"wechat":61911,
+"weixin":61911,
+"send":61912,
+"paper-plane":61912,
+"send-o":61913,
+"paper-plane-o":61913,
+"history":61914,
+"circle-thin":61915,
+"header":61916,
+"paragraph":61917,
+"sliders":61918,
+"share-alt":61920,
+"share-alt-square":61921,
+"bomb":61922,
+"soccer-ball-o":61923,
+"futbol-o":61923,
+"tty":61924,
+"binoculars":61925,
+"plug":61926,
+"slideshare":61927,
+"twitch":61928,
+"yelp":61929,
+"newspaper-o":61930,
+"wifi":61931,
+"calculator":61932,
+"paypal":61933,
+"google-wallet":61934,
+"cc-visa":61936,
+"cc-mastercard":61937,
+"cc-discover":61938,
+"cc-amex":61939,
+"cc-paypal":61940,
+"cc-stripe":61941,
+"bell-slash":61942,
+"bell-slash-o":61943,
+"trash":61944,
+"copyright":61945,
+"at":61946,
+"eyedropper":61947,
+"paint-brush":61948,
+"birthday-cake":61949,
+"area-chart":61950,
+"pie-chart":61952,
+"line-chart":61953,
+"lastfm":61954,
+"lastfm-square":61955,
+"toggle-off":61956,
+"toggle-on":61957,
+"bicycle":61958,
+"bus":61959,
+"ioxhost":61960,
+"angellist":61961,
+"cc":61962,
+"shekel":61963,
+"sheqel":61963,
+"ils":61963,
+"meanpath":61964,
+"buysellads":61965,
+"connectdevelop":61966,
+"dashcube":61968,
+"forumbee":61969,
+"leanpub":61970,
+"sellsy":61971,
+"shirtsinbulk":61972,
+"simplybuilt":61973,
+"skyatlas":61974,
+"cart-plus":61975,
+"cart-arrow-down":61976,
+"diamond":61977,
+"ship":61978,
+"user-secret":61979,
+"motorcycle":61980,
+"street-view":61981,
+"heartbeat":61982,
+"venus":61985,
+"mars":61986,
+"mercury":61987,
+"intersex":61988,
+"transgender":61988,
+"transgender-alt":61989,
+"venus-double":61990,
+"mars-double":61991,
+"venus-mars":61992,
+"mars-stroke":61993,
+"mars-stroke-v":61994,
+"mars-stroke-h":61995,
+"neuter":61996,
+"genderless":61997,
+"facebook-official":62000,
+"pinterest-p":62001,
+"whatsapp":62002,
+"server":62003,
+"user-plus":62004,
+"user-times":62005,
+"hotel":62006,
+"bed":62006,
+"viacoin":62007,
+"train":62008,
+"subway":62009,
+"medium":62010,
+"yc":62011,
+"y-combinator":62011,
+"optin-monster":62012,
+"opencart":62013,
+"expeditedssl":62014,
+"battery-4":62016,
+"battery-full":62016,
+"battery-3":62017,
+"battery-three-quarters":62017,
+"battery-2":62018,
+"battery-half":62018,
+"battery-1":62019,
+"battery-quarter":62019,
+"battery-0":62020,
+"battery-empty":62020,
+"mouse-pointer":62021,
+"i-cursor":62022,
+"object-group":62023,
+"object-ungroup":62024,
+"sticky-note":62025,
+"sticky-note-o":62026,
+"cc-jcb":62027,
+"cc-diners-club":62028,
+"clone":62029,
+"balance-scale":62030,
+"hourglass-o":62032,
+"hourglass-1":62033,
+"hourglass-start":62033,
+"hourglass-2":62034,
+"hourglass-half":62034,
+"hourglass-3":62035,
+"hourglass-end":62035,
+"hourglass":62036,
+"hand-grab-o":62037,
+"hand-rock-o":62037,
+"hand-stop-o":62038,
+"hand-paper-o":62038,
+"hand-scissors-o":62039,
+"hand-lizard-o":62040,
+"hand-spock-o":62041,
+"hand-pointer-o":62042,
+"hand-peace-o":62043,
+"trademark":62044,
+"registered":62045,
+"creative-commons":62046,
+"gg":62048,
+"gg-circle":62049,
+"tripadvisor":62050,
+"odnoklassniki":62051,
+"odnoklassniki-square":62052,
+"get-pocket":62053,
+"wikipedia-w":62054,
+"safari":62055,
+"chrome":62056,
+"firefox":62057,
+"opera":62058,
+"internet-explorer":62059,
+"tv":62060,
+"television":62060,
+"contao":62061,
+"500px":62062,
+"amazon":62064,
+"calendar-plus-o":62065,
+"calendar-minus-o":62066,
+"calendar-times-o":62067,
+"calendar-check-o":62068,
+"industry":62069,
+"map-pin":62070,
+"map-signs":62071,
+"map-o":62072,
+"map":62073,
+"commenting":62074,
+"commenting-o":62075,
+"houzz":62076,
+"vimeo":62077,
+"black-tie":62078,
+"fonticons":62080,
+"reddit-alien":62081,
+"edge":62082,
+"credit-card-alt":62083,
+"codiepie":62084,
+"modx":62085,
+"fort-awesome":62086,
+"usb":62087,
+"product-hunt":62088,
+"mixcloud":62089,
+"scribd":62090,
+"pause-circle":62091,
+"pause-circle-o":62092,
+"stop-circle":62093,
+"stop-circle-o":62094,
+"shopping-bag":62096,
+"shopping-basket":62097,
+"hashtag":62098,
+"bluetooth":62099,
+"bluetooth-b":62100,
+"percent":62101};
+
+
+var FontAwesome=createIconSet(glyphMap,'FontAwesome','FontAwesome.ttf');
+
+module.exports = FontAwesome;
+module.exports.glyphMap = glyphMap;
+});
+__d('createIconSet',["lodash/pick.js","lodash/omit.js","lodash/isString.js","lodash/isEqual.js","react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  'use strict';var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};function _objectWithoutProperties(obj,keys){var target={};for(var i in obj) {if(keys.indexOf(i) >= 0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i] = obj[i];}return target;}
+
+
+
+
+
+var pick=require('lodash/pick.js');
+var omit=require('lodash/omit.js');
+var isString=require('lodash/isString.js');
+var isEqual=require('lodash/isEqual.js');
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+View=
+
+
+
+
+
+
+
+
+
+React.View;var Text=React.Text;var StyleSheet=React.StyleSheet;var TouchableHighlight=React.TouchableHighlight;var TabBarIOS=React.TabBarIOS;var requireNativeComponent=React.requireNativeComponent;var NativeModules=React.NativeModules;var Platform=React.Platform;var PixelRatio=React.PixelRatio;var processColor=React.processColor;
+
+var NativeIconAPI=NativeModules.RNVectorIconsManager || NativeModules.RNVectorIconsModule;
+
+var DEFAULT_ICON_SIZE=12;
+var TAB_BAR_ICON_SIZE=30;
+var DEFAULT_ICON_COLOR='black';
+var IOS7_BLUE='#007AFF';
+var DEFAULT_BUTTON_ICON_SIZE=20;
+var DEFAULT_BUTTON_ICON_COLOR='white';
+var DEFAULT_BUTTON_RADIUS=5;
+var DEFAULT_BUTTON_BACKGROUND=IOS7_BLUE;
+
+function createIconSet(glyphMap,fontFamily,fontFile){
+var fontReference=fontFamily;
+
+if(Platform.OS === 'android' && fontFile){
+fontReference = fontFile.replace(/\.(otf|ttf)$/,'');}
+
+
+var Icon=React.createClass({displayName:'Icon',
+propTypes:{
+name:React.PropTypes.oneOf(Object.keys(glyphMap)).isRequired,
+size:React.PropTypes.number,
+color:React.PropTypes.string},
+
+_root:null,
+
+setNativeProps:function(nativeProps){
+if(this._root == null){
+throw new Error("Ref must have been set before calling setNativeProps");}
+
+this._root.setNativeProps(nativeProps);},
+
+
+render:function(){var _this=this;var _props=
+this.props;var name=_props.name;var size=_props.size;var color=_props.color;var style=_props.style;var props=_objectWithoutProperties(_props,['name','size','color','style']);
+
+var glyph=glyphMap[name] || '?';
+if(typeof glyph === 'number'){
+glyph = String.fromCharCode(glyph);}
+
+
+size = size || DEFAULT_ICON_SIZE;
+
+var styleDefaults={
+fontSize:size,
+fontWeight:'normal',
+color:color};
+
+
+props.style = [styleDefaults,style];
+props.ref = function(component){return _this._root = component;};
+
+styleDefaults.fontFamily = fontReference;
+
+return React.createElement(Text,props,glyph,this.props.children);}});
+
+
+
+var styles=StyleSheet.create({
+container:{
+flexDirection:'row',
+justifyContent:'flex-start',
+alignItems:'center',
+padding:8},
+
+touchable:{
+overflow:'hidden'},
+
+icon:{
+marginRight:10},
+
+text:{
+fontWeight:'600',
+backgroundColor:'transparent'}});
+
+
+
+var IconButton=React.createClass({displayName:'IconButton',
+getDefaultProps:function(){
+return {
+size:DEFAULT_BUTTON_ICON_SIZE,
+color:DEFAULT_BUTTON_ICON_COLOR,
+backgroundColor:DEFAULT_BUTTON_BACKGROUND,
+borderRadius:DEFAULT_BUTTON_RADIUS};},
+
+
+
+render:function(){var _props2=
+
+
+
+
+
+this.props;var style=_props2.style;var iconStyle=_props2.iconStyle;var children=_props2.children;var props=_objectWithoutProperties(_props2,['style','iconStyle','children']);
+
+var iconProps=pick(props,Object.keys(Text.propTypes),'style','name','size','color');
+var touchableProps=pick(props,Object.keys(TouchableHighlight.propTypes));
+props = omit(
+props,
+Object.keys(iconProps),
+Object.keys(touchableProps),
+'iconStyle',
+'borderRadius',
+'backgroundColor');
+
+iconProps.style = this.props.iconStyle?[styles.icon,this.props.iconStyle]:styles.icon;
+
+var colorStyle=pick(this.props,'color');
+var blockStyle=pick(this.props,'backgroundColor','borderRadius');
+
+if(isString(children)){
+children = React.createElement(Text,{style:[styles.text,colorStyle]},children);}
+
+
+return (
+React.createElement(TouchableHighlight,_extends({style:[styles.touchable,blockStyle]},touchableProps),
+React.createElement(View,_extends({
+style:[styles.container,blockStyle,style]},
+props),
+
+React.createElement(Icon,iconProps),
+children)));}});
+
+
+
+
+
+
+var imageSourceCache={};
+
+var getImageSource=function(name,size,color){
+if(!NativeIconAPI){
+if(Platform.OS === 'android'){
+throw new Error('RNVectorIconsModule not available, did you properly integrate the module?');}
+
+throw new Error('RNVectorIconsManager not available, did you add the library to your project and link with libRNVectorIcons.a?');}
+
+
+var glyph=glyphMap[name] || '?';
+if(typeof glyph === 'number'){
+glyph = String.fromCharCode(glyph);}
+
+size = size || DEFAULT_ICON_SIZE;
+color = color || DEFAULT_ICON_COLOR;
+
+if(processColor){
+color = processColor(color);}
+
+
+var cacheKey=glyph + ':' + size + ':' + color;
+var scale=PixelRatio.get();
+
+return new Promise(function(resolve,reject){
+var cached=imageSourceCache[cacheKey];
+if(typeof cached !== 'undefined'){
+if(!cached || cached instanceof Error){reject(cached);}
+return resolve({uri:cached,scale:scale});}
+
+NativeIconAPI.getImageForFont(fontReference,glyph,size,color,function(err,image){
+if(typeof err === 'string'){
+err = new Error(err);}
+
+imageSourceCache[cacheKey] = image || err || false;
+if(!err && image){
+return resolve({uri:image,scale:scale});}
+
+reject(err);});});};
+
+
+
+
+
+var TabBarItem=React.createClass({displayName:'TabBarItem',
+propTypes:{
+iconName:React.PropTypes.oneOf(Object.keys(glyphMap)).isRequired,
+selectedIconName:React.PropTypes.oneOf(Object.keys(glyphMap)),
+iconSize:React.PropTypes.number},
+
+
+updateIconSources:function(props){var _this2=this;
+var size=this.props.iconSize || TAB_BAR_ICON_SIZE;
+if(props.iconName){
+getImageSource(props.iconName,size).then(function(icon){return _this2.setState({icon:icon});});}
+
+if(props.selectedIconName){
+getImageSource(props.selectedIconName,size).then(function(selectedIcon){return _this2.setState({selectedIcon:selectedIcon});});}},
+
+
+
+componentWillMount:function(){
+this.updateIconSources(this.props);},
+
+
+componentWillReceiveProps:function(nextProps){
+var keys=Object.keys(TabBarItem.propTypes);
+if(!isEqual(pick(nextProps,keys),pick(this.props,keys))){
+this.updateIconSources(nextProps);}},
+
+
+
+render:function(){
+return React.createElement(TabBarIOS.Item,_extends({},this.props,this.state));}});
+
+
+
+Icon.Button = IconButton;
+Icon.TabBarItem = TabBarItem;
+Icon.getImageSource = getImageSource;
+
+return Icon;}
+;
+
+module.exports = createIconSet;
+});
+__d('lodash/pick.js',["lodash/_baseFlatten.js","lodash/_basePick.js","lodash/rest.js"],function(global, require, module, exports) {  var baseFlatten=require('lodash/_baseFlatten.js'),
+basePick=require('lodash/_basePick.js'),
+rest=require('lodash/rest.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var pick=rest(function(object,props){
+return object == null?{}:basePick(object,baseFlatten(props,1));});
+
+
+module.exports = pick;
+});
+__d('lodash/_baseFlatten.js',["lodash/_arrayPush.js","lodash/isArguments.js","lodash/isArray.js","lodash/isArrayLikeObject.js"],function(global, require, module, exports) {  var arrayPush=require('lodash/_arrayPush.js'),
+isArguments=require('lodash/isArguments.js'),
+isArray=require('lodash/isArray.js'),
+isArrayLikeObject=require('lodash/isArrayLikeObject.js');
+
+
+
+
+
+
+
+
+
+
+
+function baseFlatten(array,depth,isStrict,result){
+result || (result = []);
+
+var index=-1,
+length=array.length;
+
+while(++index < length) {
+var value=array[index];
+if(depth > 0 && isArrayLikeObject(value) && (
+isStrict || isArray(value) || isArguments(value))){
+if(depth > 1){
+
+baseFlatten(value,depth - 1,isStrict,result);}else 
+{
+arrayPush(result,value);}}else 
+
+if(!isStrict){
+result[result.length] = value;}}
+
+
+return result;}
+
+
+module.exports = baseFlatten;
+});
+__d('lodash/_arrayPush.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+arrayPush(array,values){
+var index=-1,
+length=values.length,
+offset=array.length;
+
+while(++index < length) {
+array[offset + index] = values[index];}
+
+return array;}
+
+
+module.exports = arrayPush;
+});
+__d('lodash/isArguments.js',["lodash/isArrayLikeObject.js"],function(global, require, module, exports) {  var isArrayLikeObject=require('lodash/isArrayLikeObject.js');
+
+
+var argsTag='[object Arguments]';
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+var objectToString=objectProto.toString;
+
+
+var propertyIsEnumerable=objectProto.propertyIsEnumerable;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isArguments(value){
+
+return isArrayLikeObject(value) && hasOwnProperty.call(value,'callee') && (
+!propertyIsEnumerable.call(value,'callee') || objectToString.call(value) == argsTag);}
+
+
+module.exports = isArguments;
+});
+__d('lodash/isArrayLikeObject.js',["lodash/isArrayLike.js","lodash/isObjectLike.js"],function(global, require, module, exports) {  var isArrayLike=require('lodash/isArrayLike.js'),
+isObjectLike=require('lodash/isObjectLike.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isArrayLikeObject(value){
+return isObjectLike(value) && isArrayLike(value);}
+
+
+module.exports = isArrayLikeObject;
+});
+__d('lodash/isArrayLike.js',["lodash/_getLength.js","lodash/isFunction.js","lodash/isLength.js"],function(global, require, module, exports) {  var getLength=require('lodash/_getLength.js'),
+isFunction=require('lodash/isFunction.js'),
+isLength=require('lodash/isLength.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isArrayLike(value){
+return value != null && 
+!(typeof value == 'function' && isFunction(value)) && isLength(getLength(value));}
+
+
+module.exports = isArrayLike;
+});
+__d('lodash/_getLength.js',["lodash/_baseProperty.js"],function(global, require, module, exports) {  var baseProperty=require('lodash/_baseProperty.js');
+
+
+
+
+
+
+
+
+
+
+
+var getLength=baseProperty('length');
+
+module.exports = getLength;
+});
+__d('lodash/_baseProperty.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+baseProperty(key){
+return function(object){
+return object == null?undefined:object[key];};}
+
+
+
+module.exports = baseProperty;
+});
+__d('lodash/isFunction.js',["lodash/isObject.js"],function(global, require, module, exports) {  var isObject=require('lodash/isObject.js');
+
+
+var funcTag='[object Function]',
+genTag='[object GeneratorFunction]';
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objectToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isFunction(value){
+
+
+
+var tag=isObject(value)?objectToString.call(value):'';
+return tag == funcTag || tag == genTag;}
+
+
+module.exports = isFunction;
+});
+__d('lodash/isObject.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isObject(value){
+var type=typeof value;
+return !!value && (type == 'object' || type == 'function');}
+
+
+module.exports = isObject;
+});
+__d('lodash/isLength.js',[],function(global, require, module, exports) {  var 
+MAX_SAFE_INTEGER=9007199254740991;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isLength(value){
+return typeof value == 'number' && 
+value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;}
+
+
+module.exports = isLength;
+});
+__d('lodash/isObjectLike.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isObjectLike(value){
+return !!value && typeof value == 'object';}
+
+
+module.exports = isObjectLike;
+});
+__d('lodash/isArray.js',[],function(global, require, module, exports) {  var 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isArray=Array.isArray;
+
+module.exports = isArray;
+});
+__d('lodash/_basePick.js',["lodash/_arrayReduce.js"],function(global, require, module, exports) {  var arrayReduce=require('lodash/_arrayReduce.js');
+
+
+
+
+
+
+
+
+
+
+function basePick(object,props){
+object = Object(object);
+return arrayReduce(props,function(result,key){
+if(key in object){
+result[key] = object[key];}
+
+return result;},
+{});}
+
+
+module.exports = basePick;
+});
+__d('lodash/_arrayReduce.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+
+arrayReduce(array,iteratee,accumulator,initAccum){
+var index=-1,
+length=array.length;
+
+if(initAccum && length){
+accumulator = array[++index];}
+
+while(++index < length) {
+accumulator = iteratee(accumulator,array[index],index,array);}
+
+return accumulator;}
+
+
+module.exports = arrayReduce;
+});
+__d('lodash/rest.js',["lodash/_apply.js","lodash/toInteger.js"],function(global, require, module, exports) {  var apply=require('lodash/_apply.js'),
+toInteger=require('lodash/toInteger.js');
+
+
+var FUNC_ERROR_TEXT='Expected a function';
+
+
+var nativeMax=Math.max;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function rest(func,start){
+if(typeof func != 'function'){
+throw new TypeError(FUNC_ERROR_TEXT);}
+
+start = nativeMax(start === undefined?func.length - 1:toInteger(start),0);
+return function(){
+var args=arguments,
+index=-1,
+length=nativeMax(args.length - start,0),
+array=Array(length);
+
+while(++index < length) {
+array[index] = args[start + index];}
+
+switch(start){
+case 0:return func.call(this,array);
+case 1:return func.call(this,args[0],array);
+case 2:return func.call(this,args[0],args[1],array);}
+
+var otherArgs=Array(start + 1);
+index = -1;
+while(++index < start) {
+otherArgs[index] = args[index];}
+
+otherArgs[start] = array;
+return apply(func,this,otherArgs);};}
+
+
+
+module.exports = rest;
+});
+__d('lodash/_apply.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+apply(func,thisArg,args){
+var length=args.length;
+switch(length){
+case 0:return func.call(thisArg);
+case 1:return func.call(thisArg,args[0]);
+case 2:return func.call(thisArg,args[0],args[1]);
+case 3:return func.call(thisArg,args[0],args[1],args[2]);}
+
+return func.apply(thisArg,args);}
+
+
+module.exports = apply;
+});
+__d('lodash/toInteger.js',["lodash/toNumber.js"],function(global, require, module, exports) {  var toNumber=require('lodash/toNumber.js');
+
+
+var INFINITY=1 / 0,
+MAX_INTEGER=1.7976931348623157e+308;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function toInteger(value){
+if(!value){
+return value === 0?value:0;}
+
+value = toNumber(value);
+if(value === INFINITY || value === -INFINITY){
+var sign=value < 0?-1:1;
+return sign * MAX_INTEGER;}
+
+var remainder=value % 1;
+return value === value?remainder?value - remainder:value:0;}
+
+
+module.exports = toInteger;
+});
+__d('lodash/toNumber.js',["lodash/isFunction.js","lodash/isObject.js"],function(global, require, module, exports) {  var isFunction=require('lodash/isFunction.js'),
+isObject=require('lodash/isObject.js');
+
+
+var NAN=0 / 0;
+
+
+var reTrim=/^\s+|\s+$/g;
+
+
+var reIsBadHex=/^[-+]0x[0-9a-f]+$/i;
+
+
+var reIsBinary=/^0b[01]+$/i;
+
+
+var reIsOctal=/^0o[0-7]+$/i;
+
+
+var freeParseInt=parseInt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function toNumber(value){
+if(isObject(value)){
+var other=isFunction(value.valueOf)?value.valueOf():value;
+value = isObject(other)?other + '':other;}
+
+if(typeof value != 'string'){
+return value === 0?value:+value;}
+
+value = value.replace(reTrim,'');
+var isBinary=reIsBinary.test(value);
+return isBinary || reIsOctal.test(value)?
+freeParseInt(value.slice(2),isBinary?2:8):
+reIsBadHex.test(value)?NAN:+value;}
+
+
+module.exports = toNumber;
+});
+__d('lodash/omit.js',["lodash/_arrayMap.js","lodash/_baseDifference.js","lodash/_baseFlatten.js","lodash/_basePick.js","lodash/keysIn.js","lodash/rest.js"],function(global, require, module, exports) {  var arrayMap=require('lodash/_arrayMap.js'),
+baseDifference=require('lodash/_baseDifference.js'),
+baseFlatten=require('lodash/_baseFlatten.js'),
+basePick=require('lodash/_basePick.js'),
+keysIn=require('lodash/keysIn.js'),
+rest=require('lodash/rest.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var omit=rest(function(object,props){
+if(object == null){
+return {};}
+
+props = arrayMap(baseFlatten(props,1),String);
+return basePick(object,baseDifference(keysIn(object),props));});
+
+
+module.exports = omit;
+});
+__d('lodash/_arrayMap.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+arrayMap(array,iteratee){
+var index=-1,
+length=array.length,
+result=Array(length);
+
+while(++index < length) {
+result[index] = iteratee(array[index],index,array);}
+
+return result;}
+
+
+module.exports = arrayMap;
+});
+__d('lodash/_baseDifference.js',["lodash/_SetCache.js","lodash/_arrayIncludes.js","lodash/_arrayIncludesWith.js","lodash/_arrayMap.js","lodash/_baseUnary.js","lodash/_cacheHas.js"],function(global, require, module, exports) {  var SetCache=require('lodash/_SetCache.js'),
+arrayIncludes=require('lodash/_arrayIncludes.js'),
+arrayIncludesWith=require('lodash/_arrayIncludesWith.js'),
+arrayMap=require('lodash/_arrayMap.js'),
+baseUnary=require('lodash/_baseUnary.js'),
+cacheHas=require('lodash/_cacheHas.js');
+
+
+var LARGE_ARRAY_SIZE=200;
+
+
+
+
+
+
+
+
+
+
+
+
+function baseDifference(array,values,iteratee,comparator){
+var index=-1,
+includes=arrayIncludes,
+isCommon=true,
+length=array.length,
+result=[],
+valuesLength=values.length;
+
+if(!length){
+return result;}
+
+if(iteratee){
+values = arrayMap(values,baseUnary(iteratee));}
+
+if(comparator){
+includes = arrayIncludesWith;
+isCommon = false;}else 
+
+if(values.length >= LARGE_ARRAY_SIZE){
+includes = cacheHas;
+isCommon = false;
+values = new SetCache(values);}
+
+outer: 
+while(++index < length) {
+var value=array[index],
+computed=iteratee?iteratee(value):value;
+
+if(isCommon && computed === computed){
+var valuesIndex=valuesLength;
+while(valuesIndex--) {
+if(values[valuesIndex] === computed){
+continue outer;}}
+
+
+result.push(value);}else 
+
+if(!includes(values,computed,comparator)){
+result.push(value);}}
+
+
+return result;}
+
+
+module.exports = baseDifference;
+});
+__d('lodash/_SetCache.js',["lodash/_MapCache.js","lodash/_cachePush.js"],function(global, require, module, exports) {  var MapCache=require('lodash/_MapCache.js'),
+cachePush=require('lodash/_cachePush.js');
+
+
+
+
+
+
+
+
+
+function SetCache(values){
+var index=-1,
+length=values?values.length:0;
+
+this.__data__ = new MapCache();
+while(++index < length) {
+this.push(values[index]);}}
+
+
+
+
+SetCache.prototype.push = cachePush;
+
+module.exports = SetCache;
+});
+__d('lodash/_MapCache.js',["lodash/_mapClear.js","lodash/_mapDelete.js","lodash/_mapGet.js","lodash/_mapHas.js","lodash/_mapSet.js"],function(global, require, module, exports) {  var mapClear=require('lodash/_mapClear.js'),
+mapDelete=require('lodash/_mapDelete.js'),
+mapGet=require('lodash/_mapGet.js'),
+mapHas=require('lodash/_mapHas.js'),
+mapSet=require('lodash/_mapSet.js');
+
+
+
+
+
+
+
+
+function MapCache(values){
+var index=-1,
+length=values?values.length:0;
+
+this.clear();
+while(++index < length) {
+var entry=values[index];
+this.set(entry[0],entry[1]);}}
+
+
+
+
+MapCache.prototype.clear = mapClear;
+MapCache.prototype['delete'] = mapDelete;
+MapCache.prototype.get = mapGet;
+MapCache.prototype.has = mapHas;
+MapCache.prototype.set = mapSet;
+
+module.exports = MapCache;
+});
+__d('lodash/_mapClear.js',["lodash/_Hash.js","lodash/_Map.js"],function(global, require, module, exports) {  var Hash=require('lodash/_Hash.js'),
+Map=require('lodash/_Map.js');
+
+
+
+
+
+
+
+
+function mapClear(){
+this.__data__ = {
+'hash':new Hash(),
+'map':Map?new Map():[],
+'string':new Hash()};}
+
+
+
+module.exports = mapClear;
+});
+__d('lodash/_Hash.js',["lodash/_nativeCreate.js"],function(global, require, module, exports) {  var nativeCreate=require('lodash/_nativeCreate.js');
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+
+
+
+function Hash(){}
+
+
+Hash.prototype = nativeCreate?nativeCreate(null):objectProto;
+
+module.exports = Hash;
+});
+__d('lodash/_nativeCreate.js',["lodash/_getNative.js"],function(global, require, module, exports) {  var getNative=require('lodash/_getNative.js');
+
+
+var nativeCreate=getNative(Object,'create');
+
+module.exports = nativeCreate;
+});
+__d('lodash/_getNative.js',["lodash/isNative.js"],function(global, require, module, exports) {  var isNative=require('lodash/isNative.js');
+
+
+
+
+
+
+
+
+
+function getNative(object,key){
+var value=object == null?undefined:object[key];
+return isNative(value)?value:undefined;}
+
+
+module.exports = getNative;
+});
+__d('lodash/isNative.js',["lodash/isFunction.js","lodash/_isHostObject.js","lodash/isObjectLike.js"],function(global, require, module, exports) {  var isFunction=require('lodash/isFunction.js'),
+isHostObject=require('lodash/_isHostObject.js'),
+isObjectLike=require('lodash/isObjectLike.js');
+
+
+var reRegExpChar=/[\\^$.*+?()[\]{}|]/g;
+
+
+var reIsHostCtor=/^\[object .+?Constructor\]$/;
+
+
+var objectProto=Object.prototype;
+
+
+var funcToString=Function.prototype.toString;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+var reIsNative=RegExp('^' + 
+funcToString.call(hasOwnProperty).replace(reRegExpChar,'\\$&').
+replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,'$1.*?') + '$');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isNative(value){
+if(value == null){
+return false;}
+
+if(isFunction(value)){
+return reIsNative.test(funcToString.call(value));}
+
+return isObjectLike(value) && 
+(isHostObject(value)?reIsNative:reIsHostCtor).test(value);}
+
+
+module.exports = isNative;
+});
+__d('lodash/_isHostObject.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+isHostObject(value){
+
+
+var result=false;
+if(value != null && typeof value.toString != 'function'){
+try{
+result = !!(value + '');}
+catch(e) {}}
+
+return result;}
+
+
+module.exports = isHostObject;
+});
+__d('lodash/_Map.js',["lodash/_getNative.js","lodash/_root.js"],function(global, require, module, exports) {  var getNative=require('lodash/_getNative.js'),
+root=require('lodash/_root.js');
+
+
+var Map=getNative(root,'Map');
+
+module.exports = Map;
+});
+__d('lodash/_root.js',["lodash/_checkGlobal.js"],function(global, require, module, exports) {  var checkGlobal=require('lodash/_checkGlobal.js');
+
+
+var objectTypes={
+'function':true,
+'object':true};
+
+
+
+var freeExports=objectTypes[typeof exports] && exports && !exports.nodeType?
+exports:
+undefined;
+
+
+var freeModule=objectTypes[typeof module] && module && !module.nodeType?
+module:
+undefined;
+
+
+var freeGlobal=checkGlobal(freeExports && freeModule && typeof global == 'object' && global);
+
+
+var freeSelf=checkGlobal(objectTypes[typeof self] && self);
+
+
+var freeWindow=checkGlobal(objectTypes[typeof window] && window);
+
+
+var thisGlobal=checkGlobal(objectTypes[typeof this] && this);
+
+
+
+
+
+
+
+var root=freeGlobal || 
+freeWindow !== (thisGlobal && thisGlobal.window) && freeWindow || 
+freeSelf || thisGlobal || Function('return this')();
+
+module.exports = root;
+});
+__d('lodash/_checkGlobal.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+checkGlobal(value){
+return value && value.Object === Object?value:null;}
+
+
+module.exports = checkGlobal;
+});
+__d('lodash/_mapDelete.js',["lodash/_Map.js","lodash/_assocDelete.js","lodash/_hashDelete.js","lodash/_isKeyable.js"],function(global, require, module, exports) {  var Map=require('lodash/_Map.js'),
+assocDelete=require('lodash/_assocDelete.js'),
+hashDelete=require('lodash/_hashDelete.js'),
+isKeyable=require('lodash/_isKeyable.js');
+
+
+
+
+
+
+
+
+
+
+function mapDelete(key){
+var data=this.__data__;
+if(isKeyable(key)){
+return hashDelete(typeof key == 'string'?data.string:data.hash,key);}
+
+return Map?data.map['delete'](key):assocDelete(data.map,key);}
+
+
+module.exports = mapDelete;
+});
+__d('lodash/_assocDelete.js',["lodash/_assocIndexOf.js"],function(global, require, module, exports) {  var assocIndexOf=require('lodash/_assocIndexOf.js');
+
+
+var arrayProto=Array.prototype;
+
+
+var splice=arrayProto.splice;
+
+
+
+
+
+
+
+
+
+function assocDelete(array,key){
+var index=assocIndexOf(array,key);
+if(index < 0){
+return false;}
+
+var lastIndex=array.length - 1;
+if(index == lastIndex){
+array.pop();}else 
+{
+splice.call(array,index,1);}
+
+return true;}
+
+
+module.exports = assocDelete;
+});
+__d('lodash/_assocIndexOf.js',["lodash/eq.js"],function(global, require, module, exports) {  var eq=require('lodash/eq.js');
+
+
+
+
+
+
+
+
+
+
+function assocIndexOf(array,key){
+var length=array.length;
+while(length--) {
+if(eq(array[length][0],key)){
+return length;}}
+
+
+return -1;}
+
+
+module.exports = assocIndexOf;
+});
+__d('lodash/eq.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+eq(value,other){
+return value === other || value !== value && other !== other;}
+
+
+module.exports = eq;
+});
+__d('lodash/_hashDelete.js',["lodash/_hashHas.js"],function(global, require, module, exports) {  var hashHas=require('lodash/_hashHas.js');
+
+
+
+
+
+
+
+
+
+function hashDelete(hash,key){
+return hashHas(hash,key) && delete hash[key];}
+
+
+module.exports = hashDelete;
+});
+__d('lodash/_hashHas.js',["lodash/_nativeCreate.js"],function(global, require, module, exports) {  var nativeCreate=require('lodash/_nativeCreate.js');
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+function hashHas(hash,key){
+return nativeCreate?hash[key] !== undefined:hasOwnProperty.call(hash,key);}
+
+
+module.exports = hashHas;
+});
+__d('lodash/_isKeyable.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+isKeyable(value){
+var type=typeof value;
+return type == 'number' || type == 'boolean' || 
+type == 'string' && value != '__proto__' || value == null;}
+
+
+module.exports = isKeyable;
+});
+__d('lodash/_mapGet.js',["lodash/_Map.js","lodash/_assocGet.js","lodash/_hashGet.js","lodash/_isKeyable.js"],function(global, require, module, exports) {  var Map=require('lodash/_Map.js'),
+assocGet=require('lodash/_assocGet.js'),
+hashGet=require('lodash/_hashGet.js'),
+isKeyable=require('lodash/_isKeyable.js');
+
+
+
+
+
+
+
+
+
+
+function mapGet(key){
+var data=this.__data__;
+if(isKeyable(key)){
+return hashGet(typeof key == 'string'?data.string:data.hash,key);}
+
+return Map?data.map.get(key):assocGet(data.map,key);}
+
+
+module.exports = mapGet;
+});
+__d('lodash/_assocGet.js',["lodash/_assocIndexOf.js"],function(global, require, module, exports) {  var assocIndexOf=require('lodash/_assocIndexOf.js');
+
+
+
+
+
+
+
+
+
+function assocGet(array,key){
+var index=assocIndexOf(array,key);
+return index < 0?undefined:array[index][1];}
+
+
+module.exports = assocGet;
+});
+__d('lodash/_hashGet.js',["lodash/_nativeCreate.js"],function(global, require, module, exports) {  var nativeCreate=require('lodash/_nativeCreate.js');
+
+
+var HASH_UNDEFINED='__lodash_hash_undefined__';
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+function hashGet(hash,key){
+if(nativeCreate){
+var result=hash[key];
+return result === HASH_UNDEFINED?undefined:result;}
+
+return hasOwnProperty.call(hash,key)?hash[key]:undefined;}
+
+
+module.exports = hashGet;
+});
+__d('lodash/_mapHas.js',["lodash/_Map.js","lodash/_assocHas.js","lodash/_hashHas.js","lodash/_isKeyable.js"],function(global, require, module, exports) {  var Map=require('lodash/_Map.js'),
+assocHas=require('lodash/_assocHas.js'),
+hashHas=require('lodash/_hashHas.js'),
+isKeyable=require('lodash/_isKeyable.js');
+
+
+
+
+
+
+
+
+
+
+function mapHas(key){
+var data=this.__data__;
+if(isKeyable(key)){
+return hashHas(typeof key == 'string'?data.string:data.hash,key);}
+
+return Map?data.map.has(key):assocHas(data.map,key);}
+
+
+module.exports = mapHas;
+});
+__d('lodash/_assocHas.js',["lodash/_assocIndexOf.js"],function(global, require, module, exports) {  var assocIndexOf=require('lodash/_assocIndexOf.js');
+
+
+
+
+
+
+
+
+
+function assocHas(array,key){
+return assocIndexOf(array,key) > -1;}
+
+
+module.exports = assocHas;
+});
+__d('lodash/_mapSet.js',["lodash/_Map.js","lodash/_assocSet.js","lodash/_hashSet.js","lodash/_isKeyable.js"],function(global, require, module, exports) {  var Map=require('lodash/_Map.js'),
+assocSet=require('lodash/_assocSet.js'),
+hashSet=require('lodash/_hashSet.js'),
+isKeyable=require('lodash/_isKeyable.js');
+
+
+
+
+
+
+
+
+
+
+
+function mapSet(key,value){
+var data=this.__data__;
+if(isKeyable(key)){
+hashSet(typeof key == 'string'?data.string:data.hash,key,value);}else 
+if(Map){
+data.map.set(key,value);}else 
+{
+assocSet(data.map,key,value);}
+
+return this;}
+
+
+module.exports = mapSet;
+});
+__d('lodash/_assocSet.js',["lodash/_assocIndexOf.js"],function(global, require, module, exports) {  var assocIndexOf=require('lodash/_assocIndexOf.js');
+
+
+
+
+
+
+
+
+
+function assocSet(array,key,value){
+var index=assocIndexOf(array,key);
+if(index < 0){
+array.push([key,value]);}else 
+{
+array[index][1] = value;}}
+
+
+
+module.exports = assocSet;
+});
+__d('lodash/_hashSet.js',["lodash/_nativeCreate.js"],function(global, require, module, exports) {  var nativeCreate=require('lodash/_nativeCreate.js');
+
+
+var HASH_UNDEFINED='__lodash_hash_undefined__';
+
+
+
+
+
+
+
+
+
+function hashSet(hash,key,value){
+hash[key] = nativeCreate && value === undefined?HASH_UNDEFINED:value;}
+
+
+module.exports = hashSet;
+});
+__d('lodash/_cachePush.js',["lodash/_isKeyable.js"],function(global, require, module, exports) {  var isKeyable=require('lodash/_isKeyable.js');
+
+
+var HASH_UNDEFINED='__lodash_hash_undefined__';
+
+
+
+
+
+
+
+
+
+function cachePush(value){
+var map=this.__data__;
+if(isKeyable(value)){
+var data=map.__data__,
+hash=typeof value == 'string'?data.string:data.hash;
+
+hash[value] = HASH_UNDEFINED;}else 
+
+{
+map.set(value,HASH_UNDEFINED);}}
+
+
+
+module.exports = cachePush;
+});
+__d('lodash/_arrayIncludes.js',["lodash/_baseIndexOf.js"],function(global, require, module, exports) {  var baseIndexOf=require('lodash/_baseIndexOf.js');
+
+
+
+
+
+
+
+
+
+
+function arrayIncludes(array,value){
+return !!array.length && baseIndexOf(array,value,0) > -1;}
+
+
+module.exports = arrayIncludes;
+});
+__d('lodash/_baseIndexOf.js',["lodash/_indexOfNaN.js"],function(global, require, module, exports) {  var indexOfNaN=require('lodash/_indexOfNaN.js');
+
+
+
+
+
+
+
+
+
+
+function baseIndexOf(array,value,fromIndex){
+if(value !== value){
+return indexOfNaN(array,fromIndex);}
+
+var index=fromIndex - 1,
+length=array.length;
+
+while(++index < length) {
+if(array[index] === value){
+return index;}}
+
+
+return -1;}
+
+
+module.exports = baseIndexOf;
+});
+__d('lodash/_indexOfNaN.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+indexOfNaN(array,fromIndex,fromRight){
+var length=array.length,
+index=fromIndex + (fromRight?0:-1);
+
+while(fromRight?index--:++index < length) {
+var other=array[index];
+if(other !== other){
+return index;}}
+
+
+return -1;}
+
+
+module.exports = indexOfNaN;
+});
+__d('lodash/_arrayIncludesWith.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+
+arrayIncludesWith(array,value,comparator){
+var index=-1,
+length=array.length;
+
+while(++index < length) {
+if(comparator(value,array[index])){
+return true;}}
+
+
+return false;}
+
+
+module.exports = arrayIncludesWith;
+});
+__d('lodash/_baseUnary.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+baseUnary(func){
+return function(value){
+return func(value);};}
+
+
+
+module.exports = baseUnary;
+});
+__d('lodash/_cacheHas.js',["lodash/_isKeyable.js"],function(global, require, module, exports) {  var isKeyable=require('lodash/_isKeyable.js');
+
+
+var HASH_UNDEFINED='__lodash_hash_undefined__';
+
+
+
+
+
+
+
+
+
+function cacheHas(cache,value){
+var map=cache.__data__;
+if(isKeyable(value)){
+var data=map.__data__,
+hash=typeof value == 'string'?data.string:data.hash;
+
+return hash[value] === HASH_UNDEFINED;}
+
+return map.has(value);}
+
+
+module.exports = cacheHas;
+});
+__d('lodash/keysIn.js',["lodash/_baseKeysIn.js","lodash/_indexKeys.js","lodash/_isIndex.js","lodash/_isPrototype.js"],function(global, require, module, exports) {  var baseKeysIn=require('lodash/_baseKeysIn.js'),
+indexKeys=require('lodash/_indexKeys.js'),
+isIndex=require('lodash/_isIndex.js'),
+isPrototype=require('lodash/_isPrototype.js');
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function keysIn(object){
+var index=-1,
+isProto=isPrototype(object),
+props=baseKeysIn(object),
+propsLength=props.length,
+indexes=indexKeys(object),
+skipIndexes=!!indexes,
+result=indexes || [],
+length=result.length;
+
+while(++index < propsLength) {
+var key=props[index];
+if(!(skipIndexes && (key == 'length' || isIndex(key,length))) && 
+!(key == 'constructor' && (isProto || !hasOwnProperty.call(object,key)))){
+result.push(key);}}
+
+
+return result;}
+
+
+module.exports = keysIn;
+});
+__d('lodash/_baseKeysIn.js',["lodash/_Reflect.js","lodash/_iteratorToArray.js"],function(global, require, module, exports) {  var Reflect=require('lodash/_Reflect.js'),
+iteratorToArray=require('lodash/_iteratorToArray.js');
+
+
+var objectProto=Object.prototype;
+
+
+var enumerate=Reflect?Reflect.enumerate:undefined,
+propertyIsEnumerable=objectProto.propertyIsEnumerable;
+
+
+
+
+
+
+
+
+
+function baseKeysIn(object){
+object = object == null?object:Object(object);
+
+var result=[];
+for(var key in object) {
+result.push(key);}
+
+return result;}
+
+
+
+if(enumerate && !propertyIsEnumerable.call({'valueOf':1},'valueOf')){
+baseKeysIn = function(object){
+return iteratorToArray(enumerate(object));};}
+
+
+
+module.exports = baseKeysIn;
+});
+__d('lodash/_Reflect.js',["lodash/_root.js"],function(global, require, module, exports) {  var root=require('lodash/_root.js');
+
+
+var Reflect=root.Reflect;
+
+module.exports = Reflect;
+});
+__d('lodash/_iteratorToArray.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+iteratorToArray(iterator){
+var data,
+result=[];
+
+while(!(data = iterator.next()).done) {
+result.push(data.value);}
+
+return result;}
+
+
+module.exports = iteratorToArray;
+});
+__d('lodash/_indexKeys.js',["lodash/_baseTimes.js","lodash/isArguments.js","lodash/isArray.js","lodash/isLength.js","lodash/isString.js"],function(global, require, module, exports) {  var baseTimes=require('lodash/_baseTimes.js'),
+isArguments=require('lodash/isArguments.js'),
+isArray=require('lodash/isArray.js'),
+isLength=require('lodash/isLength.js'),
+isString=require('lodash/isString.js');
+
+
+
+
+
+
+
+
+
+function indexKeys(object){
+var length=object?object.length:undefined;
+if(isLength(length) && (
+isArray(object) || isString(object) || isArguments(object))){
+return baseTimes(length,String);}
+
+return null;}
+
+
+module.exports = indexKeys;
+});
+__d('lodash/_baseTimes.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+baseTimes(n,iteratee){
+var index=-1,
+result=Array(n);
+
+while(++index < n) {
+result[index] = iteratee(index);}
+
+return result;}
+
+
+module.exports = baseTimes;
+});
+__d('lodash/isString.js',["lodash/isArray.js","lodash/isObjectLike.js"],function(global, require, module, exports) {  var isArray=require('lodash/isArray.js'),
+isObjectLike=require('lodash/isObjectLike.js');
+
+
+var stringTag='[object String]';
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objectToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isString(value){
+return typeof value == 'string' || 
+!isArray(value) && isObjectLike(value) && objectToString.call(value) == stringTag;}
+
+
+module.exports = isString;
+});
+__d('lodash/_isIndex.js',[],function(global, require, module, exports) {  var 
+MAX_SAFE_INTEGER=9007199254740991;
+
+
+var reIsUint=/^(?:0|[1-9]\d*)$/;
+
+
+
+
+
+
+
+
+
+function isIndex(value,length){
+value = typeof value == 'number' || reIsUint.test(value)?+value:-1;
+length = length == null?MAX_SAFE_INTEGER:length;
+return value > -1 && value % 1 == 0 && value < length;}
+
+
+module.exports = isIndex;
+});
+__d('lodash/_isPrototype.js',["lodash/isFunction.js"],function(global, require, module, exports) {  var isFunction=require('lodash/isFunction.js');
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+
+
+
+function isPrototype(value){
+var Ctor=value && value.constructor,
+proto=isFunction(Ctor) && Ctor.prototype || objectProto;
+
+return value === proto;}
+
+
+module.exports = isPrototype;
+});
+__d('lodash/isEqual.js',["lodash/_baseIsEqual.js"],function(global, require, module, exports) {  var baseIsEqual=require('lodash/_baseIsEqual.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isEqual(value,other){
+return baseIsEqual(value,other);}
+
+
+module.exports = isEqual;
+});
+__d('lodash/_baseIsEqual.js',["lodash/_baseIsEqualDeep.js","lodash/isObject.js","lodash/isObjectLike.js"],function(global, require, module, exports) {  var baseIsEqualDeep=require('lodash/_baseIsEqualDeep.js'),
+isObject=require('lodash/isObject.js'),
+isObjectLike=require('lodash/isObjectLike.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function baseIsEqual(value,other,customizer,bitmask,stack){
+if(value === other){
+return true;}
+
+if(value == null || other == null || !isObject(value) && !isObjectLike(other)){
+return value !== value && other !== other;}
+
+return baseIsEqualDeep(value,other,baseIsEqual,customizer,bitmask,stack);}
+
+
+module.exports = baseIsEqual;
+});
+__d('lodash/_baseIsEqualDeep.js',["lodash/_Stack.js","lodash/_equalArrays.js","lodash/_equalByTag.js","lodash/_equalObjects.js","lodash/_getTag.js","lodash/isArray.js","lodash/_isHostObject.js","lodash/isTypedArray.js"],function(global, require, module, exports) {  var Stack=require('lodash/_Stack.js'),
+equalArrays=require('lodash/_equalArrays.js'),
+equalByTag=require('lodash/_equalByTag.js'),
+equalObjects=require('lodash/_equalObjects.js'),
+getTag=require('lodash/_getTag.js'),
+isArray=require('lodash/isArray.js'),
+isHostObject=require('lodash/_isHostObject.js'),
+isTypedArray=require('lodash/isTypedArray.js');
+
+
+var PARTIAL_COMPARE_FLAG=2;
+
+
+var argsTag='[object Arguments]',
+arrayTag='[object Array]',
+objectTag='[object Object]';
+
+
+var objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function baseIsEqualDeep(object,other,equalFunc,customizer,bitmask,stack){
+var objIsArr=isArray(object),
+othIsArr=isArray(other),
+objTag=arrayTag,
+othTag=arrayTag;
+
+if(!objIsArr){
+objTag = getTag(object);
+if(objTag == argsTag){
+objTag = objectTag;}else 
+if(objTag != objectTag){
+objIsArr = isTypedArray(object);}}
+
+
+if(!othIsArr){
+othTag = getTag(other);
+if(othTag == argsTag){
+othTag = objectTag;}else 
+if(othTag != objectTag){
+othIsArr = isTypedArray(other);}}
+
+
+var objIsObj=objTag == objectTag && !isHostObject(object),
+othIsObj=othTag == objectTag && !isHostObject(other),
+isSameTag=objTag == othTag;
+
+if(isSameTag && !(objIsArr || objIsObj)){
+return equalByTag(object,other,objTag,equalFunc,customizer,bitmask);}
+
+var isPartial=bitmask & PARTIAL_COMPARE_FLAG;
+if(!isPartial){
+var objIsWrapped=objIsObj && hasOwnProperty.call(object,'__wrapped__'),
+othIsWrapped=othIsObj && hasOwnProperty.call(other,'__wrapped__');
+
+if(objIsWrapped || othIsWrapped){
+return equalFunc(objIsWrapped?object.value():object,othIsWrapped?other.value():other,customizer,bitmask,stack);}}
+
+
+if(!isSameTag){
+return false;}
+
+stack || (stack = new Stack());
+return (objIsArr?equalArrays:equalObjects)(object,other,equalFunc,customizer,bitmask,stack);}
+
+
+module.exports = baseIsEqualDeep;
+});
+__d('lodash/_Stack.js',["lodash/_stackClear.js","lodash/_stackDelete.js","lodash/_stackGet.js","lodash/_stackHas.js","lodash/_stackSet.js"],function(global, require, module, exports) {  var stackClear=require('lodash/_stackClear.js'),
+stackDelete=require('lodash/_stackDelete.js'),
+stackGet=require('lodash/_stackGet.js'),
+stackHas=require('lodash/_stackHas.js'),
+stackSet=require('lodash/_stackSet.js');
+
+
+
+
+
+
+
+
+function Stack(values){
+var index=-1,
+length=values?values.length:0;
+
+this.clear();
+while(++index < length) {
+var entry=values[index];
+this.set(entry[0],entry[1]);}}
+
+
+
+
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+module.exports = Stack;
+});
+__d('lodash/_stackClear.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+stackClear(){
+this.__data__ = {'array':[],'map':null};}
+
+
+module.exports = stackClear;
+});
+__d('lodash/_stackDelete.js',["lodash/_assocDelete.js"],function(global, require, module, exports) {  var assocDelete=require('lodash/_assocDelete.js');
+
+
+
+
+
+
+
+
+
+
+function stackDelete(key){
+var data=this.__data__,
+array=data.array;
+
+return array?assocDelete(array,key):data.map['delete'](key);}
+
+
+module.exports = stackDelete;
+});
+__d('lodash/_stackGet.js',["lodash/_assocGet.js"],function(global, require, module, exports) {  var assocGet=require('lodash/_assocGet.js');
+
+
+
+
+
+
+
+
+
+
+function stackGet(key){
+var data=this.__data__,
+array=data.array;
+
+return array?assocGet(array,key):data.map.get(key);}
+
+
+module.exports = stackGet;
+});
+__d('lodash/_stackHas.js',["lodash/_assocHas.js"],function(global, require, module, exports) {  var assocHas=require('lodash/_assocHas.js');
+
+
+
+
+
+
+
+
+
+
+function stackHas(key){
+var data=this.__data__,
+array=data.array;
+
+return array?assocHas(array,key):data.map.has(key);}
+
+
+module.exports = stackHas;
+});
+__d('lodash/_stackSet.js',["lodash/_MapCache.js","lodash/_assocSet.js"],function(global, require, module, exports) {  var MapCache=require('lodash/_MapCache.js'),
+assocSet=require('lodash/_assocSet.js');
+
+
+var LARGE_ARRAY_SIZE=200;
+
+
+
+
+
+
+
+
+
+
+
+function stackSet(key,value){
+var data=this.__data__,
+array=data.array;
+
+if(array){
+if(array.length < LARGE_ARRAY_SIZE - 1){
+assocSet(array,key,value);}else 
+{
+data.array = null;
+data.map = new MapCache(array);}}
+
+
+var map=data.map;
+if(map){
+map.set(key,value);}
+
+return this;}
+
+
+module.exports = stackSet;
+});
+__d('lodash/_equalArrays.js',["lodash/_arraySome.js"],function(global, require, module, exports) {  var arraySome=require('lodash/_arraySome.js');
+
+
+var UNORDERED_COMPARE_FLAG=1,
+PARTIAL_COMPARE_FLAG=2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function equalArrays(array,other,equalFunc,customizer,bitmask,stack){
+var index=-1,
+isPartial=bitmask & PARTIAL_COMPARE_FLAG,
+isUnordered=bitmask & UNORDERED_COMPARE_FLAG,
+arrLength=array.length,
+othLength=other.length;
+
+if(arrLength != othLength && !(isPartial && othLength > arrLength)){
+return false;}
+
+
+var stacked=stack.get(array);
+if(stacked){
+return stacked == other;}
+
+var result=true;
+stack.set(array,other);
+
+
+while(++index < arrLength) {
+var arrValue=array[index],
+othValue=other[index];
+
+if(customizer){
+var compared=isPartial?
+customizer(othValue,arrValue,index,other,array,stack):
+customizer(arrValue,othValue,index,array,other,stack);}
+
+if(compared !== undefined){
+if(compared){
+continue;}
+
+result = false;
+break;}
+
+
+if(isUnordered){
+if(!arraySome(other,function(othValue){
+return arrValue === othValue || equalFunc(arrValue,othValue,customizer,bitmask,stack);}))
+{
+result = false;
+break;}}else 
+
+if(!(arrValue === othValue || equalFunc(arrValue,othValue,customizer,bitmask,stack))){
+result = false;
+break;}}
+
+
+stack['delete'](array);
+return result;}
+
+
+module.exports = equalArrays;
+});
+__d('lodash/_arraySome.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+
+
+arraySome(array,predicate){
+var index=-1,
+length=array.length;
+
+while(++index < length) {
+if(predicate(array[index],index,array)){
+return true;}}
+
+
+return false;}
+
+
+module.exports = arraySome;
+});
+__d('lodash/_equalByTag.js',["lodash/_Symbol.js","lodash/_Uint8Array.js","lodash/_mapToArray.js","lodash/_setToArray.js"],function(global, require, module, exports) {  var Symbol=require('lodash/_Symbol.js'),
+Uint8Array=require('lodash/_Uint8Array.js'),
+mapToArray=require('lodash/_mapToArray.js'),
+setToArray=require('lodash/_setToArray.js');
+
+
+var UNORDERED_COMPARE_FLAG=1,
+PARTIAL_COMPARE_FLAG=2;
+
+
+var boolTag='[object Boolean]',
+dateTag='[object Date]',
+errorTag='[object Error]',
+mapTag='[object Map]',
+numberTag='[object Number]',
+regexpTag='[object RegExp]',
+setTag='[object Set]',
+stringTag='[object String]',
+symbolTag='[object Symbol]';
+
+var arrayBufferTag='[object ArrayBuffer]';
+
+
+var symbolProto=Symbol?Symbol.prototype:undefined,
+symbolValueOf=Symbol?symbolProto.valueOf:undefined;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function equalByTag(object,other,tag,equalFunc,customizer,bitmask){
+switch(tag){
+case arrayBufferTag:
+if(object.byteLength != other.byteLength || 
+!equalFunc(new Uint8Array(object),new Uint8Array(other))){
+return false;}
+
+return true;
+
+case boolTag:
+case dateTag:
+
+
+return +object == +other;
+
+case errorTag:
+return object.name == other.name && object.message == other.message;
+
+case numberTag:
+
+return object != +object?other != +other:object == +other;
+
+case regexpTag:
+case stringTag:
+
+
+return object == other + '';
+
+case mapTag:
+var convert=mapToArray;
+
+case setTag:
+var isPartial=bitmask & PARTIAL_COMPARE_FLAG;
+convert || (convert = setToArray);
+
+
+return (isPartial || object.size == other.size) && 
+equalFunc(convert(object),convert(other),customizer,bitmask | UNORDERED_COMPARE_FLAG);
+
+case symbolTag:
+return !!Symbol && symbolValueOf.call(object) == symbolValueOf.call(other);}
+
+return false;}
+
+
+module.exports = equalByTag;
+});
+__d('lodash/_Symbol.js',["lodash/_root.js"],function(global, require, module, exports) {  var root=require('lodash/_root.js');
+
+
+var Symbol=root.Symbol;
+
+module.exports = Symbol;
+});
+__d('lodash/_Uint8Array.js',["lodash/_root.js"],function(global, require, module, exports) {  var root=require('lodash/_root.js');
+
+
+var Uint8Array=root.Uint8Array;
+
+module.exports = Uint8Array;
+});
+__d('lodash/_mapToArray.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+mapToArray(map){
+var index=-1,
+result=Array(map.size);
+
+map.forEach(function(value,key){
+result[++index] = [key,value];});
+
+return result;}
+
+
+module.exports = mapToArray;
+});
+__d('lodash/_setToArray.js',[],function(global, require, module, exports) {  function 
+
+
+
+
+
+
+setToArray(set){
+var index=-1,
+result=Array(set.size);
+
+set.forEach(function(value){
+result[++index] = value;});
+
+return result;}
+
+
+module.exports = setToArray;
+});
+__d('lodash/_equalObjects.js',["lodash/_baseHas.js","lodash/keys.js"],function(global, require, module, exports) {  var baseHas=require('lodash/_baseHas.js'),
+keys=require('lodash/keys.js');
+
+
+var PARTIAL_COMPARE_FLAG=2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function equalObjects(object,other,equalFunc,customizer,bitmask,stack){
+var isPartial=bitmask & PARTIAL_COMPARE_FLAG,
+objProps=keys(object),
+objLength=objProps.length,
+othProps=keys(other),
+othLength=othProps.length;
+
+if(objLength != othLength && !isPartial){
+return false;}
+
+var index=objLength;
+while(index--) {
+var key=objProps[index];
+if(!(isPartial?key in other:baseHas(other,key))){
+return false;}}
+
+
+
+var stacked=stack.get(object);
+if(stacked){
+return stacked == other;}
+
+var result=true;
+stack.set(object,other);
+
+var skipCtor=isPartial;
+while(++index < objLength) {
+key = objProps[index];
+var objValue=object[key],
+othValue=other[key];
+
+if(customizer){
+var compared=isPartial?
+customizer(othValue,objValue,key,other,object,stack):
+customizer(objValue,othValue,key,object,other,stack);}
+
+
+if(!(compared === undefined?
+objValue === othValue || equalFunc(objValue,othValue,customizer,bitmask,stack):
+compared))
+{
+result = false;
+break;}
+
+skipCtor || (skipCtor = key == 'constructor');}
+
+if(result && !skipCtor){
+var objCtor=object.constructor,
+othCtor=other.constructor;
+
+
+if(objCtor != othCtor && 
+'constructor' in object && 'constructor' in other && 
+!(typeof objCtor == 'function' && objCtor instanceof objCtor && 
+typeof othCtor == 'function' && othCtor instanceof othCtor)){
+result = false;}}
+
+
+stack['delete'](object);
+return result;}
+
+
+module.exports = equalObjects;
+});
+__d('lodash/_baseHas.js',[],function(global, require, module, exports) {  var 
+objectProto=Object.prototype;
+
+
+var hasOwnProperty=objectProto.hasOwnProperty;
+
+
+var getPrototypeOf=Object.getPrototypeOf;
+
+
+
+
+
+
+
+
+
+function baseHas(object,key){
+
+
+
+return hasOwnProperty.call(object,key) || 
+typeof object == 'object' && key in object && getPrototypeOf(object) === null;}
+
+
+module.exports = baseHas;
+});
+__d('lodash/keys.js',["lodash/_baseHas.js","lodash/_baseKeys.js","lodash/_indexKeys.js","lodash/isArrayLike.js","lodash/_isIndex.js","lodash/_isPrototype.js"],function(global, require, module, exports) {  var baseHas=require('lodash/_baseHas.js'),
+baseKeys=require('lodash/_baseKeys.js'),
+indexKeys=require('lodash/_indexKeys.js'),
+isArrayLike=require('lodash/isArrayLike.js'),
+isIndex=require('lodash/_isIndex.js'),
+isPrototype=require('lodash/_isPrototype.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function keys(object){
+var isProto=isPrototype(object);
+if(!(isProto || isArrayLike(object))){
+return baseKeys(object);}
+
+var indexes=indexKeys(object),
+skipIndexes=!!indexes,
+result=indexes || [],
+length=result.length;
+
+for(var key in object) {
+if(baseHas(object,key) && 
+!(skipIndexes && (key == 'length' || isIndex(key,length))) && 
+!(isProto && key == 'constructor')){
+result.push(key);}}
+
+
+return result;}
+
+
+module.exports = keys;
+});
+__d('lodash/_baseKeys.js',[],function(global, require, module, exports) {  var 
+nativeKeys=Object.keys;
+
+
+
+
+
+
+
+
+
+function baseKeys(object){
+return nativeKeys(Object(object));}
+
+
+module.exports = baseKeys;
+});
+__d('lodash/_getTag.js',["lodash/_Map.js","lodash/_Set.js","lodash/_WeakMap.js"],function(global, require, module, exports) {  var Map=require('lodash/_Map.js'),
+Set=require('lodash/_Set.js'),
+WeakMap=require('lodash/_WeakMap.js');
+
+
+var mapTag='[object Map]',
+objectTag='[object Object]',
+setTag='[object Set]',
+weakMapTag='[object WeakMap]';
+
+
+var objectProto=Object.prototype;
+
+
+var funcToString=Function.prototype.toString;
+
+
+
+
+
+var objectToString=objectProto.toString;
+
+
+var mapCtorString=Map?funcToString.call(Map):'',
+setCtorString=Set?funcToString.call(Set):'',
+weakMapCtorString=WeakMap?funcToString.call(WeakMap):'';
+
+
+
+
+
+
+
+
+function getTag(value){
+return objectToString.call(value);}
+
+
+
+if(Map && getTag(new Map()) != mapTag || 
+Set && getTag(new Set()) != setTag || 
+WeakMap && getTag(new WeakMap()) != weakMapTag){
+getTag = function(value){
+var result=objectToString.call(value),
+Ctor=result == objectTag?value.constructor:null,
+ctorString=typeof Ctor == 'function'?funcToString.call(Ctor):'';
+
+if(ctorString){
+switch(ctorString){
+case mapCtorString:return mapTag;
+case setCtorString:return setTag;
+case weakMapCtorString:return weakMapTag;}}
+
+
+return result;};}
+
+
+
+module.exports = getTag;
+});
+__d('lodash/_Set.js',["lodash/_getNative.js","lodash/_root.js"],function(global, require, module, exports) {  var getNative=require('lodash/_getNative.js'),
+root=require('lodash/_root.js');
+
+
+var Set=getNative(root,'Set');
+
+module.exports = Set;
+});
+__d('lodash/_WeakMap.js',["lodash/_getNative.js","lodash/_root.js"],function(global, require, module, exports) {  var getNative=require('lodash/_getNative.js'),
+root=require('lodash/_root.js');
+
+
+var WeakMap=getNative(root,'WeakMap');
+
+module.exports = WeakMap;
+});
+__d('lodash/isTypedArray.js',["lodash/isLength.js","lodash/isObjectLike.js"],function(global, require, module, exports) {  var isLength=require('lodash/isLength.js'),
+isObjectLike=require('lodash/isObjectLike.js');
+
+
+var argsTag='[object Arguments]',
+arrayTag='[object Array]',
+boolTag='[object Boolean]',
+dateTag='[object Date]',
+errorTag='[object Error]',
+funcTag='[object Function]',
+mapTag='[object Map]',
+numberTag='[object Number]',
+objectTag='[object Object]',
+regexpTag='[object RegExp]',
+setTag='[object Set]',
+stringTag='[object String]',
+weakMapTag='[object WeakMap]';
+
+var arrayBufferTag='[object ArrayBuffer]',
+float32Tag='[object Float32Array]',
+float64Tag='[object Float64Array]',
+int8Tag='[object Int8Array]',
+int16Tag='[object Int16Array]',
+int32Tag='[object Int32Array]',
+uint8Tag='[object Uint8Array]',
+uint8ClampedTag='[object Uint8ClampedArray]',
+uint16Tag='[object Uint16Array]',
+uint32Tag='[object Uint32Array]';
+
+
+var typedArrayTags={};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = 
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = 
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = 
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = 
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = 
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = 
+typedArrayTags[dateTag] = typedArrayTags[errorTag] = 
+typedArrayTags[funcTag] = typedArrayTags[mapTag] = 
+typedArrayTags[numberTag] = typedArrayTags[objectTag] = 
+typedArrayTags[regexpTag] = typedArrayTags[setTag] = 
+typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+
+
+var objectProto=Object.prototype;
+
+
+
+
+
+var objectToString=objectProto.toString;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function isTypedArray(value){
+return isObjectLike(value) && 
+isLength(value.length) && !!typedArrayTags[objectToString.call(value)];}
+
+
+module.exports = isTypedArray;
+});
+__d('Dufine/app/components/BackButton.js',["react-native/Libraries/react-native/react-native.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
+var Icon=require('FontAwesome');var 
+BackButton=(function(_React$Component){_inherits(BackButton,_React$Component);function BackButton(){_classCallCheck(this,BackButton);_get(Object.getPrototypeOf(BackButton.prototype),'constructor',this).apply(this,arguments);}_createClass(BackButton,[{key:'render',value:
+function render(){
+return _reactNative2.default.createElement(Icon,{style:styles.icon,name:'angle-left',size:25,color:'#fff'});}}]);return BackButton;})(_reactNative2.default.Component);exports.default = BackButton;
+
+
+
+var styles=_reactNative.StyleSheet.create({
+icon:{
+width:25,
+height:25,
+marginTop:0,
+marginLeft:8}});module.exports = exports.default;
+});
+__d('Dufine/app/components/icons/SearchAndCompose.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/icons/Search.js","Dufine/app/containers/DufineView.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _Search=require(
+
+'Dufine/app/components/icons/Search.js');var _Search2=_interopRequireDefault(_Search);var _containersDufineView=require(
+'Dufine/app/containers/DufineView.js');var _containersDufineView2=_interopRequireDefault(_containersDufineView);
+
+var Icon=require('FontAwesome');
+
+var styles=_reactNative.StyleSheet.create({
+icon:{
+width:25,
+height:25,
+marginTop:0,
+marginLeft:8}});
+
+
+
+var propTypes={
+toRoute:_reactNative.PropTypes.func.isRequired};var 
+
+
+SearchAndCompose=(function(_React$Component){_inherits(SearchAndCompose,_React$Component);
+function SearchAndCompose(props){_classCallCheck(this,SearchAndCompose);
+_get(Object.getPrototypeOf(SearchAndCompose.prototype),'constructor',this).call(this,props);
 
 this.styles = _reactNative.StyleSheet.create({
+iconContainer:{
+flexDirection:'row'},
+
+icon:{
+width:21,
+height:21,
+marginTop:4,
+marginRight:15},
+
 input:{
 backgroundColor:'#3f88bf',
 width:220,
@@ -76864,36 +80136,105 @@ height:32,
 marginTop:6,
 paddingLeft:10,
 color:'white',
-borderRadius:4}});}_createClass(SearchBar,[{key:'render',value:
+borderRadius:4}});
+
+
+
+this.goToSearch = this.goToSearch.bind(this);}_createClass(SearchAndCompose,[{key:'goToSearch',value:
+
+
+function goToSearch(){
+
+this.props.toRoute({
+name:'Search',
+component:_containersDufineView2.default});}},{key:'render',value:
+
 
 
 
 
 function render(){
-return (
-_reactNative2.default.createElement(_reactNative.TextInput,{style:this.styles.input,placeholder:'Search Twitter'}));}}]);return SearchBar;})(_reactNative2.default.Component);exports.default = SearchBar;module.exports = exports.default;
-});
-__d('Dufine/app/components/icons/GetSettings.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/AppSettings.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsAppSettings=require(
 
-'Dufine/app/components/AppSettings.js');var _componentsAppSettings2=_interopRequireDefault(_componentsAppSettings);
+
+
+return (
+_reactNative2.default.createElement(_reactNative.View,{style:this.styles.iconContainer},
+_reactNative2.default.createElement(_Search2.default,{goToSearch:this.goToSearch})));}}]);return SearchAndCompose;})(_reactNative2.default.Component);
+
+
+
+
+
+
+SearchAndCompose.propTypes = propTypes;exports.default = 
+
+SearchAndCompose;module.exports = exports.default;
+});
+__d('Dufine/app/components/icons/Search.js',["react-native/Libraries/react-native/react-native.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
+
+var Icon=require('FontAwesome');
 
 var propTypes={
-toRoute:_reactNative.PropTypes.func.isRequired};var 
+goToSearch:_reactNative.PropTypes.func.isRequired};
+
+
+var styles=_reactNative.StyleSheet.create({
+icon:{
+width:25,
+height:25,
+marginTop:0,
+marginRight:8}});var 
+
+
+
+SearchIcon=(function(_React$Component){_inherits(SearchIcon,_React$Component);
+function SearchIcon(props){_classCallCheck(this,SearchIcon);
+_get(Object.getPrototypeOf(SearchIcon.prototype),'constructor',this).call(this,props);
+
+
+this.goToSearch = this.goToSearch.bind(this);}_createClass(SearchIcon,[{key:'goToSearch',value:
+
+
+function goToSearch(){
+this.props.goToSearch();}},{key:'render',value:
+
+
+function render(){
+
+return (
+_reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.goToSearch},
+_reactNative2.default.createElement(Icon,{style:styles.icon,name:'edit',size:25,color:'#fff'})));}}]);return SearchIcon;})(_reactNative2.default.Component);
+
+
+
+
+
+SearchIcon.propTypes = propTypes;exports.default = 
+
+SearchIcon;module.exports = exports.default;
+});
+__d('Dufine/app/components/icons/GetSettings.js',["react-native/Libraries/react-native/react-native.js","FontAwesome","Dufine/app/components/AppSettings.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsAppSettings=require(
+
+
+
+
+'Dufine/app/components/AppSettings.js');var _componentsAppSettings2=_interopRequireDefault(_componentsAppSettings);var Icon=require('FontAwesome');
+
+var propTypes={
+toRoute:_reactNative.PropTypes.func.isRequired};
+
+var styles=_reactNative.StyleSheet.create({
+icon:{
+width:25,
+height:25,
+marginTop:0,
+marginLeft:8}});var 
+
 
 
 AddPeopleIcon=(function(_React$Component){_inherits(AddPeopleIcon,_React$Component);
 function AddPeopleIcon(props){_classCallCheck(this,AddPeopleIcon);
 _get(Object.getPrototypeOf(AddPeopleIcon.prototype),'constructor',this).call(this,props);
-
-this.styles = _reactNative.StyleSheet.create({
-icon:{
-width:25,
-height:18,
-marginTop:5,
-marginLeft:8}});
-
-
-
 this.goToAddPage = this.goToAddPage.bind(this);}_createClass(AddPeopleIcon,[{key:'goToAddPage',value:
 
 
@@ -76906,7 +80247,7 @@ component:_componentsAppSettings2.default});}},{key:'render',value:
 function render(){
 return (
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.goToAddPage},
-_reactNative2.default.createElement(_reactNative.Text,null,'info')));}}]);return AddPeopleIcon;})(_reactNative2.default.Component);
+_reactNative2.default.createElement(Icon,{style:styles.icon,name:'gear',size:25,color:'#fff'})));}}]);return AddPeopleIcon;})(_reactNative2.default.Component);
 
 
 
@@ -76916,7 +80257,9 @@ AddPeopleIcon.propTypes = propTypes;exports.default =
 
 AddPeopleIcon;module.exports = exports.default;
 });
-__d('Dufine/app/components/AppSettings.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var 
+__d('Dufine/app/components/AppSettings.js',["react-native/Libraries/react-native/react-native.js","react-native-device-info"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
+
+var DeviceInfo=require('react-native-device-info');var 
 
 FindPeoplePage=(function(_React$Component){_inherits(FindPeoplePage,_React$Component);
 function FindPeoplePage(props){_classCallCheck(this,FindPeoplePage);
@@ -76933,7 +80276,53 @@ alignItems:'center'}});}_createClass(FindPeoplePage,[{key:'render',value:
 function render(){
 return (
 _reactNative2.default.createElement(_reactNative.View,{style:this.styles.container},
-_reactNative2.default.createElement(_reactNative.Text,null,'App Settings will go here.')));}}]);return FindPeoplePage;})(_reactNative2.default.Component);exports.default = FindPeoplePage;module.exports = exports.default;
+_reactNative2.default.createElement(_reactNative.Text,null,'App Version: ',DeviceInfo.getVersion())));}}]);return FindPeoplePage;})(_reactNative2.default.Component);exports.default = FindPeoplePage;module.exports = exports.default;
+});
+__d('react-native-device-info',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  var 
+
+
+
+RNDeviceInfo=require('react-native/Libraries/react-native/react-native.js').NativeModules.RNDeviceInfo;
+
+module.exports = {
+getUniqueID:function(){
+return RNDeviceInfo.uniqueId;},
+
+getDeviceId:function(){
+return RNDeviceInfo.deviceId;},
+
+getManufacturer:function(){
+return RNDeviceInfo.systemManufacturer;},
+
+getModel:function(){
+return RNDeviceInfo.model;},
+
+getSystemName:function(){
+return RNDeviceInfo.systemName;},
+
+getSystemVersion:function(){
+return RNDeviceInfo.systemVersion;},
+
+getBundleId:function(){
+return RNDeviceInfo.bundleId;},
+
+getBuildNumber:function(){
+return RNDeviceInfo.buildNumber;},
+
+getVersion:function(){
+return RNDeviceInfo.appVersion;},
+
+getReadableVersion:function(){
+return RNDeviceInfo.appVersion + "." + RNDeviceInfo.buildNumber;},
+
+getDeviceName:function(){
+return RNDeviceInfo.deviceName;},
+
+getUserAgent:function(){
+return RNDeviceInfo.userAgent;},
+
+getDeviceLocale:function(){
+return RNDeviceInfo.deviceLocale;}};
 });
 __d('redux-storage/build/index.js',["redux-storage/build/createLoader.js","redux-storage/build/createMiddleware.js","redux-storage/build/reducer.js","redux-storage/build/constants.js","redux-storage/build/constants.js","redux-storage/build/createLoader.js","redux-storage/build/createMiddleware.js","redux-storage/build/reducer.js"],function(global, require, module, exports) {  'use strict';
 
