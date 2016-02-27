@@ -2,21 +2,21 @@
 
 Lets you combine your own photo with a word definition.
 
-### Latest Release (1.6.4)
+### Latest Release (1.7)
  - Enable delete.
  - Success message on Saving new Dufine
 
 ---
+
 ## Roadmap
-##### 1.6.5
+##### 1.8
 - searching for a word you already have brings up the word
 - download image to roll
 - include better fabric tracking, exluding simulator
 - add austen's imagery/design
 - bug: deal with definition loop as fragment warning
 
-##### 1.7
-
+##### 1.9
 - Submit this to the app store via testflight
 - Apply austens style/ui
 - Sort list by letter
@@ -28,7 +28,6 @@ Lets you combine your own photo with a word definition.
 
 ##### 2.1
 - Consider using http://pouchdb.com/
-
 
 ---
 ### Changelog
@@ -53,8 +52,6 @@ async storage
 ##### 6.0
 Refactored entire app using redux, so there are many mussing features
 Added new app icon (v1)
-
-
 
 ##### 5 (Never existed)
 
