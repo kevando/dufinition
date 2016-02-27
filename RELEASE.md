@@ -20,14 +20,18 @@ add auto-back feature after add/delete. possibly refactor route as navigator and
 http://stackoverflow.com/questions/33056858/proper-way-to-navigate-with-react-native-redux-and-navigator
 
 
-### 1.6.4
+### 1.6.5
 push to github
 change the readme to this release schedule so austen can see
   make this good. and list Current release. look at others for examples
 send this version to austen along w github link
 
-
-
+### 1.6.4
+enable delete
+auto back on delete
+remove compose when composing
+refresh app on clear settings
+saved successfully
 
 
 ## Changelog

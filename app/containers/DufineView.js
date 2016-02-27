@@ -33,24 +33,18 @@ class DufineView extends Component {
     super(props);
 
     const { actions, data } = this.props;
-    // console.log('data',data)
+    console.log('DufineView constructor data',data)
     if(data != null)
       actions.setActiveDufine(data)
     else
       actions.setActiveDufine(null)
 
-      this.onWordSubmit = this.onWordSubmit.bind(this);
-  }
-
-  onWordSubmit(word){
-    // console.log('on word submit');
-    // const { actions } = this.props;
-    // actions.setWord(word);
   }
   render() {
 
-    // let addWord be the action
+
     const { state } = this.props;
+    console.log('DufineView render state',state);
     // todo create this as a button compotnent
     return (
       <View>
