@@ -1,64 +1,35 @@
-
-
-
 import React, { Component, StyleSheet, Text, View, PropTypes } from 'react-native';
-
+import * as styles from '../style/styles.js';
 
 // This needs a much better name
 class DufineDefinitions extends Component {
-  constructor(props) {
-    super(props);
-    // dont think i need this
-  }
 
   renderDefinitions(){
     const { definition } = this.props.dufine;
-    // console.log('DufineBig',this.props)
-    Definitions = definition.results.map((result,index) => {
+    var Definitions = definition.results.map((result,index) => {
       // adding key to stop the react-native child array error. probly dont want to use word cause it could be dup
-      return (
-          <Text style={styles.definitionText}><Text style={styles.definitionCount}>{++index}</Text> {result.definition}</Text>
-      );
+      index++;
+      return (' '+index+') '+result.definition);
     });
-
-    return Definitions;
+    return <Text style={styles.dufineViewDefinitionText}>{Definitions}</Text>
   }
 
   render() {
     const { dufine } = this.props;
     if(dufine != null){
-
       return (
-        <View>
-          {this.renderDefinitions()}
-        </View>
+        <View style={styles.dufineViewDefinitionsContainer}>{this.renderDefinitions()}</View>
       );
     } else {
       return(<View></View>);
     }
   }
-
 }
 
 const propTypes = {
   word: PropTypes.string,
-
 };
 
 DufineDefinitions.propTypes = propTypes;
-
-const styles = StyleSheet.create({
-
-  definitionText: {
-    fontWeight: '300',
-    fontSize: 14,
-    fontFamily: 'Georgia'
-  },
-  definitionCount: {
-    fontWeight: '600',
-    fontSize: 16,
-    fontFamily: 'Georgia'
-  }
-});
 
 export default DufineDefinitions;

@@ -12,7 +12,9 @@ Combine a word definition with one of your own photos.
 ## Roadmap
 ##### 1.8
 - Searching for an existing word brings up the word
-- Download dufine to camera roll
+- Download dufine to camera roll (and delete other source files)
+- Add onboarding
+- Consolidate stylesheets
 - Implement Austen's imagery/design/ui
 - Bug: deal with definition loop as fragment warning
 - [Google Analytics plugin](https://github.com/idehub/react-native-google-analytics-bridge)

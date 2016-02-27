@@ -15,6 +15,7 @@ import GetSettings from '../components/icons/GetSettings';
 import * as dufineActions from '../actions/dufineActions';
 import { connect } from 'react-redux';
 
+import * as styles from '../style/styles.js';
 
 const firstRoute = {
   name: 'Home',
@@ -22,11 +23,6 @@ const firstRoute = {
   leftCorner: GetSettings,
 };
 
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#4071b8',
-  },
-});
 
 class DufineApp extends Component {
   constructor(props) {

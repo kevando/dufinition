@@ -10,6 +10,8 @@ import { bindActionCreators } from 'redux';
 import * as dufineActions from '../actions/dufineActions'; // not sure that i need this
 import { connect } from 'react-redux';
 
+import * as styles from '../style/styles.js';
+
 const propTypes = {
   toRoute: PropTypes.func.isRequired,
 };
@@ -18,12 +20,6 @@ const propTypes = {
 class ListPage extends Component {
   constructor(props) {
     super(props);
-    this.styles = StyleSheet.create({ //wtf
-      container: {
-        flex: 1,
-        backgroundColor: '#f5f8fa',
-      },
-    });
     this.goToDufine = this.goToDufine.bind(this);
     this.clearActiveDufine = this.clearActiveDufine.bind(this);
   }
@@ -73,7 +69,7 @@ class ListPage extends Component {
     });
 
     return (
-      <ScrollView style={this.styles.container}>
+      <ScrollView style={styles.container}>
         {Dufines}
       </ScrollView>
     );

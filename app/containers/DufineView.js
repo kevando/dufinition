@@ -5,28 +5,12 @@ import { bindActionCreators } from 'redux';
 import * as dufineActions from '../actions/dufineActions'
 import {connect } from 'react-redux';
 
-// this container should get renamed
-// and it should pull very heavily from components that it will share with the dufineBig which should change names as well
 import WordInput from './WordInput';
 import DufinePhoto from './AddPhotoButton';
 import DufineWord from '../components/DufineWord';
 import DufineDefinitions from '../components/DufineDefinitions';
-// import DufinePhoto from '../components/DufinePhoto';
+import * as styles from '../style/styles.js';
 
-
-const styles = StyleSheet.create({
-  topContainer: { //
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  wordContainer: { //
-    flex: 1,
-    padding: 10,
-    marginLeft:10,
-  },
-})
 
 class DufineView extends Component {
   constructor(props) {
@@ -42,21 +26,20 @@ class DufineView extends Component {
   }
   render() {
     // this renders twice. should probly fix that todo
+    // pretty sure its cause of the conditional in the constructor
 
     const { state } = this.props;
     // console.log('DufineView render state',state);
     // todo create this as a button compotnent
+
+    // And then this whole mess of code should get refactored todo
     return (
       <View>
-        <View style={styles.topContainer}>
-
-          <View style={styles.wordContainer}>
+        <View style={styles.dufineViewContainer}>
           {( state.ui.dufine == null
             ? <WordInput />
             : <DufineWord definition={ state.ui.dufine.definition } />
           )}
-          </View>
-
           <View>
             <DufinePhoto dufine={state.ui.dufine} />
           </View>

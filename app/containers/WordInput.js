@@ -4,37 +4,9 @@ import React, { Component, StyleSheet, TextInput, TouchableHighlight, View, Text
 import { bindActionCreators } from 'redux';
 import * as dufineActions from '../actions/dufineActions'
 import {connect } from 'react-redux';
-
+import * as styles from '../style/styles.js';
 // this container should get renamed
 // and it should pull very heavily from components that it will share with the dufineBig which should change names as well
-
-const styles = StyleSheet.create({
-  input: {
-    backgroundColor: '#3f88bf',
-    width: 220,
-    height: 32,
-    marginTop: 6,
-    paddingLeft: 10,
-    color: 'white',
-    borderRadius: 4,
-  },
-  button: {
-    backgroundColor: '#8c88bf',
-    width: 220,
-    height: 32,
-    marginTop: 6,
-    padding: 10,
-    borderRadius: 4,
-  },
-  error: {
-    color: 'red',
-  }
-});
-
-
-
-
-// break this into a seperate file
 
 class WordInput extends Component {
 
@@ -87,7 +59,7 @@ class WordInput extends Component {
     const { ui } = this.props.state;
     // console.log('UI in wordinput render ',ui)
     return (
-      <View>
+      <View style={styles.dufineInputContainer}>
         <TextInput style={styles.input} value={this.state.term} onChange={this.onInputChange} />
         <View><Text style={styles.error}>{this.state.responseText}</Text></View>
         <View>

@@ -14,8 +14,6 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* DufineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DufineTests.m */; };
-		0A1BB7721C8222DC00A40C52 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A1BB7711C8222DC00A40C52 /* splash.png */; };
-		0A1BB7741C8222F400A40C52 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A1BB7731C8222F400A40C52 /* splash.png */; };
 		0A4F5EC01C02E850005ADB56 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4F5EBF1C02E7FA005ADB56 /* libRNFS.a */; };
 		0A4F5EC91C02ECC2005ADB56 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC21C02ECC2005ADB56 /* LICENSE */; };
 		0A4F5ECA1C02ECC2005ADB56 /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC31C02ECC2005ADB56 /* package.json */; };
@@ -254,8 +252,6 @@
 		00E356EE1AD99517003FC87E /* DufineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DufineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* DufineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DufineTests.m; sourceTree = "<group>"; };
-		0A1BB7711C8222DC00A40C52 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../../../../../../../Desktop/splash.png; sourceTree = "<group>"; };
-		0A1BB7731C8222F400A40C52 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../../../../../../Desktop/splash.png; sourceTree = "<group>"; };
 		0A4F5EAF1C02E7FA005ADB56 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		0A4F5EC21C02ECC2005ADB56 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0A4F5EC31C02ECC2005ADB56 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
@@ -580,7 +576,6 @@
 		0A90B9AF1C54446C00CE69EB /* Mixpanel */ = {
 			isa = PBXGroup;
 			children = (
-				0A1BB7711C8222DC00A40C52 /* splash.png */,
 				0A90B9B01C54446C00CE69EB /* _MPTweakBindObserver.h */,
 				0A90B9B11C54446C00CE69EB /* _MPTweakBindObserver.m */,
 				0A90B9B21C54446C00CE69EB /* Media.xcassets */,
@@ -777,7 +772,6 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				0A90B9AF1C54446C00CE69EB /* Mixpanel */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				0A1BB7731C8222F400A40C52 /* splash.png */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -1132,7 +1126,6 @@
 				0AF2010D1BEDBE9C00DCCCC9 /* store.js in Resources */,
 				0A80EC241C7A6949005EE90C /* dufine-icon-v1.png in Resources */,
 				0AF2010C1BEDBE9C00DCCCC9 /* model.js in Resources */,
-				0A1BB7741C8222F400A40C52 /* splash.png in Resources */,
 				0A90BA5C1C54446D00CE69EB /* MPSurvey.storyboard in Resources */,
 				0A90BA701C54446D00CE69EB /* test_variant.json in Resources */,
 				0A4F5ECD1C02ECC2005ADB56 /* ViewSnapshotter.js in Resources */,
@@ -1144,7 +1137,6 @@
 				0A90BA4F1C54446D00CE69EB /* MPNotification.storyboard in Resources */,
 				0A90BA301C54446D00CE69EB /* Media.xcassets in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				0A1BB7721C8222DC00A40C52 /* splash.png in Resources */,
 				0A4F5ECA1C02ECC2005ADB56 /* package.json in Resources */,
 				0AF2010F1BEDBE9C00DCCCC9 /* LICENSE in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
