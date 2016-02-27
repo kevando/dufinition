@@ -27,7 +27,7 @@ export default class FindPeoplePage extends React.Component {
   }
   onButtonPress() {
     AlertIOS.alert(
-      'ಠ_ಠ ', 'This action deletes all your data?',
+      'ಠ_ಠ ', 'This action deletes all your dufine app data?',
       [{ text: 'Okay', onPress: this.clearAllData },
        { text: 'Stop', onPress: () => console.log('cancel action') }]
     ); // Alert
@@ -36,7 +36,7 @@ export default class FindPeoplePage extends React.Component {
     const engine = createEngine('async-data-v1');
     engine.save({}); // This clears the state from local storage
     AlertIOS.alert(
-      'Everything has been delete!', '',
+      'Everything has been delete!', 'Restart app to see changes reflected.',
       [{text: 'I like fresh starts', onPress: ()=> console.log('deleted')}]
     ); // Alert
   }

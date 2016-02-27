@@ -61,7 +61,7 @@ class ListPage extends Component {
   render() {
     //console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
     const { state } = this.props; // redux state
-    console.log('STATE from render',state)
+    // console.log('STATE from render',state)
 
     // this.clearActiveDufine(); // i dont really like thius but whatever
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.

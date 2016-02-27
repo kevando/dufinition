@@ -77223,7 +77223,7 @@ actions.clearActiveDufine();}}},{key:'render',value:
 function render(){var _this=this;var 
 
 state=this.props.state;
-console.log('STATE from render',state);
+
 
 
 
@@ -81744,7 +81744,7 @@ this.onButtonPress = this.onButtonPress.bind(this);}_createClass(FindPeoplePage,
 
 function onButtonPress(){
 _reactNative.AlertIOS.alert(
-'ಠ_ಠ ','This action deletes all your data?',
+'ಠ_ಠ ','This action deletes all your dufine app data?',
 [{text:'Okay',onPress:this.clearAllData},
 {text:'Stop',onPress:function(){return console.log('cancel action');}}]);}},{key:'clearAllData',value:
 
@@ -81753,7 +81753,7 @@ function clearAllData(){
 var engine=(0,_reduxStorageEngineReactnativeasyncstorage2.default)('async-data-v1');
 engine.save({});
 _reactNative.AlertIOS.alert(
-'Everything has been delete!','',
+'Everything has been delete!','Restart app to see changes reflected.',
 [{text:'I like fresh starts',onPress:function(){return console.log('deleted');}}]);}},{key:'render',value:
 
 
