@@ -16,15 +16,17 @@ refactor worsapi to an action using thunk middleware
 ### 6.4
 searching for a word you already have brings up the word
 download image to roll
+include better fabric tracking, exluding simulator
+add austen's imagery/design
+deal with definition loop as fragment warning
 
 ### 6.3
 add icons
-include better fabric tracking, exluding simulator
+refactor dufine view so it share components
+figure out waht ... and refactor the delete action
 add auto-back feature after add/delete. possibly refactor route as navigator and add to the actions
 http://stackoverflow.com/questions/33056858/proper-way-to-navigate-with-react-native-redux-and-navigator
 
-refactor dufine view so it share components
-figure out waht ... and refactor the delete action
 
 
 

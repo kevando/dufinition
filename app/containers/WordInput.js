@@ -74,6 +74,7 @@ class WordInput extends Component {
       }).then((response) => response.json()); // format response to json
       // console.log('response',response)
       setDefinition(response);
+      this.props.onWordSubmit(word);
     } catch(error) {
       // console.log('error',error);
       this.setState({responseText: 'Some error, likely word was not found'})

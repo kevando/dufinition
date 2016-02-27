@@ -8,9 +8,10 @@ import {connect } from 'react-redux';
 // this container should get renamed
 // and it should pull very heavily from components that it will share with the dufineBig which should change names as well
 import WordInput from './WordInput';
-import AddPhotoButton from './AddPhotoButton';
+import DufinePhoto from './AddPhotoButton';
 import DufineWord from '../components/DufineWord';
-import DufinePhoto from '../components/DufinePhoto';
+import DufineDefinitions from '../components/DufineDefinitions';
+// import DufinePhoto from '../components/DufinePhoto';
 
 
 const styles = StyleSheet.create({
@@ -32,50 +33,41 @@ class DufineView extends Component {
     super(props);
 
     const { actions, data } = this.props;
-    console.log('data',data)
+    // console.log('data',data)
     if(data != null)
       actions.setActiveDufine(data)
+    else
+      actions.setActiveDufine(null)
 
+      this.onWordSubmit = this.onWordSubmit.bind(this);
   }
 
-  // button should be its own Component and addWord should be an action
-
+  onWordSubmit(word){
+    // console.log('on word submit');
+    // const { actions } = this.props;
+    // actions.setWord(word);
+  }
   render() {
 
     // let addWord be the action
-
-
-    const { ui } = this.props.state;
-
-    console.log('SearchPage ui',ui)
-    // console.log(increment)
-
+    const { state } = this.props;
     // todo create this as a button compotnent
     return (
       <View>
-      <View style={styles.topContainer}>
+        <View style={styles.topContainer}>
 
-        <View style={styles.wordContainer}>
-        {( ui.activeDufine == null
-          ? <WordInput />
-          : <DufineWord definition={ ui.activeDufine.definition } />
-        )}
-        </View>
+          <View style={styles.wordContainer}>
+          {( state.ui.dufine == null
+            ? <WordInput />
+            : <DufineWord definition={ state.ui.dufine.definition } />
+          )}
+          </View>
 
-        <View>
-        {( ui.activeDufine != null
-          ? <DufinePhoto photo={ui.activeDufine.photo} />
-          : void 0
-        )}
+          <View>
+            <DufinePhoto dufine={state.ui.dufine} />
+          </View>
         </View>
-        <View>
-        {( ui.photo == false
-          ? <DufinePhoto photo={ui.photo} />
-          : void 0
-        )}
-        </View>
-      </View>
-
+        <DufineDefinitions dufine={state.ui.dufine}/>
       </View>
     );
   }

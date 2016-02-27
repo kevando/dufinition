@@ -35,6 +35,12 @@ export function clearWord() {
     type: types.CLEAR_WORD,
   }
 }
+export function setWord(word) {
+  return {
+    type: types.SET_WORD,
+    payload: word
+  }
+}
 export function clearActiveDufine() {
   return {
     type: types.CLEAR_ACTIVE_DUFINE,

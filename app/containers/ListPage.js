@@ -49,9 +49,9 @@ class ListPage extends Component {
     // Before going to search we need to clear the active state
     // and this is my solution
     const { state, actions } = this.props; // redux state
-    var activeDufine = state.ui.activeDufine
+    var activeDufine = state.ui.dufine
     // console.log('STATE from clearduf',state.ui.activeDufine)
-    console.log(activeDufine)
+    // console.log(activeDufine)
     if(activeDufine != null){
       console.log('CELAR SADF');
       actions.clearActiveDufine();
@@ -63,7 +63,7 @@ class ListPage extends Component {
     const { state } = this.props; // redux state
     // console.log('STATE from render',state)
 
-    this.clearActiveDufine(); // i dont really like thius but whatever
+    // this.clearActiveDufine(); // i dont really like thius but whatever
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
     //This is getting pulled from the redux state
     const Dufines = state.dufines.map((dufineData) => {

@@ -25,6 +25,7 @@ const store = createStoreWithMiddleware(reducer);
 // I guess this just loads the state. This just seems to work
 // I think I will replace this with realm.io
 const load = storage.createLoader(engine);
+// engine.save({}); // This clears the state from local storage
 load(store);
 
 // Notice that our load function will return a promise that can also be used

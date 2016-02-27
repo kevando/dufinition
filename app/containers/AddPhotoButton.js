@@ -1,4 +1,4 @@
-import React, { Component, StyleSheet, TextInput, TouchableHighlight, View, Text  } from 'react-native';
+import React, { Component, StyleSheet, TouchableHighlight, View, Text, Image  } from 'react-native';
 
 // lets make this a redux compontent
 import { bindActionCreators } from 'redux';
@@ -13,12 +13,24 @@ var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#9f88bf',
-    width: 220,
-    height: 32,
+    width: 120,
+    height: 120,
     marginTop: 6,
     padding: 10,
     color: 'white',
     borderRadius: 4,
+  },
+  photoContainer: {
+    marginRight: 20,
+    paddingTop: 2,
+    flexDirection: 'row',
+    backgroundColor: "#fff"
+  },
+  photo: {
+    backgroundColor: 'gray',
+    width: 90,
+    height: 90,
+    margin: 1,
   },
 });
 
@@ -27,53 +39,48 @@ const styles = StyleSheet.create({
 
 // break this into a seperate file
 
-class AddPhotoButton extends Component {
+class DufinePhoto extends Component {
 
   constructor(props) {
     super(props); //
-    this.onBackButtonPress = this.onBackButtonPress.bind(this);
+
     this.onButtonPress = this.onButtonPress.bind(this);
     this.openImagePicker = this.openImagePicker.bind(this);
   }
   onButtonPress() {
     // Pull up photo
     this.openImagePicker(); // this kicks off an action
-    console.log('addButton props',this.props)
-
-  }
-  // this, along with the touchable highlight should be its own container i think
-  onBackButtonPress() {
-    // console.log(this.props.actions)
-    // grab action that will pull definition from wordsapi
-    const { clearWord } = this.props.actions;
-    clearWord();
-    // I am not sure if this is the best place for this
-
   }
 
 
-
-  render() {
-    return (
-      <View>
-      <View>
-        <TouchableHighlight onPress={this.onBackButtonPress} >
-          <Text style={styles.button}>Change Word</Text>
-        </TouchableHighlight>
-      </View>
-        <View>
-          <TouchableHighlight onPress={this.onButtonPress} >
-            <Text style={styles.button}>Add Photo</Text>
-          </TouchableHighlight>
-        </View>
-        </View>
-    );
+  render() { // this render function sucks. todo refactor
+    const { dufine } = this.props; //
+    if (dufine != null) { // then we've sent in a dufine!
+      // now check if we should render a photo or an ADD photo
+      if(typeof dufine.photo !== 'undefined'){
+        // We have a photo and we should show it
+        return (
+          <View style={styles.photoContainer}>
+            <Image source={{ uri: dufine.photo.data, scale:1 }} style={styles.photo} />
+          </View>
+        );
+      } else {
+        return (
+          <View style={styles.photoContainer}>
+            <TouchableHighlight onPress={this.onButtonPress} >
+              <Text style={styles.button}>Add Photo</Text>
+            </TouchableHighlight>
+          </View>
+        );
+      }
+    } else {
+      return (<View></View>)
+    }
   }
 
   // I'd guess this goes somewhere else, but I'm ok having it here for now
   openImagePicker(){
-    console.log('openimagepicker props',this.props)
-    const { savePhoto, saveDufine, clearWord } = this.props.actions;
+    const { savePhoto, saveDufine } = this.props.actions;
     const options = {
       title: 'Select Photo',
       cancelButtonTitle: 'Cancel',
@@ -100,7 +107,7 @@ class AddPhotoButton extends Component {
         savePhoto(source); // ACTION that puts photo in the ui
         // I feel like this code should go elsewhere, but whatever
         saveDufine(); // takes word,definition, photo from the ui and stores it in the state
-        clearWord();
+        // clearWord();
     });
   } // openImagePicker
 }
@@ -114,4 +121,4 @@ export default connect(state =>({
 (dispatch) => ({
   actions: bindActionCreators(dufineActions, dispatch)
 })
-)(AddPhotoButton);
+)(DufinePhoto);

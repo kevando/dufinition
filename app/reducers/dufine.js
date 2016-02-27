@@ -3,12 +3,14 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  count: 0,
+  // count: 0,
   ui: { // i dont like the idea that i would need to init this cause clearing seems like a hassle
-    word: null,
-    definition: null,
-    photo: null,
-    activeDufine: null
+    word: null, // same todo
+    definition: null, // same
+    photo: null, // will go a way
+    dufine: {
+
+    }
   },
   dufines: [ // Default layout from wordsapi
     {
@@ -91,70 +93,52 @@ const initialState = {
 
 export default function dufine(state = initialState, action = {}) {
   // console.log('initialstate',state);
-  // console.log('state',state);
+  // console.log('state before reducer',state);
   // console.log('action',action);
   switch (action.type) {
-    case types.INCREMENT:
-      // I think this is saying to create a new instance of state, and append
-      return {
-        ...state,
-        count:state.count + 1
-      };
-      case types.DECREMENT:
-        return {
-          ...state,
-          count: state.count - 1
-        };
       // should probly also be a UI_SET_WORD
       case types.SET_DEFINITION:
         return {
           ...state,
           ui: {
-            ...state.ui,
-            definition: action.payload
+            dufine: {
+              word: "fresh",
+              definition: action.payload
+            }
+
           }
         }
-      case types.CLEAR_WORD:
-        return {
-          ...state,
-          ui: {
-            word: null
-          }
-        }
+
       case types.CLEAR_ACTIVE_DUFINE:
         return {
           ...state,
           ui: {
-            word: null,
-            photo: null,
-            definition: null
+            dufine: null // this might need to change if ui gets more objects
           }
         }
+        case types.SET_ACTIVE_DUFINE:
+          return {
+            ...state,
+            ui: {
+              dufine: action.payload
+            }
+          }
 
       //
       // When a user clicks save
       //
       case types.SAVE_DUFINE:
-      console.log('SAVE_DUFINE',state.ui)
         return {
           ...state,
           dufines: [
             ...state.dufines,
             {
-              word: state.ui.definition.word, // this should probly be the payload
-              photo: state.ui.photo,
-              definition: state.ui.definition
+              word: state.ui.dufine.definition.word, // this should probly be the payload
+              photo: state.ui.dufine.photo,
+              definition: state.ui.dufine.definition
             }
           ]
         };
-        case types.SET_ACTIVE_DUFINE:
-        //console.log('SETACTIFSD',action.payload)
-          return {
-            ...state,
-            ui: {
-              activeDufine: action.payload
-            }
-          }
 
         case types.DELETE_DUFINE:
           var elementPosition = state.dufines.map(function(dufine) {return dufine.definition.word; }).indexOf(state.ui.activeDufine.definition.word);
@@ -185,14 +169,20 @@ export default function dufine(state = initialState, action = {}) {
       //
       // When a user uploads a Photo
       //
-      case types.SAVE_PHOTO:
+      case types.SAVE_PHOTO: // change to this to set photo
         return {
           ...state,
           ui: {
-            ...state.ui,
-            photo: action.payload
+            dufine: {
+              word: state.ui.dufine.word,
+              photo: action.payload,
+              definition: state.ui.dufine.definition
+            }
+
           }
         }
+
+
 
       //
       // Trying to see if this async load shit worked
