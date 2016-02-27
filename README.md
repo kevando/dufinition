@@ -12,7 +12,6 @@ Lets you combine your own photo with a word definition.
 ##### 1.8
 - searching for a word you already have brings up the word
 - download image to roll
-- include better fabric tracking, exluding simulator
 - add austen's imagery/design
 - bug: deal with definition loop as fragment warning
 
@@ -20,6 +19,7 @@ Lets you combine your own photo with a word definition.
 - Submit this to the app store via testflight
 - Apply austens style/ui
 - Sort list by letter
+- Rebuild from latest react native, and enable proper answers tracking
 - Refactor worsapi to an action using thunk middleware
 
 ##### 2.0
