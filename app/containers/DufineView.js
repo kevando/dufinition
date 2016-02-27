@@ -33,7 +33,7 @@ class DufineView extends Component {
     super(props);
 
     const { actions, data } = this.props;
-    console.log('DufineView constructor data',data)
+    // console.log('DufineView constructor data',data)
     if(data != null)
       actions.setActiveDufine(data)
     else
@@ -41,10 +41,10 @@ class DufineView extends Component {
 
   }
   render() {
-
+    // this renders twice. should probly fix that todo
 
     const { state } = this.props;
-    console.log('DufineView render state',state);
+    // console.log('DufineView render state',state);
     // todo create this as a button compotnent
     return (
       <View>

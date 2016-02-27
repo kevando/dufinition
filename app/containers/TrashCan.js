@@ -20,30 +20,22 @@ class TrashCan extends Component {
     super(props);
     this.onDeletePress = this.onDeletePress.bind(this);
     this.deleteDufineConfirm = this.deleteDufineConfirm.bind(this);
-
-
   }
-
   deleteDufineConfirm() {
     const { deleteDufine } = this.props.actions;
     deleteDufine()
-
-    // todo take user back to list
+    this.props.toBack(); // available in npm v0.0.8 :)
   }
 
   onDeletePress() {
-    // this.props.toBack(); // how the fuck to get this to work
-
     AlertIOS.alert(
-      'You sure bro?', 'this delete is for keeps',
-      [{text: 'Yes', onPress: this.deleteDufineConfirm},
-      {text: 'No', onPress: ()=> console.log('dont deleteeeee')}]
+      'You PC bro?', 'This deletes your work forever.',
+      [ {text: 'Yes', onPress: this.deleteDufineConfirm},
+        {text: 'No', onPress: ()=> console.log('dont deleteeeee')}]
     )
-    // deleteDufine();
   }
 
   render() {
-    // console.log('TrashCan',this.props)
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.onDeletePress}>
         <Icon style={styles.icon} name="trash-o" size={25} color="#fff" />
@@ -51,7 +43,6 @@ class TrashCan extends Component {
     );
   }
 }
-
 
 // getting a better handle on This
 export default connect(state => ({

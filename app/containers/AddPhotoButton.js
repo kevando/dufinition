@@ -1,4 +1,4 @@
-import React, { Component, StyleSheet, TouchableHighlight, View, Text, Image  } from 'react-native';
+import React, { Component, StyleSheet, AlertIOS, TouchableHighlight, View, Text, Image  } from 'react-native';
 
 // lets make this a redux compontent
 import { bindActionCreators } from 'redux';
@@ -51,7 +51,12 @@ class DufinePhoto extends Component {
     // Pull up photo
     this.openImagePicker(); // this kicks off an action
   }
-
+  renderSuccessPopup(){
+    AlertIOS.alert(
+      'Success!', 'Your Dufine successfully saved',
+      [{text:'Sweet'}]
+    )
+  }
 
   render() { // this render function sucks. todo refactor
     const { dufine } = this.props; //
@@ -107,7 +112,7 @@ class DufinePhoto extends Component {
         savePhoto(source); // ACTION that puts photo in the ui
         // I feel like this code should go elsewhere, but whatever
         saveDufine(); // takes word,definition, photo from the ui and stores it in the state
-        // clearWord();
+        this.renderSuccessPopup();
     });
   } // openImagePicker
 }

@@ -1,7 +1,79 @@
-# Dufined
+# Dufine Mobile App
 
-**Dufined** is a mobile app designed to provide humor for humans.
+Lets you combine your own photo with a word definition.
 
+### Latest Release (1.6.4)
+ - Enable delete.
+ - Success message on Saving new Dufine
+
+---
+## Roadmap
+##### 1.6.5
+- searching for a word you already have brings up the word
+- download image to roll
+- include better fabric tracking, exluding simulator
+- add austen's imagery/design
+- bug: deal with definition loop as fragment warning
+
+##### 1.7
+
+- Submit this to the app store via testflight
+- Apply austens style/ui
+- Sort list by letter
+- Refactor worsapi to an action using thunk middleware
+
+##### 2.0
+- deploy to testflight
+- look into other code push options
+
+##### 2.1
+- Consider using http://pouchdb.com/
+
+
+---
+### Changelog
+
+
+##### 1.6.3
+add icons
+refactor dufine view so it share components
+add 'clear state data' option to the settings page.
+##### 6.3 changing naming structure
+
+##### 6.2
+
+delete dufine
+add photo to all Dufines
+
+##### 6.1
+upload photo
+wordsapi
+async storage
+
+##### 6.0
+Refactored entire app using redux, so there are many mussing features
+Added new app icon (v1)
+
+
+
+##### 5 (Never existed)
+
+##### 4.2
+adding mixpanel tracking, and device info pacakge
+
+##### 4.1
+added padding to button, moved delete button, added export button
+new testers: stew and blake (a dude from reddit)
+
+##### 3.2
+New definition api (wordsapi) and stores data in a new way
+upgraded to data version 4 with no migration plan.
+
+##### 3.1
+New UI/UX that implements Navigator instead of NavigatorIOS
+
+
+---
 ## Developer Configuration
 
 - Pull latest code from master

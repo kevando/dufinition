@@ -1,6 +1,6 @@
-import React, { StyleSheet, View, PropTypes, Text } from 'react-native';
+import React, { Component, StyleSheet, View, PropTypes, Text } from 'react-native';
 
-import SearchIcon from './Search'; // just image
+import SearchIcon from './Compose'; // just image
 import DufineView from '../../containers/DufineView'; // static page
 
 var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
@@ -18,7 +18,14 @@ const propTypes = {
   toRoute: PropTypes.func.isRequired,
 };
 
-class SearchAndCompose extends React.Component {
+export default class EmptyComponent extends Component {
+  // this method to remove a rightCorner component is probly way wrong todo
+  render() {
+    return(<View></View>)
+  }
+}
+
+class SearchAndCompose extends Component {
   constructor(props) {
     super(props);
 
@@ -49,9 +56,9 @@ class SearchAndCompose extends React.Component {
   goToSearch() {
 
     this.props.toRoute({
-      name: 'Search',
+      name: 'Pick a Word',
       component: DufineView,
-      // rightCorner: {}, // this should be empty
+      rightCorner: EmptyComponent, // this should be empty
       //titleComponent: SearchBar, not changing this as of now. i guess this defaults to the name
     });
   }

@@ -4,13 +4,7 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   // count: 0,
-  ui: { // i dont like the idea that i would need to init this cause clearing seems like a hassle
-    // dufine: {
-    //   word: null, // same todo
-    //   definition: null, // same
-    //   photo: null, // will go a way
-    // }
-  },
+  ui: { },// i dont like the idea that i would need to init this cause clearing seems like a hassle
   dufines: [ // Default layout from wordsapi
     {
       word: "dumb",
@@ -140,22 +134,9 @@ export default function dufine(state = initialState, action = {}) {
         };
 
         case types.DELETE_DUFINE:
-          var elementPosition = state.dufines.map(function(dufine) {return dufine.definition.word; }).indexOf(state.ui.activeDufine.definition.word);
-          console.log('delete dufine reducer',state.ui.activeDufine);
-          console.log('index',elementPosition);
-
+          var elementPosition = state.dufines.map(function(dufine) {return dufine.definition.word; }).indexOf(state.ui.dufine.definition.word);
           var firstHalf = state.dufines.slice(0, elementPosition);
           var secondHalf = state.dufines.slice(elementPosition + 1)
-          console.log('first',firstHalf);
-          console.log('second',secondHalf);
-
-          // dufines: [
-          //   ...state.dufines,
-          //   {
-          //     // photo: state.photo,
-          //     definition: state.dufines.splice(elementPosition)
-          //   }
-
 
           return {
             ...state,
@@ -163,7 +144,7 @@ export default function dufine(state = initialState, action = {}) {
               ...firstHalf,
               ...secondHalf
             ],
-            }
+          }
 
       //
       // When a user uploads a Photo
@@ -180,19 +161,6 @@ export default function dufine(state = initialState, action = {}) {
 
           }
         }
-
-
-
-      //
-      // Trying to see if this async load shit worked
-      // this works, but i dont think these actions are used ever..
-      // i should look into this more
-      case types.LOAD:
-            return { ...state, loaded: true };
-
-        case types.SAVE:
-            console.log('Something has changed and written to disk!');
-
       default:
         return state;
   };

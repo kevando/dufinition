@@ -23,36 +23,31 @@ const styles = StyleSheet.create({
 export default class FindPeoplePage extends React.Component {
   constructor(props) {
     super(props);
-
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
   onButtonPress() {
     AlertIOS.alert(
-      'This removes all your photo and data', 'Do you know what you are doing?',
-      [{ text: 'Yes', onPress: this.clearAllData }],
-      [{ text: 'No', onPress: () => console.log('cancel action') }]
-    )
-
-
+      'ಠ_ಠ ', 'This action deletes all your data?',
+      [{ text: 'Okay', onPress: this.clearAllData },
+       { text: 'Stop', onPress: () => console.log('cancel action') }]
+    ); // Alert
   }
-
   clearAllData() {
     const engine = createEngine('async-data-v1');
     engine.save({}); // This clears the state from local storage
     AlertIOS.alert(
-      'Everything has been delete!', 'Hope you knew what you were doing.',
-      [{text: 'Okay', onPress: ()=> console.log('dont deleteeeee')}]
-    )
-
+      'Everything has been delete!', '',
+      [{text: 'I like fresh starts', onPress: ()=> console.log('deleted')}]
+    ); // Alert
   }
-
 
   render() {
     return (
-      <View>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View>
           <Text>App Version: { DeviceInfo.getVersion()}</Text>
         </View>
-        <View style={styles.container}>
+        <View>
           <TouchableHighlight onPress={this.onButtonPress} >
             <Text style={styles.button}>Clear State Data</Text>
           </TouchableHighlight>

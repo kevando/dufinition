@@ -14,7 +14,7 @@ const engine = createEngine('async-data-v1');
 
 const middleware = storage.createMiddleware(engine);
 
-// getting ride of this for now
+// getting ride of this for now becaus I added redux-storage
 // const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const createStoreWithMiddleware = applyMiddleware(middleware,thunk)(createStore);
 // commenting out now for storage

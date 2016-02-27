@@ -1,7 +1,6 @@
-import React, { StyleSheet, TouchableHighlight, Image, PropTypes, Text } from 'react-native';
+import React, { Component, StyleSheet, TouchableHighlight, Image, PropTypes, Text } from 'react-native';
 
-
-var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
+var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise todo
 
 import AppSettings from '../../components/AppSettings';
 
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({ // not sure why this is in the constructor bu
       },
     });
 
-class AddPeopleIcon extends React.Component {
+class AddPeopleIcon extends Component {
   constructor(props) {
     super(props);
     this.goToAddPage = this.goToAddPage.bind(this);
