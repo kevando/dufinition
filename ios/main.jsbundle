@@ -74438,13 +74438,7 @@ __d('Dufine/app/reducers/dufine.js',["Dufine/app/actions/actionTypes.js"],functi
 
 
 
-
-
-
-
-
-
-dufine;function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i < arr.length;i++) arr2[i] = arr[i];return arr2;}else {return Array.from(arr);}}var _actionsActionTypes=require('Dufine/app/actions/actionTypes.js');var types=_interopRequireWildcard(_actionsActionTypes);var initialState={ui:{dufine:{word:null,definition:null,photo:null}},dufines:[{word:"dumb",photo:{data:'http://i.imgur.com/iu4446t.jpg'},definition:{"word":"dumb OG","results":[{"definition":"unable to speak because of hereditary deafness","partOfSpeech":"adjective"},{"definition":"slow to learn or understand; lacking intellectual acuity","partOfSpeech":"adjective","synonyms":["dense","dim","dull","obtuse","slow"],"similarTo":["stupid"],"derivation":["dumbness"],"examples":["dumb officials make some really dumb decisions"]},{"definition":"temporarily incapable of speaking","partOfSpeech":"adjective","synonyms":["speechless"],"similarTo":["inarticulate","unarticulate"],"examples":["struck dumb"]},{"definition":"lacking the power of human speech","partOfSpeech":"adjective","similarTo":["unarticulate","inarticulate"],"examples":["dumb animals"]}],"syllables":{"count":1,"list":["dumb"]},"pronunciation":{"all":"dəm"},"frequency":4.68}}]};function dufine(){var state=arguments.length <= 0 || arguments[0] === undefined?initialState:arguments[0];var action=arguments.length <= 1 || arguments[1] === undefined?{}:arguments[1];
+dufine;function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i < arr.length;i++) arr2[i] = arr[i];return arr2;}else {return Array.from(arr);}}var _actionsActionTypes=require('Dufine/app/actions/actionTypes.js');var types=_interopRequireWildcard(_actionsActionTypes);var initialState={ui:{},dufines:[{word:"dumb",photo:{data:'http://i.imgur.com/iu4446t.jpg'},definition:{"word":"dumb OG","results":[{"definition":"unable to speak because of hereditary deafness","partOfSpeech":"adjective"},{"definition":"slow to learn or understand; lacking intellectual acuity","partOfSpeech":"adjective","synonyms":["dense","dim","dull","obtuse","slow"],"similarTo":["stupid"],"derivation":["dumbness"],"examples":["dumb officials make some really dumb decisions"]},{"definition":"temporarily incapable of speaking","partOfSpeech":"adjective","synonyms":["speechless"],"similarTo":["inarticulate","unarticulate"],"examples":["struck dumb"]},{"definition":"lacking the power of human speech","partOfSpeech":"adjective","similarTo":["unarticulate","inarticulate"],"examples":["dumb animals"]}],"syllables":{"count":1,"list":["dumb"]},"pronunciation":{"all":"dəm"},"frequency":4.68}}]};function dufine(){var state=arguments.length <= 0 || arguments[0] === undefined?initialState:arguments[0];var action=arguments.length <= 1 || arguments[1] === undefined?{}:arguments[1];
 
 
 
@@ -74494,22 +74488,9 @@ definition:state.ui.dufine.definition}])});
 
 
 case types.DELETE_DUFINE:
-var elementPosition=state.dufines.map(function(dufine){return dufine.definition.word;}).indexOf(state.ui.activeDufine.definition.word);
-console.log('delete dufine reducer',state.ui.activeDufine);
-console.log('index',elementPosition);
-
+var elementPosition=state.dufines.map(function(dufine){return dufine.definition.word;}).indexOf(state.ui.dufine.definition.word);
 var firstHalf=state.dufines.slice(0,elementPosition);
 var secondHalf=state.dufines.slice(elementPosition + 1);
-console.log('first',firstHalf);
-console.log('second',secondHalf);
-
-
-
-
-
-
-
-
 
 return _extends({},
 state,{
@@ -74533,19 +74514,6 @@ definition:state.ui.dufine.definition}}});
 
 
 
-
-
-
-
-
-
-
-
-case types.LOAD:
-return _extends({},state,{loaded:true});
-
-case types.SAVE:
-console.log('Something has changed and written to disk!');
 
 default:
 return state;}
@@ -74625,51 +74593,204 @@ actions:(0,_redux.bindActionCreators)(dufineActions,dispatch)};})(
 
 DufineApp);module.exports = exports.default;
 });
-__d('react-native-simple-router/index.js',["react-native/Libraries/react-native/react-native.js","fbemitter/index.js","react-native-simple-router/components/NavBarContainer.js"],function(global, require, module, exports) {  'use strict';var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}
-
-var React=require('react-native/Libraries/react-native/react-native.js');var _require=
-require('fbemitter/index.js');var EventEmitter=_require.EventEmitter;
-
-var NavBarContainer=require('react-native-simple-router/components/NavBarContainer.js');var 
-
-
-StyleSheet=
+__d('react-native-simple-router/index.js',["react-native/Libraries/react-native/react-native.js","EventEmitter","react-native-simple-router/components/NavBarContainer.js","react-native-simple-router/styles.ios.js","aspect-js/aspect.js","underscore/underscore.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require(
 
 
 
 
-React.StyleSheet;var Navigator=React.Navigator;var StatusBarIOS=React.StatusBarIOS;var View=React.View;var Platform=React.Platform;var 
+
+
+
+'react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _reactNativeLibrariesVendorEmitterEventEmitter=require(
+
+'EventEmitter');var _reactNativeLibrariesVendorEmitterEventEmitter2=_interopRequireDefault(_reactNativeLibrariesVendorEmitterEventEmitter);var _componentsNavBarContainer=require(
+
+'react-native-simple-router/components/NavBarContainer.js');var _componentsNavBarContainer2=_interopRequireDefault(_componentsNavBarContainer);var _styles=require(
+'react-native-simple-router/styles.ios.js');var Styles=_interopRequireWildcard(_styles);var _aspectJs=require(
+'aspect-js/aspect.js');var _aspectJs2=_interopRequireDefault(_aspectJs);var _underscore=require(
+'underscore/underscore.js');var _underscore2=_interopRequireDefault(_underscore);
+
+var propTypes={
+backButtonComponent:_reactNative.PropTypes.func,
+bgStyle:_reactNative.PropTypes.object,
+borderBottomWidth:_reactNative.PropTypes.number,
+borderColor:_reactNative.PropTypes.string,
+customAction:_reactNative.PropTypes.func,
+firstRoute:_reactNative.PropTypes.object.isRequired,
+handleBackAndroid:_reactNative.PropTypes.bool,
+headerStyle:_reactNative.View.propTypes.style,
+hideNavigationBar:_reactNative.PropTypes.bool,
+noStatusBar:_reactNative.PropTypes.bool,
+rightCorner:_reactNative.PropTypes.func,
+statusBarColor:_reactNative.PropTypes.string,
+statusBarProps:_reactNative.PropTypes.object,
+titleStyle:_reactNative.Text.propTypes.style};
+
+
+var styles=_reactNative.StyleSheet.create({
+container:{
+flex:1,
+backgroundColor:'#FFFFFF'}});var 
+
+
 
 Router=(function(_React$Component){_inherits(Router,_React$Component);
 function Router(props){_classCallCheck(this,Router);
 _get(Object.getPrototypeOf(Router.prototype),'constructor',this).call(this,props);
+
+this.onForward = this.onForward.bind(this);
+this.onBack = this.onBack.bind(this);
+this.onReplaceRoute = this.onReplaceRoute.bind(this);
+this.onResetToRoute = this.onResetToRoute.bind(this);
+this.onToFirstRoute = this.onToFirstRoute.bind(this);
+this.customAction = this.customAction.bind(this);
+this.renderScene = this.renderScene.bind(this);
+
+this.onWillPop = this.onWillPop.bind(this);
+this.onDidPop = this.onDidPop.bind(this);
+
+this.onWillPush = this.onWillPush.bind(this);
+this.onDidPush = this.onDidPush.bind(this);
+
+this.onWillResetTo = this.onWillResetTo.bind(this);
+this.onDidResetTo = this.onDidResetTo.bind(this);
+
+this.onWillReplace = this.onWillReplace.bind(this);
+this.onDidReplace = this.onDidReplace.bind(this);
+
+this.onWillPopToTop = this.onWillPopToTop.bind(this);
+this.onDidPopToTop = this.onDidPopToTop.bind(this);
+
 this.state = {
 route:{
 name:null,
 index:null}};
 
 
-this.emitter = new EventEmitter();}_createClass(Router,[{key:'onWillFocus',value:
+this.emitter = new _reactNativeLibrariesVendorEmitterEventEmitter2.default();}_createClass(Router,[{key:'componentWillMount',value:
 
 
-function onWillFocus(route){
-this.setState({route:route});
-this.emitter.emit('willFocus',route.name);}},{key:'onDidFocus',value:
+function componentWillMount(){
+this.state.route = this.props.firstRoute;}},{key:'componentDidMount',value:
 
 
-function onDidFocus(route){
-this.emitter.emit('didFocus',route.name);}},{key:'onBack',value:
+function componentDidMount(){var _this=this,_arguments=arguments;
+this.refs.navigator.navigationContext.addListener('willfocus',function(event){
+var route=event.data.route;
+_this.setState({route:route});
+_this.emitter.emit('willFocus',route.name);});
+
+
+this.refs.navigator.navigationContext.addListener('didfocus',function(event){
+var route=event.data.route;
+_this.emitter.emit('didFocus',route.name);});
+
+
+_aspectJs2.default.before(this.refs.navigator,'pop',function(){
+_this.onWillPop();});
+
+_aspectJs2.default.after(this.refs.navigator,'pop',function(){
+_this.onDidPop();});
+
+
+_aspectJs2.default.before(this.refs.navigator,'push',function(route){
+_this.onWillPush(route);});
+
+_aspectJs2.default.after(this.refs.navigator,'push',function(route){
+
+_this.onDidPush(route || _arguments[1]);});
+
+
+_aspectJs2.default.before(this.refs.navigator,'resetTo',function(route){
+_this.onWillResetTo(route);});
+
+_aspectJs2.default.after(this.refs.navigator,'resetTo',function(route){
+
+_this.onDidResetTo(route || _arguments[1]);});
+
+
+_aspectJs2.default.before(this.refs.navigator,'replace',function(route){
+_this.onWillReplace(route);});
+
+_aspectJs2.default.after(this.refs.navigator,'replace',function(route){
+
+_this.onDidReplace(route || _arguments[1]);});
+
+
+_aspectJs2.default.before(this.refs.navigator,'popToTop',function(){
+_this.onWillPopToTop();});
+
+_aspectJs2.default.after(this.refs.navigator,'popToTop',function(){
+_this.onDidPopToTop();});}},{key:'onForward',value:
+
+
+
+function onForward(nextRoute,navigator){
+navigator.push(
+Object.assign(nextRoute,{index:this.state.route.index + 1 || 1}));}},{key:'onBack',value:
+
 
 
 function onBack(navigator){
 if(this.state.route.index > 0){
-navigator.pop();}}},{key:'onForward',value:
+navigator.pop();}}},{key:'onReplaceRoute',value:
 
 
 
-function onForward(route,navigator){
-route.index = this.state.route.index + 1 || 1;
-navigator.push(route);}},{key:'setRightProps',value:
+function onReplaceRoute(nextRoute,navigator){
+navigator.replace(
+Object.assign(nextRoute,{index:this.state.route.index || 0}));}},{key:'onResetToRoute',value:
+
+
+
+function onResetToRoute(nextRoute,navigator){
+navigator.resetTo(
+Object.assign(nextRoute,{index:0}));}},{key:'onToFirstRoute',value:
+
+
+
+function onToFirstRoute(navigator){
+navigator.popToTop();}},{key:'onWillPop',value:
+
+
+function onWillPop(){
+this.emitter.emit('willPop');}},{key:'onDidPop',value:
+
+
+function onDidPop(){
+this.emitter.emit('didPop');}},{key:'onWillPush',value:
+
+
+function onWillPush(route){
+this.emitter.emit('willPush',route);}},{key:'onDidPush',value:
+
+
+function onDidPush(route){
+this.emitter.emit('didPush',route);}},{key:'onWillResetTo',value:
+
+
+function onWillResetTo(route){
+this.emitter.emit('willResetTo',route);}},{key:'onDidResetTo',value:
+
+
+function onDidResetTo(route){
+this.emitter.emit('didResetTo',route);}},{key:'onWillReplace',value:
+
+
+function onWillReplace(route){
+this.emitter.emit('willReplace',route);}},{key:'onDidReplace',value:
+
+
+function onDidReplace(route){
+this.emitter.emit('didReplace',route);}},{key:'onWillPopToTop',value:
+
+
+function onWillPopToTop(){
+this.emitter.emit('willPopToTop');}},{key:'onDidPopToTop',value:
+
+
+function onDidPopToTop(){
+this.emitter.emit('didPopToTop');}},{key:'setRightProps',value:
 
 
 function setRightProps(props){
@@ -74689,49 +74810,49 @@ this.props.customAction(opts);}},{key:'configureScene',value:
 
 
 function configureScene(route){
-return route.sceneConfig || Navigator.SceneConfigs.FloatFromRight;}},{key:'renderScene',value:
+return route.sceneConfig || _reactNative.Navigator.SceneConfigs.FloatFromRight;}},{key:'renderScene',value:
 
 
-function renderScene(route,navigator){
+function renderScene(route,navigator){var _this2=this;
+var goForward=function(nextRoute){
+_this2.onForward(nextRoute,navigator);
+_this2.emitter.emit('push',nextRoute);};
 
-var goForward=(function(route){
-route.index = this.state.route.index + 1 || 1;
-navigator.push(route);}).
-bind(this);
 
-var replaceRoute=(function(route){
-route.index = this.state.route.index || 0;
-navigator.replace(route);}).
-bind(this);
+var replaceRoute=function(nextRoute){
+_this2.replaceRoute(nextRoute,navigator);
+_this2.emitter.emit('replace',nextRoute);};
 
-var resetToRoute=(function(route){
-route.index = 0;
-navigator.resetTo(route);}).
-bind(this);
 
-var goBackwards=(function(){
-this.onBack(navigator);}).
-bind(this);
+var resetToRoute=function(nextRoute){
+_this2.onResetToRoute(nextRoute,navigator);
+_this2.emitter.emit('resetTo',nextRoute);};
+
+
+var goBackwards=function(){
+_this2.onBack(navigator);};
+
 
 var goToFirstRoute=function(){
-navigator.popToTop();};
+_this2.onToFirstRoute(navigator);
+_this2.emitter.emit('popToTop');};
 
 
-var setRightProps=(function(props){
-this.setState({rightProps:props});}).
-bind(this);
+var setRightProps=function(props){
+_this2.setState({rightProps:props});};
 
-var setLeftProps=(function(props){
-this.setState({leftProps:props});}).
-bind(this);
 
-var setTitleProps=(function(props){
-this.setState({titleProps:props});}).
-bind(this);
+var setLeftProps=function(props){
+_this2.setState({leftProps:props});};
 
-var customAction=(function(opts){
-this.customAction(opts);}).
-bind(this);
+
+var setTitleProps=function(props){
+_this2.setState({titleProps:props});};
+
+
+var customAction=function(opts){
+_this2.customAction(opts);};
+
 
 var Content=route.component;
 
@@ -74741,19 +74862,20 @@ if(this.props.hideNavigationBar){
 extraStyling.marginTop = 0;}
 
 
-var margin;
+var margin=undefined;
 if(route.trans){
 margin = 0;}else 
 if(this.props.hideNavigationBar || route.hideNavigationBar){
 margin = this.props.noStatusBar?0:20;}else 
 {
-margin = 64;}
+margin = Styles.NAV_BAR_HEIGHT;}
 
 
 return (
-React.createElement(View,{
+_reactNative2.default.createElement(_reactNative.View,{
 style:[styles.container,this.props.bgStyle,extraStyling,{marginTop:margin}]},
-React.createElement(Content,_extends({
+
+_reactNative2.default.createElement(Content,_extends({
 name:route.name,
 index:route.index,
 data:route.data,
@@ -74773,23 +74895,14 @@ route.passProps))));}},{key:'render',value:
 
 
 
-
 function render(){
-var navigationBar;
-
-if(Platform.OS === 'ios'){
-if(this.props.statusBarColor === 'black'){
-StatusBarIOS.setStyle(0);}else 
-{
-StatusBarIOS.setStyle(1);}}else 
-
-if(Platform.OS === 'android'){}
-
-
+var navigationBar=undefined;
+var statusBar=undefined;
+var statusBarProps={};
 
 if(!this.props.hideNavigationBar){
 navigationBar = 
-React.createElement(NavBarContainer,{
+_reactNative2.default.createElement(_componentsNavBarContainer2.default,{
 style:this.props.headerStyle,
 navigator:navigator,
 currentRoute:this.state.route,
@@ -74798,581 +74911,211 @@ rightCorner:this.props.rightCorner,
 titleStyle:this.props.titleStyle,
 borderBottomWidth:this.props.borderBottomWidth,
 borderColor:this.props.borderColor,
-toRoute:this.onForward.bind(this),
-toBack:this.onBack.bind(this),
+toRoute:this.onForward,
+toBack:this.onBack,
+replaceRoute:this.onReplaceRoute,
+resetToRoute:this.onResetToRoute,
+goToFirstRoute:this.onToFirstRoute,
 leftProps:this.state.leftProps,
 rightProps:this.state.rightProps,
 titleProps:this.state.titleProps,
-customAction:this.customAction.bind(this)});}
+customAction:this.customAction,
+handleBackAndroid:this.props.handleBackAndroid});}
+
+
+
+
+
+if(_reactNative.StatusBar){
+
+if(this.props.statusBarProps){
+
+statusBarProps = this.props.statusBarProps;}
+
+
+
+if(this.state.route && this.state.route.statusBarProps){
+statusBarProps = _underscore2.default.defaults(this.state.route.statusBarProps,statusBarProps);}
+
+
+
+if(_reactNative.Platform.OS === 'android'){
+if(!_underscore2.default.has(statusBarProps,'backgroundColor') && !_underscore2.default.has(statusBarProps,'translucent')){
+var backgroundColor=undefined;
+
+if(this.state.route && this.state.route.headerStyle && this.state.router.headerStyle.backgroundColor){
+
+var stateHeaderStyle=_reactNative.StyleSheet.flatten(this.props.headerStyle);
+
+if(stateHeaderStyle && stateHeaderStyle.backgroundColor){
+backgroundColor = stateHeaderStyle.backgroundColor;}}else 
+
+if(this.props.headerStyle){
+
+var propsHeaderStyle=_reactNative.StyleSheet.flatten(this.props.headerStyle);
+
+if(propsHeaderStyle && propsHeaderStyle.backgroundColor){
+backgroundColor = propsHeaderStyle.backgroundColor;}}
+
+
+
+if(backgroundColor){
+statusBarProps.backgroundColor = backgroundColor;}}}else 
+
+
+if(_reactNative.Platform.OS === 'ios'){
+if(!_underscore2.default.has(statusBarProps,'barStyle')){
+
+if(this.props.statusBarColor === 'black'){
+statusBarProps.barStyle = 'default';}else 
+{
+statusBarProps.barStyle = 'light-content';}}}
+
+
+
+
+statusBar = 
+_reactNative2.default.createElement(_reactNative.StatusBar,
+statusBarProps);}
+
 
 
 
 return (
-React.createElement(Navigator,{
+_reactNative2.default.createElement(_reactNative.View,{style:{flex:1}},
+statusBar,
+_reactNative2.default.createElement(_reactNative.Navigator,{
 ref:'navigator',
 initialRoute:this.props.firstRoute,
 navigationBar:navigationBar,
-renderScene:this.renderScene.bind(this),
-onDidFocus:this.onDidFocus.bind(this),
-onWillFocus:this.onWillFocus.bind(this),
-configureScene:this.configureScene}));}}]);return Router;})(React.Component);
+renderScene:this.renderScene,
+configureScene:this.configureScene})));}}]);return Router;})(_reactNative2.default.Component);
 
 
 
 
 
-var styles=StyleSheet.create({
-container:{
-flex:1,
-backgroundColor:'#FFFFFF'}});
 
+Router.propTypes = propTypes;exports.default = 
 
-
-module.exports = Router;
+Router;module.exports = exports.default;
 });
-__d('fbemitter/index.js',["BaseEventEmitter"],function(global, require, module, exports) {  var 
-
-
-
-
-
-
-
-
-fbemitter={
-EventEmitter:require('BaseEventEmitter')};
-
-
-module.exports = fbemitter;
-});
-__d('BaseEventEmitter',["EmitterSubscription","EventSubscriptionVendor","fbjs/lib/emptyFunction.js","fbjs/lib/invariant.js"],function(global, require, module, exports) {  'use strict';
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}
-
-var EmitterSubscription=require('EmitterSubscription');
-var EventSubscriptionVendor=require('EventSubscriptionVendor');
-
-var emptyFunction=require('fbjs/lib/emptyFunction.js');
-var invariant=require('fbjs/lib/invariant.js');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var BaseEventEmitter=(function(){
-
-
-
-
-function BaseEventEmitter(){
-_classCallCheck(this,BaseEventEmitter);
-
-this._subscriber = new EventSubscriptionVendor();
-this._currentSubscription = null;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.addListener = function addListener(eventType,listener,context){
-return this._subscriber.addSubscription(eventType,new EmitterSubscription(this._subscriber,listener,context));};
-
-
-
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.once = function once(eventType,listener,context){
-var emitter=this;
-return this.addListener(eventType,function(){
-emitter.removeCurrentListener();
-listener.apply(context,arguments);});};
-
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.removeAllListeners = function removeAllListeners(eventType){
-this._subscriber.removeAllSubscriptions(eventType);};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.removeCurrentListener = function removeCurrentListener(){
-!!!this._currentSubscription?process.env.NODE_ENV !== 'production'?invariant(false,'Not in an emitting cycle; there is no current subscription'):invariant(false):undefined;
-this._subscriber.removeSubscription(this._currentSubscription);};
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.listeners = function listeners(eventType){
-var subscriptions=this._subscriber.getSubscriptionsForType(eventType);
-return subscriptions?subscriptions.filter(emptyFunction.thatReturnsTrue).map(function(subscription){
-return subscription.listener;}):
-[];};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.emit = function emit(eventType){
-var subscriptions=this._subscriber.getSubscriptionsForType(eventType);
-if(subscriptions){
-var keys=Object.keys(subscriptions);
-for(var ii=0;ii < keys.length;ii++) {
-var key=keys[ii];
-var subscription=subscriptions[key];
-
-if(subscription){
-this._currentSubscription = subscription;
-this.__emitToSubscription.apply(this,[subscription].concat(Array.prototype.slice.call(arguments)));}}
-
-
-this._currentSubscription = null;}};
-
-
-
-
-
-
-
-
-
-
-
-
-
-BaseEventEmitter.prototype.__emitToSubscription = function __emitToSubscription(subscription,eventType){
-var args=Array.prototype.slice.call(arguments,2);
-subscription.listener.apply(subscription.context,args);};
-
-
-return BaseEventEmitter;})();
-
-
-module.exports = BaseEventEmitter;
-});
-__d('EmitterSubscription',["EventSubscription"],function(global, require, module, exports) {  'use strict';
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}
-
-function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}
-
-var EventSubscription=require('EventSubscription');
-
-
-
-
-
-var EmitterSubscription=(function(_EventSubscription){
-_inherits(EmitterSubscription,_EventSubscription);
-
-
-
-
-
-
-
-
-
-
-function EmitterSubscription(subscriber,listener,context){
-_classCallCheck(this,EmitterSubscription);
-
-_EventSubscription.call(this,subscriber);
-this.listener = listener;
-this.context = context;}
-
-
-return EmitterSubscription;})(
-EventSubscription);
-
-module.exports = EmitterSubscription;
-});
-__d('EventSubscription',[],function(global, require, module, exports) {  'use strict';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}
-
-var EventSubscription=(function(){
-
-
-
-
-
-
-function EventSubscription(subscriber){
-_classCallCheck(this,EventSubscription);
-
-this.subscriber = subscriber;}
-
-
-
-
-
-
-EventSubscription.prototype.remove = function remove(){
-if(this.subscriber){
-this.subscriber.removeSubscription(this);
-this.subscriber = null;}};
-
-
-
-return EventSubscription;})();
-
-
-module.exports = EventSubscription;
-});
-__d('EventSubscriptionVendor',["fbjs/lib/invariant.js"],function(global, require, module, exports) {  'use strict';
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}
-
-var invariant=require('fbjs/lib/invariant.js');
-
-
-
-
-
-
-var EventSubscriptionVendor=(function(){
-function EventSubscriptionVendor(){
-_classCallCheck(this,EventSubscriptionVendor);
-
-this._subscriptionsForType = {};
-this._currentSubscription = null;}
-
-
-
-
-
-
-
-
-
-EventSubscriptionVendor.prototype.addSubscription = function addSubscription(eventType,subscription){
-!(subscription.subscriber === this)?process.env.NODE_ENV !== 'production'?invariant(false,'The subscriber of the subscription is incorrectly set.'):invariant(false):undefined;
-if(!this._subscriptionsForType[eventType]){
-this._subscriptionsForType[eventType] = [];}
-
-var key=this._subscriptionsForType[eventType].length;
-this._subscriptionsForType[eventType].push(subscription);
-subscription.eventType = eventType;
-subscription.key = key;
-return subscription;};
-
-
-
-
-
-
-
-
-
-EventSubscriptionVendor.prototype.removeAllSubscriptions = function removeAllSubscriptions(eventType){
-if(eventType === undefined){
-this._subscriptionsForType = {};}else 
-{
-delete this._subscriptionsForType[eventType];}};
-
-
-
-
-
-
-
-
-
-
-EventSubscriptionVendor.prototype.removeSubscription = function removeSubscription(subscription){
-var eventType=subscription.eventType;
-var key=subscription.key;
-
-var subscriptionsForType=this._subscriptionsForType[eventType];
-if(subscriptionsForType){
-delete subscriptionsForType[key];}};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-EventSubscriptionVendor.prototype.getSubscriptionsForType = function getSubscriptionsForType(eventType){
-return this._subscriptionsForType[eventType];};
-
-
-return EventSubscriptionVendor;})();
-
-
-module.exports = EventSubscriptionVendor;
-});
-__d('fbjs/lib/invariant.js',[],function(global, require, module, exports) {  'use strict';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function invariant(condition,format,a,b,c,d,e,f){
-if(process.env.NODE_ENV !== 'production'){
-if(format === undefined){
-throw new Error('invariant requires an error message argument');}}
-
-
-
-if(!condition){
-var error;
-if(format === undefined){
-error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');}else 
-{
-var args=[a,b,c,d,e,f];
-var argIndex=0;
-error = new Error(format.replace(/%s/g,function(){
-return args[argIndex++];}));
-
-error.name = 'Invariant Violation';}
-
-
-error.framesToPop = 1;
-throw error;}}
-
-
-
-module.exports = invariant;
-});
-__d('fbjs/lib/emptyFunction.js',[],function(global, require, module, exports) {  "use strict";
-
-
-
-
-
-
-
-
-
-
-
-function makeEmptyFunction(arg){
-return function(){
-return arg;};}
-
-
-
-
-
-
-
-
-function emptyFunction(){}
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function(){
-return this;};
-
-emptyFunction.thatReturnsArgument = function(arg){
-return arg;};
-
-
-module.exports = emptyFunction;
-});
-__d('react-native-simple-router/components/NavBarContainer.js',["react-native/Libraries/react-native/react-native.js","react-native-simple-router/components/NavBarContent.js"],function(global, require, module, exports) {  'use strict';
-
-var React=require('react-native/Libraries/react-native/react-native.js');
-
-var NavBarContent=require('react-native-simple-router/components/NavBarContent.js');var 
-
-
-StyleSheet=
-
-React.StyleSheet;var View=React.View;
-
-var NavBarContainer=React.createClass({displayName:'NavBarContainer',
-
-getInitialState:function(){
-return {
+__d('react-native-simple-router/components/NavBarContainer.js',["react-native/Libraries/react-native/react-native.js","react-native-simple-router/components/NavBarContent.js","react-native-simple-router/styles.ios.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _NavBarContent=require(
+
+'react-native-simple-router/components/NavBarContent.js');var _NavBarContent2=_interopRequireDefault(_NavBarContent);var _styles=require(
+'react-native-simple-router/styles.ios.js');var Styles=_interopRequireWildcard(_styles);
+
+var propTypes={
+backButtonComponent:_reactNative.PropTypes.func,
+borderBottomWidth:_reactNative.PropTypes.number,
+borderColor:_reactNative.PropTypes.string,
+currentRoute:_reactNative.PropTypes.object.isRequired,
+customAction:_reactNative.PropTypes.func,
+handleBackAndroid:_reactNative.PropTypes.bool,
+goToFirstRoute:_reactNative.PropTypes.func.isRequired,
+leftProps:_reactNative.PropTypes.object,
+navigator:_reactNative.PropTypes.object.isRequired,
+replaceRoute:_reactNative.PropTypes.func.isRequired,
+resetToRoute:_reactNative.PropTypes.func.isRequired,
+rightCorner:_reactNative.PropTypes.func,
+rightProps:_reactNative.PropTypes.object,
+style:_reactNative.View.propTypes.style,
+titleProps:_reactNative.PropTypes.object,
+titleStyle:_reactNative.Text.propTypes.style,
+toBack:_reactNative.PropTypes.func.isRequired,
+toRoute:_reactNative.PropTypes.func.isRequired};
+
+
+var styles=_reactNative.StyleSheet.create({
+navbarContainer:{
+position:'absolute',
+top:0,
+left:0,
+right:0,
+height:Styles.NAV_BAR_HEIGHT},
+
+navbarContainerHidden:{
+position:'absolute',
+top:-Styles.NAV_BAR_HEIGHT,
+left:0,
+right:0,
+height:Styles.NAV_BAR_HEIGHT}});var 
+
+
+
+NavBarContainer=(function(_React$Component){_inherits(NavBarContainer,_React$Component);
+function NavBarContainer(props){_classCallCheck(this,NavBarContainer);
+_get(Object.getPrototypeOf(NavBarContainer.prototype),'constructor',this).call(this,props);
+
+this.goBack = this.goBack.bind(this);
+this.goForward = this.goForward.bind(this);
+this.replaceRoute = this.replaceRoute.bind(this);
+this.resetToRoute = this.resetToRoute.bind(this);
+this.goToFirstRoute = this.goToFirstRoute.bind(this);
+this.customAction = this.customAction.bind(this);
+
+this.state = {
 backButtonOpacity:0,
-previousRoute:{}};},
+previousRoute:{}};}_createClass(NavBarContainer,[{key:'componentDidMount',value:
 
 
 
-componentWillReceiveProps:function(newProps){
+function componentDidMount(){var _this=this;
+if(_reactNative.Platform.OS === 'android' && !!this.props.handleBackAndroid){
+_reactNative.BackAndroid.addEventListener('hardwareBackPress',function(){
+if(_this.props.currentRoute.index > 0){
+_this.goBack();
+return true;}
+
+
+return false;});}}},{key:'componentWillReceiveProps',value:
+
+
+
+
+function componentWillReceiveProps(newProps){
 if(this.props && this.props.currentRoute.index !== newProps.currentRoute.index){
 this.setState({
-previousRoute:this.props.currentRoute});}},
+previousRoute:this.props.currentRoute});}}},{key:'componentWillUnmount',value:
 
 
 
 
-goBack:function(){
-this.props.toBack(this.props.navigator);},
-
-
-goForward:function(route){
-this.props.toRoute(route,this.props.navigator);},
-
-
-customAction:function(opts){
-this.props.customAction(opts);},
+function componentWillUnmount(){
+if(_reactNative.Platform.OS === 'android' && !!this.props.handleBackAndroid){
+_reactNative.BackAndroid.removeEventListener('hardwareBackPress');}}},{key:'goBack',value:
 
 
 
-render:function(){
-var trans,
-navbarStyle,
-navbarContent;
+function goBack(){
+this.props.toBack(this.props.navigator);}},{key:'goForward',value:
+
+
+function goForward(route){
+this.props.toRoute(route,this.props.navigator);}},{key:'replaceRoute',value:
+
+
+function replaceRoute(nextRoute){
+this.props.replaceRoute(nextRoute,this.props.navigator);}},{key:'resetToRoute',value:
+
+
+function resetToRoute(nextRoute){
+this.props.resetToRoute(nextRoute,this.props.navigator);}},{key:'goToFirstRoute',value:
+
+
+function goToFirstRoute(nextRoute){
+this.props.goToFirstRoute(nextRoute,this.props.navigator);}},{key:'customAction',value:
+
+
+function customAction(opts){
+this.props.customAction(opts);}},{key:'render',value:
+
+
+
+function render(){
+var trans=undefined;
+var navbarStyle=undefined;
+var navbarContent=undefined;
 
 if(this.props.currentRoute.trans){
 trans = {backgroundColor:'transparent'};}else 
@@ -75388,24 +75131,19 @@ navbarStyle = styles.navbarContainer;}
 
 if(this.props.currentRoute.trans){
 navbarContent = 
-React.createElement(NavBarContent,{
+_reactNative2.default.createElement(_NavBarContent2.default,{
 route:this.state.previousRoute,
 backButtonComponent:this.props.backButtonComponent,
 rightCorner:this.props.rightCorner,
 titleStyle:this.props.titleStyle,
-willDisappear:'true'});}else 
-
-if(this.props.currentRoute.hideNavigationBar){
-navbarContent = 
-React.createElement(NavBarContent,{
-route:this.props.currentRoute,
-backButtonComponent:this.props.backButtonComponent,
-rightCorner:this.props.rightCorner,
-titleStyle:this.props.titleStyle,
+willDisappear:true,
 borderBottomWidth:this.props.borderBottomWidth,
 borderColor:this.props.borderColor,
 goBack:this.goBack,
 goForward:this.goForward,
+replaceRoute:this.replaceRoute,
+resetToRoute:this.resetToRoute,
+goToFirstRoute:this.goToFirstRoute,
 leftProps:this.props.leftProps,
 rightProps:this.props.rightProps,
 titleProps:this.props.titleProps,
@@ -75414,7 +75152,7 @@ customAction:this.customAction});}else
 
 {
 navbarContent = 
-React.createElement(NavBarContent,{
+_reactNative2.default.createElement(_NavBarContent2.default,{
 route:this.props.currentRoute,
 backButtonComponent:this.props.backButtonComponent,
 rightCorner:this.props.rightCorner,
@@ -75423,6 +75161,9 @@ borderBottomWidth:this.props.borderBottomWidth,
 borderColor:this.props.borderColor,
 goBack:this.goBack,
 goForward:this.goForward,
+replaceRoute:this.replaceRoute,
+resetToRoute:this.resetToRoute,
+goToFirstRoute:this.goToFirstRoute,
 leftProps:this.props.leftProps,
 rightProps:this.props.rightProps,
 titleProps:this.props.titleProps,
@@ -75432,195 +75173,60 @@ customAction:this.customAction});}
 
 
 return (
-React.createElement(View,{style:[navbarStyle,this.props.style,trans]},
-navbarContent));}});
+_reactNative2.default.createElement(_reactNative.View,{style:[navbarStyle,this.props.style,trans]},
+navbarContent));}}]);return NavBarContainer;})(_reactNative2.default.Component);
 
 
 
 
 
-var styles=StyleSheet.create({
-navbarContainer:{
-position:'absolute',
-top:0,
-left:0,
-right:0,
-height:64},
+NavBarContainer.propTypes = propTypes;exports.default = 
 
-navbarContainerHidden:{
-position:'absolute',
-top:-64,
-left:0,
-right:0,
-height:64}});
-
-
-
-module.exports = NavBarContainer;
+NavBarContainer;module.exports = exports.default;
 });
-__d('react-native-simple-router/components/NavBarContent.js',["react-native/Libraries/react-native/react-native.js","react-native-simple-router/components/NavButton.js"],function(global, require, module, exports) {  'use strict';var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};
-
-var React=require('react-native/Libraries/react-native/react-native.js');
-var NavButton=require('react-native-simple-router/components/NavButton.js');var 
-
-
-StyleSheet=
-
-
-
-
-React.StyleSheet;var Text=React.Text;var View=React.View;var Animated=React.Animated;var Easing=React.Easing;
-
-var NavBarContent=React.createClass({displayName:'NavBarContent',
-
-getInitialState:function(){
-return {
-opacity:this.props.willDisappear?new Animated.Value(1):new Animated.Value(0)};},
-
-
-
-componentWillReceiveProps:function(newProps){var _this=this;
-if(newProps.route !== this.props.route){
-this.state.opacity.setValue(this.props.willDisappear?1:0);
-
-setTimeout(function(){
-Animated.timing(
-_this.state.opacity,
-{
-fromValue:_this.props.willDisappear?1:0,
-toValue:_this.props.willDisappear?0:1,
-duration:300,
-easing:Easing.easeOutQuad}).
-
-start();},
-0);}},
-
-
-
-goBack:function(){
-if(!this.props.willDisappear){
-this.props.goBack();}},
-
-
-
-goForward:function(route){
-this.props.goForward(route);},
-
-
-customAction:function(opts){
-this.props.customAction(opts);},
-
-
-render:function(){
-var transitionStyle={
-opacity:this.state.opacity},
-
-leftCorner,
-LeftCorner,
-rightCorner,
-RightCorner,
-titleComponent,
-leftCornerContent,
-rightCornerContent,
-titleContent,
-TitleComponent,
-trans,
-width,
-color;
-
-
-
-
-
-
-if(this.props.route.leftCorner){
-LeftCorner = this.props.route.leftCorner;
-leftCornerContent = React.createElement(LeftCorner,_extends({toRoute:this.goForward,customAction:this.customAction},this.props.leftProps,this.props.route.leftCornerProps));}else 
-if(this.props.route.index > 0){
-leftCornerContent = React.createElement(NavButton,{onPress:this.goBack,backButtonComponent:this.props.backButtonComponent});}
-
-
-leftCorner = 
-React.createElement(View,{style:[styles.corner,styles.alignLeft]},
-leftCornerContent);
-
-
-
-
-
-
-
-if(this.props.route.rightCorner || this.props.rightCorner){
-RightCorner = this.props.route.rightCorner || this.props.rightCorner;
-rightCornerContent = React.createElement(RightCorner,_extends({toRoute:this.goForward,customAction:this.customAction},this.props.rightProps,this.props.route.rightCornerProps));}
-
-
-rightCorner = 
-React.createElement(View,{style:[styles.corner,styles.alignRight]},
-rightCornerContent);
-
-
-
-
-
-
-
-
-if(this.props.route.titleComponent){
-TitleComponent = this.props.route.titleComponent;
-titleContent = React.createElement(TitleComponent,this.props.titleProps);}else 
-{
-titleContent = 
-React.createElement(Text,{style:[styles.navbarText,this.props.titleStyle],numberOfLines:1},
-this.props.route.name);}
-
-
-
-
-titleComponent = 
-React.createElement(View,{style:{flex:3}},
-titleContent);
-
-
-
-if(this.props.route.trans === true)
-trans = {backgroundColor:'transparent',borderBottomWidth:0};else 
-
-trans = {};
-
-width = this.props.borderBottomWidth?this.props.borderBottomWidth:0;
-color = this.props.borderColor?this.props.borderColor:null;
-
-return (
-React.createElement(Animated.View,{style:[styles.navbar,transitionStyle,this.props.route.headerStyle,{borderBottomWidth:width,borderColor:color},trans]},
-leftCorner,
-titleComponent,
-rightCorner));}});
-
-
-
-
-
-
-var styles=StyleSheet.create({
+__d('react-native-simple-router/components/NavBarContent.js',["react-native/Libraries/react-native/react-native.js","react-native-simple-router/components/NavButton.js","react-native-simple-router/styles.ios.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _NavButton=require(
+'react-native-simple-router/components/NavButton.js');var _NavButton2=_interopRequireDefault(_NavButton);var _styles=require(
+'react-native-simple-router/styles.ios.js');var Styles=_interopRequireWildcard(_styles);
+
+var propTypes={
+backButtonComponent:_reactNative.PropTypes.func,
+borderBottomWidth:_reactNative.PropTypes.number,
+borderColor:_reactNative.PropTypes.string,
+customAction:_reactNative.PropTypes.func,
+goBack:_reactNative.PropTypes.func,
+goForward:_reactNative.PropTypes.func,
+goToFirstRoute:_reactNative.PropTypes.func.isRequired,
+leftProps:_reactNative.PropTypes.object,
+replaceRoute:_reactNative.PropTypes.func.isRequired,
+resetToRoute:_reactNative.PropTypes.func.isRequired,
+rightCorner:_reactNative.PropTypes.func,
+rightProps:_reactNative.PropTypes.object,
+route:_reactNative.PropTypes.object.isRequired,
+titleProps:_reactNative.PropTypes.object,
+titleStyle:_reactNative.Text.propTypes.style,
+willDisappear:_reactNative.PropTypes.bool};
+
+
+var styles=_reactNative.StyleSheet.create({
 navbar:{
 position:'absolute',
 top:0,
 left:0,
 right:0,
-height:64,
+height:Styles.NAV_BAR_HEIGHT,
 justifyContent:'center',
 alignItems:'center',
 flexDirection:'row',
-paddingTop:13},
+paddingTop:Styles.NAV_BAR_PADDING_TOP},
 
 navbarText:{
 color:'white',
 fontSize:17,
 margin:10,
-marginTop:14,
+marginTop:Styles.NAV_BAR_TEXT_MARGIN_TOP,
+marginBottom:Styles.NAV_BAR_TEXT_MARGIN_TOP,
 fontWeight:'600',
-textAlign:'center',
+textAlign:Styles.NAV_BAR_TEXT_ALIGN,
 alignItems:'center'},
 
 corner:{
@@ -75638,52 +75244,237 @@ buttonTextLeft:{
 marginLeft:10},
 
 buttonTextRight:{
-marginRight:10}});
+marginRight:10}});var 
 
 
 
+NavBarContent=(function(_React$Component){_inherits(NavBarContent,_React$Component);
+function NavBarContent(props){_classCallCheck(this,NavBarContent);
+_get(Object.getPrototypeOf(NavBarContent.prototype),'constructor',this).call(this,props);
 
-module.exports = NavBarContent;
-});
-__d('react-native-simple-router/components/NavButton.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  'use strict';
+this.goBack = this.goBack.bind(this);
+this.goForward = this.goForward.bind(this);
+this.replaceRoute = this.replaceRoute.bind(this);
+this.resetToRoute = this.resetToRoute.bind(this);
+this.goToFirstRoute = this.goToFirstRoute.bind(this);
+this.customAction = this.customAction.bind(this);
 
-var React=require('react-native/Libraries/react-native/react-native.js');var 
-
-
-StyleSheet=
-
-
-
-React.StyleSheet;var Text=React.Text;var View=React.View;var TouchableHighlight=React.TouchableHighlight;
-
-
-var NavButton=React.createClass({displayName:'NavButton',
-
-onPress:function(){
-this.props.onPress();},
+this.state = {
+opacity:this.props.willDisappear?new _reactNative.Animated.Value(1):new _reactNative.Animated.Value(0)};
 
 
-render:function(){
-var backButton,
-BackButton;
+this.doAnimation = this.doAnimation.bind(this);}_createClass(NavBarContent,[{key:'componentDidMount',value:
 
-if(this.props.backButtonComponent){
-BackButton = this.props.backButtonComponent;
-backButton = React.createElement(View,null,React.createElement(BackButton,null));}else 
+
+function componentDidMount(){
+
+this.doAnimation();}},{key:'componentWillReceiveProps',value:
+
+
+function componentWillReceiveProps(newProps){
+if(newProps.route !== this.props.route){
+this.state.opacity.setValue(this.props.willDisappear?1:0);
+this.doAnimation();}else 
+if(newProps.route === this.props.route){
+this.state.opacity.setValue(1);}}},{key:'doAnimation',value:
+
+
+
+function doAnimation(){var _this=this;
+setTimeout(function(){
+_reactNative.Animated.timing(
+_this.state.opacity,
 {
-backButton = React.createElement(Text,{style:styles.navbarText},'Back');}
+fromValue:_this.props.willDisappear?1:0,
+toValue:_this.props.willDisappear?0:1,
+duration:300,
+easing:_reactNative.Easing.easeOutQuad}).
 
+start();},
+0);}},{key:'goBack',value:
+
+
+function goBack(){
+if(!this.props.willDisappear){
+this.props.goBack();}}},{key:'goForward',value:
+
+
+
+function goForward(route){
+this.props.goForward(route);}},{key:'replaceRoute',value:
+
+
+function replaceRoute(nextRoute){
+this.props.replaceRoute(nextRoute);}},{key:'resetToRoute',value:
+
+
+function resetToRoute(nextRoute){
+this.props.resetToRoute(nextRoute);}},{key:'goToFirstRoute',value:
+
+
+function goToFirstRoute(nextRoute){
+this.props.goToFirstRoute(nextRoute);}},{key:'customAction',value:
+
+
+function customAction(opts){
+this.props.customAction(opts);}},{key:'render',value:
+
+
+function render(){
+var transitionStyle={
+opacity:this.state.opacity};
+
+
+var leftCorner=undefined;
+var LeftCorner=undefined;
+var rightCorner=undefined;
+var RightCorner=undefined;
+var titleComponent=undefined;
+var leftCornerContent=undefined;
+var rightCornerContent=undefined;
+var titleContent=undefined;
+var TitleComponent=undefined;
+var trans=undefined;
+var width=undefined;
+var color=undefined;
+
+
+
+
+
+
+if(this.props.route.leftCorner){
+LeftCorner = this.props.route.leftCorner;
+leftCornerContent = 
+_reactNative2.default.createElement(LeftCorner,_extends({
+toRoute:this.goForward,
+toBack:this.goBack,
+replaceRoute:this.replaceRoute,
+resetToRoute:this.resetToRoute,
+goToFirstRoute:this.goToFirstRoute,
+customAction:this.customAction},
+this.props.leftProps,
+this.props.route.leftCornerProps));}else 
+
+
+if(this.props.route.index > 0){
+leftCornerContent = 
+_reactNative2.default.createElement(_NavButton2.default,{onPress:this.goBack,backButtonComponent:this.props.backButtonComponent});}
+
+
+
+if(_reactNative.Platform.OS === 'ios' || this.props.route.leftCorner || this.props.route.index > 0){
+leftCorner = 
+_reactNative2.default.createElement(_reactNative.View,{style:[styles.corner,styles.alignLeft]},
+leftCornerContent);}
+
+
+
+
+
+
+
+
+if(this.props.route.rightCorner || this.props.rightCorner){
+RightCorner = this.props.route.rightCorner || this.props.rightCorner;
+rightCornerContent = 
+_reactNative2.default.createElement(RightCorner,_extends({
+toRoute:this.goForward,
+toBack:this.goBack,
+replaceRoute:this.replaceRoute,
+resetToRoute:this.resetToRoute,
+goToFirstRoute:this.goToFirstRoute,
+customAction:this.customAction},
+this.props.rightProps,
+this.props.route.rightCornerProps));}
+
+
+
+
+if(_reactNative.Platform.OS === 'ios' || this.props.route.rightCorner || this.props.rightCorner){
+rightCorner = 
+_reactNative2.default.createElement(_reactNative.View,{style:[styles.corner,styles.alignRight]},
+rightCornerContent);}
+
+
+
+
+
+
+
+
+if(this.props.route.titleComponent){
+TitleComponent = this.props.route.titleComponent;
+titleContent = 
+_reactNative2.default.createElement(TitleComponent,_extends({
+toRoute:this.goForward,
+toBack:this.goBack,
+replaceRoute:this.replaceRoute,
+resetToRoute:this.resetToRoute,
+goToFirstRoute:this.goToFirstRoute,
+customAction:this.customAction},
+this.props.titleProps));}else 
+
+
+{
+titleContent = 
+_reactNative2.default.createElement(_reactNative.Text,{style:[styles.navbarText,this.props.titleStyle],numberOfLines:1},
+this.props.route.name);}
+
+
+
+
+titleComponent = 
+_reactNative2.default.createElement(_reactNative.View,{style:{flex:6}},
+titleContent);
+
+
+
+if(this.props.route.trans === true){
+trans = {backgroundColor:'transparent',borderBottomWidth:0};}else 
+{
+trans = {};}
+
+
+width = this.props.borderBottomWidth?this.props.borderBottomWidth:0;
+color = this.props.borderColor?this.props.borderColor:null;
 
 return (
-React.createElement(TouchableHighlight,{onPress:this.onPress,underlayColor:'transparent'},
-backButton));}});
+_reactNative2.default.createElement(_reactNative.Animated.View,{
+style:
+[
+styles.navbar,
+transitionStyle,
+this.props.route.headerStyle,
+{borderBottomWidth:width,borderColor:color},
+trans]},
+
+
+
+leftCorner,
+titleComponent,
+rightCorner));}}]);return NavBarContent;})(_reactNative2.default.Component);
 
 
 
 
 
+NavBarContent.propTypes = propTypes;exports.default = 
 
-var styles=StyleSheet.create({
+NavBarContent;module.exports = exports.default;
+});
+__d('react-native-simple-router/components/NavButton.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
+
+var propTypes={
+backButtonComponent:_reactNative.PropTypes.func,
+onPress:_reactNative.PropTypes.func.isRequired};var 
+
+
+NavButton=(function(_React$Component){_inherits(NavButton,_React$Component);
+function NavButton(props){_classCallCheck(this,NavButton);
+_get(Object.getPrototypeOf(NavButton.prototype),'constructor',this).call(this,props);
+
+this.styles = _reactNative.StyleSheet.create({
 navbarText:{
 color:'white',
 fontSize:16,
@@ -75694,8 +75485,1680 @@ alignItems:'center'}});
 
 
 
+this.onPress = this.onPress.bind(this);}_createClass(NavButton,[{key:'onPress',value:
 
-module.exports = NavButton;
+
+function onPress(){
+this.props.onPress();}},{key:'render',value:
+
+
+function render(){
+var backButton=undefined;
+var BackButton=undefined;
+
+if(this.props.backButtonComponent){
+BackButton = this.props.backButtonComponent;
+backButton = _reactNative2.default.createElement(_reactNative.View,null,_reactNative2.default.createElement(BackButton,null));}else 
+{
+backButton = _reactNative2.default.createElement(_reactNative.Text,{style:this.styles.navbarText},'Back');}
+
+
+return (
+_reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.onPress,underlayColor:'transparent'},
+backButton));}}]);return NavButton;})(_reactNative2.default.Component);
+
+
+
+
+
+NavButton.propTypes = propTypes;exports.default = 
+
+NavButton;module.exports = exports.default;
+});
+__d('react-native-simple-router/styles.ios.js',[],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var NAV_BAR_HEIGHT=64;exports.NAV_BAR_HEIGHT = NAV_BAR_HEIGHT;
+var NAV_BAR_TEXT_ALIGN='center';exports.NAV_BAR_TEXT_ALIGN = NAV_BAR_TEXT_ALIGN;
+var NAV_BAR_TEXT_MARGIN_TOP=14;exports.NAV_BAR_TEXT_MARGIN_TOP = NAV_BAR_TEXT_MARGIN_TOP;
+var NAV_BAR_TEXT_MARGIN_BOTTOM=0;exports.NAV_BAR_TEXT_MARGIN_BOTTOM = NAV_BAR_TEXT_MARGIN_BOTTOM;
+var NAV_BAR_PADDING_TOP=13;exports.NAV_BAR_PADDING_TOP = NAV_BAR_PADDING_TOP;
+});
+__d('aspect-js/aspect.js',[],function(global, require, module, exports) {  'use strict';
+(function(define){
+if(typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
+module.exports = define;}else 
+
+{
+window.aspect = define;}})(
+
+
+(function(){
+var threeParams=function(){
+if(arguments.length !== 3){
+throw new Error('Aspect requires three parameters.');}
+
+if(typeof arguments[0] !== 'object'){
+throw new Error('Aspect requires an object-type parameter for "object".');}
+
+if(typeof arguments[1] !== 'string'){
+throw new Error('Aspect requires an string-type parameter for "method".');}
+
+if(typeof arguments[2] !== 'function'){
+throw new Error('Aspect requires an function-type parameter for "advice".');}};
+
+
+
+return {
+before:function(obj,method,advice){
+threeParams.apply(this,arguments);
+var orig=obj[method];
+obj[method] = function(){
+advice.apply(null,arguments);
+return orig.apply(null,arguments);};},
+
+
+
+after:function(obj,method,advice){
+threeParams.apply(this,arguments);
+var orig=obj[method];
+obj[method] = function(){
+var value;
+var args=Array.prototype.slice.call(arguments,0);
+try{
+value = orig.apply(null,arguments);
+args.unshift(value);
+advice.apply(null,args);
+return value;}
+catch(err) {
+value = err;
+args.unshift(value);
+advice.apply(null,args);
+throw err;}};},
+
+
+
+
+afterReturn:function(obj,method,advice){
+threeParams.apply(this,arguments);
+var orig=obj[method];
+obj[method] = function(){
+var value=orig.apply(null,arguments);
+var args=Array.prototype.slice.call(arguments,0);
+args.unshift(value);
+advice.apply(null,args);
+return value;};},
+
+
+
+afterThrow:function(obj,method,advice){
+threeParams.apply(this,arguments);
+var orig=obj[method];
+obj[method] = function(){
+try{
+return orig.apply(null,arguments);}
+catch(err) {
+var args=Array.prototype.slice.call(arguments,0);
+args.unshift(err);
+advice.apply(null,args);
+throw err;}};},
+
+
+
+
+around:function(obj,method,advice){
+threeParams.apply(this,arguments);
+var orig=obj[method];
+obj[method] = function(){
+var args=Array.prototype.slice.call(arguments,0);
+args.unshift(orig);
+return advice.apply(null,args);};}};})());
+});
+__d('underscore/underscore.js',[],function(global, require, module, exports) {  (
+
+
+
+
+function(){
+
+
+
+
+
+var root=this;
+
+
+var previousUnderscore=root._;
+
+
+var ArrayProto=Array.prototype,ObjProto=Object.prototype,FuncProto=Function.prototype;
+
+
+var 
+push=ArrayProto.push,
+slice=ArrayProto.slice,
+toString=ObjProto.toString,
+hasOwnProperty=ObjProto.hasOwnProperty;
+
+
+
+var 
+nativeIsArray=Array.isArray,
+nativeKeys=Object.keys,
+nativeBind=FuncProto.bind,
+nativeCreate=Object.create;
+
+
+var Ctor=function(){};
+
+
+var _=function(obj){
+if(obj instanceof _)return obj;
+if(!(this instanceof _))return new _(obj);
+this._wrapped = obj;};
+
+
+
+
+
+if(typeof exports !== 'undefined'){
+if(typeof module !== 'undefined' && module.exports){
+exports = module.exports = _;}
+
+exports._ = _;}else 
+{
+root._ = _;}
+
+
+
+_.VERSION = '1.8.3';
+
+
+
+
+var optimizeCb=function(func,context,argCount){
+if(context === void 0)return func;
+switch(argCount == null?3:argCount){
+case 1:return function(value){
+return func.call(context,value);};
+
+case 2:return function(value,other){
+return func.call(context,value,other);};
+
+case 3:return function(value,index,collection){
+return func.call(context,value,index,collection);};
+
+case 4:return function(accumulator,value,index,collection){
+return func.call(context,accumulator,value,index,collection);};}
+
+
+return function(){
+return func.apply(context,arguments);};};
+
+
+
+
+
+
+var cb=function(value,context,argCount){
+if(value == null)return _.identity;
+if(_.isFunction(value))return optimizeCb(value,context,argCount);
+if(_.isObject(value))return _.matcher(value);
+return _.property(value);};
+
+_.iteratee = function(value,context){
+return cb(value,context,Infinity);};
+
+
+
+var createAssigner=function(keysFunc,undefinedOnly){
+return function(obj){
+var length=arguments.length;
+if(length < 2 || obj == null)return obj;
+for(var index=1;index < length;index++) {
+var source=arguments[index],
+keys=keysFunc(source),
+l=keys.length;
+for(var i=0;i < l;i++) {
+var key=keys[i];
+if(!undefinedOnly || obj[key] === void 0)obj[key] = source[key];}}
+
+
+return obj;};};
+
+
+
+
+var baseCreate=function(prototype){
+if(!_.isObject(prototype))return {};
+if(nativeCreate)return nativeCreate(prototype);
+Ctor.prototype = prototype;
+var result=new Ctor();
+Ctor.prototype = null;
+return result;};
+
+
+var property=function(key){
+return function(obj){
+return obj == null?void 0:obj[key];};};
+
+
+
+
+
+
+
+var MAX_ARRAY_INDEX=Math.pow(2,53) - 1;
+var getLength=property('length');
+var isArrayLike=function(collection){
+var length=getLength(collection);
+return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;};
+
+
+
+
+
+
+
+
+_.each = _.forEach = function(obj,iteratee,context){
+iteratee = optimizeCb(iteratee,context);
+var i,length;
+if(isArrayLike(obj)){
+for(i = 0,length = obj.length;i < length;i++) {
+iteratee(obj[i],i,obj);}}else 
+
+{
+var keys=_.keys(obj);
+for(i = 0,length = keys.length;i < length;i++) {
+iteratee(obj[keys[i]],keys[i],obj);}}
+
+
+return obj;};
+
+
+
+_.map = _.collect = function(obj,iteratee,context){
+iteratee = cb(iteratee,context);
+var keys=!isArrayLike(obj) && _.keys(obj),
+length=(keys || obj).length,
+results=Array(length);
+for(var index=0;index < length;index++) {
+var currentKey=keys?keys[index]:index;
+results[index] = iteratee(obj[currentKey],currentKey,obj);}
+
+return results;};
+
+
+
+function createReduce(dir){
+
+
+function iterator(obj,iteratee,memo,keys,index,length){
+for(;index >= 0 && index < length;index += dir) {
+var currentKey=keys?keys[index]:index;
+memo = iteratee(memo,obj[currentKey],currentKey,obj);}
+
+return memo;}
+
+
+return function(obj,iteratee,memo,context){
+iteratee = optimizeCb(iteratee,context,4);
+var keys=!isArrayLike(obj) && _.keys(obj),
+length=(keys || obj).length,
+index=dir > 0?0:length - 1;
+
+if(arguments.length < 3){
+memo = obj[keys?keys[index]:index];
+index += dir;}
+
+return iterator(obj,iteratee,memo,keys,index,length);};}
+
+
+
+
+
+_.reduce = _.foldl = _.inject = createReduce(1);
+
+
+_.reduceRight = _.foldr = createReduce(-1);
+
+
+_.find = _.detect = function(obj,predicate,context){
+var key;
+if(isArrayLike(obj)){
+key = _.findIndex(obj,predicate,context);}else 
+{
+key = _.findKey(obj,predicate,context);}
+
+if(key !== void 0 && key !== -1)return obj[key];};
+
+
+
+
+_.filter = _.select = function(obj,predicate,context){
+var results=[];
+predicate = cb(predicate,context);
+_.each(obj,function(value,index,list){
+if(predicate(value,index,list))results.push(value);});
+
+return results;};
+
+
+
+_.reject = function(obj,predicate,context){
+return _.filter(obj,_.negate(cb(predicate)),context);};
+
+
+
+
+_.every = _.all = function(obj,predicate,context){
+predicate = cb(predicate,context);
+var keys=!isArrayLike(obj) && _.keys(obj),
+length=(keys || obj).length;
+for(var index=0;index < length;index++) {
+var currentKey=keys?keys[index]:index;
+if(!predicate(obj[currentKey],currentKey,obj))return false;}
+
+return true;};
+
+
+
+
+_.some = _.any = function(obj,predicate,context){
+predicate = cb(predicate,context);
+var keys=!isArrayLike(obj) && _.keys(obj),
+length=(keys || obj).length;
+for(var index=0;index < length;index++) {
+var currentKey=keys?keys[index]:index;
+if(predicate(obj[currentKey],currentKey,obj))return true;}
+
+return false;};
+
+
+
+
+_.contains = _.includes = _.include = function(obj,item,fromIndex,guard){
+if(!isArrayLike(obj))obj = _.values(obj);
+if(typeof fromIndex != 'number' || guard)fromIndex = 0;
+return _.indexOf(obj,item,fromIndex) >= 0;};
+
+
+
+_.invoke = function(obj,method){
+var args=slice.call(arguments,2);
+var isFunc=_.isFunction(method);
+return _.map(obj,function(value){
+var func=isFunc?method:value[method];
+return func == null?func:func.apply(value,args);});};
+
+
+
+
+_.pluck = function(obj,key){
+return _.map(obj,_.property(key));};
+
+
+
+
+_.where = function(obj,attrs){
+return _.filter(obj,_.matcher(attrs));};
+
+
+
+
+_.findWhere = function(obj,attrs){
+return _.find(obj,_.matcher(attrs));};
+
+
+
+_.max = function(obj,iteratee,context){
+var result=-Infinity,lastComputed=-Infinity,
+value,computed;
+if(iteratee == null && obj != null){
+obj = isArrayLike(obj)?obj:_.values(obj);
+for(var i=0,length=obj.length;i < length;i++) {
+value = obj[i];
+if(value > result){
+result = value;}}}else 
+
+
+{
+iteratee = cb(iteratee,context);
+_.each(obj,function(value,index,list){
+computed = iteratee(value,index,list);
+if(computed > lastComputed || computed === -Infinity && result === -Infinity){
+result = value;
+lastComputed = computed;}});}
+
+
+
+return result;};
+
+
+
+_.min = function(obj,iteratee,context){
+var result=Infinity,lastComputed=Infinity,
+value,computed;
+if(iteratee == null && obj != null){
+obj = isArrayLike(obj)?obj:_.values(obj);
+for(var i=0,length=obj.length;i < length;i++) {
+value = obj[i];
+if(value < result){
+result = value;}}}else 
+
+
+{
+iteratee = cb(iteratee,context);
+_.each(obj,function(value,index,list){
+computed = iteratee(value,index,list);
+if(computed < lastComputed || computed === Infinity && result === Infinity){
+result = value;
+lastComputed = computed;}});}
+
+
+
+return result;};
+
+
+
+
+_.shuffle = function(obj){
+var set=isArrayLike(obj)?obj:_.values(obj);
+var length=set.length;
+var shuffled=Array(length);
+for(var index=0,rand;index < length;index++) {
+rand = _.random(0,index);
+if(rand !== index)shuffled[index] = shuffled[rand];
+shuffled[rand] = set[index];}
+
+return shuffled;};
+
+
+
+
+
+_.sample = function(obj,n,guard){
+if(n == null || guard){
+if(!isArrayLike(obj))obj = _.values(obj);
+return obj[_.random(obj.length - 1)];}
+
+return _.shuffle(obj).slice(0,Math.max(0,n));};
+
+
+
+_.sortBy = function(obj,iteratee,context){
+iteratee = cb(iteratee,context);
+return _.pluck(_.map(obj,function(value,index,list){
+return {
+value:value,
+index:index,
+criteria:iteratee(value,index,list)};}).
+
+sort(function(left,right){
+var a=left.criteria;
+var b=right.criteria;
+if(a !== b){
+if(a > b || a === void 0)return 1;
+if(a < b || b === void 0)return -1;}
+
+return left.index - right.index;}),
+'value');};
+
+
+
+var group=function(behavior){
+return function(obj,iteratee,context){
+var result={};
+iteratee = cb(iteratee,context);
+_.each(obj,function(value,index){
+var key=iteratee(value,index,obj);
+behavior(result,value,key);});
+
+return result;};};
+
+
+
+
+
+_.groupBy = group(function(result,value,key){
+if(_.has(result,key))result[key].push(value);else result[key] = [value];});
+
+
+
+
+_.indexBy = group(function(result,value,key){
+result[key] = value;});
+
+
+
+
+
+_.countBy = group(function(result,value,key){
+if(_.has(result,key))result[key]++;else result[key] = 1;});
+
+
+
+_.toArray = function(obj){
+if(!obj)return [];
+if(_.isArray(obj))return slice.call(obj);
+if(isArrayLike(obj))return _.map(obj,_.identity);
+return _.values(obj);};
+
+
+
+_.size = function(obj){
+if(obj == null)return 0;
+return isArrayLike(obj)?obj.length:_.keys(obj).length;};
+
+
+
+
+_.partition = function(obj,predicate,context){
+predicate = cb(predicate,context);
+var pass=[],fail=[];
+_.each(obj,function(value,key,obj){
+(predicate(value,key,obj)?pass:fail).push(value);});
+
+return [pass,fail];};
+
+
+
+
+
+
+
+
+_.first = _.head = _.take = function(array,n,guard){
+if(array == null)return void 0;
+if(n == null || guard)return array[0];
+return _.initial(array,array.length - n);};
+
+
+
+
+
+_.initial = function(array,n,guard){
+return slice.call(array,0,Math.max(0,array.length - (n == null || guard?1:n)));};
+
+
+
+
+_.last = function(array,n,guard){
+if(array == null)return void 0;
+if(n == null || guard)return array[array.length - 1];
+return _.rest(array,Math.max(0,array.length - n));};
+
+
+
+
+
+_.rest = _.tail = _.drop = function(array,n,guard){
+return slice.call(array,n == null || guard?1:n);};
+
+
+
+_.compact = function(array){
+return _.filter(array,_.identity);};
+
+
+
+var flatten=function(input,shallow,strict,startIndex){
+var output=[],idx=0;
+for(var i=startIndex || 0,length=getLength(input);i < length;i++) {
+var value=input[i];
+if(isArrayLike(value) && (_.isArray(value) || _.isArguments(value))){
+
+if(!shallow)value = flatten(value,shallow,strict);
+var j=0,len=value.length;
+output.length += len;
+while(j < len) {
+output[idx++] = value[j++];}}else 
+
+if(!strict){
+output[idx++] = value;}}
+
+
+return output;};
+
+
+
+_.flatten = function(array,shallow){
+return flatten(array,shallow,false);};
+
+
+
+_.without = function(array){
+return _.difference(array,slice.call(arguments,1));};
+
+
+
+
+
+_.uniq = _.unique = function(array,isSorted,iteratee,context){
+if(!_.isBoolean(isSorted)){
+context = iteratee;
+iteratee = isSorted;
+isSorted = false;}
+
+if(iteratee != null)iteratee = cb(iteratee,context);
+var result=[];
+var seen=[];
+for(var i=0,length=getLength(array);i < length;i++) {
+var value=array[i],
+computed=iteratee?iteratee(value,i,array):value;
+if(isSorted){
+if(!i || seen !== computed)result.push(value);
+seen = computed;}else 
+if(iteratee){
+if(!_.contains(seen,computed)){
+seen.push(computed);
+result.push(value);}}else 
+
+if(!_.contains(result,value)){
+result.push(value);}}
+
+
+return result;};
+
+
+
+
+_.union = function(){
+return _.uniq(flatten(arguments,true,true));};
+
+
+
+
+_.intersection = function(array){
+var result=[];
+var argsLength=arguments.length;
+for(var i=0,length=getLength(array);i < length;i++) {
+var item=array[i];
+if(_.contains(result,item))continue;
+for(var j=1;j < argsLength;j++) {
+if(!_.contains(arguments[j],item))break;}
+
+if(j === argsLength)result.push(item);}
+
+return result;};
+
+
+
+
+_.difference = function(array){
+var rest=flatten(arguments,true,true,1);
+return _.filter(array,function(value){
+return !_.contains(rest,value);});};
+
+
+
+
+
+_.zip = function(){
+return _.unzip(arguments);};
+
+
+
+
+_.unzip = function(array){
+var length=array && _.max(array,getLength).length || 0;
+var result=Array(length);
+
+for(var index=0;index < length;index++) {
+result[index] = _.pluck(array,index);}
+
+return result;};
+
+
+
+
+
+_.object = function(list,values){
+var result={};
+for(var i=0,length=getLength(list);i < length;i++) {
+if(values){
+result[list[i]] = values[i];}else 
+{
+result[list[i][0]] = list[i][1];}}
+
+
+return result;};
+
+
+
+function createPredicateIndexFinder(dir){
+return function(array,predicate,context){
+predicate = cb(predicate,context);
+var length=getLength(array);
+var index=dir > 0?0:length - 1;
+for(;index >= 0 && index < length;index += dir) {
+if(predicate(array[index],index,array))return index;}
+
+return -1;};}
+
+
+
+
+_.findIndex = createPredicateIndexFinder(1);
+_.findLastIndex = createPredicateIndexFinder(-1);
+
+
+
+_.sortedIndex = function(array,obj,iteratee,context){
+iteratee = cb(iteratee,context,1);
+var value=iteratee(obj);
+var low=0,high=getLength(array);
+while(low < high) {
+var mid=Math.floor((low + high) / 2);
+if(iteratee(array[mid]) < value)low = mid + 1;else high = mid;}
+
+return low;};
+
+
+
+function createIndexFinder(dir,predicateFind,sortedIndex){
+return function(array,item,idx){
+var i=0,length=getLength(array);
+if(typeof idx == 'number'){
+if(dir > 0){
+i = idx >= 0?idx:Math.max(idx + length,i);}else 
+{
+length = idx >= 0?Math.min(idx + 1,length):idx + length + 1;}}else 
+
+if(sortedIndex && idx && length){
+idx = sortedIndex(array,item);
+return array[idx] === item?idx:-1;}
+
+if(item !== item){
+idx = predicateFind(slice.call(array,i,length),_.isNaN);
+return idx >= 0?idx + i:-1;}
+
+for(idx = dir > 0?i:length - 1;idx >= 0 && idx < length;idx += dir) {
+if(array[idx] === item)return idx;}
+
+return -1;};}
+
+
+
+
+
+
+
+_.indexOf = createIndexFinder(1,_.findIndex,_.sortedIndex);
+_.lastIndexOf = createIndexFinder(-1,_.findLastIndex);
+
+
+
+
+_.range = function(start,stop,step){
+if(stop == null){
+stop = start || 0;
+start = 0;}
+
+step = step || 1;
+
+var length=Math.max(Math.ceil((stop - start) / step),0);
+var range=Array(length);
+
+for(var idx=0;idx < length;idx++,start += step) {
+range[idx] = start;}
+
+
+return range;};
+
+
+
+
+
+
+
+var executeBound=function(sourceFunc,boundFunc,context,callingContext,args){
+if(!(callingContext instanceof boundFunc))return sourceFunc.apply(context,args);
+var self=baseCreate(sourceFunc.prototype);
+var result=sourceFunc.apply(self,args);
+if(_.isObject(result))return result;
+return self;};
+
+
+
+
+
+_.bind = function(func,context){
+if(nativeBind && func.bind === nativeBind)return nativeBind.apply(func,slice.call(arguments,1));
+if(!_.isFunction(func))throw new TypeError('Bind must be called on a function');
+var args=slice.call(arguments,2);
+var bound=function(){
+return executeBound(func,bound,context,this,args.concat(slice.call(arguments)));};
+
+return bound;};
+
+
+
+
+
+_.partial = function(func){
+var boundArgs=slice.call(arguments,1);
+var bound=function(){
+var position=0,length=boundArgs.length;
+var args=Array(length);
+for(var i=0;i < length;i++) {
+args[i] = boundArgs[i] === _?arguments[position++]:boundArgs[i];}
+
+while(position < arguments.length) args.push(arguments[position++]);
+return executeBound(func,bound,this,this,args);};
+
+return bound;};
+
+
+
+
+
+_.bindAll = function(obj){
+var i,length=arguments.length,key;
+if(length <= 1)throw new Error('bindAll must be passed function names');
+for(i = 1;i < length;i++) {
+key = arguments[i];
+obj[key] = _.bind(obj[key],obj);}
+
+return obj;};
+
+
+
+_.memoize = function(func,hasher){
+var memoize=function(key){
+var cache=memoize.cache;
+var address='' + (hasher?hasher.apply(this,arguments):key);
+if(!_.has(cache,address))cache[address] = func.apply(this,arguments);
+return cache[address];};
+
+memoize.cache = {};
+return memoize;};
+
+
+
+
+_.delay = function(func,wait){
+var args=slice.call(arguments,2);
+return setTimeout(function(){
+return func.apply(null,args);},
+wait);};
+
+
+
+
+_.defer = _.partial(_.delay,_,1);
+
+
+
+
+
+
+_.throttle = function(func,wait,options){
+var context,args,result;
+var timeout=null;
+var previous=0;
+if(!options)options = {};
+var later=function(){
+previous = options.leading === false?0:_.now();
+timeout = null;
+result = func.apply(context,args);
+if(!timeout)context = args = null;};
+
+return function(){
+var now=_.now();
+if(!previous && options.leading === false)previous = now;
+var remaining=wait - (now - previous);
+context = this;
+args = arguments;
+if(remaining <= 0 || remaining > wait){
+if(timeout){
+clearTimeout(timeout);
+timeout = null;}
+
+previous = now;
+result = func.apply(context,args);
+if(!timeout)context = args = null;}else 
+if(!timeout && options.trailing !== false){
+timeout = setTimeout(later,remaining);}
+
+return result;};};
+
+
+
+
+
+
+
+_.debounce = function(func,wait,immediate){
+var timeout,args,context,timestamp,result;
+
+var later=function(){
+var last=_.now() - timestamp;
+
+if(last < wait && last >= 0){
+timeout = setTimeout(later,wait - last);}else 
+{
+timeout = null;
+if(!immediate){
+result = func.apply(context,args);
+if(!timeout)context = args = null;}}};
+
+
+
+
+return function(){
+context = this;
+args = arguments;
+timestamp = _.now();
+var callNow=immediate && !timeout;
+if(!timeout)timeout = setTimeout(later,wait);
+if(callNow){
+result = func.apply(context,args);
+context = args = null;}
+
+
+return result;};};
+
+
+
+
+
+
+_.wrap = function(func,wrapper){
+return _.partial(wrapper,func);};
+
+
+
+_.negate = function(predicate){
+return function(){
+return !predicate.apply(this,arguments);};};
+
+
+
+
+
+_.compose = function(){
+var args=arguments;
+var start=args.length - 1;
+return function(){
+var i=start;
+var result=args[start].apply(this,arguments);
+while(i--) result = args[i].call(this,result);
+return result;};};
+
+
+
+
+_.after = function(times,func){
+return function(){
+if(--times < 1){
+return func.apply(this,arguments);}};};
+
+
+
+
+
+_.before = function(times,func){
+var memo;
+return function(){
+if(--times > 0){
+memo = func.apply(this,arguments);}
+
+if(times <= 1)func = null;
+return memo;};};
+
+
+
+
+
+_.once = _.partial(_.before,2);
+
+
+
+
+
+var hasEnumBug=!({toString:null}).propertyIsEnumerable('toString');
+var nonEnumerableProps=['valueOf','isPrototypeOf','toString',
+'propertyIsEnumerable','hasOwnProperty','toLocaleString'];
+
+function collectNonEnumProps(obj,keys){
+var nonEnumIdx=nonEnumerableProps.length;
+var constructor=obj.constructor;
+var proto=_.isFunction(constructor) && constructor.prototype || ObjProto;
+
+
+var prop='constructor';
+if(_.has(obj,prop) && !_.contains(keys,prop))keys.push(prop);
+
+while(nonEnumIdx--) {
+prop = nonEnumerableProps[nonEnumIdx];
+if(prop in obj && obj[prop] !== proto[prop] && !_.contains(keys,prop)){
+keys.push(prop);}}}
+
+
+
+
+
+
+_.keys = function(obj){
+if(!_.isObject(obj))return [];
+if(nativeKeys)return nativeKeys(obj);
+var keys=[];
+for(var key in obj) if(_.has(obj,key))keys.push(key);
+
+if(hasEnumBug)collectNonEnumProps(obj,keys);
+return keys;};
+
+
+
+_.allKeys = function(obj){
+if(!_.isObject(obj))return [];
+var keys=[];
+for(var key in obj) keys.push(key);
+
+if(hasEnumBug)collectNonEnumProps(obj,keys);
+return keys;};
+
+
+
+_.values = function(obj){
+var keys=_.keys(obj);
+var length=keys.length;
+var values=Array(length);
+for(var i=0;i < length;i++) {
+values[i] = obj[keys[i]];}
+
+return values;};
+
+
+
+
+_.mapObject = function(obj,iteratee,context){
+iteratee = cb(iteratee,context);
+var keys=_.keys(obj),
+length=keys.length,
+results={},
+currentKey;
+for(var index=0;index < length;index++) {
+currentKey = keys[index];
+results[currentKey] = iteratee(obj[currentKey],currentKey,obj);}
+
+return results;};
+
+
+
+_.pairs = function(obj){
+var keys=_.keys(obj);
+var length=keys.length;
+var pairs=Array(length);
+for(var i=0;i < length;i++) {
+pairs[i] = [keys[i],obj[keys[i]]];}
+
+return pairs;};
+
+
+
+_.invert = function(obj){
+var result={};
+var keys=_.keys(obj);
+for(var i=0,length=keys.length;i < length;i++) {
+result[obj[keys[i]]] = keys[i];}
+
+return result;};
+
+
+
+
+_.functions = _.methods = function(obj){
+var names=[];
+for(var key in obj) {
+if(_.isFunction(obj[key]))names.push(key);}
+
+return names.sort();};
+
+
+
+_.extend = createAssigner(_.allKeys);
+
+
+
+_.extendOwn = _.assign = createAssigner(_.keys);
+
+
+_.findKey = function(obj,predicate,context){
+predicate = cb(predicate,context);
+var keys=_.keys(obj),key;
+for(var i=0,length=keys.length;i < length;i++) {
+key = keys[i];
+if(predicate(obj[key],key,obj))return key;}};
+
+
+
+
+_.pick = function(object,oiteratee,context){
+var result={},obj=object,iteratee,keys;
+if(obj == null)return result;
+if(_.isFunction(oiteratee)){
+keys = _.allKeys(obj);
+iteratee = optimizeCb(oiteratee,context);}else 
+{
+keys = flatten(arguments,false,false,1);
+iteratee = function(value,key,obj){return key in obj;};
+obj = Object(obj);}
+
+for(var i=0,length=keys.length;i < length;i++) {
+var key=keys[i];
+var value=obj[key];
+if(iteratee(value,key,obj))result[key] = value;}
+
+return result;};
+
+
+
+_.omit = function(obj,iteratee,context){
+if(_.isFunction(iteratee)){
+iteratee = _.negate(iteratee);}else 
+{
+var keys=_.map(flatten(arguments,false,false,1),String);
+iteratee = function(value,key){
+return !_.contains(keys,key);};}
+
+
+return _.pick(obj,iteratee,context);};
+
+
+
+_.defaults = createAssigner(_.allKeys,true);
+
+
+
+
+_.create = function(prototype,props){
+var result=baseCreate(prototype);
+if(props)_.extendOwn(result,props);
+return result;};
+
+
+
+_.clone = function(obj){
+if(!_.isObject(obj))return obj;
+return _.isArray(obj)?obj.slice():_.extend({},obj);};
+
+
+
+
+
+_.tap = function(obj,interceptor){
+interceptor(obj);
+return obj;};
+
+
+
+_.isMatch = function(object,attrs){
+var keys=_.keys(attrs),length=keys.length;
+if(object == null)return !length;
+var obj=Object(object);
+for(var i=0;i < length;i++) {
+var key=keys[i];
+if(attrs[key] !== obj[key] || !(key in obj))return false;}
+
+return true;};
+
+
+
+
+var eq=function(a,b,aStack,bStack){
+
+
+if(a === b)return a !== 0 || 1 / a === 1 / b;
+
+if(a == null || b == null)return a === b;
+
+if(a instanceof _)a = a._wrapped;
+if(b instanceof _)b = b._wrapped;
+
+var className=toString.call(a);
+if(className !== toString.call(b))return false;
+switch(className){
+
+case '[object RegExp]':
+
+case '[object String]':
+
+
+return '' + a === '' + b;
+case '[object Number]':
+
+
+if(+a !== +a)return +b !== +b;
+
+return +a === 0?1 / +a === 1 / b:+a === +b;
+case '[object Date]':
+case '[object Boolean]':
+
+
+
+return +a === +b;}
+
+
+var areArrays=className === '[object Array]';
+if(!areArrays){
+if(typeof a != 'object' || typeof b != 'object')return false;
+
+
+
+var aCtor=a.constructor,bCtor=b.constructor;
+if(aCtor !== bCtor && !(_.isFunction(aCtor) && aCtor instanceof aCtor && 
+_.isFunction(bCtor) && bCtor instanceof bCtor) && 
+'constructor' in a && 'constructor' in b){
+return false;}}
+
+
+
+
+
+
+
+aStack = aStack || [];
+bStack = bStack || [];
+var length=aStack.length;
+while(length--) {
+
+
+if(aStack[length] === a)return bStack[length] === b;}
+
+
+
+aStack.push(a);
+bStack.push(b);
+
+
+if(areArrays){
+
+length = a.length;
+if(length !== b.length)return false;
+
+while(length--) {
+if(!eq(a[length],b[length],aStack,bStack))return false;}}else 
+
+{
+
+var keys=_.keys(a),key;
+length = keys.length;
+
+if(_.keys(b).length !== length)return false;
+while(length--) {
+
+key = keys[length];
+if(!(_.has(b,key) && eq(a[key],b[key],aStack,bStack)))return false;}}
+
+
+
+aStack.pop();
+bStack.pop();
+return true;};
+
+
+
+_.isEqual = function(a,b){
+return eq(a,b);};
+
+
+
+
+_.isEmpty = function(obj){
+if(obj == null)return true;
+if(isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj)))return obj.length === 0;
+return _.keys(obj).length === 0;};
+
+
+
+_.isElement = function(obj){
+return !!(obj && obj.nodeType === 1);};
+
+
+
+
+_.isArray = nativeIsArray || function(obj){
+return toString.call(obj) === '[object Array]';};
+
+
+
+_.isObject = function(obj){
+var type=typeof obj;
+return type === 'function' || type === 'object' && !!obj;};
+
+
+
+_.each(['Arguments','Function','String','Number','Date','RegExp','Error'],function(name){
+_['is' + name] = function(obj){
+return toString.call(obj) === '[object ' + name + ']';};});
+
+
+
+
+
+if(!_.isArguments(arguments)){
+_.isArguments = function(obj){
+return _.has(obj,'callee');};}
+
+
+
+
+
+if(typeof /./ != 'function' && typeof Int8Array != 'object'){
+_.isFunction = function(obj){
+return typeof obj == 'function' || false;};}
+
+
+
+
+_.isFinite = function(obj){
+return isFinite(obj) && !isNaN(parseFloat(obj));};
+
+
+
+_.isNaN = function(obj){
+return _.isNumber(obj) && obj !== +obj;};
+
+
+
+_.isBoolean = function(obj){
+return obj === true || obj === false || toString.call(obj) === '[object Boolean]';};
+
+
+
+_.isNull = function(obj){
+return obj === null;};
+
+
+
+_.isUndefined = function(obj){
+return obj === void 0;};
+
+
+
+
+_.has = function(obj,key){
+return obj != null && hasOwnProperty.call(obj,key);};
+
+
+
+
+
+
+
+_.noConflict = function(){
+root._ = previousUnderscore;
+return this;};
+
+
+
+_.identity = function(value){
+return value;};
+
+
+
+_.constant = function(value){
+return function(){
+return value;};};
+
+
+
+_.noop = function(){};
+
+_.property = property;
+
+
+_.propertyOf = function(obj){
+return obj == null?function(){}:function(key){
+return obj[key];};};
+
+
+
+
+
+_.matcher = _.matches = function(attrs){
+attrs = _.extendOwn({},attrs);
+return function(obj){
+return _.isMatch(obj,attrs);};};
+
+
+
+
+_.times = function(n,iteratee,context){
+var accum=Array(Math.max(0,n));
+iteratee = optimizeCb(iteratee,context,1);
+for(var i=0;i < n;i++) accum[i] = iteratee(i);
+return accum;};
+
+
+
+_.random = function(min,max){
+if(max == null){
+max = min;
+min = 0;}
+
+return min + Math.floor(Math.random() * (max - min + 1));};
+
+
+
+_.now = Date.now || function(){
+return new Date().getTime();};
+
+
+
+var escapeMap={
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#x27;',
+'`':'&#x60;'};
+
+var unescapeMap=_.invert(escapeMap);
+
+
+var createEscaper=function(map){
+var escaper=function(match){
+return map[match];};
+
+
+var source='(?:' + _.keys(map).join('|') + ')';
+var testRegexp=RegExp(source);
+var replaceRegexp=RegExp(source,'g');
+return function(string){
+string = string == null?'':'' + string;
+return testRegexp.test(string)?string.replace(replaceRegexp,escaper):string;};};
+
+
+_.escape = createEscaper(escapeMap);
+_.unescape = createEscaper(unescapeMap);
+
+
+
+_.result = function(object,property,fallback){
+var value=object == null?void 0:object[property];
+if(value === void 0){
+value = fallback;}
+
+return _.isFunction(value)?value.call(object):value;};
+
+
+
+
+var idCounter=0;
+_.uniqueId = function(prefix){
+var id=++idCounter + '';
+return prefix?prefix + id:id;};
+
+
+
+
+_.templateSettings = {
+evaluate:/<%([\s\S]+?)%>/g,
+interpolate:/<%=([\s\S]+?)%>/g,
+escape:/<%-([\s\S]+?)%>/g};
+
+
+
+
+
+var noMatch=/(.)^/;
+
+
+
+var escapes={
+"'":"'",
+'\\':'\\',
+'\r':'r',
+'\n':'n',
+'\u2028':'u2028',
+'\u2029':'u2029'};
+
+
+var escaper=/\\|'|\r|\n|\u2028|\u2029/g;
+
+var escapeChar=function(match){
+return '\\' + escapes[match];};
+
+
+
+
+
+
+_.template = function(text,settings,oldSettings){
+if(!settings && oldSettings)settings = oldSettings;
+settings = _.defaults({},settings,_.templateSettings);
+
+
+var matcher=RegExp([
+(settings.escape || noMatch).source,
+(settings.interpolate || noMatch).source,
+(settings.evaluate || noMatch).source].
+join('|') + '|$','g');
+
+
+var index=0;
+var source="__p+='";
+text.replace(matcher,function(match,escape,interpolate,evaluate,offset){
+source += text.slice(index,offset).replace(escaper,escapeChar);
+index = offset + match.length;
+
+if(escape){
+source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";}else 
+if(interpolate){
+source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";}else 
+if(evaluate){
+source += "';\n" + evaluate + "\n__p+='";}
+
+
+
+return match;});
+
+source += "';\n";
+
+
+if(!settings.variable)source = 'with(obj||{}){\n' + source + '}\n';
+
+source = "var __t,__p='',__j=Array.prototype.join," + 
+"print=function(){__p+=__j.call(arguments,'');};\n" + 
+source + 'return __p;\n';
+
+try{
+var render=new Function(settings.variable || 'obj','_',source);}
+catch(e) {
+e.source = source;
+throw e;}
+
+
+var template=function(data){
+return render.call(this,data,_);};
+
+
+
+var argument=settings.variable || 'obj';
+template.source = 'function(' + argument + '){\n' + source + '}';
+
+return template;};
+
+
+
+_.chain = function(obj){
+var instance=_(obj);
+instance._chain = true;
+return instance;};
+
+
+
+
+
+
+
+
+
+var result=function(instance,obj){
+return instance._chain?_(obj).chain():obj;};
+
+
+
+_.mixin = function(obj){
+_.each(_.functions(obj),function(name){
+var func=_[name] = obj[name];
+_.prototype[name] = function(){
+var args=[this._wrapped];
+push.apply(args,arguments);
+return result(this,func.apply(_,args));};});};
+
+
+
+
+
+_.mixin(_);
+
+
+_.each(['pop','push','reverse','shift','sort','splice','unshift'],function(name){
+var method=ArrayProto[name];
+_.prototype[name] = function(){
+var obj=this._wrapped;
+method.apply(obj,arguments);
+if((name === 'shift' || name === 'splice') && obj.length === 0)delete obj[0];
+return result(this,obj);};});
+
+
+
+
+_.each(['concat','join','slice'],function(name){
+var method=ArrayProto[name];
+_.prototype[name] = function(){
+return result(this,method.apply(this._wrapped,arguments));};});
+
+
+
+
+_.prototype.value = function(){
+return this._wrapped;};
+
+
+
+
+_.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
+
+_.prototype.toString = function(){
+return '' + this._wrapped;};
+
+
+
+
+
+
+
+
+
+if(typeof define === 'function' && define.amd){
+define('underscore',[],function(){
+return _;});}}).
+
+
+call(this);
 });
 __d('Dufine/app/containers/ListPage.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/DufineListItem.js","Dufine/app/containers/DufineView.js","Dufine/app/containers/TrashCan.js","redux/lib/index.js","Dufine/app/actions/dufineActions.js","react-redux/lib/index.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj['default'] = obj;return newObj;}}function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsDufineListItem=require(
 
@@ -75736,7 +77199,7 @@ this.props.actions.setActiveDufine(dufineData);var
 state=this.props.state;
 
 this.props.toRoute({
-name:'Dufine',
+name:dufineData.word,
 component:_DufineView2.default,
 data:dufineData,
 
@@ -75760,7 +77223,7 @@ actions.clearActiveDufine();}}},{key:'render',value:
 function render(){var _this=this;var 
 
 state=this.props.state;
-
+console.log('STATE from render',state);
 
 
 
@@ -75933,20 +77396,14 @@ this.props;var actions=_props.actions;var data=_props.data;
 if(data != null)
 actions.setActiveDufine(data);else 
 
-actions.setActiveDufine(null);
-
-this.onWordSubmit = this.onWordSubmit.bind(this);}_createClass(DufineView,[{key:'onWordSubmit',value:
-
-
-function onWordSubmit(word){}},{key:'render',value:
-
-
+actions.setActiveDufine(null);}_createClass(DufineView,[{key:'render',value:
 
 
 function render(){var 
 
 
 state=this.props.state;
+
 
 return (
 _reactNative2.default.createElement(_reactNative.View,null,
@@ -76222,7 +77679,12 @@ this.openImagePicker = this.openImagePicker.bind(this);}_createClass(DufinePhoto
 
 function onButtonPress(){
 
-this.openImagePicker();}},{key:'render',value:
+this.openImagePicker();}},{key:'renderSuccessPopup',value:
+
+function renderSuccessPopup(){
+_reactNative.AlertIOS.alert(
+'Success!','Your Dufine successfully saved',
+[{text:'Sweet'}]);}},{key:'render',value:
 
 
 
@@ -76252,7 +77714,7 @@ return _reactNative2.default.createElement(_reactNative.View,null);}}},{key:'ope
 
 
 
-function openImagePicker(){var _props$actions=
+function openImagePicker(){var _this=this;var _props$actions=
 this.props.actions;var savePhoto=_props$actions.savePhoto;var saveDufine=_props$actions.saveDufine;
 var options={
 title:'Select Photo',
@@ -76279,8 +77741,8 @@ isStatic:true};
 
 savePhoto(source);
 
-saveDufine();});}}]);return DufinePhoto;})(_reactNative.Component);exports.default = 
-
+saveDufine();
+_this.renderSuccessPopup();});}}]);return DufinePhoto;})(_reactNative.Component);exports.default = 
 
 
 
@@ -76455,33 +77917,24 @@ _get(Object.getPrototypeOf(TrashCan.prototype),'constructor',this).call(this,pro
 this.onDeletePress = this.onDeletePress.bind(this);
 this.deleteDufineConfirm = this.deleteDufineConfirm.bind(this);}_createClass(TrashCan,[{key:'deleteDufineConfirm',value:
 
-
-
-
 function deleteDufineConfirm(){var 
 deleteDufine=this.props.actions.deleteDufine;
-deleteDufine();}},{key:'onDeletePress',value:
-
-
+deleteDufine();
+this.props.toBack();}},{key:'onDeletePress',value:
 
 
 function onDeletePress(){
-
-
 _reactNative.AlertIOS.alert(
-'You sure bro?','this delete is for keeps',
+'You PC bro?','This deletes your work forever.',
 [{text:'Yes',onPress:this.deleteDufineConfirm},
 {text:'No',onPress:function(){return console.log('dont deleteeeee');}}]);}},{key:'render',value:
 
 
 
-
 function render(){
-
 return (
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.onDeletePress},
 _reactNative2.default.createElement(Icon,{style:styles.icon,name:'trash-o',size:25,color:'#fff'})));}}]);return TrashCan;})(_reactNative.Component);exports.default = 
-
 
 
 
@@ -80094,9 +81547,9 @@ height:25,
 marginTop:0,
 marginLeft:8}});module.exports = exports.default;
 });
-__d('Dufine/app/components/icons/SearchAndCompose.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/icons/Search.js","Dufine/app/containers/DufineView.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _Search=require(
+__d('Dufine/app/components/icons/SearchAndCompose.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/icons/Compose.js","Dufine/app/containers/DufineView.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _Compose=require(
 
-'Dufine/app/components/icons/Search.js');var _Search2=_interopRequireDefault(_Search);var _containersDufineView=require(
+'Dufine/app/components/icons/Compose.js');var _Compose2=_interopRequireDefault(_Compose);var _containersDufineView=require(
 'Dufine/app/containers/DufineView.js');var _containersDufineView2=_interopRequireDefault(_containersDufineView);
 
 var Icon=require('FontAwesome');
@@ -80114,7 +81567,14 @@ var propTypes={
 toRoute:_reactNative.PropTypes.func.isRequired};var 
 
 
-SearchAndCompose=(function(_React$Component){_inherits(SearchAndCompose,_React$Component);
+EmptyComponent=(function(_Component){_inherits(EmptyComponent,_Component);function EmptyComponent(){_classCallCheck(this,EmptyComponent);_get(Object.getPrototypeOf(EmptyComponent.prototype),'constructor',this).apply(this,arguments);}_createClass(EmptyComponent,[{key:'render',value:
+
+function render(){
+return _reactNative2.default.createElement(_reactNative.View,null);}}]);return EmptyComponent;})(_reactNative.Component);exports.default = EmptyComponent;var 
+
+
+
+SearchAndCompose=(function(_Component2){_inherits(SearchAndCompose,_Component2);
 function SearchAndCompose(props){_classCallCheck(this,SearchAndCompose);
 _get(Object.getPrototypeOf(SearchAndCompose.prototype),'constructor',this).call(this,props);
 
@@ -80145,9 +81605,9 @@ this.goToSearch = this.goToSearch.bind(this);}_createClass(SearchAndCompose,[{ke
 function goToSearch(){
 
 this.props.toRoute({
-name:'Search',
-component:_containersDufineView2.default});}},{key:'render',value:
-
+name:'Pick a Word',
+component:_containersDufineView2.default,
+rightCorner:EmptyComponent});}},{key:'render',value:
 
 
 
@@ -80158,7 +81618,7 @@ function render(){
 
 return (
 _reactNative2.default.createElement(_reactNative.View,{style:this.styles.iconContainer},
-_reactNative2.default.createElement(_Search2.default,{goToSearch:this.goToSearch})));}}]);return SearchAndCompose;})(_reactNative2.default.Component);
+_reactNative2.default.createElement(_Compose2.default,{goToSearch:this.goToSearch})));}}]);return SearchAndCompose;})(_reactNative.Component);
 
 
 
@@ -80169,7 +81629,7 @@ SearchAndCompose.propTypes = propTypes;exports.default =
 
 SearchAndCompose;module.exports = exports.default;
 });
-__d('Dufine/app/components/icons/Search.js',["react-native/Libraries/react-native/react-native.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
+__d('Dufine/app/components/icons/Compose.js',["react-native/Libraries/react-native/react-native.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);
 
 var Icon=require('FontAwesome');
 
@@ -80212,8 +81672,7 @@ SearchIcon.propTypes = propTypes;exports.default =
 
 SearchIcon;module.exports = exports.default;
 });
-__d('Dufine/app/components/icons/GetSettings.js',["react-native/Libraries/react-native/react-native.js","FontAwesome","Dufine/app/components/AppSettings.js"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsAppSettings=require(
-
+__d('Dufine/app/components/icons/GetSettings.js',["react-native/Libraries/react-native/react-native.js","Dufine/app/components/AppSettings.js","FontAwesome"],function(global, require, module, exports) {  Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _componentsAppSettings=require(
 
 
 
@@ -80231,7 +81690,7 @@ marginLeft:8}});var
 
 
 
-AddPeopleIcon=(function(_React$Component){_inherits(AddPeopleIcon,_React$Component);
+AddPeopleIcon=(function(_Component){_inherits(AddPeopleIcon,_Component);
 function AddPeopleIcon(props){_classCallCheck(this,AddPeopleIcon);
 _get(Object.getPrototypeOf(AddPeopleIcon.prototype),'constructor',this).call(this,props);
 this.goToAddPage = this.goToAddPage.bind(this);}_createClass(AddPeopleIcon,[{key:'goToAddPage',value:
@@ -80246,7 +81705,7 @@ component:_componentsAppSettings2.default});}},{key:'render',value:
 function render(){
 return (
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'transparent',onPress:this.goToAddPage},
-_reactNative2.default.createElement(Icon,{style:styles.icon,name:'gear',size:25,color:'#fff'})));}}]);return AddPeopleIcon;})(_reactNative2.default.Component);
+_reactNative2.default.createElement(Icon,{style:styles.icon,name:'gear',size:25,color:'#fff'})));}}]);return AddPeopleIcon;})(_reactNative.Component);
 
 
 
@@ -80280,22 +81739,32 @@ alignItems:'center'}});var
 
 FindPeoplePage=(function(_React$Component){_inherits(FindPeoplePage,_React$Component);
 function FindPeoplePage(props){_classCallCheck(this,FindPeoplePage);
-_get(Object.getPrototypeOf(FindPeoplePage.prototype),'constructor',this).call(this,props);}_createClass(FindPeoplePage,[{key:'onButtonPress',value:
-
+_get(Object.getPrototypeOf(FindPeoplePage.prototype),'constructor',this).call(this,props);
+this.onButtonPress = this.onButtonPress.bind(this);}_createClass(FindPeoplePage,[{key:'onButtonPress',value:
 
 function onButtonPress(){
+_reactNative.AlertIOS.alert(
+'ಠ_ಠ ','This action deletes all your data?',
+[{text:'Okay',onPress:this.clearAllData},
+{text:'Stop',onPress:function(){return console.log('cancel action');}}]);}},{key:'clearAllData',value:
+
+
+function clearAllData(){
 var engine=(0,_reduxStorageEngineReactnativeasyncstorage2.default)('async-data-v1');
-engine.save({});}},{key:'render',value:
+engine.save({});
+_reactNative.AlertIOS.alert(
+'Everything has been delete!','',
+[{text:'I like fresh starts',onPress:function(){return console.log('deleted');}}]);}},{key:'render',value:
 
 
 
 function render(){
 return (
-_reactNative2.default.createElement(_reactNative.View,null,
 _reactNative2.default.createElement(_reactNative.View,{style:styles.container},
+_reactNative2.default.createElement(_reactNative.View,null,
 _reactNative2.default.createElement(_reactNative.Text,null,'App Version: ',_reactNativeDeviceInfo2.default.getVersion())),
 
-_reactNative2.default.createElement(_reactNative.View,{style:styles.container},
+_reactNative2.default.createElement(_reactNative.View,null,
 _reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.onButtonPress},
 _reactNative2.default.createElement(_reactNative.Text,{style:styles.button},'Clear State Data')))));}}]);return FindPeoplePage;})(_reactNative2.default.Component);exports.default = FindPeoplePage;module.exports = exports.default;
 });
