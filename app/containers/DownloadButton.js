@@ -1,9 +1,10 @@
-import React, { Component, StyleSheet, Image, Text, View,TouchableHighlight, CameraRoll } from 'react-native';
+import React, { Component, StyleSheet, Image, Text, View,TouchableHighlight, CameraRoll, AlertIOS } from 'react-native';
 var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
 import * as styles from '../style/styles.js';
 
 var ViewSnapshotter = require("react-native-view-snapshot");
 var RNFS = require("react-native-fs");
+const GoogleAnalytics = require('react-native-google-analytics-bridge');
 
 export default class DownloadButton extends Component {
 
@@ -23,10 +24,12 @@ export default class DownloadButton extends Component {
     var ref = React.findNodeHandle(this.props.refs.dufine); // sent in from the DufineView.js container
     ViewSnapshotter.saveSnapshotToPath(ref, tmpImagePath, (error, successfulWrite) => {
       if (successfulWrite) {
-          this.setState({catSaved: true});
+        console.log('downloaded',this.props.dufine.word)
+          GoogleAnalytics.trackEvent('Dufine','Downloaded', { label: this.props.dufine.word } );
           // and save it to camera roll
           CameraRoll.saveImageWithTag(tmpImagePath, function(data) {
-            console.log(data);
+            // console.log(data);
+            AlertIOS.alert('Dufine saved to your camera roll','',[{text:'Sweet'}]);
         }, function(err) {
             console.log(err);
         });

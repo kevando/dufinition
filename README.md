@@ -20,6 +20,7 @@ Combine a word definition with one of your own photos.
 
 ##### 1.9
 - Sort list by letter
+- Enable user tracking in Google Analytics
 - Rebuild from latest react native
 - Implement a loading state
 - Refactor worsapi to an action using thunk middleware

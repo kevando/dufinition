@@ -1,6 +1,7 @@
 // this def needs to not be named counter.js
 
 import * as types from '../actions/actionTypes';
+const GoogleAnalytics = require('react-native-google-analytics-bridge');
 
 const initialState = {
   // count: 0,
@@ -87,7 +88,7 @@ const initialState = {
 export default function dufine(state = initialState, action = {}) {
   // console.log('initialstate',state);
   // console.log('state before reducer',state);
-  // console.log('action',action);
+  // console.log('ACTION: ',action);
   switch (action.type) {
       // should probly also be a UI_SET_WORD
       case types.SET_DEFINITION:
@@ -121,12 +122,13 @@ export default function dufine(state = initialState, action = {}) {
       // When a user clicks save
       //
       case types.SAVE_DUFINE:
+      GoogleAnalytics.trackEvent('Dufine','Added', { label: state.ui.dufine.definition.word } );
         return {
           ...state,
           dufines: [
             ...state.dufines,
             {
-              word: state.ui.dufine.definition.word.toLowerCase(), 
+              word: state.ui.dufine.definition.word.toLowerCase(),
               photo: state.ui.dufine.photo,
               definition: state.ui.dufine.definition
             }
@@ -134,6 +136,7 @@ export default function dufine(state = initialState, action = {}) {
         };
 
         case types.DELETE_DUFINE:
+          GoogleAnalytics.trackEvent('Dufine','Deleted', { label: state.ui.dufine.definition.word } );
           var elementPosition = state.dufines.map(function(dufine) {return dufine.definition.word; }).indexOf(state.ui.dufine.definition.word);
           var firstHalf = state.dufines.slice(0, elementPosition);
           var secondHalf = state.dufines.slice(elementPosition + 1)

@@ -16,6 +16,7 @@ import * as dufineActions from '../actions/dufineActions';
 import { connect } from 'react-redux';
 
 import * as styles from '../style/styles.js';
+const GoogleAnalytics = require('react-native-google-analytics-bridge');
 
 const firstRoute = {
   name: 'Home',
@@ -30,6 +31,7 @@ class DufineApp extends Component {
   }
 
   render() {
+    GoogleAnalytics.trackEvent('App','Loaded');
     return (
       <Router
         firstRoute={firstRoute}

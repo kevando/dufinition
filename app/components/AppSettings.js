@@ -3,6 +3,7 @@ import React, { StyleSheet, Text, View, AlertIOS, TouchableHighlight } from 'rea
 import DeviceInfo from 'react-native-device-info';
 import * as styles from '../style/styles.js';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
+GoogleAnalytics.trackEvent('Dufine','Viewed', { label: dufineData.word } );
 
 export default class FindPeoplePage extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class FindPeoplePage extends React.Component {
     this.onButtonPress = this.onButtonPress.bind(this);
   }
   onButtonPress() {
+    GoogleAnalytics.trackEvent('Clear Data','Prompt');
     AlertIOS.alert(
       'ಠ_ಠ ', 'This action deletes all your dufine app data?',
       [{ text: 'Okay', onPress: this.clearAllData },
@@ -17,6 +19,7 @@ export default class FindPeoplePage extends React.Component {
     ); // Alert
   }
   clearAllData() {
+    GoogleAnalytics.trackEvent('Clear Data','Submitted');
     const engine = createEngine('async-data-v1');
     engine.save({}); // This clears the state from local storage
     AlertIOS.alert(

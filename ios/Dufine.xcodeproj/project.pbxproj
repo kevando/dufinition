@@ -14,6 +14,9 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* DufineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DufineTests.m */; };
+		0A1BB7B31C8295F600A40C52 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1BB7B21C8295F600A40C52 /* CoreData.framework */; };
+		0A1BB7B51C82960F00A40C52 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1BB7B41C82960F00A40C52 /* libz.tbd */; };
+		0A1BB7B71C82962200A40C52 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1BB7B61C82962200A40C52 /* libsqlite3.0.tbd */; };
 		0A4F5EC01C02E850005ADB56 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4F5EBF1C02E7FA005ADB56 /* libRNFS.a */; };
 		0A4F5EC91C02ECC2005ADB56 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC21C02ECC2005ADB56 /* LICENSE */; };
 		0A4F5ECA1C02ECC2005ADB56 /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A4F5EC31C02ECC2005ADB56 /* package.json */; };
@@ -130,6 +133,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8529CCB3144D46A6BC4FC4C8 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7675655DF8DB43668800523C /* Foundation.ttf */; };
 		A8315396F98F408DA17B9A16 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0FF1E482884A058E77F5BE /* Entypo.ttf */; };
+		F8C479B2FDC7461FB7DD7DEB /* libRCTGoogleAnalyticsBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B56DE1E8A074E8793C3F60F /* libRCTGoogleAnalyticsBridge.a */; };
 		F9A7A9329F724AB4AA0A3AC4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2647EEE5B004968BBB88468 /* Zocial.ttf */; };
 		FC3471BFE2D94567B7C75675 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF1C824D7B84E0F8346429E /* libRNVectorIcons.a */; };
 /* End PBXBuildFile section */
@@ -176,6 +180,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Dufine;
+		};
+		0A1BB7A51C8294C000A40C52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49AF2FF8D94E426C8C0E4BDA /* RCTGoogleAnalyticsBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A79185C61C30694E001236A6;
+			remoteInfo = RCTGoogleAnalyticsBridge;
 		};
 		0A4F5EBE1C02E7FA005ADB56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -252,6 +263,9 @@
 		00E356EE1AD99517003FC87E /* DufineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DufineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* DufineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DufineTests.m; sourceTree = "<group>"; };
+		0A1BB7B21C8295F600A40C52 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0A1BB7B41C82960F00A40C52 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0A1BB7B61C82962200A40C52 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		0A4F5EAF1C02E7FA005ADB56 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		0A4F5EC21C02ECC2005ADB56 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0A4F5EC31C02ECC2005ADB56 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
@@ -410,6 +424,7 @@
 		0AF201071BEDBE9C00DCCCC9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0AF201081BEDBE9C00DCCCC9 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 		0AF201091BEDBE9C00DCCCC9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0B56DE1E8A074E8793C3F60F /* libRCTGoogleAnalyticsBridge.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTGoogleAnalyticsBridge.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Dufine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dufine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,6 +436,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Dufine/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		3C7DA34DB71849FABD968BBE /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		49AF2FF8D94E426C8C0E4BDA /* RCTGoogleAnalyticsBridge.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTGoogleAnalyticsBridge.xcodeproj; path = "../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/RCTGoogleAnalyticsBridge.xcodeproj"; sourceTree = "<group>"; };
 		4BF1C824D7B84E0F8346429E /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		7037227B6F664A74B9FB2331 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		7675655DF8DB43668800523C /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -446,6 +462,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A1BB7B71C82962200A40C52 /* libsqlite3.0.tbd in Frameworks */,
+				0A1BB7B51C82960F00A40C52 /* libz.tbd in Frameworks */,
+				0A90BA7A1C5447C500CE69EB /* SystemConfiguration.framework in Frameworks */,
+				0A1BB7B31C8295F600A40C52 /* CoreData.framework in Frameworks */,
 				0A90BA941C55AB2600CE69EB /* libRNDeviceInfo.a in Frameworks */,
 				0A90BA8D1C54596000CE69EB /* libicucore.A.tbd in Frameworks */,
 				0A90BA8B1C54595500CE69EB /* libicucore.tbd in Frameworks */,
@@ -453,7 +473,6 @@
 				0A90BA801C5447EF00CE69EB /* CoreGraphics.framework in Frameworks */,
 				0A90BA7E1C5447E400CE69EB /* Accelerate.framework in Frameworks */,
 				0A90BA7C1C5447CE00CE69EB /* CoreTelephony.framework in Frameworks */,
-				0A90BA7A1C5447C500CE69EB /* SystemConfiguration.framework in Frameworks */,
 				0A90BA781C5447B900CE69EB /* Foundation.framework in Frameworks */,
 				0A90BA761C54477C00CE69EB /* UIKit.framework in Frameworks */,
 				0A4F5EC01C02E850005ADB56 /* libRNFS.a in Frameworks */,
@@ -471,6 +490,7 @@
 				0AA4E4F51BDD8EB900BD9200 /* Crashlytics.framework in Frameworks */,
 				0AA4E4F41BDD8EB900BD9200 /* Fabric.framework in Frameworks */,
 				FC3471BFE2D94567B7C75675 /* libRNVectorIcons.a in Frameworks */,
+				F8C479B2FDC7461FB7DD7DEB /* libRCTGoogleAnalyticsBridge.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +552,14 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A1BB79F1C8294C000A40C52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A1BB7A61C8294C000A40C52 /* libRCTGoogleAnalyticsBridge.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0A4F5EB01C02E7FA005ADB56 /* Products */ = {
@@ -829,6 +857,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				8555AA54B1ED4003902D1E46 /* RNVectorIcons.xcodeproj */,
+				49AF2FF8D94E426C8C0E4BDA /* RCTGoogleAnalyticsBridge.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -844,6 +873,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0A1BB7B61C82962200A40C52 /* libsqlite3.0.tbd */,
+				0A1BB7B41C82960F00A40C52 /* libz.tbd */,
+				0A1BB7B21C8295F600A40C52 /* CoreData.framework */,
 				0A90BA8C1C54596000CE69EB /* libicucore.A.tbd */,
 				0A90BA8A1C54595500CE69EB /* libicucore.tbd */,
 				0A90BA811C5447FA00CE69EB /* QuartzCore.framework */,
@@ -957,6 +989,10 @@
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
 				{
+					ProductGroup = 0A1BB79F1C8294C000A40C52 /* Products */;
+					ProjectRef = 49AF2FF8D94E426C8C0E4BDA /* RCTGoogleAnalyticsBridge.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302BC1ABCB91800DB3ED1 /* Products */;
 					ProjectRef = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
 				},
@@ -1043,6 +1079,13 @@
 			fileType = archive.ar;
 			path = libRCTVibration.a;
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A1BB7A61C8294C000A40C52 /* libRCTGoogleAnalyticsBridge.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTGoogleAnalyticsBridge.a;
+			remoteRef = 0A1BB7A51C8294C000A40C52 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A4F5EBF1C02E7FA005ADB56 /* libRNFS.a */ = {
@@ -1299,6 +1342,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1320,6 +1364,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1347,6 +1392,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../../React/**",
 					"$(SRCROOT)/../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 				);
 				INFOPLIST_FILE = Dufine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1375,6 +1421,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../../React/**",
 					"$(SRCROOT)/../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 				);
 				INFOPLIST_FILE = Dufine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1425,6 +1472,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1466,6 +1514,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

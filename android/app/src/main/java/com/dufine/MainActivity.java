@@ -1,6 +1,7 @@
 package com.dufine;
 
 import android.app.Activity;
+import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.rnfs.RNFSPackage;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
+                .addPackage(new GoogleAnalyticsBridgePackage())
                 .addPackage(new VectorIconsPackage())
                 .addPackage(new RNFSPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)

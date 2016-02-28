@@ -16,6 +16,7 @@ const propTypes = {
   toRoute: PropTypes.func.isRequired,
 };
 
+const GoogleAnalytics = require('react-native-google-analytics-bridge');
 
 class ListPage extends Component {
   constructor(props) {
@@ -26,17 +27,12 @@ class ListPage extends Component {
 
   // I wonder if this should be an action
   goToDufine(dufineData) {
-    // i dont know if its the best approach to send in the data object for every single function call
-    // console.log('goToDufine',dufineData)
-    this.props.actions.setActiveDufine(dufineData);
-
+    GoogleAnalytics.trackEvent('Dufine','Viewed', { label: dufineData.word } );
     const { state } = this.props; // redux state
-
     this.props.toRoute({
       name: dufineData.word,
       component: DufineView,
       data: dufineData,
-      // customAction: this.props.toBack,
       rightCorner: TrashCan,
     });
   }
@@ -46,18 +42,14 @@ class ListPage extends Component {
     // and this is my solution
     const { state, actions } = this.props; // redux state
     var activeDufine = state.ui.dufine
-    // console.log('STATE from clearduf',state.ui.activeDufine)
-    // console.log(activeDufine)
     if(activeDufine != null){
-      console.log('CELAR SADF');
       actions.clearActiveDufine();
     }
   }
 
   render() {
-    //console.log('this.props',this.props); // these props include route data, as well as action and state data from redux
+    GoogleAnalytics.trackScreenView('ListPage');
     const { state } = this.props; // redux state
-    // console.log('STATE from render',state)
 
     // this.clearActiveDufine(); // i dont really like thius but whatever
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
