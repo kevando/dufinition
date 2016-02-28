@@ -62,7 +62,13 @@ class ListPage extends Component {
     // this.clearActiveDufine(); // i dont really like thius but whatever
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
     //This is getting pulled from the redux state
-    const Dufines = state.dufines.map((dufineData) => {
+    var sortedDufines = state.dufines; // dont modify state
+    sortedDufines.sort(function(a, b) {
+      var textA = a.word.toUpperCase();
+      var textB = b.word.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    const Dufines = sortedDufines.map((dufineData) => {
       // test var dufineData = state.dufines[0];
       // adding key to stop the react-native child array error. probly dont want to use word cause it could be dup
       return <DufineListItem {...dufineData} onPress={this.goToRoute} goToDufine={this.goToDufine} key={dufineData.word }/>;
