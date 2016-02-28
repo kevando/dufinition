@@ -4,51 +4,20 @@ import React, { Component, StyleSheet, AlertIOS, TouchableHighlight, View, Text,
 import { bindActionCreators } from 'redux';
 import * as dufineActions from '../actions/dufineActions'
 import {connect } from 'react-redux';
-
+import * as styles from '../style/styles.js';
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
 // this container should get renamed
 // and it should pull very heavily from components that it will share with the dufineBig which should change names as well
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#9f88bf',
-    width: 120,
-    height: 120,
-    marginTop: 6,
-    padding: 10,
-    color: 'white',
-    borderRadius: 4,
-  },
-  photoContainer: {
-    marginRight: 20,
-    paddingTop: 2,
-    flexDirection: 'row',
-    backgroundColor: "#fff"
-  },
-  photo: {
-    backgroundColor: 'gray',
-    width: 90,
-    height: 90,
-    margin: 1,
-  },
-});
-
-
-
-
-// break this into a seperate file
-
 class DufinePhoto extends Component {
 
   constructor(props) {
     super(props); //
-
     this.onButtonPress = this.onButtonPress.bind(this);
     this.openImagePicker = this.openImagePicker.bind(this);
   }
   onButtonPress() {
-    // Pull up photo
     this.openImagePicker(); // this kicks off an action
   }
   renderSuccessPopup(){
@@ -65,15 +34,15 @@ class DufinePhoto extends Component {
       if(typeof dufine.photo !== 'undefined'){
         // We have a photo and we should show it
         return (
-          <View style={styles.photoContainer}>
-            <Image source={{ uri: dufine.photo.data, scale:1 }} style={styles.photo} />
+          <View style={styles.dufineViewPhotoContainer}>
+            <Image source={{ uri: dufine.photo.data, scale:1 }} style={styles.dufineViewPhoto} />
           </View>
         );
       } else {
         return (
-          <View style={styles.photoContainer}>
-            <TouchableHighlight onPress={this.onButtonPress} >
-              <Text style={styles.button}>Add Photo</Text>
+          <View style={styles.dufineViewPhotoContainer}>
+            <TouchableHighlight style={styles.dufineViewAddPhoto} onPress={this.openImagePicker} >
+              <Text style={styles.dufineViewAddPhotoText}>Add Photo</Text>
             </TouchableHighlight>
           </View>
         );
@@ -116,7 +85,6 @@ class DufinePhoto extends Component {
     });
   } // openImagePicker
 }
-
 
 // proptypes?
 

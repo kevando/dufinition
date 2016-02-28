@@ -17,7 +17,7 @@ class DufineView extends Component {
     super(props);
 
     const { actions, data } = this.props;
-    // console.log('DufineView constructor data',data)
+    // todo clear active duine in a different spot, this is terrible todo
     if(data != null)
       actions.setActiveDufine(data)
     else

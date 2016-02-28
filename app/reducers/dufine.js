@@ -126,7 +126,7 @@ export default function dufine(state = initialState, action = {}) {
           dufines: [
             ...state.dufines,
             {
-              word: state.ui.dufine.definition.word, // this should probly be the payload
+              word: state.ui.dufine.definition.word.toLowerCase(), 
               photo: state.ui.dufine.photo,
               definition: state.ui.dufine.definition
             }

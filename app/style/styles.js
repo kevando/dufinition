@@ -82,31 +82,87 @@ module.exports = StyleSheet.create({
     fontFamily: 'Georgia'
   },
   /* Dufine Input */
+  dufineInputWrapper: {
+    flex:1,
+    flexDirection: 'column',
+  },
   dufineInputContainer: {
     flex:1,
     padding:10,
-    backgroundColor:'#ccc',
+    borderBottomColor:'#ccc',
+    borderBottomWidth:1,
+    flexDirection: 'row',
+  },
+  dufineInput: {
+    flex: 7,
+  },
+  dufineInputButton: {
+    flex:2,
   },
   input: {
     backgroundColor: '#fff',
     flex: 2,
-    height: 32,
-    marginTop: 6,
+    height: 35,
+    marginTop: 0,
     paddingLeft: 10,
-    color: 'white',
+    borderColor: '#666',
+    borderWidth: 1,
   },
   button: {
     backgroundColor: '#8c88bf',
     flex: 3,
-    height: 32,
-    marginTop: 6,
+    height: 35,
     padding: 10,
-    borderRadius: 4,
+  },
+  inputErrorContainer: {
+    flex:1,
   },
   error: {
     color: 'red',
-  }
+  },
+  dufineViewPhotoContainer: {
+    marginRight: 20,
+    paddingTop: 2,
+    flexDirection: 'row',
+    backgroundColor: "#ccc",
+    width: 120,
+    flex:1,
+    height: 120,
+    alignItems: 'stretch',
+  },
+  dufineViewAddPhoto: {
+    backgroundColor: '#9f88bf',
+    flex:1,
 
+  },
+  dufineViewAddPhotoText: {
+    flex:1,
+    backgroundColor: '#ccc',
+    textAlign: 'center',
+    paddingTop:50,
+    color:'#666'
+  },
+  dufineViewPhoto: {
+    backgroundColor: 'gray',
+    width: 120,
+    height: 120,
+    margin: 1,
+  },
+
+  /* App Settings Page */
+  appSettingsButton: {
+    backgroundColor: 'red',
+    width: 180,
+    marginTop: 6,
+    padding: 10,
+    textAlign: 'center',
+    color: 'white',
+  },
+  appSettingsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
 
 

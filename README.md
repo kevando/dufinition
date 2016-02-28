@@ -22,7 +22,7 @@ Combine a word definition with one of your own photos.
 ##### 1.9
 - Sort list by letter
 - Rebuild from latest react native
-- Enable proper answers tracking
+- Implement a loading state
 - Refactor worsapi to an action using thunk middleware
 - Option to export to dufine tumblr (feed)
 

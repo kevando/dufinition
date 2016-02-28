@@ -1,24 +1,8 @@
 import React, { StyleSheet, Text, View, AlertIOS, TouchableHighlight } from 'react-native';
 
 import DeviceInfo from 'react-native-device-info';
-
+import * as styles from '../style/styles.js';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'red',
-    width: 120,
-    height: 30,
-    marginTop: 6,
-    padding: 10,
-    color: 'white',
-    borderRadius: 4,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default class FindPeoplePage extends React.Component {
   constructor(props) {
@@ -43,13 +27,13 @@ export default class FindPeoplePage extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.appSettingsContainer}>
         <View>
           <Text>App Version: { DeviceInfo.getVersion()}</Text>
         </View>
         <View>
           <TouchableHighlight onPress={this.onButtonPress} >
-            <Text style={styles.button}>Clear State Data</Text>
+            <Text style={styles.appSettingsButton}>Delete All Dufine Data</Text>
           </TouchableHighlight>
         </View>
       </View>
