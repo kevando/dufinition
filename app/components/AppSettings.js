@@ -3,7 +3,7 @@ import React, { StyleSheet, Text, View, AlertIOS, TouchableHighlight } from 'rea
 import DeviceInfo from 'react-native-device-info';
 import * as styles from '../style/styles.js';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
-GoogleAnalytics.trackEvent('Dufine','Viewed', { label: dufineData.word } );
+const GoogleAnalytics = require('react-native-google-analytics-bridge');
 
 export default class FindPeoplePage extends React.Component {
   constructor(props) {

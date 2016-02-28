@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 
 import * as styles from '../style/styles.js';
 const GoogleAnalytics = require('react-native-google-analytics-bridge');
-
+// GoogleAnalytics.setDryRun(false);
 const firstRoute = {
   name: 'Home',
   component: ListPage,
