@@ -39,11 +39,42 @@ module.exports = StyleSheet.create({
   },
 
   /* Dufine View */
-  dufineViewContainer: { //
+  dufineViewWrapper: {
+    // backgroundColor:'yellow',
+    flex:1,
+  },
+  dufineViewContainer: {
+    backgroundColor:'#eee',
+    paddingBottom:10,
+    paddingTop:10,
+    borderWidth:2,
+    borderColor:'ccc',
+    margin:5
+  },
+  dufineViewDownloadContainer: {
+    // backgroundColor: 'orange',
+    flex: 2, // of entire container
+    flexDirection:'row',
+    justifyContent: 'space-around', // center horizontally
+    alignItems:'center', //center verticall
+  },
+  downloadButton: {
+    flex: 1,
+    backgroundColor:'#d14396',
+    marginRight:30,
+    marginLeft:30,
+    paddingTop:10,
+    paddingBottom:10,
+  },
+  downloadButtonText: {
+    color:'#fff',
+    textAlign:'center'
+  },
+  dufineViewDufineContainer: { //
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: '#fff'
+    // backgroundColor: 'red'
   },
   dufineViewWordContainer: { //
     flex: 1,

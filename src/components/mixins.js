@@ -10,13 +10,13 @@ var CameraRoll = require('CameraRoll');
 var dataVersion = "dufine_v5";
 
 module.exports = {
-  
+
 
  	loadData: async function(callback) {
 		//console.log('async loadData = ');
 		var dufineModel = await reactNativeStore.model(dataVersion);
 		var find_data = await dufineModel.find();
-		callback(find_data); // refresh component state	
+		callback(find_data); // refresh component state
 	},
 	saveData: async function(definition,source,callback){
         var dufineModel = await reactNativeStore.model(dataVersion);
@@ -68,7 +68,7 @@ module.exports = {
             // Otherwise the image should have saved to some tmp/cache dir
 			var source = {
 				data: 'data:image/jpeg;base64,' + response.data,
-				uri: response.uri.replace('file://', ''), 
+				uri: response.uri.replace('file://', ''),
 				isStatic: true
 			};
             callback(source);
@@ -102,13 +102,13 @@ module.exports = {
             // Otherwise the image should have saved to some tmp/cache dir
             var source = {
                 data: 'data:image/jpeg;base64,' + response.data,
-                uri: response.uri.replace('file://', ''), 
+                uri: response.uri.replace('file://', ''),
                 isStatic: true
             };
             callback(source);
         });
     }, // openCamera
-    
+
     getWordDefinition: function(word,callback){
 
         var baseURL = 'https://wordsapiv1.p.mashape.com/words/'+word
@@ -152,6 +152,5 @@ module.exports = {
         });
         Mixpanel.trackWithProperties("Definition Exported",{word:this.state.word});
     }
-    
-};
 
+};

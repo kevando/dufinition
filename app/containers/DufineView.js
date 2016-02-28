@@ -9,6 +9,7 @@ import WordInput from './WordInput';
 import DufinePhoto from './AddPhotoButton';
 import DufineWord from '../components/DufineWord';
 import DufineDefinitions from '../components/DufineDefinitions';
+import DownloadButton from './DownloadButton';
 import * as styles from '../style/styles.js';
 
 
@@ -34,17 +35,26 @@ class DufineView extends Component {
 
     // And then this whole mess of code should get refactored todo
     return (
-      <View>
-        <View style={styles.dufineViewContainer}>
-          {( state.ui.dufine == null
-            ? <WordInput />
-            : <DufineWord definition={ state.ui.dufine.definition } />
-          )}
-          <View>
-            <DufinePhoto dufine={state.ui.dufine} />
+      <View style={styles.dufineViewWrapper}>
+        <View style={styles.dufineViewContainer} ref="dufine">
+          <View style={styles.dufineViewDufineContainer}>
+            {( state.ui.dufine == null
+              ? <WordInput />
+              : <DufineWord definition={ state.ui.dufine.definition } />
+            )}
+            <View>
+              <DufinePhoto dufine={state.ui.dufine} />
+            </View>
           </View>
+          <DufineDefinitions dufine={state.ui.dufine}/>
         </View>
-        <DufineDefinitions dufine={state.ui.dufine}/>
+        <View style={styles.dufineViewDownloadContainer}>
+        {( state.ui.dufine != null
+          ? <DownloadButton dufine={state.ui.dufine} refs={this.refs}/>
+          : void 0
+        )}
+
+        </View>
       </View>
     );
   }
