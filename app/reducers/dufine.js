@@ -4,80 +4,34 @@ import * as types from '../actions/actionTypes';
 const GoogleAnalytics = require('react-native-google-analytics-bridge');
 
 const initialState = {
-  // count: 0,
-  ui: { },// i dont like the idea that i would need to init this cause clearing seems like a hassle
-  dufines: [ // Default layout from wordsapi
-    {
-      word: "dumb",
-      photo: {data:'http://i.imgur.com/iu4446t.jpg'},
-      definition: {
-        "word": "dumb OG",
+  ui: {
+    dufine: {
+      word: "idio" ,
+      definition:{
+        "word": "idiot",
         "results": [
           {
-            "definition": "unable to speak because of hereditary deafness",
-            "partOfSpeech": "adjective",
-          },
-          {
-            "definition": "slow to learn or understand; lacking intellectual acuity",
-            "partOfSpeech": "adjective",
-            "synonyms": [
-              "dense",
-              "dim",
-              "dull",
-              "obtuse",
-              "slow"
-            ],
-            "similarTo": [
-              "stupid"
-            ],
-            "derivation": [
-              "dumbness"
-            ],
-            "examples": [
-              "dumb officials make some really dumb decisions"
-            ]
-          },
-          {
-            "definition": "temporarily incapable of speaking",
-            "partOfSpeech": "adjective",
-            "synonyms": [
-              "speechless"
-            ],
-            "similarTo": [
-              "inarticulate",
-              "unarticulate"
-            ],
-            "examples": [
-              "struck dumb"
-            ]
-          },
-          {
-            "definition": "lacking the power of human speech",
-            "partOfSpeech": "adjective",
-            "similarTo": [
-              "unarticulate",
-              "inarticulate"
-            ],
-            "examples": [
-              "dumb animals"
-            ]
+            "definition": "a person of subnormal intelligence",
+            "partOfSpeech": "noun",
           }
         ],
         "syllables": {
-          "count": 1,
+          "count": 3,
           "list": [
-            "dumb"
+            "id",
+            "i",
+            "ot"
           ]
         },
         "pronunciation": {
-          "all": "dəm"
+          "all": "'ɪdiət"
         },
-        "frequency": 4.68
       }
     }
-  ],
-
-
+  },
+  dufines: [], // list of dufines
+  showWelcome: true, // this should initialize to true and be set to false every other time
+  loading: true,
 };
 
 // i am still kind of confused why a reducer is the place to define an initial state
@@ -149,6 +103,11 @@ export default function dufine(state = initialState, action = {}) {
             ],
           }
 
+      case types.CLEAR_WELCOME_FLAG:
+        return {
+          ...state,
+          showWelcome: false,
+        }
       //
       // When a user uploads a Photo
       //

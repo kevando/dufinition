@@ -73,3 +73,9 @@ export function setActiveDufine(dufine) {
     payload: dufine
   }
 }
+
+export function clearWelcomeFlag() {
+  return {
+    type: types.CLEAR_WELCOME_FLAG,
+  }
+}

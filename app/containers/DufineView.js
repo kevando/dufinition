@@ -16,7 +16,6 @@ import * as styles from '../style/styles.js';
 class DufineView extends Component {
   constructor(props) {
     super(props);
-
     const { actions, data } = this.props;
     // todo clear active duine in a different spot, this is terrible todo
     if(data != null)

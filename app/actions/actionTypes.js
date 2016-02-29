@@ -7,6 +7,7 @@ export const DELETE_DUFINE = 'DELETE_DUFINE';
 export const GET_DEFINITION = 'GET_DEFINITION'; // not sure this is used
 export const SET_DEFINITION = 'SET_DEFINITION';
 
+export const CLEAR_WELCOME_FLAG = 'CLEAR_WELCOME_FLAG';
 
 // UI actions
 export const CLEAR_WORD = 'CLEAR_WORD';

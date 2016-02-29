@@ -31,7 +31,7 @@ class SearchIcon extends React.Component {
     // console.log('Search',this.props);
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.goToSearch}>
-        <Icon style={styles.icon} name="edit" size={25} color="#fff" />
+        <Icon style={styles.icon} name="pencil-square-o" size={25} color="#fff" />
       </TouchableHighlight>
     );
   }

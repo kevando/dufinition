@@ -13,16 +13,14 @@ Combine a word definition with one of your own photos.
 ##### 1.8
 - Prevent users from adding duplicate words
 - Download dufine to camera roll (and delete other source files)
-- Add onboarding
 - Consolidate stylesheets
-- Implement Austen's imagery/design/ui
-- [Google Analytics plugin](https://github.com/idehub/react-native-google-analytics-bridge)
+- Enable [Google Analytics plugin](https://github.com/idehub/react-native-google-analytics-bridge)
 
 ##### 1.9
-- Sort list by letter
-- Enable user tracking in Google Analytics
+- Group list by letter - like real dictionary
 - Rebuild from latest react native
 - Implement a loading state
+- Add onboarding
 - Refactor worsapi to an action using thunk middleware
 - Option to export to dufine tumblr (feed)
 

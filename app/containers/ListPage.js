@@ -3,6 +3,8 @@ import React, { Component, StyleSheet, ScrollView, PropTypes } from 'react-nativ
 import DufineListItem from '../components/DufineListItem'; //
 import DufineView from './DufineView'; //
 import TrashCan from './TrashCan'
+import Welcome from './Welcome';
+import Empty from '../components/Empty';
 
 // From the tweet app, this was a component, changing this to a container now so it has access to redux
 // at least i think thats how it works. here is the redux connection code
@@ -21,6 +23,7 @@ const GoogleAnalytics = require('react-native-google-analytics-bridge');
 class ListPage extends Component {
   constructor(props) {
     super(props);
+
     this.goToDufine = this.goToDufine.bind(this);
     this.clearActiveDufine = this.clearActiveDufine.bind(this);
   }
@@ -50,7 +53,6 @@ class ListPage extends Component {
   render() {
     GoogleAnalytics.trackScreenView('ListPage');
     const { state } = this.props; // redux state
-
     // this.clearActiveDufine(); // i dont really like thius but whatever
     // Dufines is a list of dufine objects. probly want to create a schema for that data somewhere.
     //This is getting pulled from the redux state

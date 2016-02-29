@@ -2,7 +2,7 @@ import React, { Component, StyleSheet, View, PropTypes, Text } from 'react-nativ
 
 import SearchIcon from './Compose'; // just image
 import DufineView from '../../containers/DufineView'; // static page
-
+import EmptyComponent from '../Empty';
 var Icon = require('react-native-vector-icons/FontAwesome'); // not sure how to write this otherwise
 
 const styles = StyleSheet.create({ // not sure why this is in the constructor but whatever
@@ -18,12 +18,6 @@ const propTypes = {
   toRoute: PropTypes.func.isRequired,
 };
 
-export default class EmptyComponent extends Component {
-  // this method to remove a rightCorner component is probly way wrong todo
-  render() {
-    return(<View></View>)
-  }
-}
 
 class SearchAndCompose extends Component {
   constructor(props) {

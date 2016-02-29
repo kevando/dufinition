@@ -195,6 +195,13 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
   },
 
+  /* Welcome Page */
+
+  welcomeContainer: {
+    // backgroundColor: '#4071b8',
+    backgroundColor:'red',
+    flex:1,
+  }
 
 
 });

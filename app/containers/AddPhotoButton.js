@@ -16,6 +16,7 @@ class DufinePhoto extends Component {
     super(props); //
     this.onButtonPress = this.onButtonPress.bind(this);
     this.openImagePicker = this.openImagePicker.bind(this);
+    this.checkWelcomeStatus = this.checkWelcomeStatus.bind(this);
   }
   onButtonPress() {
     this.openImagePicker(); // this kicks off an action
@@ -26,6 +27,13 @@ class DufinePhoto extends Component {
       [{text:'Sweet'}]
     )
   }
+  checkWelcomeStatus() {
+    if(this.props.state.showWelcome){
+      this.props.actions.clearWelcomeFlag();
+    }
+  }
+
+
 
   render() { // this render function sucks. todo refactor
     const { dufine } = this.props; //
@@ -82,6 +90,7 @@ class DufinePhoto extends Component {
         // I feel like this code should go elsewhere, but whatever
         saveDufine(); // takes word,definition, photo from the ui and stores it in the state
         this.renderSuccessPopup();
+        this.checkWelcomeStatus();
     });
   } // openImagePicker
 }
