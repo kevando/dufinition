@@ -2,19 +2,16 @@
 
 Combine a word definition with one of your own photos.
 
-### Latest Release (1.7)
- - Added ability to delete.
- - Added success message on Saving new Dufine
+### Latest Release (1.8)
+ - Prevent users from adding duplicate words
+ - Download dufine to camera roll (and delete other source files)
+ - Consolidate stylesheets
+ - Enable [Google Analytics plugin](https://github.com/idehub/react-native-google-analytics-bridge)
 
 
 ---
 
 ## Roadmap
-##### 1.8
-- Prevent users from adding duplicate words
-- Download dufine to camera roll (and delete other source files)
-- Consolidate stylesheets
-- Enable [Google Analytics plugin](https://github.com/idehub/react-native-google-analytics-bridge)
 
 ##### 1.9
 - Group list by letter - like real dictionary
@@ -33,6 +30,9 @@ Combine a word definition with one of your own photos.
 ---
 ### Changelog
 
+**1.7**
+- Added ability to delete.
+- Added success message on Saving new Dufine
 
 **1.6.3** add icons; refactor dufine view so it share components; add 'clear state data' option to the settings page.
 **6.3** changing versioning names
