@@ -1,59 +1,17 @@
-# Dufine Mobile App
+# Dufined
 
-Combine a word definition with one of your own photos.
-
-### Latest Release (1.8)
- - Prevent users from adding duplicate words
- - Download dufine to camera roll (and delete other source files)
- - Consolidate stylesheets
- - Enable [Google Analytics plugin](https://github.com/idehub/react-native-google-analytics-bridge)
-
-
----
-
-## Roadmap
-
-##### 1.9
-- Group list by letter - like real dictionary
-- Rebuild from latest react native
-- Implement a loading state
-- Add onboarding
-- Refactor worsapi to an action using thunk middleware
-- Option to export to dufine tumblr (feed)
-
-##### 2.0
-- Look into other code push options per reactjs conf
-
-##### 2.1
-- Consider using http://pouchdb.com/
-
----
-### Changelog
-
-**1.7**
-- Added ability to delete.
-- Added success message on Saving new Dufine
-
-**1.6.3** add icons; refactor dufine view so it share components; add 'clear state data' option to the settings page.
-**6.3** changing versioning names
-**6.2** ability to delete dufines; add photo to all Dufines
-**6.1** upload photo; wordsapi; async storage
-**6.0** Refactored entire app using redux, so there are many missing; Added new app icon (v1)
-**5**   (Never existed)
-**4.2** adding mixpanel tracking, and device info pacakge
-**4.1** added padding to button, moved delete button, added export button new testers: stew and blake (a dude from reddit)
-**3.2** New definition api (wordsapi) and stores data in a new wayupgraded to data version 4 with no migration plan.
-**3.1** New UI/UX that implements Navigator instead of NavigatorIOS
+A mobile app build using react-native.
+Use Dufined to Combine a word definition with one of your own photos.
 
 
 ---
 ### Developer Configuration
-Todo
+Coming Soon, package.json is way wrong FYI!!!
 
-### Fabric build instructions
+### Fabric build instructions (good for early dev testing)
  1. Update version & build number in xcode
  2. set jsCodeLocation in ApDelegate.m
- 3. `react-native bundle`--minify
+ 3. `react-native bundle --minify`
  4. Set device to generic iOS device
  5. Xcode > Product > Archive
  6. Fabric > Distribute
@@ -66,7 +24,7 @@ Todo
 4. Re-Create it in member center
 5. Re-Add it to xcode
 
-### Test flight notes, steps
+### Test flight notes, steps (good for external testing)
 
 creating itunes connect account. looks like everything is managed here.
   (I can change pricing here, etc)
@@ -143,31 +101,6 @@ redownloaded in xcode
 
 
 
-## Notes on learning react-native
-  "state" is an object to track and respond to user's input
-  each component gets its own instance of state
-  when state changes, the component re-renders
-
-
-
-# Notes on learning redux
-#### Redux overview
-
-Manages the app state, which is different from the component state. Never manipulate the app state in a reducer. Only create new states. A component can be a cunction or a class component. if we do not manipulate the app state.
-
-store is the state I think
-
-#### Terminology
-
- - **Containers:** Components that talk to redux
- - **Controlled Input** state driven input
- - **Middleware:** Takes in an action and either does nothing, it can stop it or change the action. I think it returns a promise
-
-
- Leaving off..
-just got listview to show. I think it depends on the component state, not the app state.
-http://marconijr.com/post/react-native-and-redux/
-I should ask the discord group
 
 
 
