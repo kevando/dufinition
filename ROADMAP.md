@@ -10,6 +10,7 @@
 - Add onboarding
 - Refactor worsapi to an action using thunk middleware
 - Option to export to dufine tumblr (feed)
+- Watermark images with @dufine (do we change the name to dufinde?)
 
 ##### 2.0
 - Look into other code push options per reactjs conf
