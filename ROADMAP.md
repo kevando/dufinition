@@ -8,6 +8,7 @@
 - Improve versioning documentation (spencer)
 - Group list by letter - like real dictionary
 - Rebuild from latest react native
+- add watermark to image download
 - Implement a loading state
 - Add onboarding
 - Refactor worsapi to an action using thunk middleware
