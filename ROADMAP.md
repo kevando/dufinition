@@ -1,9 +1,11 @@
 ## Roadmap
 
 ##### 1.9
-- move changelog and roadmap to different files
+- tailing space prevents api from working (bug)
 - Update image assets (icon, launch, screen shot, etc)
 - Update app description in app store
+- Deploy using code push
+- Improve versioning documentation (spencer)
 - Group list by letter - like real dictionary
 - Rebuild from latest react native
 - Implement a loading state

@@ -3,7 +3,7 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "dufine-icon-v1-29.png",
+      "filename" : "dufine-29.png",
       "scale" : "1x"
     },
     {
@@ -19,7 +19,7 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "dufine-icon-v1-80.png",
+      "filename" : "dufine-57.png",
       "scale" : "2x"
     },
     {
@@ -30,7 +30,7 @@
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "dufine-icon-v1-57.png",
+      "filename" : "dufine-80.png",
       "scale" : "1x"
     },
     {
@@ -41,7 +41,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "dufine-icon-v1-120.png",
+      "filename" : "dufine-120.png",
       "scale" : "2x"
     },
     {
